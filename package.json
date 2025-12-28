@@ -1,0 +1,17 @@
+{
+  "name": "sotn-patcher",
+  "version": "1.0.0",
+  "description": "A tool for generating PPF files for modifying Castlevania: Symphony of the Night (SOTN)",
+  "main": "sotn.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "author": "Sestren",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "commander": "14.0.2",
+    "yargs": "18.0.0"
+  }
+}
