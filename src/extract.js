@@ -1,29 +1,32 @@
 
 import { Address, GameData, constants, toHex } from './common.js'
 
-function extractCastleMap(bin) {
-    const castleMap = {
+function extractIndexedBitmap(bin, start, rows, columns) {
+    const indexesPerByte = 2
+    const indexedBitmap = {
         metadata: {
-            start: 0x001AF800,
-            rows: 256,
-            columns: 128,
+            start: start,
+            rows: rows,
+            columns: columns,
+            indexesPerByte: indexesPerByte,
+            bytesPerRow: Math.floor(columns / indexesPerByte),
             type: 'indexed-bitmap',
         },
         data: [],
     }
-    bin.set(castleMap.metadata.start)
-    // Castle map data is stored as an array of 4-bit color indexes
-    for (let row = 0; row < castleMap.metadata.rows; row++) {
+    bin.set(indexedBitmap.metadata.start)
+    // Bitmap data is typically stored as an array of 4-bit color indexes
+    for (let row = 0; row < indexedBitmap.metadata.rows; row++) {
         let rowData = ''
-        for (let col = 0; col < castleMap.metadata.columns; col++) {
+        for (let byteIndex = 0; byteIndex < indexedBitmap.metadata.bytesPerRow; byteIndex++) {
             // Each byte contains 2 of the color indexes
-            const colData = bin.read('uint8').toString(16).padStart(2, '0')
+            const byteData = bin.read('uint8').toString(16).padStart(2, '0')
             // The "left" nibble of the byte refers to the "right" color index, and vice versa
-            rowData += colData[1] + colData[0]
+            rowData += byteData[1] + byteData[0]
         }
-        castleMap.data.push(rowData)
+        indexedBitmap.data.push(rowData)
     }
-    const result = castleMap
+    const result = indexedBitmap
     return result
 }
 
@@ -76,9 +79,18 @@ function extractCastleMapReveals(bin) {
 export function getExtractionData(bin) {
     const OFFSET = 0x80180000
     let extraction = {
-        stages: {},
-        castleMap: extractCastleMap(bin),
+        // baseDropRates: extractBaseDropRates(bin),
+        // bossTeleporters: extractBossTeleporters(bin),
+        castleMap: extractIndexedBitmap(bin, 0x001AF800, 256, 256),
         castleMapReveals: extractCastleMapReveals(bin),
+        // constants: extractConstants(bin),
+        // enemyDefinitions: extractEnemyDefinitions(bin),
+        // entityLayouts: extractEntityLayouts(bin),
+        // familiarEvents: extractFamiliarEvents(bin),
+        // reverseWarpRoomCoordinates: extractReverseWarpRoomCoordinates(bin),
+        stages: {},
+        // teleporters: extractTeleporters(bin),
+        // warpRoomCoordinates: extractWarpRoomCoordinates(bin),
     }
     Object.entries(constants).forEach(([stageKey, stageInfo]) => {
         // name: 'Alchemy Laboratory',
