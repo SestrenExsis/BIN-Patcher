@@ -1,6 +1,24 @@
 
 import { Address, GameData, constants, toHex } from './common.js'
 
+function extractArray(bin, metadata) {
+    const array = {
+        metadata: metadata,
+        data: [],
+    }
+    for (let elementId = 0; elementId < metadata.elementCount; elementId++) {
+        let elementData = {}
+        Object.entries(metadata.fields).forEach(([fieldName, fieldInfo]) => {
+            bin.set(metadata.start + elementId * metadata.elementSize + fieldInfo.offset)
+            const value = bin.read(fieldInfo.type)
+            elementData[fieldName] = value
+        })
+        array.data.push(elementData)
+    }
+    const result = array
+    return result
+}
+
 function extractIndexedBitmap(bin, start, rows, columns) {
     const indexesPerByte = 2
     const indexedBitmap = {
@@ -80,32 +98,113 @@ export function getExtractionData(bin) {
     const OFFSET = 0x80180000
     let extraction = {
         // baseDropRates: extractBaseDropRates(bin),
-        // bossTeleporters: extractBossTeleporters(bin),
+        bossTeleporters: extractArray(bin, {
+            start: 0x0009817C,
+            elementSize: 20,
+            elementCount: 28,
+            fields: {
+                roomX: {
+                    offset: 0x00,
+                    type: 'uint8',
+                },
+                roomY: {
+                    offset: 0x04,
+                    type: 'uint8',
+                },
+                stageId: {
+                    offset: 0x08,
+                    type: 'uint32',
+                },
+                eventId: {
+                    offset: 0x0C,
+                    type: 'int8',
+                },
+                teleporterIndex: {
+                    offset: 0x10,
+                    type: 'int32',
+                },
+            },
+        }),
         castleMap: extractIndexedBitmap(bin, 0x001AF800, 256, 256),
         castleMapReveals: extractCastleMapReveals(bin),
         // constants: extractConstants(bin),
         // enemyDefinitions: extractEnemyDefinitions(bin),
         // entityLayouts: extractEntityLayouts(bin),
         // familiarEvents: extractFamiliarEvents(bin),
-        // reverseWarpRoomCoordinates: extractReverseWarpRoomCoordinates(bin),
         stages: {},
-        // teleporters: extractTeleporters(bin),
-        // warpRoomCoordinates: extractWarpRoomCoordinates(bin),
+        teleporters: extractArray(bin, {
+            start: 0x00097C5C,
+            elementSize: 10,
+            elementCount: 131,
+            fields: {
+                playerX: {
+                    offset: 0x00,
+                    type: 'uint16',
+                },
+                playerY: {
+                    offset: 0x02,
+                    type: 'uint16',
+                },
+                room: {
+                    offset: 0x04,
+                    type: 'uint16',
+                },
+                sourceStageId: {
+                    offset: 0x06,
+                    type: 'uint16',
+                },
+                targetStageId: {
+                    offset: 0x08,
+                    type: 'uint16',
+                },
+            },
+        }),
     }
     Object.entries(constants).forEach(([stageKey, stageInfo]) => {
-        // name: 'Alchemy Laboratory',
-        // start: 0x049BE800,
-        // size: 0x04B780,
-        // offsets: {
-        //     baseDropRate: 0x18C0,
-        // }
         const baseAddress = new Address('GAMEDATA', stageInfo.start)
         extraction.stages[stageKey] = {
-            entitiesOffset: bin.set(baseAddress.gameDataAddress).seek(0x0C).read('uint32') - OFFSET,
-            roomOffset: bin.set(baseAddress.gameDataAddress).seek(0x10).read('uint32') - OFFSET,
-            layoutsOffset: bin.set(baseAddress.gameDataAddress).seek(0x20).read('uint32') - OFFSET,
+            start: stageInfo.start,
+            // entitiesOffset: bin.set(baseAddress.gameDataAddress).seek(0x0C).read('uint32') - OFFSET,
+            // roomOffset: bin.set(baseAddress.gameDataAddress).seek(0x10).read('uint32') - OFFSET,
+            // layoutsOffset: bin.set(baseAddress.gameDataAddress).seek(0x20).read('uint32') - OFFSET,
         }
     })
+    extraction.stages.warpRooms.warpDestinations = extractArray(
+        bin,
+        {
+            start: extraction.stages.warpRooms.start + constants.warpRooms.offsets.warpDestinations,
+            elementSize: 4,
+            elementCount: 5,
+            fields: {
+                roomX: {
+                    offset: 0x00,
+                    type: 'uint16',
+                },
+                roomY: {
+                    offset: 0x02,
+                    type: 'uint16',
+                },
+            }
+        }
+    )
+    extraction.stages.reverseWarpRooms.warpDestinations = extractArray(
+        bin,
+        {
+            start: extraction.stages.reverseWarpRooms.start + constants.reverseWarpRooms.offsets.warpDestinations,
+            elementSize: 4,
+            elementCount: 5,
+            fields: {
+                roomX: {
+                    offset: 0x00,
+                    type: 'uint16',
+                },
+                roomY: {
+                    offset: 0x02,
+                    type: 'uint16',
+                },
+            }
+        }
+    )
     const result = extraction
     return result
 }
