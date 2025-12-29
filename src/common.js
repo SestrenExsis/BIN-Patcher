@@ -132,7 +132,7 @@ export const constants = {
         size: 0x02F428,
         offsets: {
             baseDropRate: 0x0D6C,
-        }
+        },
     },
     alchemyLaboratory: {
         name: 'Alchemy Laboratory',
@@ -140,7 +140,7 @@ export const constants = {
         size: 0x04B780,
         offsets: {
             baseDropRate: 0x18C0,
-        }
+        },
     },
     // 'Anti-Chapel': {
     //     'Stage': {
@@ -445,7 +445,7 @@ export const constants = {
         size: 0x05F58C,
         offsets: {
             baseDropRate: 0x1488,
-        }
+        },
     },
     // 'Necromancy Laboratory': {
     //     'Stage': {
@@ -546,15 +546,15 @@ export const constants = {
     //         'Base Drop Rate': 0x1158,
     //     },
     // },
-    // 'Reverse Warp Rooms': {
-    //     'Stage': {
-    //         'Start': 0x04EBE000,
-    //         'Size': 92160,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x09DC,
-    //     },
-    // },
+    reverseWarpRooms: {
+        name: 'Reverse Warp Rooms',
+        start: 0x04EBE000,
+        size: 0x16800,
+        offsets: {
+            warpDestinations: 0x065C,
+            baseDropRate: 0x09DC,
+        },
+    },
     // 'Royal Chapel': {
     //     'Stage': {
     //         'Start': 0x03D5A800,
@@ -573,15 +573,15 @@ export const constants = {
     //         'Base Drop Rate': 0x1D40,
     //     },
     // },
-    // 'Warp Rooms': {
-    //     'Stage': {
-    //         'Start': 0x04D12800,
-    //         'Size': 83968,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x09DC,
-    //     },
-    // },
+    warpRooms: {
+        name: 'Warp Rooms',
+        start: 0x04D12800,
+        size: 0x014800,
+        offsets: {
+            warpDestinations: 0x065C,
+            baseDropRate: 0x09DC,
+        },
+    },
 }
 
 export function toHex(value, padding=8) {
