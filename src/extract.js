@@ -1,8 +1,51 @@
 
-import { Address, GameData, constants, toHex } from './common.js'
+import { Address, GameData, constants, getSizeOfType, toHex } from './common.js'
 
-function extractArray(bin, metadata) {
-    const array = {
+function extractData(bin, metadata) {
+    if (['elementSize', 'elementCount', 'fields'].every(function(x) { return x in metadata })) {
+        return extractObjectArray(bin, metadata)
+    }
+    else if ('elementCount' in metadata) {
+        if (!'elementSize' in metadata) {
+            metadata.elementSize = getSizeofType(metadata.type)
+        }
+        return extractValueArray(bin, metadata)
+    }
+    else {
+        return extractValue(bin, metadata)
+    }
+}
+
+// IDEA(sestren)
+// extract --get abandonedMine.uniqueItemDrops 0x03CE01E4 u16 13
+// extract --get bossTeleporters 0x0009817C 20 28  roomX 0x00 u8  roomY 0x04 u8  stageId 0x08 u32  eventId 0x0C s8  teleporterIndex 0x10 s32
+
+function extractValue(bin, metadata) {
+    bin.set(metadata.start)
+    const extraction = {
+        metadata: metadata,
+        data: bin.read(metadata.type),
+    }
+    const result = extraction
+    return result
+}
+
+function extractValueArray(bin, metadata) {
+    let elementSize = getSizeOfType(metadata.type)
+    const extraction = {
+        metadata: metadata,
+        data: [],
+    }
+    for (let elementId = 0; elementId < metadata.elementCount; elementId++) {
+        let elementData = bin.set(metadata.start + elementId * elementSize).read(metadata.type)
+        extraction.data.push(elementData)
+    }
+    const result = extraction
+    return result
+}
+
+function extractObjectArray(bin, metadata) {
+    const extraction = {
         metadata: metadata,
         data: [],
     }
@@ -13,9 +56,9 @@ function extractArray(bin, metadata) {
             const value = bin.read(fieldInfo.type)
             elementData[fieldName] = value
         })
-        array.data.push(elementData)
+        extraction.data.push(elementData)
     }
-    const result = array
+    const result = extraction
     return result
 }
 
@@ -94,122 +137,164 @@ function extractCastleMapReveals(bin) {
     return result
 }
 
+// TODO(sestren): CLI to extract specific things (for previewing?)
+
 export function getExtractionData(bin) {
     const OFFSET = 0x80180000
     let extraction = {
         // baseDropRates: extractBaseDropRates(bin),
-        bossTeleporters: extractArray(bin, {
+        bossTeleporters: extractData(bin, {
             start: 0x0009817C,
             elementSize: 20,
             elementCount: 28,
             fields: {
                 roomX: {
                     offset: 0x00,
-                    type: 'uint8',
+                    type: 'u8',
                 },
                 roomY: {
                     offset: 0x04,
-                    type: 'uint8',
+                    type: 'u8',
                 },
                 stageId: {
                     offset: 0x08,
-                    type: 'uint32',
+                    type: 'u32',
                 },
                 eventId: {
                     offset: 0x0C,
-                    type: 'int8',
+                    type: 's8',
                 },
                 teleporterIndex: {
                     offset: 0x10,
-                    type: 'int32',
+                    type: 's32',
                 },
             },
         }),
         castleMap: extractIndexedBitmap(bin, 0x001AF800, 256, 256),
         castleMapReveals: extractCastleMapReveals(bin),
-        // constants: extractConstants(bin),
-        // enemyDefinitions: extractEnemyDefinitions(bin),
+        constants: {
+            falseSaveRoom: {
+                roomX: extractData(bin, { start: 0x0E7DC8, type: 'u16' }),
+                roomY: extractData(bin, { start: 0x0E7DD0, type: 'u16' }),
+            },
+            shopRelicIds: extractData(bin, { start: 0x03E60CD4, type: 'u16', elementCount: 2 }),
+        },
+        enemyDefinitions: extractData(bin, {
+            start: 0x0009E100,
+            elementSize: 40,
+            elementCount: 400,
+            fields: {
+                namePointer: {
+                    offset: 0x00,
+                    type: 'u32',
+                },
+                level: {
+                    offset: 0x16,
+                    type: 'u16',
+                },
+                rareItemId: {
+                    offset: 0x1A,
+                    type: 'u16',
+                },
+                uncommonItemId: {
+                    offset: 0x1C,
+                    type: 'u16',
+                },
+                rareItemDropRate: {
+                    offset: 0x1E,
+                    type: 'u16',
+                },
+                uncommonItemDropRate: {
+                    offset: 0x20,
+                    type: 'u16',
+                },
+                flags: {
+                    offset: 0x24,
+                    type: 'u32',
+                },
+            },
+        }),
         // entityLayouts: extractEntityLayouts(bin),
-        familiarEvents: extractArray(bin, {
+        familiarEvents: extractData(bin, {
             start: 0x0392A760,
             elementSize: 48,
             elementCount: 49,
             fields: {
                 unknown00: {
                     offset: 0x00,
-                    type: 'uint32',
+                    type: 'u32',
                 },
                 unknown04: {
                     offset: 0x04,
-                    type: 'uint32',
+                    type: 'u32',
                 },
                 servantId: {
                     offset: 0x08,
-                    type: 'int32',
+                    type: 's32',
                 },
                 roomX: {
                     offset: 0x0C,
-                    type: 'int32',
+                    type: 's32',
                 },
                 roomY: {
                     offset: 0x10,
-                    type: 'int32',
+                    type: 's32',
                 },
                 cameraX: {
                     offset: 0x14,
-                    type: 'int32',
+                    type: 's32',
                 },
                 cameraY: {
                     offset: 0x18,
-                    type: 'int32',
+                    type: 's32',
                 },
                 condition: {
                     offset: 0x1C,
-                    type: 'int32',
+                    type: 's32',
                 },
                 delay: {
                     offset: 0x20,
-                    type: 'int32',
+                    type: 's32',
                 },
                 entityId: {
                     offset: 0x24,
-                    type: 'int32',
+                    type: 's32',
                 },
                 params: {
                     offset: 0x28,
-                    type: 'int32',
+                    type: 's32',
                 },
                 unknown2C: {
                     offset: 0x2C,
-                    type: 'uint32',
+                    type: 'u32',
                 },
             },
         }),
         stages: {},
-        teleporters: extractArray(bin, {
+        teleporters: extractData(bin, {
             start: 0x00097C5C,
             elementSize: 10,
             elementCount: 131,
             fields: {
                 playerX: {
                     offset: 0x00,
-                    type: 'uint16',
+                    type: 'u16',
                 },
                 playerY: {
                     offset: 0x02,
-                    type: 'uint16',
+                    type: 'u16',
                 },
                 room: {
                     offset: 0x04,
-                    type: 'uint16',
+                    type: 'u16',
                 },
                 sourceStageId: {
                     offset: 0x06,
-                    type: 'uint16',
+                    type: 'u16',
                 },
                 targetStageId: {
                     offset: 0x08,
-                    type: 'uint16',
+                    type: 'u16',
                 },
             },
         }),
@@ -223,7 +308,7 @@ export function getExtractionData(bin) {
             // layoutsOffset: bin.set(baseAddress.gameDataAddress).seek(0x20).read('uint32') - OFFSET,
         }
     })
-    extraction.stages.warpRooms.warpDestinations = extractArray(
+    extraction.stages.warpRooms.warpDestinations = extractData(
         bin,
         {
             start: extraction.stages.warpRooms.start + constants.warpRooms.offsets.warpDestinations,
@@ -232,16 +317,16 @@ export function getExtractionData(bin) {
             fields: {
                 roomX: {
                     offset: 0x00,
-                    type: 'uint16',
+                    type: 'u16',
                 },
                 roomY: {
                     offset: 0x02,
-                    type: 'uint16',
+                    type: 'u16',
                 },
             }
         }
     )
-    extraction.stages.reverseWarpRooms.warpDestinations = extractArray(
+    extraction.stages.reverseWarpRooms.warpDestinations = extractData(
         bin,
         {
             start: extraction.stages.reverseWarpRooms.start + constants.reverseWarpRooms.offsets.warpDestinations,
@@ -250,11 +335,11 @@ export function getExtractionData(bin) {
             fields: {
                 roomX: {
                     offset: 0x00,
-                    type: 'uint16',
+                    type: 'u16',
                 },
                 roomY: {
                     offset: 0x02,
-                    type: 'uint16',
+                    type: 'u16',
                 },
             }
         }

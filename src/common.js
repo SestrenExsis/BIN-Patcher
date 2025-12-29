@@ -75,19 +75,24 @@ export class GameData {
     }
 
     read(type, advanceCursor=true) {
-        // const bytes = this.buffer.slice(this.cursor.toDiscAddress(0x0C), this.cursor.toDiscAddress(0x10))
-        let byteCount = 0
+        let byteCount = getSizeOfType(type)
         switch (type) {
             case 'int8':
             case 'uint8':
+            case 's8':
+            case 'u8':
                 byteCount = 1
                 break
             case 'int16':
             case 'uint16':
+            case 's16':
+            case 'u16':
                 byteCount = 2
                 break
             case 'int32':
             case 'uint32':
+            case 's32':
+            case 'u32':
                 byteCount = 4
                 break
         }
@@ -100,21 +105,27 @@ export class GameData {
         let value = 0
         switch (type) {
             case 'int8':
+            case 's8':
                 value = bytes.readInt8(0)
                 break
             case 'uint8':
+            case 'u8':
                 value = bytes.readUInt8(0)
                 break
             case 'int16':
+            case 's16':
                 value = bytes.readInt16LE(0)
                 break
             case 'uint16':
+            case 'u16':
                 value = bytes.readUInt16LE(0)
                 break
             case 'int32':
+            case 's32':
                 value = bytes.readInt32LE(0)
                 break
             case 'uint32':
+            case 'u32':
                 value = bytes.readUInt32LE(0)
                 break
         }
@@ -123,6 +134,32 @@ export class GameData {
         return result
     }
 
+}
+
+export function getSizeOfType(type) {
+    let byteCount = 0
+    switch (type) {
+        case 'int8':
+        case 'uint8':
+        case 's8':
+        case 'u8':
+            byteCount = 1
+            break
+        case 'int16':
+        case 'uint16':
+        case 's16':
+        case 'u16':
+            byteCount = 2
+            break
+        case 'int32':
+        case 'uint32':
+        case 's32':
+        case 'u32':
+            byteCount = 4
+            break
+    }
+    const result = byteCount
+    return result
 }
 
 export const constants = {
