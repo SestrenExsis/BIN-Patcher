@@ -130,7 +130,61 @@ export function getExtractionData(bin) {
         // constants: extractConstants(bin),
         // enemyDefinitions: extractEnemyDefinitions(bin),
         // entityLayouts: extractEntityLayouts(bin),
-        // familiarEvents: extractFamiliarEvents(bin),
+        familiarEvents: extractArray(bin, {
+            start: 0x0392A760,
+            elementSize: 48,
+            elementCount: 49,
+            fields: {
+                unknown00: {
+                    offset: 0x00,
+                    type: 'uint32',
+                },
+                unknown04: {
+                    offset: 0x04,
+                    type: 'uint32',
+                },
+                servantId: {
+                    offset: 0x08,
+                    type: 'int32',
+                },
+                roomX: {
+                    offset: 0x0C,
+                    type: 'int32',
+                },
+                roomY: {
+                    offset: 0x10,
+                    type: 'int32',
+                },
+                cameraX: {
+                    offset: 0x14,
+                    type: 'int32',
+                },
+                cameraY: {
+                    offset: 0x18,
+                    type: 'int32',
+                },
+                condition: {
+                    offset: 0x1C,
+                    type: 'int32',
+                },
+                delay: {
+                    offset: 0x20,
+                    type: 'int32',
+                },
+                entityId: {
+                    offset: 0x24,
+                    type: 'int32',
+                },
+                params: {
+                    offset: 0x28,
+                    type: 'int32',
+                },
+                unknown2C: {
+                    offset: 0x2C,
+                    type: 'uint32',
+                },
+            },
+        }),
         stages: {},
         teleporters: extractArray(bin, {
             start: 0x00097C5C,
