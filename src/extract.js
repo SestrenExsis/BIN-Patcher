@@ -2,17 +2,23 @@
 import { Address, GameData, constants, getSizeOfType, toHex } from './common.js'
 
 function extractData(bin, metadata) {
-    if (['elementSize', 'elementCount', 'fields'].every(function(x) { return x in metadata })) {
+    if ('type' in metadata && metadata.type == 'indexed-bitmap') {
+        return extractIndexedBitmap(bin, metadata)
+    }
+    else if ('type' in metadata && metadata.type == 'binary-string-array') {
+        return extractCastleMapReveals(bin, metadata)
+    }
+    else if (['elementSize', 'elementCount', 'fields'].every(function(propertyName) { return propertyName in metadata })) {
         return extractObjectArray(bin, metadata)
     }
     else if ('elementCount' in metadata) {
-        if (!'elementSize' in metadata) {
-            metadata.elementSize = getSizeofType(metadata.type)
-        }
         return extractValueArray(bin, metadata)
     }
-    else {
+    else if (['start', 'type'].every(function(propertyName) { return propertyName in metadata })) {
         return extractValue(bin, metadata)
+    }
+    else {
+        return null
     }
 }
 
@@ -22,33 +28,30 @@ function extractData(bin, metadata) {
 
 function extractValue(bin, metadata) {
     bin.set(metadata.start)
-    const extraction = {
+    const data = bin.read(metadata.type)
+    const result = {
         metadata: metadata,
-        data: bin.read(metadata.type),
+        data: data,
     }
-    const result = extraction
     return result
 }
 
 function extractValueArray(bin, metadata) {
-    let elementSize = getSizeOfType(metadata.type)
-    const extraction = {
-        metadata: metadata,
-        data: [],
-    }
+    const data = []
+    metadata.elementSize = getSizeOfType(metadata.type)
     for (let elementId = 0; elementId < metadata.elementCount; elementId++) {
-        let elementData = bin.set(metadata.start + elementId * elementSize).read(metadata.type)
-        extraction.data.push(elementData)
+        let elementData = bin.set(metadata.start + elementId * metadata.elementSize).read(metadata.type)
+        data.push(elementData)
     }
-    const result = extraction
+    const result = {
+        metadata: metadata,
+        data: data,
+    }
     return result
 }
 
 function extractObjectArray(bin, metadata) {
-    const extraction = {
-        metadata: metadata,
-        data: [],
-    }
+    const data = []
     for (let elementId = 0; elementId < metadata.elementCount; elementId++) {
         let elementData = {}
         Object.entries(metadata.fields).forEach(([fieldName, fieldInfo]) => {
@@ -56,56 +59,46 @@ function extractObjectArray(bin, metadata) {
             const value = bin.read(fieldInfo.type)
             elementData[fieldName] = value
         })
-        extraction.data.push(elementData)
+        data.push(elementData)
     }
-    const result = extraction
+    const result = {
+        metadata: metadata,
+        data: data,
+    }
     return result
 }
 
-function extractIndexedBitmap(bin, start, rows, columns) {
-    const indexesPerByte = 2
-    const indexedBitmap = {
-        metadata: {
-            start: start,
-            rows: rows,
-            columns: columns,
-            indexesPerByte: indexesPerByte,
-            bytesPerRow: Math.floor(columns / indexesPerByte),
-            type: 'indexed-bitmap',
-        },
-        data: [],
-    }
-    bin.set(indexedBitmap.metadata.start)
+function extractIndexedBitmap(bin, metadata) {
+    const data = []
+    metadata.indexesPerByte = 2
+    metadata.bytesPerRow = Math.floor(metadata.columns / metadata.indexesPerByte)
+    bin.set(metadata.start)
     // Bitmap data is typically stored as an array of 4-bit color indexes
-    for (let row = 0; row < indexedBitmap.metadata.rows; row++) {
+    for (let row = 0; row < metadata.rows; row++) {
         let rowData = ''
-        for (let byteIndex = 0; byteIndex < indexedBitmap.metadata.bytesPerRow; byteIndex++) {
+        for (let byteIndex = 0; byteIndex < metadata.bytesPerRow; byteIndex++) {
             // Each byte contains 2 of the color indexes
             const byteData = bin.read('uint8').toString(16).padStart(2, '0')
             // The "left" nibble of the byte refers to the "right" color index, and vice versa
             rowData += byteData[1] + byteData[0]
         }
-        indexedBitmap.data.push(rowData)
+        data.push(rowData)
     }
-    const result = indexedBitmap
+    const result = {
+        metadata: metadata,
+        data: data,
+    }
     return result
 }
 
-function extractCastleMapReveals(bin) {
-    const castleMapReveals = {
-        metadata: {
-            start: 0x0009840C,
-            count: 0,
-            type: 'binary-string-array',
-            footprint: 0,
-        },
-        data: [],
-    }
-    bin.set(castleMapReveals.metadata.start)
+function extractCastleMapReveals(bin, metadata) {
+    const data = []
+    bin.set(metadata.start)
     // Castle map reveal data is stored serially with a sential value of 0xFF to signify termination
     // Each section starts with a header that describes how much additional data is read for that particular section
     // While the vanilla game only defines one section, the underlying data format has support for multiple sections
     // However, for ROM hacking purposes, the total footprint will still be a limiting factor
+    metadata.footprint = 0
     while (true) {
         const castleMapReveal = {
             left: bin.read('uint8'),
@@ -114,26 +107,29 @@ function extractCastleMapReveals(bin) {
             rows: bin.read('uint8'),
             grid: [],
         }
-        castleMapReveals.metadata.footprint += 4
+        metadata.footprint += 4
         for (let row = 0; row < castleMapReveal.rows; row++) {
             let rowData = ''
             for (let byteIndex = 0; byteIndex < castleMapReveal.bytesPerRow; byteIndex++) {
                 // For visualization purposes, 0s are replaced with a space and 1s are replaced with a '#'
                 const byteData = bin.read('uint8').toString(2).padStart(8, '0').replaceAll('0', ' ').replaceAll('1', '#')
                 rowData += byteData.split('').reverse().join('')
-                castleMapReveals.metadata.footprint += 1
+                metadata.footprint += 1
             }
             castleMapReveal.grid.push(rowData)
         }
-        castleMapReveals.data.push(castleMapReveal)
+        data.push(castleMapReveal)
         if (bin.read('uint8', false) == 0xFF) {
-            const bytePadding = 4 - castleMapReveals.metadata.footprint % 4
-            castleMapReveals.metadata.footprint += bytePadding
+            const bytePadding = 4 - metadata.footprint % 4
+            metadata.footprint += bytePadding
             break
         }
     }
-    castleMapReveals.metadata.count = castleMapReveals.data.length
-    const result = castleMapReveals
+    metadata.count = data.length
+    const result = {
+        metadata: metadata,
+        data: data,
+    }
     return result
 }
 
@@ -170,9 +166,23 @@ export function getExtractionData(bin) {
                 },
             },
         }),
-        castleMap: extractIndexedBitmap(bin, 0x001AF800, 256, 256),
-        castleMapReveals: extractCastleMapReveals(bin),
+        castleMap: extractIndexedBitmap(bin, {
+            type: 'indexed-bitmap',
+            start: 0x001AF800,
+            rows: 256,
+            columns: 256,
+        }),
+        castleMapReveals: extractCastleMapReveals(bin, {
+            start: 0x0009840C,
+            count: 0,
+            type: 'binary-string-array',
+            footprint: 0,
+        }),
         constants: {
+            castleMapColorPalettes: {
+                dra: extractData(bin, { start: 0x03128800, type: 'rgba32', elementCount: 16 }),
+                ric: extractData(bin, { start: 0x0316A800, type: 'rgba32', elementCount: 16 }),
+            },
             falseSaveRoom: {
                 roomX: extractData(bin, { start: 0x0E7DC8, type: 'u16' }),
                 roomY: extractData(bin, { start: 0x0E7DD0, type: 'u16' }),

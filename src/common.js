@@ -76,26 +76,6 @@ export class GameData {
 
     read(type, advanceCursor=true) {
         let byteCount = getSizeOfType(type)
-        switch (type) {
-            case 'int8':
-            case 'uint8':
-            case 's8':
-            case 'u8':
-                byteCount = 1
-                break
-            case 'int16':
-            case 'uint16':
-            case 's16':
-            case 'u16':
-                byteCount = 2
-                break
-            case 'int32':
-            case 'uint32':
-            case 's32':
-            case 'u32':
-                byteCount = 4
-                break
-        }
         const bytes = Buffer.alloc(byteCount)
         for (let byteIndex = 0; byteIndex < byteCount; byteIndex++) {
             const byteOffset = this.cursor.toDiscAddress(byteIndex)
@@ -118,6 +98,7 @@ export class GameData {
                 break
             case 'uint16':
             case 'u16':
+            case 'rgba32':
                 value = bytes.readUInt16LE(0)
                 break
             case 'int32':
@@ -129,7 +110,21 @@ export class GameData {
                 value = bytes.readUInt32LE(0)
                 break
         }
-        const result = value
+        let result = value
+        if (type == 'rgba32') {
+            const red = value % 32
+            value = Math.floor(value / 32)
+            const green = value % 32
+            value = Math.floor(value / 32)
+            const blue = value % 32
+            value = Math.floor(value / 32)
+            const alpha = value % 32
+            const rr = (8 * red).toString(16).padStart(2, '0')
+            const gg = (8 * green).toString(16).padStart(2, '0')
+            const bb = (8 * blue).toString(16).padStart(2, '0')
+            const aa = (alpha > 0) ? 'ff' : '7f'
+            result = '#' + rr + gg + bb + aa
+        }
         this.seek(byteCount)
         return result
     }
@@ -149,6 +144,7 @@ export function getSizeOfType(type) {
         case 'uint16':
         case 's16':
         case 'u16':
+        case 'rgba32':
             byteCount = 2
             break
         case 'int32':
