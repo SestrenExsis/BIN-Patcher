@@ -3,24 +3,24 @@ export class Address {
     constructor(addressType, address, offset=0) {
         switch (addressType) {
             case 'DISC':
-                this.gameDataAddress = Address.getGamedataAddress(address) + offset
+                this.gameDataAddress = Address.getGamedataAddress(address) + toVal(offset)
                 break
             default:
-                this.gameDataAddress = address + offset
+                this.gameDataAddress = address + toVal(offset)
                 break
         }
     }
 
     clone(offset=0) {
-        return new Address('GAMEDATA', this.gameDataAddress, offset)
+        return new Address('GAMEDATA', this.gameDataAddress, toVal(offset))
     }
 
     toDiscAddress(offset=0) {
-        return Address.getDiscAddress(this.gameDataAddress + offset)
+        return Address.getDiscAddress(this.gameDataAddress + toVal(offset))
     }
 
     toGameDataAddress(offset=0) {
-        return this.gameDataAddress + offset
+        return this.gameDataAddress + toVal(offset)
     }
 
     static sectorHeaderSize = 24
@@ -29,8 +29,9 @@ export class Address {
     static sectorSize = Address.sectorHeaderSize + Address.sectorDataSize + Address.sectorErrorCorrectionDataSize
 
     static getGamedataAddress(discAddress) {
-        const sector = Math.floor(discAddress / Address.sectorSize)
-        let offset = discAddress % Address.sectorSize
+        const addressValue = toVal(discAddress)
+        const sector = Math.floor(addressValue / Address.sectorSize)
+        let offset = addressValue % Address.sectorSize
         if (offset < Address.sectorHeaderSize) {
             // The disc address supplied lands in a sector header,
             // so round it up to the first byte in the sector data instead
@@ -46,8 +47,9 @@ export class Address {
     }
 
     static getDiscAddress(gameDataAddress) {
-        const sector = Math.floor(gameDataAddress / Address.sectorDataSize)
-        const offset = gameDataAddress % Address.sectorDataSize
+        const addressValue = toVal(gameDataAddress)
+        const sector = Math.floor(addressValue / Address.sectorDataSize)
+        const offset = addressValue % Address.sectorDataSize
         const result = sector * Address.sectorSize + Address.sectorHeaderSize + offset
         return result
     }
@@ -57,20 +59,20 @@ export class GameData {
     constructor(buffer, cursorOffset=0) {
         // TODO(sestren): Remove sector headers and error correction and store gamedata only
         this.buffer = buffer
-        this.cursor = new Address('GAMEDATA', cursorOffset)
+        this.cursor = new Address('GAMEDATA', toVal(cursorOffset))
     }
 
     clone(offset=0) {
-        return new GameData(this.buffer, this.cursor.clone(offset).gameDataAddress)
+        return new GameData(this.buffer, this.cursor.clone(toVal(offset)).gameDataAddress)
     }
 
     set(offset) {
-        this.cursor.gameDataAddress = offset
+        this.cursor.gameDataAddress = toVal(offset)
         return this
     }
 
     seek(offset) {
-        this.cursor.gameDataAddress += offset
+        this.cursor.gameDataAddress += toVal(offset)
         return this
     }
 
@@ -619,4 +621,18 @@ export const constants = {
 
 export function toHex(value, padding=8) {
     return '0x' + value.toString(16).padStart(padding, '0')
+}
+
+export function toVal(value) {
+    if (typeof(value) == 'string') {
+        if (value.substring(0, 2) == '0b') {
+            return parseInt(value, 2)
+        }
+        else {
+            return parseInt(value, 16)
+        }
+    }
+    else {
+        return value
+    }
 }

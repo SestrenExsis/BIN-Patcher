@@ -1,24 +1,36 @@
 
-import { Address, GameData, constants, getSizeOfType, toHex } from './common.js'
+import { Address, GameData, constants, getSizeOfType, toHex, toVal } from './common.js'
 
-function extractData(bin, metadata) {
+function extractData(bin, metadata, offset=0) {
     if ('type' in metadata && metadata.type == 'indexed-bitmap') {
-        return extractIndexedBitmap(bin, metadata)
+        return extractIndexedBitmap(bin, metadata, offset)
     }
     else if ('type' in metadata && metadata.type == 'binary-string-array') {
-        return extractCastleMapReveals(bin, metadata)
+        return extractCastleMapReveals(bin, metadata, offset)
     }
     else if (['elementSize', 'elementCount', 'fields'].every(function(propertyName) { return propertyName in metadata })) {
-        return extractObjectArray(bin, metadata)
+        return extractObjectArray(bin, metadata, offset)
     }
     else if ('elementCount' in metadata) {
-        return extractValueArray(bin, metadata)
+        return extractValueArray(bin, metadata, offset)
     }
     else if (['start', 'type'].every(function(propertyName) { return propertyName in metadata })) {
-        return extractValue(bin, metadata)
+        return extractValue(bin, metadata, offset)
     }
     else {
         return null
+    }
+}
+
+function getOffset(metadata, offset=0) {
+    if ('start' in metadata) {
+        return toVal(metadata.start)
+    }
+    else if ('offset' in metadata) {
+        return toVal(metadata.offset) + toVal(offset)
+    }
+    else {
+        return toVal(offset)
     }
 }
 
@@ -26,8 +38,8 @@ function extractData(bin, metadata) {
 // extract --get abandonedMine.uniqueItemDrops 0x03CE01E4 u16 13
 // extract --get bossTeleporters 0x0009817C 20 28  roomX 0x00 u8  roomY 0x04 u8  stageId 0x08 u32  eventId 0x0C s8  teleporterIndex 0x10 s32
 
-function extractValue(bin, metadata) {
-    bin.set(metadata.start)
+function extractValue(bin, metadata, offset=0) {
+    bin.set(getOffset(metadata, offset))
     const data = bin.read(metadata.type)
     const result = {
         metadata: metadata,
@@ -36,11 +48,11 @@ function extractValue(bin, metadata) {
     return result
 }
 
-function extractValueArray(bin, metadata) {
+function extractValueArray(bin, metadata, offset=0) {
     const data = []
     metadata.elementSize = getSizeOfType(metadata.type)
-    for (let elementId = 0; elementId < metadata.elementCount; elementId++) {
-        let elementData = bin.set(metadata.start + elementId * metadata.elementSize).read(metadata.type)
+    for (let elementId = 0; elementId < toVal(metadata.elementCount); elementId++) {
+        let elementData = bin.set(getOffset(metadata, offset) + elementId * toVal(metadata.elementSize)).read(metadata.type)
         data.push(elementData)
     }
     const result = {
@@ -50,12 +62,12 @@ function extractValueArray(bin, metadata) {
     return result
 }
 
-function extractObjectArray(bin, metadata) {
+function extractObjectArray(bin, metadata, offset=0) {
     const data = []
-    for (let elementId = 0; elementId < metadata.elementCount; elementId++) {
+    for (let elementId = 0; elementId < toVal(metadata.elementCount); elementId++) {
         let elementData = {}
         Object.entries(metadata.fields).forEach(([fieldName, fieldInfo]) => {
-            bin.set(metadata.start + elementId * metadata.elementSize + fieldInfo.offset)
+            bin.set(getOffset(metadata, offset) + elementId * toVal(metadata.elementSize) + toVal(fieldInfo.offset))
             const value = bin.read(fieldInfo.type)
             elementData[fieldName] = value
         })
@@ -68,13 +80,13 @@ function extractObjectArray(bin, metadata) {
     return result
 }
 
-function extractIndexedBitmap(bin, metadata) {
+function extractIndexedBitmap(bin, metadata, offset=0) {
     const data = []
     metadata.indexesPerByte = 2
-    metadata.bytesPerRow = Math.floor(metadata.columns / metadata.indexesPerByte)
-    bin.set(metadata.start)
+    metadata.bytesPerRow = Math.floor(toVal(metadata.columns) / metadata.indexesPerByte)
+    bin.set(getOffset(metadata, offset))
     // Bitmap data is typically stored as an array of 4-bit color indexes
-    for (let row = 0; row < metadata.rows; row++) {
+    for (let row = 0; row < toVal(metadata.rows); row++) {
         let rowData = ''
         for (let byteIndex = 0; byteIndex < metadata.bytesPerRow; byteIndex++) {
             // Each byte contains 2 of the color indexes
@@ -91,9 +103,9 @@ function extractIndexedBitmap(bin, metadata) {
     return result
 }
 
-function extractCastleMapReveals(bin, metadata) {
+function extractCastleMapReveals(bin, metadata, offset=0) {
     const data = []
-    bin.set(metadata.start)
+    bin.set(getOffset(metadata, offset))
     // Castle map reveal data is stored serially with a sential value of 0xFF to signify termination
     // Each section starts with a header that describes how much additional data is read for that particular section
     // While the vanilla game only defines one section, the underlying data format has support for multiple sections
@@ -135,225 +147,245 @@ function extractCastleMapReveals(bin, metadata) {
 
 // TODO(sestren): CLI to extract specific things (for previewing?)
 
-export function getExtractionData(bin) {
-    const OFFSET = 0x80180000
-    let extraction = {
-        // baseDropRates: extractBaseDropRates(bin),
-        bossTeleporters: extractData(bin, {
-            start: 0x0009817C,
-            elementSize: 20,
-            elementCount: 28,
-            fields: {
-                roomX: {
-                    offset: 0x00,
-                    type: 'u8',
-                },
-                roomY: {
-                    offset: 0x04,
-                    type: 'u8',
-                },
-                stageId: {
-                    offset: 0x08,
-                    type: 'u32',
-                },
-                eventId: {
-                    offset: 0x0C,
-                    type: 's8',
-                },
-                teleporterIndex: {
-                    offset: 0x10,
-                    type: 's32',
-                },
-            },
-        }),
-        castleMap: extractIndexedBitmap(bin, {
-            type: 'indexed-bitmap',
-            start: 0x001AF800,
-            rows: 256,
-            columns: 256,
-        }),
-        castleMapReveals: extractCastleMapReveals(bin, {
-            start: 0x0009840C,
-            count: 0,
-            type: 'binary-string-array',
-            footprint: 0,
-        }),
-        constants: {
-            castleMapColorPalettes: {
-                dra: extractData(bin, { start: 0x03128800, type: 'rgba32', elementCount: 16 }),
-                ric: extractData(bin, { start: 0x0316A800, type: 'rgba32', elementCount: 16 }),
-            },
-            falseSaveRoom: {
-                roomX: extractData(bin, { start: 0x0E7DC8, type: 'u16' }),
-                roomY: extractData(bin, { start: 0x0E7DD0, type: 'u16' }),
-            },
-            shopRelicIds: extractData(bin, { start: 0x03E60CD4, type: 'u16', elementCount: 2 }),
-        },
-        enemyDefinitions: extractData(bin, {
-            start: 0x0009E100,
-            elementSize: 40,
-            elementCount: 400,
-            fields: {
-                namePointer: {
-                    offset: 0x00,
-                    type: 'u32',
-                },
-                level: {
-                    offset: 0x16,
-                    type: 'u16',
-                },
-                rareItemId: {
-                    offset: 0x1A,
-                    type: 'u16',
-                },
-                uncommonItemId: {
-                    offset: 0x1C,
-                    type: 'u16',
-                },
-                rareItemDropRate: {
-                    offset: 0x1E,
-                    type: 'u16',
-                },
-                uncommonItemDropRate: {
-                    offset: 0x20,
-                    type: 'u16',
-                },
-                flags: {
-                    offset: 0x24,
-                    type: 'u32',
-                },
-            },
-        }),
-        // entityLayouts: extractEntityLayouts(bin),
-        familiarEvents: extractData(bin, {
-            start: 0x0392A760,
-            elementSize: 48,
-            elementCount: 49,
-            fields: {
-                unknown00: {
-                    offset: 0x00,
-                    type: 'u32',
-                },
-                unknown04: {
-                    offset: 0x04,
-                    type: 'u32',
-                },
-                servantId: {
-                    offset: 0x08,
-                    type: 's32',
-                },
-                roomX: {
-                    offset: 0x0C,
-                    type: 's32',
-                },
-                roomY: {
-                    offset: 0x10,
-                    type: 's32',
-                },
-                cameraX: {
-                    offset: 0x14,
-                    type: 's32',
-                },
-                cameraY: {
-                    offset: 0x18,
-                    type: 's32',
-                },
-                condition: {
-                    offset: 0x1C,
-                    type: 's32',
-                },
-                delay: {
-                    offset: 0x20,
-                    type: 's32',
-                },
-                entityId: {
-                    offset: 0x24,
-                    type: 's32',
-                },
-                params: {
-                    offset: 0x28,
-                    type: 's32',
-                },
-                unknown2C: {
-                    offset: 0x2C,
-                    type: 'u32',
-                },
-            },
-        }),
-        stages: {},
-        teleporters: extractData(bin, {
-            start: 0x00097C5C,
-            elementSize: 10,
-            elementCount: 131,
-            fields: {
-                playerX: {
-                    offset: 0x00,
-                    type: 'u16',
-                },
-                playerY: {
-                    offset: 0x02,
-                    type: 'u16',
-                },
-                room: {
-                    offset: 0x04,
-                    type: 'u16',
-                },
-                sourceStageId: {
-                    offset: 0x06,
-                    type: 'u16',
-                },
-                targetStageId: {
-                    offset: 0x08,
-                    type: 'u16',
-                },
-            },
-        }),
+function parseExtractionNode(bin, extractionNode, offset=0) {
+    const node = extractData(bin, extractionNode, offset)
+    if (node === null) {
+        const result = {}
+        let relativeOffset = getOffset(extractionNode, offset)
+        // Process all nodes other than 'start' and 'offset'
+        Object.entries(extractionNode).forEach(([nodeName, nodeInfo]) => {
+            if (nodeName == 'start' || nodeName == 'offset') {
+                return
+            }
+            result[nodeName] = parseExtractionNode(bin, nodeInfo, relativeOffset)
+        })
+        return result
     }
-    Object.entries(constants).forEach(([stageKey, stageInfo]) => {
-        const baseAddress = new Address('GAMEDATA', stageInfo.start)
-        extraction.stages[stageKey] = {
-            start: stageInfo.start,
-            // entitiesOffset: bin.set(baseAddress.gameDataAddress).seek(0x0C).read('uint32') - OFFSET,
-            // roomOffset: bin.set(baseAddress.gameDataAddress).seek(0x10).read('uint32') - OFFSET,
-            // layoutsOffset: bin.set(baseAddress.gameDataAddress).seek(0x20).read('uint32') - OFFSET,
-        }
-    })
-    extraction.stages.warpRooms.warpDestinations = extractData(
-        bin,
-        {
-            start: extraction.stages.warpRooms.start + constants.warpRooms.offsets.warpDestinations,
-            elementSize: 4,
-            elementCount: 5,
-            fields: {
-                roomX: {
-                    offset: 0x00,
-                    type: 'u16',
-                },
-                roomY: {
-                    offset: 0x02,
-                    type: 'u16',
-                },
-            }
-        }
-    )
-    extraction.stages.reverseWarpRooms.warpDestinations = extractData(
-        bin,
-        {
-            start: extraction.stages.reverseWarpRooms.start + constants.reverseWarpRooms.offsets.warpDestinations,
-            elementSize: 4,
-            elementCount: 5,
-            fields: {
-                roomX: {
-                    offset: 0x00,
-                    type: 'u16',
-                },
-                roomY: {
-                    offset: 0x02,
-                    type: 'u16',
-                },
-            }
-        }
-    )
+    else {
+        return node
+    }
+}
+
+export function getExtractionData(bin, extractionTemplate) {
+    const OFFSET = 0x80180000
+    let extraction = parseExtractionNode(bin, extractionTemplate)
+
+    //     // baseDropRates: extractBaseDropRates(bin),
+    //     bossTeleporters: extractData(bin, {
+    //         start: 0x0009817C,
+    //         elementSize: 20,
+    //         elementCount: 28,
+    //         fields: {
+    //             roomX: {
+    //                 offset: 0x00,
+    //                 type: 'u8',
+    //             },
+    //             roomY: {
+    //                 offset: 0x04,
+    //                 type: 'u8',
+    //             },
+    //             stageId: {
+    //                 offset: 0x08,
+    //                 type: 'u32',
+    //             },
+    //             eventId: {
+    //                 offset: 0x0C,
+    //                 type: 's8',
+    //             },
+    //             teleporterIndex: {
+    //                 offset: 0x10,
+    //                 type: 's32',
+    //             },
+    //         },
+    //     }),
+    //     castleMap: extractIndexedBitmap(bin, {
+    //         type: 'indexed-bitmap',
+    //         start: 0x001AF800,
+    //         rows: 256,
+    //         columns: 256,
+    //     }),
+    //     castleMapReveals: extractCastleMapReveals(bin, {
+    //         start: 0x0009840C,
+    //         count: 0,
+    //         type: 'binary-string-array',
+    //         footprint: 0,
+    //     }),
+    //     constants: {
+    //         castleMapColorPalettes: {
+    //             dra: extractData(bin, { start: 0x03128800, type: 'rgba32', elementCount: 16 }),
+    //             ric: extractData(bin, { start: 0x0316A800, type: 'rgba32', elementCount: 16 }),
+    //         },
+    //         falseSaveRoom: {
+    //             roomX: extractData(bin, { start: 0x0E7DC8, type: 'u16' }),
+    //             roomY: extractData(bin, { start: 0x0E7DD0, type: 'u16' }),
+    //         },
+    //         shopRelicIds: extractData(bin, { start: 0x03E60CD4, type: 'u16', elementCount: 2 }),
+    //     },
+    //     enemyDefinitions: extractData(bin, {
+    //         start: 0x0009E100,
+    //         elementSize: 40,
+    //         elementCount: 400,
+    //         fields: {
+    //             namePointer: {
+    //                 offset: 0x00,
+    //                 type: 'u32',
+    //             },
+    //             level: {
+    //                 offset: 0x16,
+    //                 type: 'u16',
+    //             },
+    //             rareItemId: {
+    //                 offset: 0x1A,
+    //                 type: 'u16',
+    //             },
+    //             uncommonItemId: {
+    //                 offset: 0x1C,
+    //                 type: 'u16',
+    //             },
+    //             rareItemDropRate: {
+    //                 offset: 0x1E,
+    //                 type: 'u16',
+    //             },
+    //             uncommonItemDropRate: {
+    //                 offset: 0x20,
+    //                 type: 'u16',
+    //             },
+    //             flags: {
+    //                 offset: 0x24,
+    //                 type: 'u32',
+    //             },
+    //         },
+    //     }),
+    //     // entityLayouts: extractEntityLayouts(bin),
+    //     familiarEvents: extractData(bin, {
+    //         start: 0x0392A760,
+    //         elementSize: 48,
+    //         elementCount: 49,
+    //         fields: {
+    //             unknown00: {
+    //                 offset: 0x00,
+    //                 type: 'u32',
+    //             },
+    //             unknown04: {
+    //                 offset: 0x04,
+    //                 type: 'u32',
+    //             },
+    //             servantId: {
+    //                 offset: 0x08,
+    //                 type: 's32',
+    //             },
+    //             roomX: {
+    //                 offset: 0x0C,
+    //                 type: 's32',
+    //             },
+    //             roomY: {
+    //                 offset: 0x10,
+    //                 type: 's32',
+    //             },
+    //             cameraX: {
+    //                 offset: 0x14,
+    //                 type: 's32',
+    //             },
+    //             cameraY: {
+    //                 offset: 0x18,
+    //                 type: 's32',
+    //             },
+    //             condition: {
+    //                 offset: 0x1C,
+    //                 type: 's32',
+    //             },
+    //             delay: {
+    //                 offset: 0x20,
+    //                 type: 's32',
+    //             },
+    //             entityId: {
+    //                 offset: 0x24,
+    //                 type: 's32',
+    //             },
+    //             params: {
+    //                 offset: 0x28,
+    //                 type: 's32',
+    //             },
+    //             unknown2C: {
+    //                 offset: 0x2C,
+    //                 type: 'u32',
+    //             },
+    //         },
+    //     }),
+    //     stages: {},
+    //     teleporters: extractData(bin, {
+    //         start: 0x00097C5C,
+    //         elementSize: 10,
+    //         elementCount: 131,
+    //         fields: {
+    //             playerX: {
+    //                 offset: 0x00,
+    //                 type: 'u16',
+    //             },
+    //             playerY: {
+    //                 offset: 0x02,
+    //                 type: 'u16',
+    //             },
+    //             room: {
+    //                 offset: 0x04,
+    //                 type: 'u16',
+    //             },
+    //             sourceStageId: {
+    //                 offset: 0x06,
+    //                 type: 'u16',
+    //             },
+    //             targetStageId: {
+    //                 offset: 0x08,
+    //                 type: 'u16',
+    //             },
+    //         },
+    //     }),
+    // }
+    // Object.entries(constants).forEach(([stageKey, stageInfo]) => {
+    //     const baseAddress = new Address('GAMEDATA', stageInfo.start)
+    //     extraction.stages[stageKey] = {
+    //         start: stageInfo.start,
+    //         // entitiesOffset: bin.set(baseAddress.gameDataAddress).seek(0x0C).read('uint32') - OFFSET,
+    //         // roomOffset: bin.set(baseAddress.gameDataAddress).seek(0x10).read('uint32') - OFFSET,
+    //         // layoutsOffset: bin.set(baseAddress.gameDataAddress).seek(0x20).read('uint32') - OFFSET,
+    //     }
+    // })
+    // extraction.stages.warpRooms.warpDestinations = extractData(
+    //     bin,
+    //     {
+    //         start: extraction.stages.warpRooms.start + constants.warpRooms.offsets.warpDestinations,
+    //         elementSize: 4,
+    //         elementCount: 5,
+    //         fields: {
+    //             roomX: {
+    //                 offset: 0x00,
+    //                 type: 'u16',
+    //             },
+    //             roomY: {
+    //                 offset: 0x02,
+    //                 type: 'u16',
+    //             },
+    //         }
+    //     }
+    // )
+    // extraction.stages.reverseWarpRooms.warpDestinations = extractData(
+    //     bin,
+    //     {
+    //         start: extraction.stages.reverseWarpRooms.start + constants.reverseWarpRooms.offsets.warpDestinations,
+    //         elementSize: 4,
+    //         elementCount: 5,
+    //         fields: {
+    //             roomX: {
+    //                 offset: 0x00,
+    //                 type: 'u16',
+    //             },
+    //             roomY: {
+    //                 offset: 0x02,
+    //                 type: 'u16',
+    //             },
+    //         }
+    //     }
+    // )
     const result = extraction
     return result
 }

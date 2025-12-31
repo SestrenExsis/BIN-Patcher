@@ -16,24 +16,31 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
+            .option('json', {
+                alias: 'j',
+                describe: 'JSON file describing the extraction template',
+                type: 'string',
+                normalize: true,
+            })
             .option('out', {
                 alias: 'o',
                 describe: 'Folder to output the extracted data to',
                 type: 'string',
                 normalize: true,
             })
-            .demandOption(['bin', 'out'])
+            .demandOption(['bin', 'json', 'out'])
         },
         handler: (argv) => {
-            let file = fs.openSync(argv.bin, 'r')
-            let fileSize = fs.fstatSync(file).size
-            const buffer = Buffer.alloc(fileSize)
-            fs.readSync(file, buffer, 0, fileSize)
-            fs.closeSync(file)
+            let binFile = fs.openSync(argv.bin, 'r')
+            let binFileSize = fs.fstatSync(binFile).size
+            const buffer = Buffer.alloc(binFileSize)
+            fs.readSync(binFile, buffer, 0, binFileSize)
+            fs.closeSync(binFile)
             let digest = crypto.createHash('sha256').update(buffer).digest()
             console.log('Digest of disc image', digest.toString('hex'))
             const bin = new GameData(buffer)
-            let extractionData = getExtractionData(bin)
+            let extractionTemplate = JSON.parse(fs.readFileSync(argv.json, 'utf8'))
+            let extractionData = getExtractionData(bin, extractionTemplate)
             fs.writeFileSync(argv.out + '/extraction.json', JSON.stringify(extractionData, null, 4));
         }
     })
