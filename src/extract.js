@@ -148,7 +148,7 @@ function extractCastleMapReveals(bin, metadata, offset=0) {
 // extract --get abandonedMine.uniqueItemDrops 0x03CE01E4 u16 13
 // extract --get bossTeleporters 0x0009817C 20 28  roomX 0x00 u8  roomY 0x04 u8  stageId 0x08 u32  eventId 0x0C s8  teleporterIndex 0x10 s32
 
-// falseSaveRoom -> func_800F24F4
+// func_800F24F4: falseSaveRoom and finalSaveRoom
 
 function parseExtractionNode(bin, extractionNode, offset=0) {
     const node = extractData(bin, extractionNode, offset)

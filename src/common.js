@@ -79,7 +79,7 @@ export class GameData {
 
     read(type, advanceCursor=true) {
         let byteCount = 0
-        if (['string', 'shifted-string'].indexOf(type)) {
+        if (['string', 'shifted-string'].includes(type)) {
             let terminator = (type == 'string') ? 0x00 : 0xFF
             while (true) {
                 const byteOffset = this.cursor.toDiscAddress(byteCount)
@@ -150,7 +150,9 @@ export class GameData {
             const aa = (alpha > 0) ? 'ff' : '7f'
             result = '#' + rr + gg + bb + aa
         }
-        this.seek(byteCount)
+        if (advanceCursor) {
+            this.seek(byteCount)
+        }
         return result
     }
 

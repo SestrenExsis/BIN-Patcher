@@ -49,20 +49,28 @@
                 "elementCount": 16
             }
         },
-        "falseSaveRoom": {
-            "roomX": {
+        "specialSaveRooms": {
+            "falseSaveRoomX": {
                 "start": "0x000E7DC8",
                 "type": "u16"
             },
-            "roomY": {
+            "falseSaveRoomY": {
                 "start": "0x000E7DD0",
                 "type": "u16"
             },
-            "reverseRoomX": {
+            "finalSaveRoomX": {
+                "start": "0x000E7D50",
+                "type": "u16"
+            },
+            "finalSaveRoomY": {
+                "start": "0x000E7D64",
+                "type": "u16"
+            },
+            "reverseFalseSaveRoomX": {
                 "start": "0x000E7DA4",
                 "type": "u16"
             },
-            "reverseRoomY": {
+            "reverseFalseSaveRoomY": {
                 "start": "0x000E7DAC",
                 "type": "u16"
             }
