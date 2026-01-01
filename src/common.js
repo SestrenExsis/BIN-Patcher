@@ -60,6 +60,7 @@ export class GameData {
         // TODO(sestren): Remove sector headers and error correction and store gamedata only
         this.buffer = buffer
         this.cursor = new Address('GAMEDATA', toVal(cursorOffset))
+        this.prevRead = []
     }
 
     clone(offset=0) {
@@ -77,13 +78,29 @@ export class GameData {
     }
 
     read(type, advanceCursor=true) {
-        let byteCount = getSizeOfType(type)
+        let byteCount = 0
+        if (['string', 'shifted-string'].indexOf(type)) {
+            let terminator = (type == 'string') ? 0x00 : 0xFF
+            while (true) {
+                const byteOffset = this.cursor.toDiscAddress(byteCount)
+                const byte = this.buffer.readUInt8(byteOffset)
+                byteCount += 1
+                if (byte == terminator) {
+                    break
+                }
+            }
+            // Strings are null-terminated with 4-byte alignment
+            byteCount += 4 - (byteCount % 4)
+        } else {
+            byteCount = getSizeOfType(type)
+        }
         const bytes = Buffer.alloc(byteCount)
         for (let byteIndex = 0; byteIndex < byteCount; byteIndex++) {
             const byteOffset = this.cursor.toDiscAddress(byteIndex)
             const byte = this.buffer.readUInt8(byteOffset)
             bytes.writeUint8(byte, byteIndex)
         }
+        this.prevRead = bytes
         let value = 0
         switch (type) {
             case 'int8':
@@ -110,6 +127,12 @@ export class GameData {
             case 'uint32':
             case 'u32':
                 value = bytes.readUInt32LE(0)
+                break
+            case 'string':
+                value = decodeString(bytes)
+                break
+            case 'shifted-string':
+                value = decodeShiftedString(bytes)
                 break
         }
         let result = value
@@ -160,463 +183,131 @@ export function getSizeOfType(type) {
     return result
 }
 
-export const constants = {
-    abandonedMine: {
-        name: 'Abandoned Mine',
-        start: 0x03CDF800,
-        size: 0x02F428,
-        offsets: {
-            baseDropRate: 0x0D6C,
-        },
-    },
-    alchemyLaboratory: {
-        name: 'Alchemy Laboratory',
-        start: 0x049BE800,
-        size: 0x04B780,
-        offsets: {
-            baseDropRate: 0x18C0,
-        },
-    },
-    // 'Anti-Chapel': {
-    //     'Stage': {
-    //         'Start': 0x04416000,
-    //         'Size': 295736,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x10E4,
-    //     },
-    // },
-    // 'Black Marble Gallery': {
-    //     'Stage': {
-    //         'Start': 0x0453D800,
-    //         'Size': 347020,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x13B4,
-    //     },
-    // },
-    // 'Boss - Olrox': {
-    //     'Stage': {
-    //         'Start': 0x0534C800,
-    //         'Size': 320948,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x17C4,
-    //     },
-    // },
-    // 'Boss - Granfaloon': {
-    //     'Stage': {
-    //         'Start': 0x053F7000,
-    //         'Size': 205756,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x138C,
-    //     },
-    // },
-    // 'Boss - Minotaur and Werewolf': {
-    //     'Stage': {
-    //         'Start': 0x05473800,
-    //         'Size': 223540,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1010,
-    //     },
-    // },
-    // 'Boss - Scylla': {
-    //     'Stage': {
-    //         'Start': 0x05507000,
-    //         'Size': 210224,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1444,
-    //     },
-    // },
-    // 'Boss - Doppelganger 10': {
-    //     'Stage': {
-    //         'Start': 0x05593000,
-    //         'Size': 347704,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x09FC,
-    //     },
-    // },
-    // 'Boss - Hippogryph': {
-    //     'Stage': {
-    //         'Start': 0x05638800,
-    //         'Size': 218672,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x10AC,
-    //     },
-    // },
-    // 'Boss - Richter': {
-    //     'Stage': {
-    //         'Start': 0x056C8800,
-    //         'Size': 333544,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0A34,
-    //     },
-    // },
-    // 'Boss - Cerberus': {
-    //     'Stage': {
-    //         'Start': 0x0596D000,
-    //         'Size': 144480,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0C34,
-    //     },
-    // },
-    // 'Boss - Trio': {
-    //     'Stage': {
-    //         'Start': 0x05775000,
-    //         'Size': 160988,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x117C,
-    //     },
-    // },
-    // 'Boss - Beelzebub': {
-    //     'Stage': {
-    //         'Start': 0x05870000,
-    //         'Size': 139104,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0D3C,
-    //     },
-    // },
-    // 'Boss - Death': {
-    //     'Stage': {
-    //         'Start': 0x058ED800,
-    //         'Size': 190792,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0F7C,
-    //     },
-    // },
-    // 'Boss - Medusa': {
-    //     'Stage': {
-    //         'Start': 0x059E9800,
-    //         'Size': 132656,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0A9C,
-    //     },
-    // },
-    // 'Boss - Creature': {
-    //     'Stage': {
-    //         'Start': 0x05A65000,
-    //         'Size': 154660,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0BA8,
-    //     },
-    // },
-    // 'Boss - Doppelganger 40': {
-    //     'Stage': {
-    //         'Start': 0x05AE3800,
-    //         'Size': 345096,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0A88,
-    //     },
-    // },
-    // 'Boss - Shaft and Dracula': {
-    //     'Stage': {
-    //         'Start': 0x05B93800,
-    //         'Size': 213060,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0C90,
-    //     },
-    // },
-    // 'Boss - Succubus': {
-    //     'Stage': {
-    //         'Start': 0x04F31000,
-    //         'Size': 147456,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0CC8,
-    //     },
-    // },
-    // 'Boss - Akmodan II': {
-    //     'Stage': {
-    //         'Start': 0x05C24000,
-    //         'Size': 142572,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0AF4,
-    //     },
-    // },
-    // 'Boss - Galamoth': {
-    //     'Stage': {
-    //         'Start': 0x05C9F800,
-    //         'Size': 161212,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1B28,
-    //     },
-    // },
-    // 'Castle Center': {
-    //     'Stage': {
-    //         'Start': 0x03C65000,
-    //         'Size': 119916,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0B04,
-    //     },
-    // },
-    // 'Castle Entrance': {
-    //     'Stage': {
-    //         'Start': 0x041A7800,
-    //         'Size': 0,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x200C,
-    //     },
-    // },
-    // 'Castle Entrance Revisited': {
-    //     'Stage': {
-    //         'Start': 0x0491A800,
-    //         'Size': 0,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1998,
-    //     },
-    // },
-    // 'Castle Keep': {
-    //     'Stage': {
-    //         'Start': 0x04AEF000,
-    //         'Size': 247132,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1194,
-    //     },
-    // },
-    // 'Catacombs': {
-    //     'Stage': {
-    //         'Start': 0x03BB3000,
-    //         'Size': 361920,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1AE4,
-    //     },
-    // },
-    // 'Cave': {
-    //     'Stage': {
-    //         'Start': 0x0439B800,
-    //         'Size': 174880,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0C68,
-    //     },
-    // },
-    // 'Clock Tower': {
-    //     'Stage': {
-    //         'Start': 0x04A67000,
-    //         'Size': 271168,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1664,
-    //     },
-    // },
-    // 'Colosseum': {
-    //     'Stage': {
-    //         'Start': 0x03B00000,
-    //         'Size': 352636,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1364,
-    //     },
-    // },
-    // 'Cutscene - Meeting Maria in Clock Room': {
-    //     'Stage': {
-    //         'Start': 0x057F9800,
-    //         'Size': 0,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0AB0,
-    //     },
-    // },
-    // 'Death Wing\'s Lair': {
-    //     'Stage': {
-    //         'Start': 0x04680800,
-    //         'Size': 313816,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1294,
-    //     },
-    // },
-    // 'Floating Catacombs': {
-    //     'Stage': {
-    //         'Start': 0x04307000,
-    //         'Size': 278188,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x18B0,
-    //     },
-    // },
-    // 'Forbidden Library': {
-    //     'Stage': {
-    //         'Start': 0x044B0000,
-    //         'Size': 201776,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0F80,
-    //     },
-    // },
-    // 'Long Library': {
-    //     'Stage': {
-    //         'Start': 0x03E5F800,
-    //         'Size': 348876,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1FC8,
-    //     },
-    // },
-    marbleGallery: {
-        name: 'Marble Gallery',
-        start: 0x03F8B000,
-        size: 0x05F58C,
-        offsets: {
-            baseDropRate: 0x1488,
-        },
-    },
-    // 'Necromancy Laboratory': {
-    //     'Stage': {
-    //         'Start': 0x04D81000,
-    //         'Size': 281512,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x110C,
-    //     },
-    // },
-    // 'Olrox\'s Quarters': {
-    //     'Stage': {
-    //         'Start': 0x040FB000,
-    //         'Size': 327100,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1374,
-    //     },
-    // },
-    // 'Outer Wall': {
-    //     'Stage': {
-    //         'Start': 0x04047000,
-    //         'Size': 356452,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1DA8,
-    //     },
-    // },
-    // 'Prologue': {
-    //     'Stage': {
-    //         'Start': 0x0487C800,
-    //         'Size': 271812,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1934,
-    //     },
-    // },
-    // 'Reverse Caverns': {
-    //     'Stage': {
-    //         'Start': 0x047C3800,
-    //         'Size': 384020,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1AF4,
-    //     },
-    // },
-    // 'Reverse Castle Center': {
-    //     'Stage': {
-    //         'Start': 0x04B87800,
-    //         'Size': 186368,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0DD8,
-    //     },
-    // },
-    // 'Reverse Clock Tower': {
-    //     'Stage': {
-    //         'Start': 0x04E22000,
-    //         'Size': 260960,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1698,
-    //     },
-    // },
-    // 'Reverse Colosseum': {
-    //     'Stage': {
-    //         'Start': 0x04C07800,
-    //         'Size': 234384,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0E2C,
-    //     },
-    // },
-    // 'Reverse Entrance': {
-    //     'Stage': {
-    //         'Start': 0x0471E000,
-    //         'Size': 304428,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1498,
-    //     },
-    // },
-    // 'Reverse Keep': {
-    //     'Stage': {
-    //         'Start': 0x04C84000,
-    //         'Size': 200988,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x0C7C,
-    //     },
-    // },
-    // 'Reverse Outer Wall': {
-    //     'Stage': {
-    //         'Start': 0x045EE000,
-    //         'Size': 357020,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1158,
-    //     },
-    // },
-    reverseWarpRooms: {
-        name: 'Reverse Warp Rooms',
-        start: 0x04EBE000,
-        size: 0x16800,
-        offsets: {
-            warpDestinations: 0x065C,
-            baseDropRate: 0x09DC,
-        },
-    },
-    // 'Royal Chapel': {
-    //     'Stage': {
-    //         'Start': 0x03D5A800,
-    //         'Size': 373764,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x13BC,
-    //     },
-    // },
-    // 'Underground Caverns': {
-    //     'Stage': {
-    //         'Start': 0x04257800,
-    //         'Size': 391260,
-    //     },
-    //     'Offsets': {
-    //         'Base Drop Rate': 0x1D40,
-    //     },
-    // },
-    warpRooms: {
-        name: 'Warp Rooms',
-        start: 0x04D12800,
-        size: 0x014800,
-        offsets: {
-            warpDestinations: 0x065C,
-            baseDropRate: 0x09DC,
-        },
-    },
+export function decodeString(bytes) {
+    let prefixByte = 0x00
+    let string = ''
+    bytes.forEach((byte) => {
+        let char = ''
+        if (prefixByte == 0x81) {
+            switch (byte) {
+                case 0x44: char = '.'; break
+                case 0x48: char = '?'; break
+                case 0x66: char = "'"; break
+                case 0x68: char = '"'; break
+                default:   char = '*'; break
+            }
+            prefixByte = 0x00
+        }
+        else if (prefixByte == 0x82) {
+            switch (byte) {
+                case 0x4F: char = '0'; break
+                case 0x50: char = '1'; break
+                case 0x51: char = '2'; break
+                case 0x52: char = '3'; break
+                case 0x53: char = '4'; break
+                case 0x54: char = '5'; break
+                case 0x55: char = '6'; break
+                case 0x56: char = '7'; break
+                case 0x57: char = '8'; break
+                case 0x58: char = '9'; break
+                default:   char = '*'; break
+            }
+            prefixByte = 0x00
+        }
+        else {
+            switch (byte) {
+                case 0x00:
+                case 0x81:
+                case 0x82:
+                    break
+                default:
+                    char = String.fromCharCode(byte)
+                    if (!'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(char)) {
+                        char = '*'
+                    }
+                    break
+            }
+            prefixByte = byte
+        }
+        string += char
+    })
+    const result = string
+    return result
+}
+
+export function decodeShiftedString(bytes) {
+    let prefixByte = 0x00
+    let string = ''
+    bytes.forEach((byte) => {
+        let char = ''
+        switch (byte) {
+            case 0xFF:
+                break
+            default:
+                char = String.fromCharCode(byte + 0x20)
+                if (!'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789'.includes(char)) {
+                    char = '*'
+                }
+                break
+        }
+        string += char
+    })
+    const result = string
+    return result
+}
+
+export const stageNames = {
+    abandonedMine: 'Abandoned Mine',
+    alchemyLaboratory: 'Alchemy Laboratory',
+    antiChapel: 'Anti-Chapel',
+    blackMarbleGallery: 'Black Marble Gallery',
+    bossAkmodanII: 'Boss - Akmodan II',
+    bossBeelzebub: 'Boss - Beelzebub',
+    bossCerberus: 'Boss - Cerberus',
+    bossCreature: 'Boss - Creature',
+    bossDeath: 'Boss - Death',
+    bossDoppelganger10: 'Boss - Doppelganger 10',
+    bossDoppelganger40: 'Boss - Doppelganger 40',
+    bossGalamoth: 'Boss - Galamoth',
+    bossGranfaloon: 'Boss - Granfaloon',
+    bossHippogryph: 'Boss - Hippogryph',
+    bossMedusa: 'Boss - Medusa',
+    bossMinotaurAndWerewolf: 'Boss - Minotaur and Werewolf',
+    bossOlrox: 'Boss - Olrox',
+    bossRichter: 'Boss - Richter',
+    bossScylla: 'Boss - Scylla',
+    bossShaftAndDracula: 'Boss - Shaft and Dracula',
+    bossSuccubus: 'Boss - Succubus',
+    bossTrio: 'Boss - Trio',
+    castleCenter: 'Castle Center',
+    castleEntrance: 'Castle Entrance',
+    castleEntranceRevisited: 'Castle Entrance Revisited',
+    castleKeep: 'Castle Keep',
+    catacombs: 'Catacombs',
+    cave: 'Cave',
+    clockTower: 'Clock Tower',
+    colosseum: 'Colosseum',
+    cutsceneMeetingMariaInClockRoom: 'Cutscene - Meeting Maria in Clock Room',
+    deathWingsLair: "Death Wing's Lair",
+    floatingCatacombs: 'Floating Catacombs',
+    forbiddenLibrary: 'Forbidden Library',
+    longLibrary: 'Long Library',
+    marbleGallery: 'Marble Gallery',
+    necromancyLaboratory: 'Necromancy Laboratory',
+    olroxsQuarters: "Olrox's Quarters",
+    outerWall: 'Outer Wall',
+    prologue: 'Prologue',
+    reverseCaverns: 'Reverse Caverns',
+    reverseCastleCenter: 'Reverse Castle Center',
+    reverseClockTower: 'Reverse Clock Tower',
+    reverseColosseum: 'Reverse Colosseum',
+    reverseEntrance: 'Reverse Entrance',
+    reverseKeep: 'Reverse Keep',
+    reverseOuterWall: 'Reverse Outer Wall',
+    reverseWarpRooms: 'Reverse Warp Rooms',
+    royalChapel: 'Royal Chapel',
+    undergroundCaverns: 'Underground Caverns',
+    warpRooms: 'Warp Rooms',
 }
 
 export function toHex(value, padding=8) {

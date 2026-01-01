@@ -50,21 +50,30 @@
             }
         },
         "falseSaveRoom": {
-            "room": {
-                "x": {
-                    "start": 949704,
-                    "type": "u16"
-                },
-                "y": {
-                    "start": 949712,
-                    "type": "u16"
-                }
+            "roomX": {
+                "start": "0x000E7DC8",
+                "type": "u16"
+            },
+            "roomY": {
+                "start": "0x000E7DD0",
+                "type": "u16"
+            },
+            "reverseRoomX": {
+                "start": "0x000E7DA4",
+                "type": "u16"
+            },
+            "reverseRoomY": {
+                "start": "0x000E7DAC",
+                "type": "u16"
             }
         },
-        "shopRelicIds": {
-            "start": 65408212,
-            "type": "u16",
-            "elementCount": 2
+        "messageRichterModeInstructions1": {
+            "start": "0x03ACF0B4",
+            "type": "string"
+        },
+        "messageRichterModeInstructions2": {
+            "start": "0x03ACF0D4",
+            "type": "string"
         }
     },
     "enemyDefinitions": {
@@ -158,40 +167,739 @@
             }
         }
     },
+    "secretMapTileReveals": {
+        "start": "0x983C0",
+        "elementSize": 5,
+        "elementCount": 15,
+        "fields": {
+            "roomX": {
+                "offset": 0,
+                "type": "u8"
+            },
+            "roomY": {
+                "offset": 1,
+                "type": "u8"
+            },
+            "passageDirection": {
+                "offset": 2,
+                "type": "u8"
+            },
+            "castleFlagId": {
+                "offset": 3,
+                "type": "u8"
+            },
+            "reverseCastleFlagId": {
+                "offset": 4,
+                "type": "u8"
+            }
+        }
+    },
     "stages": {
         "abandonedMine": {
             "offset": "0x03CDF800",
             "baseDropRate": {
-                "offset": "0x0D6C",
+                "offset": "0x000D6C",
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x0009E4",
+                "elementCount": 13,
+                "type": "u16"
+            }
+        },
+        "alchemyLaboratory": {
+            "offset": "0x049BE800",
+            "baseDropRate": {
+                "offset": "0x0018C0",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "breakableContainerDrops": {
+                "offset": "0x000F9C",
+                "elementCount": 4,
+                "type": "u16"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x0013B0",
+                "elementCount": 11,
+                "type": "u16"
+            }
+        },
+        "antiChapel": {
+            "offset": "0x04416000",
+            "baseDropRate": {
+                "offset": "0x0010E4",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000D2C",
+                "elementCount": 18,
+                "type": "u16"
+            }
+        },
+        "blackMarbleGallery": {
+            "offset": "0x0453D800",
+            "baseDropRate": {
+                "offset": "0x0013B4",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000F8C",
+                "elementCount": 12,
+                "type": "u16"
+            }
+        },
+        "bossAkmodanII": {
+            "offset": "0x05C24000",
+            "baseDropRate": {
+                "offset": "0x000AF4",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossBeelzebub": {
+            "offset": "0x05870000",
+            "baseDropRate": {
+                "offset": "0x000D3C",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossCerberus": {
+            "offset": "0x0596D000",
+            "baseDropRate": {
+                "offset": "0x000C34",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossCreature": {
+            "offset": "0x05A65000",
+            "baseDropRate": {
+                "offset": "0x000BA8",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossDeath": {
+            "offset": "0x058ED800",
+            "baseDropRate": {
+                "offset": "0x000F7C",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossDoppelganger10": {
+            "offset": "0x05593000",
+            "baseDropRate": {
+                "offset": "0x0009FC",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossDoppelganger40": {
+            "offset": "0x05AE3800",
+            "baseDropRate": {
+                "offset": "0x000A88",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossGalamoth": {
+            "offset": "0x05C9F800",
+            "baseDropRate": {
+                "offset": "0x001B28",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossGranfaloon": {
+            "offset": "0x053F7000",
+            "baseDropRate": {
+                "offset": "0x00138C",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossHippogryph": {
+            "offset": "0x05638800",
+            "baseDropRate": {
+                "offset": "0x0010AC",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossMedusa": {
+            "offset": "0x059E9800",
+            "baseDropRate": {
+                "offset": "0x000A9C",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossMinotaurAndWerewolf": {
+            "offset": "0x05473800",
+            "baseDropRate": {
+                "offset": "0x001010",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossOlrox": {
+            "offset": "0x0534C800",
+            "baseDropRate": {
+                "offset": "0x0017C4",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossRichter": {
+            "offset": "0x056C8800",
+            "baseDropRate": {
+                "offset": "0x000A34",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossScylla": {
+            "offset": "0x05507000",
+            "baseDropRate": {
+                "offset": "0x001444",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x00108C",
+                "elementCount": 37,
+                "type": "u16"
+            }
+        },
+        "bossShaftAndDracula": {
+            "offset": "0x05B93800",
+            "baseDropRate": {
+                "offset": "0x000C90",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossSuccubus": {
+            "offset": "0x04F31000",
+            "baseDropRate": {
+                "offset": "0x000CC8",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "bossTrio": {
+            "offset": "0x05775000",
+            "baseDropRate": {
+                "offset": "0x00117C",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "castleCenter": {
+            "offset": "0x03C65000",
+            "baseDropRate": {
+                "offset": "0x000B04",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "castleEntrance": {
+            "offset": "0x041A7800",
+            "baseDropRate": {
+                "offset": "0x00200C",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x001C8C",
+                "elementCount": 10,
+                "type": "u16"
+            }
+        },
+        "castleEntranceRevisited": {
+            "offset": "0x0491A800",
+            "baseDropRate": {
+                "offset": "0x001998",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x001618",
+                "elementCount": 10,
+                "type": "u16"
+            }
+        },
+        "castleKeep": {
+            "offset": "0x04AEF000",
+            "baseDropRate": {
+                "offset": "0x001194",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000D10",
+                "elementCount": 19,
+                "type": "u16"
+            }
+        },
+        "catacombs": {
+            "offset": "0x03BB3000",
+            "baseDropRate": {
+                "offset": "0x001AE4",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x00174C",
+                "elementCount": 21,
+                "type": "u16"
+            }
+        },
+        "cave": {
+            "offset": "0x0439B800",
+            "baseDropRate": {
+                "offset": "0x000C68",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x0007CC",
+                "elementCount": 8,
+                "type": "u16"
+            }
+        },
+        "clockTower": {
+            "offset": "0x04A67000",
+            "baseDropRate": {
+                "offset": "0x001664",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "gearPuzzle": {
+                "rotationDuration": {
+                    "offset": "0x028974",
+                    "type": "s16"
+                },
+                "rotationSpeed": {
+                    "offset": "0x0289EC",
+                    "type": "s16"
+                },
+                "targetRotations": {
+                    "offset": "0x000FD4",
+                    "elementCount": 4,
+                    "type": "u16"
+                }
+            },
+            "uniqueItemDrops": {
+                "offset": "0x00111C",
+                "elementCount": 12,
+                "type": "u16"
+            }
+        },
+        "colosseum": {
+            "offset": "0x03B00000",
+            "baseDropRate": {
+                "offset": "0x001364",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000FE8",
+                "elementCount": 8,
+                "type": "u16"
+            }
+        },
+        "cutsceneMeetingMariaInClockRoom": {
+            "offset": "0x057F9800",
+            "baseDropRate": {
+                "offset": "0x000AB0",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "deathWingsLair": {
+            "offset": "0x04680800",
+            "baseDropRate": {
+                "offset": "0x001294",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000D40",
+                "elementCount": 12,
+                "type": "u16"
+            }
+        },
+        "floatingCatacombs": {
+            "offset": "0x04307000",
+            "baseDropRate": {
+                "offset": "0x0018B0",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x0013C8",
+                "elementCount": 18,
+                "type": "u16"
+            }
+        },
+        "forbiddenLibrary": {
+            "offset": "0x044B0000",
+            "baseDropRate": {
+                "offset": "0x000F80",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000BC8",
+                "elementCount": 9,
+                "type": "u16"
             }
         },
         "longLibrary": {
             "offset": "0x03E5F800",
             "baseDropRate": {
-                "offset": "0x1FC8",
+                "offset": "0x001FC8",
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
             },
+            "messageShopItemName1": {
+                "offset": "0x02D088",
+                "type": "shifted-string"
+            },
             "shopRelicIds": {
-                "offset": "0x14D4",
+                "offset": "0x0014D4",
                 "type": "u16",
                 "elementCount": 2
+            },
+            "uniqueItemDrops": {
+                "offset": "0x001A90",
+                "elementCount": 11,
+                "type": "u16"
             }
         },
-        "warpRooms": {
-            "offset": "0x04D12800",
+        "marbleGallery": {
+            "offset": "0x03F8B000",
             "baseDropRate": {
-                "offset": "0x09DC",
+                "offset": "0x001488",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x001100",
+                "elementCount": 14,
+                "type": "u16"
+            }
+        },
+        "necromancyLaboratory": {
+            "offset": "0x04D81000",
+            "baseDropRate": {
+                "offset": "0x00110C",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000CC8",
+                "elementCount": 10,
+                "type": "u16"
+            }
+        },
+        "olroxsQuarters": {
+            "offset": "0x040FB000",
+            "baseDropRate": {
+                "offset": "0x001374",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000FEC",
+                "elementCount": 13,
+                "type": "u16"
+            }
+        },
+        "outerWall": {
+            "offset": "0x04047000",
+            "baseDropRate": {
+                "offset": "0x001DA8",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x001A2C",
+                "elementCount": 7,
+                "type": "u16"
+            }
+        },
+        "prologue": {
+            "offset": "0x0487C800",
+            "baseDropRate": {
+                "offset": "0x001934",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "reverseCaverns": {
+            "offset": "0x047C3800",
+            "baseDropRate": {
+                "offset": "0x001AF4",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x001620",
+                "elementCount": 27,
+                "type": "u16"
+            },
+            "waterfallSounds": {
+                "offset": "0x0014E8",
+                "elementCount": 4,
+                "elementSize": 8,
+                "fields": {
+                    "posX": {
+                        "offset": "0x00",
+                        "type": "s16"
+                    },
+                    "volumeMultiplier": {
+                        "offset": "0x02",
+                        "type": "s16"
+                    },
+                    "volumeBase": {
+                        "offset": "0x04",
+                        "type": "s16"
+                    },
+                    "panAmount": {
+                        "offset": "0x06",
+                        "type": "s16"
+                    }
+                }
+            }
+        },
+        "reverseCastleCenter": {
+            "offset": "0x04B87800",
+            "baseDropRate": {
+                "offset": "0x000DD8",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            }
+        },
+        "reverseClockTower": {
+            "offset": "0x04E22000",
+            "baseDropRate": {
+                "offset": "0x001698",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "gearPuzzle": {
+                "rotationDuration": {
+                    "offset": "0x028294",
+                    "type": "s16"
+                },
+                "rotationSpeed": {
+                    "offset": "0x0282D0",
+                    "type": "s16"
+                },
+                "targetRotations": {
+                    "offset": "0x000F70",
+                    "elementCount": 4,
+                    "type": "u16"
+                }
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000EC8",
+                "elementCount": 12,
+                "type": "u16"
+            }
+        },
+        "reverseColosseum": {
+            "offset": "0x04C07800",
+            "baseDropRate": {
+                "offset": "0x000E2C",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000A3C",
+                "elementCount": 8,
+                "type": "u16"
+            }
+        },
+        "reverseEntrance": {
+            "offset": "0x0471E000",
+            "baseDropRate": {
+                "offset": "0x001498",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000F10",
+                "elementCount": 10,
+                "type": "u16"
+            }
+        },
+        "reverseKeep": {
+            "offset": "0x04C84000",
+            "baseDropRate": {
+                "offset": "0x000C7C",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x0007C8",
+                "elementCount": 25,
+                "type": "u16"
+            }
+        },
+        "reverseOuterWall": {
+            "offset": "0x045EE000",
+            "baseDropRate": {
+                "offset": "0x001158",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000AE4",
+                "elementCount": 8,
+                "type": "u16"
+            }
+        },
+        "reverseWarpRooms": {
+            "offset": "0x04EBE000",
+            "baseDropRate": {
+                "offset": "0x0009DC",
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
             },
             "warpDestinations": {
-                "offset": "0x065C",
+                "offset": "0x00065C",
+                "elementCount": 5,
+                "elementSize": 4,
+                "fields": {
+                    "roomX": {
+                        "offset": "0x00",
+                        "type": "u16"
+                    },
+                    "roomY": {
+                        "offset": "0x02",
+                        "type": "u16"
+                    }
+                }
+            }
+        },
+        "royalChapel": {
+            "offset": "0x03D5A800",
+            "baseDropRate": {
+                "offset": "0x0013BC",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x000EC0",
+                "elementCount": 16,
+                "type": "u16"
+            }
+        },
+        "undergroundCaverns": {
+            "offset": "0x04257800",
+            "baseDropRate": {
+                "offset": "0x001D40",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "uniqueItemDrops": {
+                "offset": "0x001928",
+                "elementCount": 37,
+                "type": "u16"
+            },
+            "waterfallSounds": {
+                "offset": "0x00159C",
+                "elementCount": 4,
+                "elementSize": 8,
+                "fields": {
+                    "posX": {
+                        "offset": "0x00",
+                        "type": "s16"
+                    },
+                    "volumeMultiplier": {
+                        "offset": "0x02",
+                        "type": "s16"
+                    },
+                    "volumeBase": {
+                        "offset": "0x04",
+                        "type": "s16"
+                    },
+                    "panAmount": {
+                        "offset": "0x06",
+                        "type": "s16"
+                    }
+                }
+            }
+        },
+        "warpRooms": {
+            "offset": "0x04D12800",
+            "baseDropRate": {
+                "offset": "0x0009DC",
+                "elementCount": 4,
+                "elementSize": 1,
+                "type": "u8"
+            },
+            "warpDestinations": {
+                "offset": "0x00065C",
                 "elementCount": 5,
                 "elementSize": 4,
                 "fields": {
