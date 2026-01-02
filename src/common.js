@@ -80,16 +80,16 @@ export class GameData {
     read(type, advanceCursor=true) {
         let byteCount = 0
         if (['string', 'shifted-string'].includes(type)) {
-            let terminator = (type == 'string') ? 0x00 : 0xFF
+            // Strings are terminated with a sentinel value and have a 4-byte alignment
+            let sentinelValue = (type == 'string') ? 0x00 : 0xFF
             while (true) {
                 const byteOffset = this.cursor.toDiscAddress(byteCount)
                 const byte = this.buffer.readUInt8(byteOffset)
                 byteCount += 1
-                if (byte == terminator) {
+                if (byte == sentinelValue) {
                     break
                 }
             }
-            // Strings are null-terminated with 4-byte alignment
             byteCount += 4 - (byteCount % 4)
         } else {
             byteCount = getSizeOfType(type)

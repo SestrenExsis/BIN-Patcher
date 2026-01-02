@@ -211,6 +211,16 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "demonSwitchWallTiles": {
+                "offset": "0x00089C",
+                "elementCount": 24,
+                "type": "u16"
+            },
+            "snakeColumnWallTiles": {
+                "offset": "0x0008CC",
+                "elementCount": 24,
+                "type": "u16"
+            },
             "uniqueItemDrops": {
                 "offset": "0x0009E4",
                 "elementCount": 13,
@@ -224,6 +234,16 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "breakableFloorTiles": {
+                "offset": "0x000E94",
+                "elementCount": 16,
+                "type": "u16"
+            },
+            "breakableWallTiles": {
+                "offset": "0x000E54",
+                "elementCount": 32,
+                "type": "u16"
             },
             "breakableContainerDrops": {
                 "offset": "0x000F9C",
@@ -448,6 +468,11 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "secretWallTiles": {
+                "offset": "0x0012AC",
+                "elementCount": 45,
+                "type": "u16"
+            },
             "uniqueItemDrops": {
                 "offset": "0x001C8C",
                 "elementCount": 10,
@@ -461,6 +486,11 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "secretWallTiles": {
+                "offset": "0x001174",
+                "elementCount": 45,
+                "type": "u16"
             },
             "uniqueItemDrops": {
                 "offset": "0x001618",
@@ -504,6 +534,16 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "demonSwitchWallTiles": {
+                "offset": "0x0007EC",
+                "elementCount": 24,
+                "type": "u16"
+            },
+            "snakeColumnWallTiles": {
+                "offset": "0x00081C",
+                "elementCount": 24,
+                "type": "u16"
+            },
             "uniqueItemDrops": {
                 "offset": "0x0007CC",
                 "elementCount": 8,
@@ -518,6 +558,11 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "breakableWallTiles": {
+                "offset": "0x000FF8",
+                "elementCount": 32,
+                "type": "u16"
+            },
             "gearPuzzle": {
                 "rotationDuration": {
                     "offset": "0x028974",
@@ -526,6 +571,11 @@
                 "rotationSpeed": {
                     "offset": "0x0289EC",
                     "type": "s16"
+                },
+                "secretWallTiles": {
+                    "offset": "0x001038",
+                    "elementCount": 32,
+                    "type": "u16"
                 },
                 "targetRotations": {
                     "offset": "0x000FD4",
@@ -569,6 +619,11 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "breakableCeilingTiles": {
+                "offset": "0x000E34",
+                "elementCount": 16,
+                "type": "u16"
             },
             "uniqueItemDrops": {
                 "offset": "0x000D40",
@@ -635,6 +690,16 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "trapdoorOffsets": {
+                "offset": "0x000FF0",
+                "elementCount": 4,
+                "type": "u16"
+            },
+            "trapdoorTiles": {
+                "offset": "0x000FF8",
+                "elementCount": 24,
+                "type": "u16"
+            },
             "uniqueItemDrops": {
                 "offset": "0x001100",
                 "elementCount": 14,
@@ -649,6 +714,16 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "breakableFloorTiles": {
+                "offset": "0x000CA8",
+                "elementCount": 16,
+                "type": "u16"
+            },
+            "breakableWallTiles": {
+                "offset": "0x000C68",
+                "elementCount": 32,
+                "type": "u16"
+            },
             "uniqueItemDrops": {
                 "offset": "0x000CC8",
                 "elementCount": 10,
@@ -662,6 +737,11 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "breakableCeilingTiles": {
+                "offset": "0x000E24",
+                "elementCount": 16,
+                "type": "u16"
             },
             "uniqueItemDrops": {
                 "offset": "0x000FEC",
@@ -699,6 +779,16 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "breakableFloorTiles": {
+                "offset": "0x0016BC",
+                "elementCount": 24,
+                "type": "u16"
+            },
+            "breakableWallTiles": {
+                "offset": "0x0016EC",
+                "elementCount": 32,
+                "type": "u16"
             },
             "uniqueItemDrops": {
                 "offset": "0x001620",
@@ -746,6 +836,11 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "breakableWallTiles": {
+                "offset": "0x000F88",
+                "elementCount": 32,
+                "type": "u16"
+            },
             "gearPuzzle": {
                 "rotationDuration": {
                     "offset": "0x028294",
@@ -754,6 +849,11 @@
                 "rotationSpeed": {
                     "offset": "0x0282D0",
                     "type": "s16"
+                },
+                "secretWallTiles": {
+                    "offset": "0x000FC8",
+                    "elementCount": 32,
+                    "type": "u16"
                 },
                 "targetRotations": {
                     "offset": "0x000F70",
@@ -868,6 +968,16 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "breakableFloorTiles": {
+                "offset": "0x001880",
+                "elementCount": 24,
+                "type": "u16"
+            },
+            "breakableWallTiles": {
+                "offset": "0x0018B0",
+                "elementCount": 32,
+                "type": "u16"
             },
             "uniqueItemDrops": {
                 "offset": "0x001928",
