@@ -126,6 +126,8 @@ export class GameData {
                 break
             case 'uint32':
             case 'u32':
+            case 'layout-rect':
+            case 'zone-offset':
                 value = bytes.readUInt32LE(0)
                 break
             case 'string':
@@ -136,19 +138,38 @@ export class GameData {
                 break
         }
         let result = value
-        if (type == 'rgba32') {
-            const red = value % 32
-            value = Math.floor(value / 32)
-            const green = value % 32
-            value = Math.floor(value / 32)
-            const blue = value % 32
-            value = Math.floor(value / 32)
-            const alpha = value % 32
-            const rr = (8 * red).toString(16).padStart(2, '0')
-            const gg = (8 * green).toString(16).padStart(2, '0')
-            const bb = (8 * blue).toString(16).padStart(2, '0')
-            const aa = (alpha > 0) ? 'ff' : '7f'
-            result = '#' + rr + gg + bb + aa
+        switch (type) {
+            case 'rgba32':
+                const red = value % 32
+                value = Math.floor(value / 32)
+                const green = value % 32
+                value = Math.floor(value / 32)
+                const blue = value % 32
+                value = Math.floor(value / 32)
+                const alpha = value % 32
+                const rr = (8 * red).toString(16).padStart(2, '0')
+                const gg = (8 * green).toString(16).padStart(2, '0')
+                const bb = (8 * blue).toString(16).padStart(2, '0')
+                const aa = (alpha > 0) ? 'ff' : '7f'
+                result = '#' + rr + gg + bb + aa
+                break
+            case 'layout-rect':
+                result = {
+                    left: 0x3F & (value >> 0),
+                    top: 0x3F & (value >> 6),
+                    right: 0x3F & (value >> 12),
+                    bottom: 0x3F & (value >> 18),
+                    flags: 0xFF & (value >> 24),
+                }
+                break
+            case 'zone-offset':
+                if (value == 0x00000000) {
+                    result = null
+                }
+                else {
+                    result = toHex(value - 0x80180000, 6)
+                }
+                break
         }
         if (advanceCursor) {
             this.seek(byteCount)
@@ -178,6 +199,8 @@ export function getSizeOfType(type) {
         case 'uint32':
         case 's32':
         case 'u32':
+        case 'layout-rect':
+        case 'zone-offset':
             byteCount = 4
             break
     }

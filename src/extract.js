@@ -2,13 +2,16 @@
 import { Address, GameData, getSizeOfType, toHex, toVal } from './common.js'
 
 function extractData(bin, metadata, offset=0) {
+    if ('indirectOffset' in metadata) {
+        metadata.offset = bin.set(offset + toVal(metadata.indirectOffset)).read('u32') - 0x80180000
+    }
     if ('type' in metadata && metadata.type == 'indexed-bitmap') {
         return extractIndexedBitmap(bin, metadata, offset)
     }
     else if ('type' in metadata && metadata.type == 'binary-string-array') {
         return extractCastleMapReveals(bin, metadata, offset)
     }
-    else if (['elementSize', 'elementCount', 'fields'].every(function(propertyName) { return propertyName in metadata })) {
+    else if ('fields' in metadata) {
         return extractObjectArray(bin, metadata, offset)
     }
     else if ('elementCount' in metadata) {
@@ -63,15 +66,34 @@ function extractValueArray(bin, metadata, offset=0) {
 
 function extractObjectArray(bin, metadata, offset=0) {
     const data = []
-    for (let elementId = 0; elementId < toVal(metadata.elementCount); elementId++) {
+    let elementId = 0
+    while (true) {
         let elementData = {}
         Object.entries(metadata.fields).forEach(([fieldName, fieldInfo]) => {
             bin.set(getOffset(metadata, offset) + elementId * toVal(metadata.elementSize) + toVal(fieldInfo.offset))
-            const value = bin.read(fieldInfo.type)
+            let value = bin.read(fieldInfo.type)
+            if ('shift' in fieldInfo) {
+                value = value >> toVal(fieldInfo.shift)
+            }
+            if ('mask' in fieldInfo) {
+                value = value & toVal(fieldInfo.mask)
+            }
             elementData[fieldName] = value
         })
         data.push(elementData)
+        elementId += 1
+        if (metadata.elementCount !== undefined) {
+            if (elementId >= toVal(metadata.elementCount)) {
+                break
+            }
+        }
+        if (metadata.terminatorValue !== undefined) {
+            if (bin.read('u8', false) == metadata.terminatorValue) {
+                break
+            }
+        }
     }
+    metadata.elementCount = data.length
     const result = {
         metadata: metadata,
         data: data,
@@ -169,8 +191,16 @@ function parseExtractionNode(bin, extractionNode, offset=0) {
     }
 }
 
+function preprocessExtractionTemplate(bin, extractionTemplate) {
+    // Fill out offset and elementCount for stage layouts
+
+    // offset = MIN(layoutOffsets.foreground, layoutOffsets.background) - 0x80180000
+    // elementCount = (MAX(layoutOffsets.foreground, layoutOffsets.background) - 0x80180000) / 0x10
+}
+
 export function getExtractionData(bin, extractionTemplate) {
     const OFFSET = 0x80180000
+    preprocessExtractionTemplate(bin, extractionTemplate)
     let extraction = parseExtractionNode(bin, extractionTemplate)
     const result = extraction
     return result
