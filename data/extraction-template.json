@@ -3391,6 +3391,89 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x0000ec",
+                    "elementCount": 16,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
+            },
             "uniqueItemDrops": {
                 "offset": "0x000BC8",
                 "elementCount": 9,
@@ -3404,6 +3487,89 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "elementCount": 15,
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x00019c",
+                    "elementCount": 16,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             },
             "messageShopItemName1": {
                 "offset": "0x02D088",
@@ -3427,6 +3593,50 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "elementCount": 33,
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x000150",
+                    "elementCount": 54,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
             },
             "rooms": {
                 "indirectOffset": "0x10",
@@ -3501,6 +3711,89 @@
                 "elementCount": 32,
                 "type": "u16"
             },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x00014c",
+                    "elementCount": 35,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
+            },
             "uniqueItemDrops": {
                 "offset": "0x000CC8",
                 "elementCount": 10,
@@ -3520,6 +3813,89 @@
                 "elementCount": 16,
                 "type": "u16"
             },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "elementCount": 21,
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x000110",
+                    "elementCount": 35,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
+            },
             "uniqueItemDrops": {
                 "offset": "0x000FEC",
                 "elementCount": 13,
@@ -3534,6 +3910,89 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x0001d4",
+                    "elementCount": 20,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
+            },
             "uniqueItemDrops": {
                 "offset": "0x001A2C",
                 "elementCount": 7,
@@ -3547,6 +4006,89 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "elementCount": 4,
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x000124",
+                    "elementCount": 6,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "reverseCaverns": {
@@ -3566,6 +4108,89 @@
                 "offset": "0x0016EC",
                 "elementCount": 32,
                 "type": "u16"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x000124",
+                    "elementCount": 65,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             },
             "uniqueItemDrops": {
                 "offset": "0x001620",
@@ -3603,6 +4228,89 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x0000e8",
+                    "elementCount": 4,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "reverseClockTower": {
@@ -3642,6 +4350,89 @@
                 "offset": "0x000EC8",
                 "elementCount": 12,
                 "type": "u16"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x000398",
+                    "elementCount": 24,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "reverseColosseum": {
@@ -3656,6 +4447,89 @@
                 "offset": "0x000A3C",
                 "elementCount": 8,
                 "type": "u16"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "elementCount": 18,
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x0000e0",
+                    "elementCount": 20,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "reverseEntrance": {
@@ -3670,6 +4544,89 @@
                 "offset": "0x000F10",
                 "elementCount": 10,
                 "type": "u16"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x0000ec",
+                    "elementCount": 48,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "reverseKeep": {
@@ -3684,6 +4641,89 @@
                 "offset": "0x0007C8",
                 "elementCount": 25,
                 "type": "u16"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x0000e8",
+                    "elementCount": 14,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "reverseOuterWall": {
@@ -3698,6 +4738,89 @@
                 "offset": "0x000AE4",
                 "elementCount": 8,
                 "type": "u16"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x000154",
+                    "elementCount": 20,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "reverseWarpRooms": {
@@ -3722,6 +4845,89 @@
                         "type": "u16"
                     }
                 }
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x0000b8",
+                    "elementCount": 11,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "royalChapel": {
@@ -3736,6 +4942,89 @@
                 "offset": "0x000EC0",
                 "elementCount": 16,
                 "type": "u16"
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x000178",
+                    "elementCount": 36,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "undergroundCaverns": {
@@ -3783,6 +5072,89 @@
                         "type": "s16"
                     }
                 }
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x000128",
+                    "elementCount": 65,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
+                    }
+                }
             }
         },
         "warpRooms": {
@@ -3805,6 +5177,89 @@
                     "roomY": {
                         "offset": "0x02",
                         "type": "u16"
+                    }
+                }
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "indirectOffset": "0x20",
+                    "terminatorValue": "0x00",
+                    "elementSize": "0x08",
+                    "fields": {
+                        "foreground": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "background": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "offset": "0x0000b8",
+                    "elementCount": 11,
+                    "elementSize": 16,
+                    "fields": {
+                        "tilesOffset": {
+                            "offset": "0x00",
+                            "type": "zone-offset"
+                        },
+                        "defsOffset": {
+                            "offset": "0x04",
+                            "type": "zone-offset"
+                        },
+                        "layoutRect": {
+                            "offset": "0x08",
+                            "type": "layout-rect"
+                        },
+                        "zPriority": {
+                            "offset": "0x0C",
+                            "type": "u16"
+                        },
+                        "flags": {
+                            "offset": "0x0E",
+                            "type": "u16"
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "indirectOffset": "0x10",
+                "terminatorValue": "0x40",
+                "elementSize": 8,
+                "fields": {
+                    "left": {
+                        "offset": "0x00",
+                        "type": "u8"
+                    },
+                    "top": {
+                        "offset": "0x01",
+                        "type": "u8"
+                    },
+                    "right": {
+                        "offset": "0x02",
+                        "type": "u8"
+                    },
+                    "bottom": {
+                        "offset": "0x03",
+                        "type": "u8"
+                    },
+                    "tileLayoutId": {
+                        "offset": "0x04",
+                        "type": "u8"
+                    },
+                    "tilesetId": {
+                        "offset": "0x05",
+                        "type": "s8"
+                    },
+                    "objectGraphicsId": {
+                        "offset": "0x06",
+                        "type": "u8"
+                    },
+                    "objectLayoutId": {
+                        "offset": "0x07",
+                        "type": "u8"
                     }
                 }
             }
