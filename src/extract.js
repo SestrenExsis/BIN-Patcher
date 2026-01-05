@@ -8,6 +8,9 @@ function extractData(bin, metadata, offset=0) {
     if ('type' in metadata && metadata.type == 'indexed-bitmap') {
         return extractIndexedBitmap(bin, metadata, offset)
     }
+    else if ('type' in metadata && metadata.type == 'tilemap') {
+        return extractTilemap(bin, metadata, offset)
+    }
     else if ('type' in metadata && metadata.type == 'binary-string-array') {
         return extractCastleMapReveals(bin, metadata, offset)
     }
@@ -116,6 +119,28 @@ function extractIndexedBitmap(bin, metadata, offset=0) {
             rowData += byteData[1] + byteData[0]
         }
         data.push(rowData)
+    }
+    const result = {
+        metadata: metadata,
+        data: data,
+    }
+    return result
+}
+
+function extractTilemap(bin, metadata, offset=0) {
+    const data = []
+    metadata.rows = 16 * toVal(metadata.heightInScreens)
+    metadata.columns = 16 * toVal(metadata.widthInScreens)
+    metadata.bytesPerIndex = 2
+    bin.set(getOffset(metadata, offset))
+    // Each set of tiles can be thought of as a 2D array of 2-byte index values
+    for (let row = 0; row < metadata.rows; row++) {
+        const rowTiles = []
+        for (let col = 0; col < metadata.columns; col++) {
+            const tile = bin.read('uint16').toString(16).padStart(4, '0')
+            rowTiles.push(tile)
+        }
+        data.push(rowTiles.join(' '))
     }
     const result = {
         metadata: metadata,

@@ -215,6 +215,104 @@
                 "elementCount": 24,
                 "type": "u16"
             },
+            "tilemaps": {
+                "wolfsHeadColumn": {
+                    "offset": "0x00a960",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "wellLitSkullRoom": {
+                    "offset": "0x00b160",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "cerberusRoom": {
+                    "offset": "0x00b560",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "demonSwitchRoom": {
+                    "offset": "0x00b960",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "demonSwitchRoomBackground": {
+                    "offset": "0x00c160",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "venusWeedRoom": {
+                    "offset": "0x00c760",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "snakeColumn": {
+                    "offset": "0x00cf60",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "peanutsRoom": {
+                    "offset": "0x00d360",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "fourWayIntersection": {
+                    "offset": "0x00d560",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "lowerCrumblingStairwells": {
+                    "offset": "0x00db60",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "lowerCrumblingStairwellsBackground": {
+                    "offset": "0x00e360",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "karmaCoinRoom": {
+                    "offset": "0x00e960",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bend": {
+                    "offset": "0x00eb60",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "demonCardRoom": {
+                    "offset": "0x00ef60",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "loadingRoom": {
+                    "offset": "0x00f360",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoom": {
+                    "offset": "0x00f560",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -332,6 +430,200 @@
                 "elementCount": 4,
                 "type": "u16"
             },
+            "tilemaps": {
+                "batCardRoom": {
+                    "offset": "0x016a5c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToRoyalChapel": {
+                    "offset": "0x016c5c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "blueDoorHallway": {
+                    "offset": "0x016e5c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "bloodyZombieHallway": {
+                    "offset": "0x01725c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "cannonRoom": {
+                    "offset": "0x017a5c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "clothCapeRoom": {
+                    "offset": "0x017c5c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "sunglassesRoom": {
+                    "offset": "0x017e5c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "glassVats": {
+                    "offset": "0x01805c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "glassVatsBackground": {
+                    "offset": "0x01845c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "skillOfWolfRoom": {
+                    "offset": "0x01865c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "heartMaxUpRoom": {
+                    "offset": "0x01885c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "entryway": {
+                    "offset": "0x018a5c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "entrywayBackground": {
+                    "offset": "0x01905c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "tallSpittleboneRoom": {
+                    "offset": "0x01925c",
+                    "type": "tilemap",
+                    "heightInScreens": 5,
+                    "widthInScreens": 1
+                },
+                "emptyZigZagRoom": {
+                    "offset": "0x019c5c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "shortZigZagRoom": {
+                    "offset": "0x01a05c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "tallZigZagRoom": {
+                    "offset": "0x01a45c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "secretLifeMaxUpRoom": {
+                    "offset": "0x01aa5c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "slograAndGaibonRoom": {
+                    "offset": "0x01ae5c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 4
+                },
+                "boxPuzzleRoom": {
+                    "offset": "0x01be5c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "boxPuzzleRoomBackground": {
+                    "offset": "0x01c65c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "redSkeletonLiftRoom": {
+                    "offset": "0x01c85c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "redSkeletonLiftRoomBackground": {
+                    "offset": "0x01d45c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "tetrominoRoom": {
+                    "offset": "0x01d65c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "exitToMarbleGallery": {
+                    "offset": "0x01e25c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "corridorToElevator": {
+                    "offset": "0x01ee5c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "elevatorShaft": {
+                    "offset": "0x01f25c",
+                    "type": "tilemap",
+                    "heightInScreens": 7,
+                    "widthInScreens": 1
+                },
+                "elevatorShaftBackground": {
+                    "offset": "0x02005c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x02025c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x02045c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomC": {
+                    "offset": "0x02065c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x02085c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -428,6 +720,200 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "silverRingRoom": {
+                    "offset": "0x00a680",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "silverRingRoomBackground": {
+                    "offset": "0x00aa80",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "spikeHallway": {
+                    "offset": "0x00ae80",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "spikeHallwayBackground": {
+                    "offset": "0x00b880",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "walkwayBetweenTowers": {
+                    "offset": "0x00c280",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "walkwayBetweenTowersBackground": {
+                    "offset": "0x00cc80",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "walkwayLeftOfHippogryph": {
+                    "offset": "0x00d680",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "walkwayLeftOfHippogryphBackground": {
+                    "offset": "0x00dc80",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "hippogryphRoom": {
+                    "offset": "0x00e280",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "hippogryphRoomBackground": {
+                    "offset": "0x00e680",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "walkwayRightOfHippogryph": {
+                    "offset": "0x00ea80",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "walkwayRightOfHippogryphBackground": {
+                    "offset": "0x00f080",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "pushingStatueShortcut": {
+                    "offset": "0x00f680",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pushingStatueShortcutBackground": {
+                    "offset": "0x00f880",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "confessionalBooth": {
+                    "offset": "0x00fa80",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "confessionalBoothBackground": {
+                    "offset": "0x00fc80",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "gogglesRoom": {
+                    "offset": "0x00fe80",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "gogglesRoomBackground": {
+                    "offset": "0x010480",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "nave": {
+                    "offset": "0x010a80",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "emptyRoom": {
+                    "offset": "0x011280",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "emptyRoomBackground": {
+                    "offset": "0x011480",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "chapelStaircase": {
+                    "offset": "0x011680",
+                    "type": "tilemap",
+                    "heightInScreens": 7,
+                    "widthInScreens": 8
+                },
+                "chapelStaircaseBackground": {
+                    "offset": "0x018680",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 5
+                },
+                "statueLedge": {
+                    "offset": "0x01ae80",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "statueLedgeBackground": {
+                    "offset": "0x01b080",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftTower": {
+                    "offset": "0x01b280",
+                    "type": "tilemap",
+                    "heightInScreens": 10,
+                    "widthInScreens": 4
+                },
+                "leftTowerBackground": {
+                    "offset": "0x020280",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "middleTower": {
+                    "offset": "0x020e80",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 4
+                },
+                "loadingRoom": {
+                    "offset": "0x022e80",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x023080",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "rightTower": {
+                    "offset": "0x023280",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 4
+                },
+                "saveRoomA": {
+                    "offset": "0x025280",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -526,6 +1012,302 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "sShapedHallways": {
+                    "offset": "0x011900",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 6
+                },
+                "sShapedHallwaysBackground": {
+                    "offset": "0x013d00",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 6
+                },
+                "tallStainedGlassWindows": {
+                    "offset": "0x016100",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "tallStainedGlassWindowsBackground": {
+                    "offset": "0x016700",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "spiritOrbRoom": {
+                    "offset": "0x016d00",
+                    "type": "tilemap",
+                    "heightInScreens": 5,
+                    "widthInScreens": 2
+                },
+                "spiritOrbRoomBackground": {
+                    "offset": "0x018100",
+                    "type": "tilemap",
+                    "heightInScreens": 5,
+                    "widthInScreens": 2
+                },
+                "stainedGlassCorner": {
+                    "offset": "0x019500",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "stainedGlassCornerBackground": {
+                    "offset": "0x019700",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathDropoff": {
+                    "offset": "0x019900",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "beneathDropoffBackground": {
+                    "offset": "0x019d00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "dropoff": {
+                    "offset": "0x01a100",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "dropoffBackground": {
+                    "offset": "0x01a700",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "entrance": {
+                    "offset": "0x01ad00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "entranceBackground": {
+                    "offset": "0x01b500",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "stopwatchRoom": {
+                    "offset": "0x01bd00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "stopwatchRoomBackground": {
+                    "offset": "0x01c300",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "longHallway": {
+                    "offset": "0x01c900",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 15
+                },
+                "longHallwayBackground": {
+                    "offset": "0x01e700",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 8
+                },
+                "clockRoom": {
+                    "offset": "0x01f700",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "clockRoomBackground": {
+                    "offset": "0x01f900",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftOfClockRoom": {
+                    "offset": "0x01fb00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "leftOfClockRoomBackground": {
+                    "offset": "0x020100",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "emptyRoom": {
+                    "offset": "0x020700",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "emptyRoomBackground": {
+                    "offset": "0x020900",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "blueDoorRoom": {
+                    "offset": "0x020b00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "blueDoorRoomBackground": {
+                    "offset": "0x020f00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "pathwayAfterLeftStatue": {
+                    "offset": "0x021300",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pathwayAfterLeftStatueBackground": {
+                    "offset": "0x021500",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "ouijaTableStairway": {
+                    "offset": "0x021700",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "ouijaTableStairwayBackground": {
+                    "offset": "0x022300",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "threePaths": {
+                    "offset": "0x022f00",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "threePathsBackground": {
+                    "offset": "0x023300",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "stairwellToUndergroundCaverns": {
+                    "offset": "0x023700",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "stairwellToUndergroundCavernsBackground": {
+                    "offset": "0x023b00",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "slingerStaircase": {
+                    "offset": "0x023f00",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "slingerStaircaseBackground": {
+                    "offset": "0x024b00",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "rightOfClockRoom": {
+                    "offset": "0x025700",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "rightOfClockRoomBackground": {
+                    "offset": "0x025d00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "gravityBootsRoom": {
+                    "offset": "0x026300",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "elevatorRoom": {
+                    "offset": "0x026d00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "powerUpRoom": {
+                    "offset": "0x026f00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathLeftTrapdoor": {
+                    "offset": "0x027100",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathLeftTrapdoorBackground": {
+                    "offset": "0x027300",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathRightTrapdoor": {
+                    "offset": "0x027500",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathRightTrapdoorBackground": {
+                    "offset": "0x027700",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "alucartRoom": {
+                    "offset": "0x027900",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x027b00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x027d00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x027f00",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -544,7 +1326,7 @@
                 },
                 "layerDefinitions": {
                     "offset": "0x000134",
-                    "elementCount": 50,
+                    "elementCount": 54,
                     "elementSize": 16,
                     "fields": {
                         "tilesOffset": {
@@ -622,6 +1404,14 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "olroxsRoom": {
+                    "offset": "0x00987c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -714,6 +1504,14 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "slograAndGaibonRoom": {
+                    "offset": "0x009f3c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 4
+                }
             },
             "layers": {
                 "roomDefinitions": {
