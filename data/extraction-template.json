@@ -1605,6 +1605,14 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "cerberusRoom": {
+                    "offset": "0x008020",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -1696,6 +1704,14 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "doppelgangerRoom": {
+                    "offset": "0x00a2f0",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -1789,6 +1805,14 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "cerberusRoom": {
+                    "offset": "0x00f5c4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -1880,6 +1904,14 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "doppelgangerRoom": {
+                    "offset": "0x02c668",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -1973,6 +2005,20 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "scyllaWyrmRoom": {
+                    "offset": "0x02c740",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "scyllaWyrmRoomBackground": {
+                    "offset": "0x02c940",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -2064,6 +2110,20 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "granfaloonsLair": {
+                    "offset": "0x00a8ec",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "granfaloonsLairBackground": {
+                    "offset": "0x00b0ec",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -2157,6 +2217,20 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "granfaloonsLair": {
+                    "offset": "0x014c98",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "granfaloonsLairBackground": {
+                    "offset": "0x015498",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -2248,6 +2322,20 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "hippogryphRoom": {
+                    "offset": "0x00f084",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "hippogryphRoomBackground": {
+                    "offset": "0x00f484",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -2341,6 +2429,20 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "hippogryphRoom": {
+                    "offset": "0x007630",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "hippogryphRoomBackground": {
+                    "offset": "0x007a30",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -2432,6 +2534,14 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "arena": {
+                    "offset": "0x014314",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -2525,6 +2635,14 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "olroxsRoom": {
+                    "offset": "0x0171a8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -2617,6 +2735,14 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "throneRoom": {
+                    "offset": "0x01f7a0",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -2708,6 +2834,56 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "scyllaRoom": {
+                    "offset": "0x00ed10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "scyllaRoomBackground": {
+                    "offset": "0x00f710",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "scyllaWyrmRoom": {
+                    "offset": "0x010110",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "scyllaWyrmRoomBackground": {
+                    "offset": "0x010310",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "risingWaterRoom": {
+                    "offset": "0x010510",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "risingWaterRoomBackground": {
+                    "offset": "0x010f10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "crystalCloakRoom": {
+                    "offset": "0x011910",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "crystalCloakRoomBackground": {
+                    "offset": "0x011b10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -2806,6 +2982,26 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "elevatorShaft": {
+                    "offset": "0x0156e0",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "centerCube": {
+                    "offset": "0x015ae0",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 3
+                },
+                "unknownRoomId02": {
+                    "offset": "0x016ce0",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -2897,6 +3093,20 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "unknownRoomId00": {
+                    "offset": "0x00b548",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "unknownRoomId01": {
+                    "offset": "0x00b948",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -2990,6 +3200,14 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "arena": {
+                    "offset": "0x00b92c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -3082,6 +3300,26 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "elevatorShaft": {
+                    "offset": "0x0069ec",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "centerCube": {
+                    "offset": "0x006dec",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 3
+                },
+                "unknownRoomId02": {
+                    "offset": "0x007fec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -3100,7 +3338,7 @@
                 },
                 "layerDefinitions": {
                     "offset": "0x0000dc",
-                    "elementCount": 5,
+                    "elementCount": 4,
                     "elementSize": 16,
                     "fields": {
                         "tilesOffset": {
@@ -3173,6 +3411,266 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "afterDrawbridge": {
+                    "offset": "0x018838",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "0x019438": {
+                    "offset": "0x019438",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dropUnderPortcullis": {
+                    "offset": "0x019638",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "dropUnderPortcullisBackground": {
+                    "offset": "0x019a38",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "zombieHallway": {
+                    "offset": "0x019e38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 7
+                },
+                "0x01ac38": {
+                    "offset": "0x01ac38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holyMailRoom": {
+                    "offset": "0x01ae38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holyMailRoomBackground": {
+                    "offset": "0x01b038",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "atticStaircase": {
+                    "offset": "0x01b238",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "atticStaircaseBackground": {
+                    "offset": "0x01b638",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "atticHallway": {
+                    "offset": "0x01ba38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "atticHallwayBackground": {
+                    "offset": "0x01c238",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "atticEntrance": {
+                    "offset": "0x01ca38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "atticEntranceBackground": {
+                    "offset": "0x01cc38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "mermanRoom": {
+                    "offset": "0x01ce38",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "mermanRoomBackground": {
+                    "offset": "0x01da38",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "jewelSwordRoom": {
+                    "offset": "0x01e638",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "jewelSwordRoomBackground": {
+                    "offset": "0x01e838",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "wargHallway": {
+                    "offset": "0x01ea38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 6
+                },
+                "0x01f638": {
+                    "offset": "0x01f638",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "shortcutToUndergroundCaverns": {
+                    "offset": "0x01f838",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "shortcutToUndergroundCavernsBackground": {
+                    "offset": "0x01fa38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "meetingRoomWithDeath": {
+                    "offset": "0x01fc38",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "0x020038": {
+                    "offset": "0x020038",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "stairwellAfterDeath": {
+                    "offset": "0x020238",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "stairwellAfterDeathBackground": {
+                    "offset": "0x020838",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "gargoyleRoom": {
+                    "offset": "0x020e38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "0x021038": {
+                    "offset": "0x021038",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "heartMaxUpRoom": {
+                    "offset": "0x021238",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "heartMaxUpRoomBackground": {
+                    "offset": "0x021438",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "cubeOfZoeRoom": {
+                    "offset": "0x021638",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "cubeOfZoeRoomBackground": {
+                    "offset": "0x022238",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "shortcutToWarpRooms": {
+                    "offset": "0x022e38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "shortcutToWarpRoomsBackground": {
+                    "offset": "0x023038",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "lifeMaxUpRoom": {
+                    "offset": "0x023238",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "lifeMaxUpRoomBackground": {
+                    "offset": "0x023438",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "forestCutscene": {
+                    "offset": "0x023638",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "0x025a38": {
+                    "offset": "0x025a38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "unknownRoom19": {
+                    "offset": "0x025c38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "unknownRoom20": {
+                    "offset": "0x025e38",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x026038",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x026238",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x026438",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -3276,6 +3774,242 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "afterDrawbridge": {
+                    "offset": "0x0168f4",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "0x0174f4": {
+                    "offset": "0x0174f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dropUnderPortcullis": {
+                    "offset": "0x0176f4",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "dropUnderPortcullisBackground": {
+                    "offset": "0x017af4",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "zombieHallway": {
+                    "offset": "0x017ef4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 7
+                },
+                "0x018cf4": {
+                    "offset": "0x018cf4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holyMailRoom": {
+                    "offset": "0x018ef4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holyMailRoomBackground": {
+                    "offset": "0x0190f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "atticStaircase": {
+                    "offset": "0x0192f4",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "atticStaircaseBackground": {
+                    "offset": "0x0196f4",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "atticHallway": {
+                    "offset": "0x019af4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "atticHallwayBackground": {
+                    "offset": "0x01a2f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "atticEntrance": {
+                    "offset": "0x01aaf4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "atticEntranceBackground": {
+                    "offset": "0x01acf4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "mermanRoom": {
+                    "offset": "0x01aef4",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "mermanRoomBackground": {
+                    "offset": "0x01baf4",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "jewelSwordRoom": {
+                    "offset": "0x01c6f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "jewelSwordRoomBackground": {
+                    "offset": "0x01c8f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "wargHallway": {
+                    "offset": "0x01caf4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 6
+                },
+                "0x01d6f4": {
+                    "offset": "0x01d6f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "shortcutToUndergroundCaverns": {
+                    "offset": "0x01d8f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "shortcutToUndergroundCavernsBackground": {
+                    "offset": "0x01daf4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "meetingRoomWithDeath": {
+                    "offset": "0x01dcf4",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "0x01e0f4": {
+                    "offset": "0x01e0f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "stairwellAfterDeath": {
+                    "offset": "0x01e2f4",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "stairwellAfterDeathBackground": {
+                    "offset": "0x01e8f4",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "gargoyleRoom": {
+                    "offset": "0x01eef4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "0x01f0f4": {
+                    "offset": "0x01f0f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "heartMaxUpRoom": {
+                    "offset": "0x01f2f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "heartMaxUpRoomBackground": {
+                    "offset": "0x01f4f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "cubeOfZoeRoom": {
+                    "offset": "0x01f6f4",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "cubeOfZoeRoomBackground": {
+                    "offset": "0x0202f4",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "shortcutToWarpRooms": {
+                    "offset": "0x020ef4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "shortcutToWarpRoomsBackground": {
+                    "offset": "0x0210f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "lifeMaxUpRoom": {
+                    "offset": "0x0212f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "lifeMaxUpRoomBackground": {
+                    "offset": "0x0214f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x0216f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomWithLeftPassage": {
+                    "offset": "0x0218f4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomWithRightPassage": {
+                    "offset": "0x021af4",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -3378,6 +4112,74 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "upperAttic": {
+                    "offset": "0x011c54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "lowerAttic": {
+                    "offset": "0x012254",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "keepArea": {
+                    "offset": "0x012654",
+                    "type": "tilemap",
+                    "heightInScreens": 8,
+                    "widthInScreens": 8
+                },
+                "ghostCardRoom": {
+                    "offset": "0x01a654",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "bend": {
+                    "offset": "0x01b254",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "falchionRoom": {
+                    "offset": "0x01b454",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "lionTorchPlatform": {
+                    "offset": "0x01b654",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "dualPlatforms": {
+                    "offset": "0x01ba54",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "tyrfingRoom": {
+                    "offset": "0x01be54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoom": {
+                    "offset": "0x01c054",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x01c254",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -3474,6 +4276,332 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "roomId00": {
+                    "offset": "0x0174f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "roomId00Background": {
+                    "offset": "0x0178f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "mormegilRoom": {
+                    "offset": "0x017cf8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "mormegilRoomBackground": {
+                    "offset": "0x017ef8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId02": {
+                    "offset": "0x0180f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId02Background": {
+                    "offset": "0x0182f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "granfaloonsLair": {
+                    "offset": "0x0184f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "granfaloonsLairBackground": {
+                    "offset": "0x018cf8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "roomId04": {
+                    "offset": "0x0194f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId04Background": {
+                    "offset": "0x0196f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId05": {
+                    "offset": "0x0198f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId05Background": {
+                    "offset": "0x019af8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "smallGremlinRoom": {
+                    "offset": "0x019cf8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "smallGremlinRoomBackground": {
+                    "offset": "0x01a0f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x01a4f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "walkArmorRoom": {
+                    "offset": "0x01a6f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "walkArmorRoomBackground": {
+                    "offset": "0x01a8f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "icebrandRoom": {
+                    "offset": "0x01aaf8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "icebrandRoomBackground": {
+                    "offset": "0x01acf8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftLavaPath": {
+                    "offset": "0x01aef8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "ballroomMaskRoom": {
+                    "offset": "0x01b4f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "ballroomMaskRoomBackground": {
+                    "offset": "0x01bcf8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "rightLavaPath": {
+                    "offset": "0x01c4f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "rightLavaPathBackground": {
+                    "offset": "0x01caf8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "catEyeCircletRoom": {
+                    "offset": "0x01d0f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "catEyeCircletRoomBackground": {
+                    "offset": "0x01d2f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId14": {
+                    "offset": "0x01d4f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId14Background": {
+                    "offset": "0x01d6f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x01d8f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "hellfireBeastRoom": {
+                    "offset": "0x01daf8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "hellfireBeastRoomBackground": {
+                    "offset": "0x01def8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "exitToAbandonedMine": {
+                    "offset": "0x01e2f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "exitToAbandonedMineBackground": {
+                    "offset": "0x01e6f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "boneArkRoom": {
+                    "offset": "0x01eaf8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "boneArkRoomBackground": {
+                    "offset": "0x01f0f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "roomId19": {
+                    "offset": "0x01f6f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId19Background": {
+                    "offset": "0x01f8f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId20": {
+                    "offset": "0x01faf8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "roomId20Background": {
+                    "offset": "0x01fef8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "roomId21": {
+                    "offset": "0x0202f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "roomId21Background": {
+                    "offset": "0x020af8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "roomId22": {
+                    "offset": "0x0212f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId22Background": {
+                    "offset": "0x0214f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId23": {
+                    "offset": "0x0216f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "roomId23Background": {
+                    "offset": "0x0222f8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "pitchBlackSpikeMaze": {
+                    "offset": "0x022ef8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "pitchBlackSpikeMazeBackground": {
+                    "offset": "0x0234f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "roomID25": {
+                    "offset": "0x023af8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "roomID25Background": {
+                    "offset": "0x0244f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "roomID26": {
+                    "offset": "0x024ef8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "roomID26Background": {
+                    "offset": "0x0258f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "spikeBreakerRoom": {
+                    "offset": "0x0262f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "spikeBreakerRoomBackground": {
+                    "offset": "0x0268f8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "loadingRoom": {
+                    "offset": "0x026ef8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -3576,6 +4704,104 @@
                 "offset": "0x0007EC",
                 "elementCount": 24,
                 "type": "u16"
+            },
+            "tilemaps": {
+                "wolfsHeadColumn": {
+                    "offset": "0x007a9c",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "wellLitSkullRoom": {
+                    "offset": "0x00829c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "cerberusRoom": {
+                    "offset": "0x00869c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "demonSwitchRoom": {
+                    "offset": "0x008a9c",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "0x00929c": {
+                    "offset": "0x00929c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "venusWeedRoom": {
+                    "offset": "0x00989c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "snakeColumn": {
+                    "offset": "0x00a09c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "peanutsRoom": {
+                    "offset": "0x00a49c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "fourWayIntersection": {
+                    "offset": "0x00a69c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "crumblingStairwellsWithMushrooms": {
+                    "offset": "0x00ac9c",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "0x00b49c": {
+                    "offset": "0x00b49c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "karmaCoinRoom": {
+                    "offset": "0x00ba9c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bend": {
+                    "offset": "0x00bc9c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "demonCardRoom": {
+                    "offset": "0x00c09c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "loadingRoom": {
+                    "offset": "0x00c49c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x00c69c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -3704,6 +4930,140 @@
                     "type": "u16"
                 }
             },
+            "tilemaps": {
+                "karasumansRoom": {
+                    "offset": "0x0137d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "karasumansRoomBackground": {
+                    "offset": "0x0139d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pathToKarasuman": {
+                    "offset": "0x013bd8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "0x0141d8": {
+                    "offset": "0x0141d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "healingMailRoom": {
+                    "offset": "0x0143d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "healingMailRoomBackground": {
+                    "offset": "0x0145d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pendulumRoom": {
+                    "offset": "0x0147d8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 7
+                },
+                "0x0163d8": {
+                    "offset": "0x0163d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "spire": {
+                    "offset": "0x0165d8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 5
+                },
+                "0x0179d8": {
+                    "offset": "0x0179d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "hiddenArmory": {
+                    "offset": "0x017bd8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftGearRoom": {
+                    "offset": "0x017dd8",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "rightGearRoom": {
+                    "offset": "0x0185d8",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "exittoCourtyard": {
+                    "offset": "0x018bd8",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "belfry": {
+                    "offset": "0x0191d8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "openCourtyard": {
+                    "offset": "0x019dd8",
+                    "type": "tilemap",
+                    "heightInScreens": 5,
+                    "widthInScreens": 6
+                },
+                "0x01d9d8": {
+                    "offset": "0x01d9d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "stairwellToOuterWall": {
+                    "offset": "0x01dbd8",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "0x01dfd8": {
+                    "offset": "0x01dfd8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "fireOfBatRoom": {
+                    "offset": "0x01e1d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "fireOfBatRoomBackground": {
+                    "offset": "0x01e3d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x01e5d8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -3800,6 +5160,116 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "holySwordRoom": {
+                    "offset": "0x01a110",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "topOfLeftSpiralStaircase": {
+                    "offset": "0x01a510",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bladeMasterRoom": {
+                    "offset": "0x01a710",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "topOfRightSpiralStaircase": {
+                    "offset": "0x01af10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "passagewayBetweenArenaAndRoyalChapel": {
+                    "offset": "0x01b110",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "arena": {
+                    "offset": "0x01bb10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "topOfElevatorShaft": {
+                    "offset": "0x01bf10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "spiralStaircases": {
+                    "offset": "0x01c910",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 4
+                },
+                "valhallaKnightRoom": {
+                    "offset": "0x01d910",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "fountainRoom": {
+                    "offset": "0x01dd10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "fountainRoomBackground": {
+                    "offset": "0x01df10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bloodCloakRoom": {
+                    "offset": "0x01e110",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bottomOfElevatorShaft": {
+                    "offset": "0x01e310",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 4
+                },
+                "leftSideArmory": {
+                    "offset": "0x01f310",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "rightSideArmory": {
+                    "offset": "0x01f710",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "loadingRoom": {
+                    "offset": "0x01fb10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x01fd10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x01ff10",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -3898,6 +5368,20 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "clockRoom": {
+                    "offset": "0x005300",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "clockRoomBackground": {
+                    "offset": "0x005500",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -3994,6 +5478,194 @@
                 "offset": "0x000E34",
                 "elementCount": 16,
                 "type": "u16"
+            },
+            "tilemaps": {
+                "skelerangRoom": {
+                    "offset": "0x013aec",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "skelerangRoomBackground": {
+                    "offset": "0x0140ec",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "bottomOfStairwell": {
+                    "offset": "0x0146ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bottomOfStairwellBackground": {
+                    "offset": "0x0148ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "grandStaircase": {
+                    "offset": "0x014aec",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "grandStaircaseBackground": {
+                    "offset": "0x0156ec",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "secretOnyxRoom": {
+                    "offset": "0x0162ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "secretOnyxRoomBackground": {
+                    "offset": "0x0168ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "hammerAndBladeRoom": {
+                    "offset": "0x016eec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "hammerAndBladeRoomBackground": {
+                    "offset": "0x0176ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "emptyRoom": {
+                    "offset": "0x017eec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "emptyRoomBackground": {
+                    "offset": "0x0180ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "tallShaft": {
+                    "offset": "0x0182ec",
+                    "type": "tilemap",
+                    "heightInScreens": 6,
+                    "widthInScreens": 1
+                },
+                "tallShaftBackground": {
+                    "offset": "0x018eec",
+                    "type": "tilemap",
+                    "heightInScreens": 6,
+                    "widthInScreens": 1
+                },
+                "prison": {
+                    "offset": "0x019aec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 6
+                },
+                "prisonBackground": {
+                    "offset": "0x01a6ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 6
+                },
+                "openCourtyard": {
+                    "offset": "0x01b2ec",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 6
+                },
+                "0x01e2ec": {
+                    "offset": "0x01e2ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "emptyCells": {
+                    "offset": "0x01e4ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "emptyCellsBackground": {
+                    "offset": "0x01e8ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "garnetRoom": {
+                    "offset": "0x01ecec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "garnetRoomBackground": {
+                    "offset": "0x01eeec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "narrowHallwayToOlrox": {
+                    "offset": "0x01f0ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "olroxsRoom": {
+                    "offset": "0x01f8ec",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "echoOfBatRoom": {
+                    "offset": "0x0200ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "echoOfBatRoomBackground": {
+                    "offset": "0x0206ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "swordCardRoom": {
+                    "offset": "0x020cec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "catwalkCrypt": {
+                    "offset": "0x0210ec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 7
+                },
+                "catwalkCryptBackground": {
+                    "offset": "0x021eec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 7
+                },
+                "saveRoomA": {
+                    "offset": "0x022cec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x022eec",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -4092,6 +5764,332 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "roomId00": {
+                    "offset": "0x012e74",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "roomId00Background": {
+                    "offset": "0x013274",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "mormegilRoom": {
+                    "offset": "0x013674",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "mormegilRoomBackground": {
+                    "offset": "0x013874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId02": {
+                    "offset": "0x013a74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId02Background": {
+                    "offset": "0x013c74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "granfaloonsLair": {
+                    "offset": "0x013e74",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "granfaloonsLairBackground": {
+                    "offset": "0x014674",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "roomId04": {
+                    "offset": "0x014e74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId04Background": {
+                    "offset": "0x015074",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId05": {
+                    "offset": "0x015274",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId05Background": {
+                    "offset": "0x015474",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "smallGremlinRoom": {
+                    "offset": "0x015674",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "smallGremlinRoomBackground": {
+                    "offset": "0x015a74",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x015e74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "walkArmorRoom": {
+                    "offset": "0x016074",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "walkArmorRoomBackground": {
+                    "offset": "0x016274",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "icebrandRoom": {
+                    "offset": "0x016474",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "icebrandRoomBackground": {
+                    "offset": "0x016674",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftLavaPath": {
+                    "offset": "0x016874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "ballroomMaskRoom": {
+                    "offset": "0x016e74",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "ballroomMaskRoomBackground": {
+                    "offset": "0x017674",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "rightLavaPath": {
+                    "offset": "0x017e74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "rightLavaPathBackground": {
+                    "offset": "0x018474",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "catEyeCircletRoom": {
+                    "offset": "0x018a74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "catEyeCircletRoomBackground": {
+                    "offset": "0x018c74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId14": {
+                    "offset": "0x018e74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId14Background": {
+                    "offset": "0x019074",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x019274",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "hellfireBeastRoom": {
+                    "offset": "0x019474",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "hellfireBeastRoomBackground": {
+                    "offset": "0x019874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "exitToAbandonedMine": {
+                    "offset": "0x019c74",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "exitToAbandonedMineBackground": {
+                    "offset": "0x01a074",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "boneArkRoom": {
+                    "offset": "0x01a474",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "boneArkRoomBackground": {
+                    "offset": "0x01aa74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "roomId19": {
+                    "offset": "0x01b074",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId19Background": {
+                    "offset": "0x01b274",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId20": {
+                    "offset": "0x01b474",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "roomId20Background": {
+                    "offset": "0x01b874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "roomId21": {
+                    "offset": "0x01bc74",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "roomId21Background": {
+                    "offset": "0x01c474",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "roomId22": {
+                    "offset": "0x01cc74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId22Background": {
+                    "offset": "0x01ce74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId23": {
+                    "offset": "0x01d074",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "roomId23Background": {
+                    "offset": "0x01dc74",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "pitchBlackSpikeMaze": {
+                    "offset": "0x01e874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "pitchBlackSpikeMazeBackground": {
+                    "offset": "0x01ee74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "roomId25": {
+                    "offset": "0x01f474",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "roomId25Background": {
+                    "offset": "0x01fe74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "roomId26": {
+                    "offset": "0x020874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "roomId26Background": {
+                    "offset": "0x021274",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "spikeBreakerRoom": {
+                    "offset": "0x021c74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "spikeBreakerRoomBackground": {
+                    "offset": "0x022274",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "loadingRoom": {
+                    "offset": "0x022874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -4189,6 +6187,98 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "lesserDemonArea": {
+                    "offset": "0x00b118",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 5
+                },
+                "secretBookcaseRoom": {
+                    "offset": "0x00d918",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holyRodRoom": {
+                    "offset": "0x00db18",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dhuronAndFleaArmorRoom": {
+                    "offset": "0x00dd18",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "shop": {
+                    "offset": "0x00e118",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "outsideShop": {
+                    "offset": "0x00e518",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "fleaManRoom": {
+                    "offset": "0x00e918",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "faerieCardRoom": {
+                    "offset": "0x00ed18",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "threeLayerRoom": {
+                    "offset": "0x00ef18",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "spellbookArea": {
+                    "offset": "0x00f518",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 7
+                },
+                "dhuronAndFleaManRoom": {
+                    "offset": "0x011f18",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "footOfStaircase": {
+                    "offset": "0x012318",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToOuterWall": {
+                    "offset": "0x012518",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "loadingRoom": {
+                    "offset": "0x012b18",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x012d18",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -4285,6 +6375,98 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "lesserDemonArea": {
+                    "offset": "0x016470",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 5
+                },
+                "secretBookcaseRoom": {
+                    "offset": "0x018c70",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holyRodRoom": {
+                    "offset": "0x018e70",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dhuronAndFleaArmorRoom": {
+                    "offset": "0x019070",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "shop": {
+                    "offset": "0x019470",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "outsideShop": {
+                    "offset": "0x019870",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "fleaManRoom": {
+                    "offset": "0x019c70",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "faerieCardRoom": {
+                    "offset": "0x01a070",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "threeLayerRoom": {
+                    "offset": "0x01a270",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "spellbookArea": {
+                    "offset": "0x01a870",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 7
+                },
+                "dhuronAndFleaManRoom": {
+                    "offset": "0x01d270",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "footOfStaircase": {
+                    "offset": "0x01d670",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToOuterWall": {
+                    "offset": "0x01d870",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "loadingRoom": {
+                    "offset": "0x01de70",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x01e070",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -4391,6 +6573,302 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "sShapedHallways": {
+                    "offset": "0x01791c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 6
+                },
+                "sShapedHallwaysBackground": {
+                    "offset": "0x019d1c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 6
+                },
+                "tallStainedGlassWindows": {
+                    "offset": "0x01c11c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "tallStainedGlassWindowsBackground": {
+                    "offset": "0x01c71c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "spiritOrbRoom": {
+                    "offset": "0x01cd1c",
+                    "type": "tilemap",
+                    "heightInScreens": 5,
+                    "widthInScreens": 2
+                },
+                "spiritOrbRoomBackground": {
+                    "offset": "0x01e11c",
+                    "type": "tilemap",
+                    "heightInScreens": 5,
+                    "widthInScreens": 2
+                },
+                "stainedGlassCorner": {
+                    "offset": "0x01f51c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "stainedGlassCornerBackground": {
+                    "offset": "0x01f71c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathDropoff": {
+                    "offset": "0x01f91c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "beneathDropoffBackground": {
+                    "offset": "0x01fd1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "dropoff": {
+                    "offset": "0x02011c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "dropoffBackground": {
+                    "offset": "0x02071c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "entrance": {
+                    "offset": "0x020d1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "entranceBackground": {
+                    "offset": "0x02151c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "stopwatchRoom": {
+                    "offset": "0x021d1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "stopwatchRoomBackground": {
+                    "offset": "0x02231c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "longHallway": {
+                    "offset": "0x02291c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 15
+                },
+                "0x02471c": {
+                    "offset": "0x02471c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 8
+                },
+                "clockRoom": {
+                    "offset": "0x02571c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "clockRoomBackground": {
+                    "offset": "0x02591c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftOfClockRoom": {
+                    "offset": "0x025b1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "leftOfClockRoomBackground": {
+                    "offset": "0x02611c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "emptyRoom": {
+                    "offset": "0x02671c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "emptyRoomBackground": {
+                    "offset": "0x02691c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "blueDoorRoom": {
+                    "offset": "0x026b1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "blueDoorRoomBackground": {
+                    "offset": "0x026f1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "pathwayAfterLeftStatue": {
+                    "offset": "0x02731c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pathwayAfterRightStatue": {
+                    "offset": "0x02751c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "ouijaTableStairway": {
+                    "offset": "0x02771c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "ouijaTableStairwayBackground": {
+                    "offset": "0x02831c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "threePaths": {
+                    "offset": "0x028f1c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "threePathsBackground": {
+                    "offset": "0x02931c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "stairwellToUndergroundCaverns": {
+                    "offset": "0x02971c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "stairwellToUndergroundCavernsBackground": {
+                    "offset": "0x029b1c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "slingerStaircase": {
+                    "offset": "0x029f1c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "slingerStaircaseBackground": {
+                    "offset": "0x02ab1c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "rightOfClockRoom": {
+                    "offset": "0x02b71c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "rightOfClockRoomBackground": {
+                    "offset": "0x02bd1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "gravityBootsRoom": {
+                    "offset": "0x02c31c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "elevatorRoom": {
+                    "offset": "0x02cd1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "powerUpRoom": {
+                    "offset": "0x02cf1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathLeftTrapdoor": {
+                    "offset": "0x02d11c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathLeftTrapdoorBackground": {
+                    "offset": "0x02d31c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathRightTrapdoor": {
+                    "offset": "0x02d51c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "beneathRightTrapdoorBackground": {
+                    "offset": "0x02d71c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "alucartRoom": {
+                    "offset": "0x02d91c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x02db1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x02dd1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x02df1c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -4509,6 +6987,200 @@
                 "elementCount": 32,
                 "type": "u16"
             },
+            "tilemaps": {
+                "batCardRoom": {
+                    "offset": "0x01450c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToRoyalChapel": {
+                    "offset": "0x01470c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "blueDoorHallway": {
+                    "offset": "0x01490c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "bloodyZombieHallway": {
+                    "offset": "0x014d0c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "cannonRoom": {
+                    "offset": "0x01550c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "clothCapeRoom": {
+                    "offset": "0x01570c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "sunglassesRoom": {
+                    "offset": "0x01590c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "glassVats": {
+                    "offset": "0x015b0c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "0x015f0c": {
+                    "offset": "0x015f0c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "skillOfWolfRoom": {
+                    "offset": "0x01610c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "heartMaxUpRoom": {
+                    "offset": "0x01630c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "entryway": {
+                    "offset": "0x01650c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "0x016b0c": {
+                    "offset": "0x016b0c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "tallSpittleboneRoom": {
+                    "offset": "0x016d0c",
+                    "type": "tilemap",
+                    "heightInScreens": 5,
+                    "widthInScreens": 1
+                },
+                "emptyZigZagRoom": {
+                    "offset": "0x01770c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "shortZigZagRoom": {
+                    "offset": "0x017b0c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "tallZigZagRoom": {
+                    "offset": "0x017f0c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "secretLifeMaxUpRoom": {
+                    "offset": "0x01850c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "slograAndGaibonRoom": {
+                    "offset": "0x01890c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 4
+                },
+                "boxPuzzleRoom": {
+                    "offset": "0x01990c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "0x01a10c": {
+                    "offset": "0x01a10c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "redSkeletonLiftRoom": {
+                    "offset": "0x01a30c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "0x01af0c": {
+                    "offset": "0x01af0c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "tetrominoRoom": {
+                    "offset": "0x01b10c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "exitToMarbleGallery": {
+                    "offset": "0x01bd0c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "corridorToElevator": {
+                    "offset": "0x01c90c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "elevatorShaft": {
+                    "offset": "0x01cd0c",
+                    "type": "tilemap",
+                    "heightInScreens": 7,
+                    "widthInScreens": 1
+                },
+                "0x01db0c": {
+                    "offset": "0x01db0c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x01dd0c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x01df0c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomC": {
+                    "offset": "0x01e10c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x01e30c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -4611,6 +7283,194 @@
                 "elementCount": 16,
                 "type": "u16"
             },
+            "tilemaps": {
+                "skelerangRoom": {
+                    "offset": "0x014e28",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "skelerangRoomBackground": {
+                    "offset": "0x015428",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "bottomOfStairwell": {
+                    "offset": "0x015a28",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bottomOfStairwellBackground": {
+                    "offset": "0x015c28",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "grandStaircase": {
+                    "offset": "0x015e28",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "grandStaircaseBackground": {
+                    "offset": "0x016a28",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "secretOnyxRoom": {
+                    "offset": "0x017628",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "secretOnyxRoomBackground": {
+                    "offset": "0x017c28",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "hammerAndBladeRoom": {
+                    "offset": "0x018228",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "hammerAndBladeRoomBackground": {
+                    "offset": "0x018a28",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "emptyRoom": {
+                    "offset": "0x019228",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "emptyRoomBackground": {
+                    "offset": "0x019428",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "tallShaft": {
+                    "offset": "0x019628",
+                    "type": "tilemap",
+                    "heightInScreens": 6,
+                    "widthInScreens": 1
+                },
+                "tallShaftBackground": {
+                    "offset": "0x01a228",
+                    "type": "tilemap",
+                    "heightInScreens": 6,
+                    "widthInScreens": 1
+                },
+                "prison": {
+                    "offset": "0x01ae28",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 6
+                },
+                "prisonBackground": {
+                    "offset": "0x01ba28",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 6
+                },
+                "openCourtyard": {
+                    "offset": "0x01c628",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 6
+                },
+                "0x01f628": {
+                    "offset": "0x01f628",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "emptyCells": {
+                    "offset": "0x01f828",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "emptyCellsBackground": {
+                    "offset": "0x01fc28",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "garnetRoom": {
+                    "offset": "0x020028",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "garnetRoomBackground": {
+                    "offset": "0x020228",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "narrowHallwayToOlrox": {
+                    "offset": "0x020428",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "olroxsRoom": {
+                    "offset": "0x020c28",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "echoOfBatRoom": {
+                    "offset": "0x021428",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "echoOfBatRoomBackground": {
+                    "offset": "0x021a28",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "swordCardRoom": {
+                    "offset": "0x022028",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "catwalkCrypt": {
+                    "offset": "0x022428",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 7
+                },
+                "catwalkCryptBackground": {
+                    "offset": "0x023228",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 7
+                },
+                "saveRoomA": {
+                    "offset": "0x024028",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x024228",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -4708,6 +7568,104 @@
                 "elementSize": 1,
                 "type": "u8"
             },
+            "tilemaps": {
+                "loadingRoom": {
+                    "offset": "0x016170",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "topOfOuterWall": {
+                    "offset": "0x016370",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "exitToClockTower": {
+                    "offset": "0x016770",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "telescopeRoom": {
+                    "offset": "0x016b70",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 4
+                },
+                "lowerMedusaRoom": {
+                    "offset": "0x017b70",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 3
+                },
+                "jewelKnucklesRoom": {
+                    "offset": "0x018d70",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "secretPlatformRoom": {
+                    "offset": "0x018f70",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToMarbleGallery": {
+                    "offset": "0x019170",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "garnetVaseRoom": {
+                    "offset": "0x019570",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "blueAxeKnightRoom": {
+                    "offset": "0x019b70",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "garlicRoom": {
+                    "offset": "0x01a170",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "doppelgangerRoom": {
+                    "offset": "0x01a570",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "gladiusRoom": {
+                    "offset": "0x01a970",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "elevatorShaftRoom": {
+                    "offset": "0x01ab70",
+                    "type": "tilemap",
+                    "heightInScreens": 9,
+                    "widthInScreens": 3
+                },
+                "saveRoomA": {
+                    "offset": "0x01e170",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x01e370",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -4804,6 +7762,38 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "throneRoomArea": {
+                    "offset": "0x01b2d0",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 5
+                },
+                "throneRoomAreaBackground": {
+                    "offset": "0x01c6d0",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 5
+                },
+                "upperAttic": {
+                    "offset": "0x01dad0",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "unknownRoomId02": {
+                    "offset": "0x01e0d0",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "lowerAttic": {
+                    "offset": "0x01e2d0",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -4906,6 +7896,380 @@
                 "offset": "0x0016EC",
                 "elementCount": 32,
                 "type": "u16"
+            },
+            "tilemaps": {
+                "longDrop": {
+                    "offset": "0x011c24",
+                    "type": "tilemap",
+                    "heightInScreens": 11,
+                    "widthInScreens": 1
+                },
+                "0x013224": {
+                    "offset": "0x013224",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "hiddenCrystalEntrance": {
+                    "offset": "0x013424",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "hiddenCrystalEntranceBackground": {
+                    "offset": "0x013a24",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "crystalBend": {
+                    "offset": "0x014024",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "crystalBendBackground": {
+                    "offset": "0x014424",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "tallStairwell": {
+                    "offset": "0x014824",
+                    "type": "tilemap",
+                    "heightInScreens": 9,
+                    "widthInScreens": 1
+                },
+                "0x015a24": {
+                    "offset": "0x015a24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "plaqueRoomWithLifeMaxUp": {
+                    "offset": "0x015c24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "smallStairwell": {
+                    "offset": "0x015e24",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "smallStairwellBackground": {
+                    "offset": "0x016224",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "claymoreStairwell": {
+                    "offset": "0x016624",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "claymoreStairwellBackground": {
+                    "offset": "0x016e24",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "mealTicketsAndMoonstoneRoom": {
+                    "offset": "0x017624",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "mealTicketsAndMoonstoneRoomBackground": {
+                    "offset": "0x017a24",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "plaqueRoomWithBreakableWall": {
+                    "offset": "0x017e24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId09": {
+                    "offset": "0x018024",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "roomId10": {
+                    "offset": "0x018424",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId10Background": {
+                    "offset": "0x018624",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId11": {
+                    "offset": "0x018824",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "roomId12": {
+                    "offset": "0x018e24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "roomId12Background": {
+                    "offset": "0x019224",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "holySymbolRoom": {
+                    "offset": "0x019624",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holySymbolRoomBackground": {
+                    "offset": "0x019824",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pentagramRoom": {
+                    "offset": "0x019a24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pentagramRoomBackground": {
+                    "offset": "0x019c24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dKBridge": {
+                    "offset": "0x019e24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "dKBridgeBackground": {
+                    "offset": "0x01a624",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "exitToAbandonedMine": {
+                    "offset": "0x01ae24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToAbandonedMineBackground": {
+                    "offset": "0x01b024",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dKButton": {
+                    "offset": "0x01b224",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dKButtonBackground": {
+                    "offset": "0x01b424",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId18": {
+                    "offset": "0x01b624",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId18Background": {
+                    "offset": "0x01b824",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId19": {
+                    "offset": "0x01ba24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId19Background": {
+                    "offset": "0x01bc24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToCastleEntrance": {
+                    "offset": "0x01be24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "exitToCastleEntranceBackground": {
+                    "offset": "0x01c224",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "mermanStatueRoom": {
+                    "offset": "0x01c624",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "mermanStatueRoomBackground": {
+                    "offset": "0x01c824",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "iceFloeRoom": {
+                    "offset": "0x01ca24",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 9
+                },
+                "iceFloeRoomBackground": {
+                    "offset": "0x01ee24",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 9
+                },
+                "rightFerrymanRoute": {
+                    "offset": "0x021224",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 13
+                },
+                "rightFerrymanRouteBackground": {
+                    "offset": "0x024624",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 13
+                },
+                "crystalCloakRoom": {
+                    "offset": "0x027a24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "crystalCloakRoomBackground": {
+                    "offset": "0x027c24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftFerrymanRoute": {
+                    "offset": "0x027e24",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 13
+                },
+                "leftFerrymanRouteBackground": {
+                    "offset": "0x02b224",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 13
+                },
+                "waterfall": {
+                    "offset": "0x02e624",
+                    "type": "tilemap",
+                    "heightInScreens": 6,
+                    "widthInScreens": 2
+                },
+                "waterfallBackground": {
+                    "offset": "0x02fe24",
+                    "type": "tilemap",
+                    "heightInScreens": 6,
+                    "widthInScreens": 2
+                },
+                "scyllaRoom": {
+                    "offset": "0x031624",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "scyllaRoomBackground": {
+                    "offset": "0x032024",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "scyllaWyrmRoom": {
+                    "offset": "0x032a24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "scyllaWyrmRoomBackground": {
+                    "offset": "0x032c24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "risingWaterRoom": {
+                    "offset": "0x032e24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "risingWaterRoomBackground": {
+                    "offset": "0x033824",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "bandannaRoom": {
+                    "offset": "0x034224",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x034424",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x034624",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x034824",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomC": {
+                    "offset": "0x034a24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "falseSaveRoom": {
+                    "offset": "0x034c24",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -5026,6 +8390,26 @@
                 "elementCount": 4,
                 "elementSize": 1,
                 "type": "u8"
+            },
+            "tilemaps": {
+                "elevatorShaft": {
+                    "offset": "0x011dcc",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "centerCube": {
+                    "offset": "0x0121cc",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 3
+                },
+                "unknownRoomId02": {
+                    "offset": "0x0133cc",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -5149,6 +8533,140 @@
                 "elementCount": 12,
                 "type": "u16"
             },
+            "tilemaps": {
+                "karasumansRoom": {
+                    "offset": "0x013084",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "karasumansRoomBackground": {
+                    "offset": "0x013284",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pathToKarasuman": {
+                    "offset": "0x013484",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "0x013a84": {
+                    "offset": "0x013a84",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "healingMailRoom": {
+                    "offset": "0x013c84",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "healingMailRoomBackground": {
+                    "offset": "0x013e84",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pendulumRoom": {
+                    "offset": "0x014084",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 7
+                },
+                "0x015c84": {
+                    "offset": "0x015c84",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "spire": {
+                    "offset": "0x015e84",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 5
+                },
+                "0x017284": {
+                    "offset": "0x017284",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "hiddenArmory": {
+                    "offset": "0x017484",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftGearRoom": {
+                    "offset": "0x017684",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "rightGearRoom": {
+                    "offset": "0x017e84",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "exitToCourtyard": {
+                    "offset": "0x018484",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "belfry": {
+                    "offset": "0x018a84",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "openCourtyard": {
+                    "offset": "0x019684",
+                    "type": "tilemap",
+                    "heightInScreens": 5,
+                    "widthInScreens": 6
+                },
+                "0x01d284": {
+                    "offset": "0x01d284",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "stairwellToOuterWall": {
+                    "offset": "0x01d484",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "0x01d884": {
+                    "offset": "0x01d884",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "fireOfBatRoom": {
+                    "offset": "0x01da84",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "fireOfBatRoomBackground": {
+                    "offset": "0x01dc84",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x01de84",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -5245,6 +8763,116 @@
                 "offset": "0x000A3C",
                 "elementCount": 8,
                 "type": "u16"
+            },
+            "tilemaps": {
+                "holySwordRoom": {
+                    "offset": "0x012c74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "topOfLeftSpiralStaircase": {
+                    "offset": "0x013074",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bladeMasterRoom": {
+                    "offset": "0x013274",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "topOfRightSpiralStaircase": {
+                    "offset": "0x013a74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "passagewayBetweenArenaAndRoyalChapel": {
+                    "offset": "0x013c74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "arena": {
+                    "offset": "0x014674",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "topOfElevatorShaft": {
+                    "offset": "0x014a74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "spiralStaircases": {
+                    "offset": "0x015474",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 4
+                },
+                "valhallaKnightRoom": {
+                    "offset": "0x016474",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "fountainRoom": {
+                    "offset": "0x016874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "fountainRoomBackground": {
+                    "offset": "0x016a74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bloodCloakRoom": {
+                    "offset": "0x016c74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "bottomOfElevatorShaft": {
+                    "offset": "0x016e74",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 4
+                },
+                "leftSideArmory": {
+                    "offset": "0x017e74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "rightSideArmory": {
+                    "offset": "0x018274",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "loadingRoom": {
+                    "offset": "0x018674",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x018874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x018a74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -5343,6 +8971,266 @@
                 "elementCount": 10,
                 "type": "u16"
             },
+            "tilemaps": {
+                "afterDrawbridge": {
+                    "offset": "0x010e88",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "0x011a88": {
+                    "offset": "0x011a88",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dropUnderPortcullis": {
+                    "offset": "0x011c88",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "dropUnderPortcullisBackground": {
+                    "offset": "0x012088",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "zombieHallway": {
+                    "offset": "0x012488",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 7
+                },
+                "0x013288": {
+                    "offset": "0x013288",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holyMailRoom": {
+                    "offset": "0x013488",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holyMailRoomBackground": {
+                    "offset": "0x013688",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "atticStaircase": {
+                    "offset": "0x013888",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "atticStaircaseBackground": {
+                    "offset": "0x013c88",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "atticHallway": {
+                    "offset": "0x014088",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "atticHallwayBackground": {
+                    "offset": "0x014888",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "atticEntrance": {
+                    "offset": "0x015088",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "atticEntranceBackground": {
+                    "offset": "0x015288",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "mermanRoom": {
+                    "offset": "0x015488",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "mermanRoomBackground": {
+                    "offset": "0x016088",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "jewelSwordRoom": {
+                    "offset": "0x016c88",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "jewelSwordRoomBackground": {
+                    "offset": "0x016e88",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "wargHallway": {
+                    "offset": "0x017088",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 6
+                },
+                "0x017c88": {
+                    "offset": "0x017c88",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "shortcutToUndergroundCaverns": {
+                    "offset": "0x017e88",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "shortcutToUndergroundCavernsBackground": {
+                    "offset": "0x018088",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "meetingRoomWithDeath": {
+                    "offset": "0x018288",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "0x018688": {
+                    "offset": "0x018688",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "stairwellAfterDeath": {
+                    "offset": "0x018888",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "stairwellAfterDeathBackground": {
+                    "offset": "0x018e88",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "gargoyleRoom": {
+                    "offset": "0x019488",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "0x019688": {
+                    "offset": "0x019688",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "heartMaxUpRoom": {
+                    "offset": "0x019888",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "heartMaxUpRoomBackground": {
+                    "offset": "0x019a88",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "cubeOfZoeRoom": {
+                    "offset": "0x019c88",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "cubeOfZoeRoomBackground": {
+                    "offset": "0x01a888",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "shortcutToWarpRooms": {
+                    "offset": "0x01b488",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "shortcutToWarpRoomsBackground": {
+                    "offset": "0x01b688",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "lifeMaxUpRoom": {
+                    "offset": "0x01b888",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "lifeMaxUpRoomBackground": {
+                    "offset": "0x01ba88",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "forestCutscene": {
+                    "offset": "0x01bc88",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 18
+                },
+                "0x01e088": {
+                    "offset": "0x01e088",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "unknownRoom19": {
+                    "offset": "0x01e288",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "unknownRoom20": {
+                    "offset": "0x01e488",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x01e688",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomWithLeftPassage": {
+                    "offset": "0x01e888",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomWithRightPassage": {
+                    "offset": "0x01ea88",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -5440,6 +9328,74 @@
                 "elementCount": 25,
                 "type": "u16"
             },
+            "tilemaps": {
+                "upperAttic": {
+                    "offset": "0x00b274",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "lowerAttic": {
+                    "offset": "0x00b874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "keepArea": {
+                    "offset": "0x00bc74",
+                    "type": "tilemap",
+                    "heightInScreens": 8,
+                    "widthInScreens": 8
+                },
+                "ghostCardRoom": {
+                    "offset": "0x013c74",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 2
+                },
+                "bend": {
+                    "offset": "0x014874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "falchionRoom": {
+                    "offset": "0x014a74",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "lionTorchPlatform": {
+                    "offset": "0x014c74",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "dualPlatforms": {
+                    "offset": "0x015074",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "tyrfingRoom": {
+                    "offset": "0x015474",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x015674",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x015874",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -5536,6 +9492,104 @@
                 "offset": "0x000AE4",
                 "elementCount": 8,
                 "type": "u16"
+            },
+            "tilemaps": {
+                "loadingRoom": {
+                    "offset": "0x00ce20",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "topOfOuterWall": {
+                    "offset": "0x00d020",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "exitToClockTower": {
+                    "offset": "0x00d420",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "telescopeRoom": {
+                    "offset": "0x00d820",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 4
+                },
+                "lowerMedusaRoom": {
+                    "offset": "0x00e820",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 3
+                },
+                "jewelKnucklesRoom": {
+                    "offset": "0x00fa20",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "secretPlatformRoom": {
+                    "offset": "0x00fc20",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToMarbleGallery": {
+                    "offset": "0x00fe20",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "garnetVaseRoom": {
+                    "offset": "0x010220",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "blueAxeKnightRoom": {
+                    "offset": "0x010820",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "garlicRoom": {
+                    "offset": "0x010e20",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "doppelgangerRoom": {
+                    "offset": "0x011220",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "gladiusRoom": {
+                    "offset": "0x011620",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "elevatorShaftRoom": {
+                    "offset": "0x011820",
+                    "type": "tilemap",
+                    "heightInScreens": 9,
+                    "widthInScreens": 3
+                },
+                "saveRoomA": {
+                    "offset": "0x014e20",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x015020",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -5644,6 +9698,44 @@
                     }
                 }
             },
+            "tilemaps": {
+                "warpRoomToCastleKeep": {
+                    "offset": "0x001fc8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "warpRoomToOlroxsQuarters": {
+                    "offset": "0x0021c8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "warpRoomToOuterWall": {
+                    "offset": "0x0023c8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "warpRoomToCastleEntrance": {
+                    "offset": "0x0025c8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "warpRoomToAbandonedMine": {
+                    "offset": "0x0027c8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x0029c8",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -5740,6 +9832,200 @@
                 "offset": "0x000EC0",
                 "elementCount": 16,
                 "type": "u16"
+            },
+            "tilemaps": {
+                "silverRingRoom": {
+                    "offset": "0x01782c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "silverRingRoomBackground": {
+                    "offset": "0x017c2c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "spikeHallway": {
+                    "offset": "0x01802c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "spikeHallwayBackground": {
+                    "offset": "0x018a2c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "walkwayBetweenTowers": {
+                    "offset": "0x01942c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "walkwayBetweenTowersBackground": {
+                    "offset": "0x019e2c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "walkwayLeftOfHippogryph": {
+                    "offset": "0x01a82c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "walkwayLeftOfHippogryphBackground": {
+                    "offset": "0x01ae2c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "hippogryphRoom": {
+                    "offset": "0x01b42c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "hippogryphRoomBackground": {
+                    "offset": "0x01b82c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "walkwayRightOfHippogryph": {
+                    "offset": "0x01bc2c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "walkwayRightOfHippogryphBackground": {
+                    "offset": "0x01c22c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "pushingStatueShortcut": {
+                    "offset": "0x01c82c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pushingStatueShortcutBackground": {
+                    "offset": "0x01ca2c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "confessionalBooth": {
+                    "offset": "0x01cc2c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "confessionalBoothBackground": {
+                    "offset": "0x01ce2c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "gogglesRoom": {
+                    "offset": "0x01d02c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "gogglesRoomBackground": {
+                    "offset": "0x01d62c",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "nave": {
+                    "offset": "0x01dc2c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 2
+                },
+                "emptyRoom": {
+                    "offset": "0x01e42c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "emptyRoomBackground": {
+                    "offset": "0x01e62c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "chapelStaircase": {
+                    "offset": "0x01e82c",
+                    "type": "tilemap",
+                    "heightInScreens": 7,
+                    "widthInScreens": 8
+                },
+                "0x02582c": {
+                    "offset": "0x02582c",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 5
+                },
+                "statueLedge": {
+                    "offset": "0x02802c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "statueLedgeBackground": {
+                    "offset": "0x02822c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftTower": {
+                    "offset": "0x02842c",
+                    "type": "tilemap",
+                    "heightInScreens": 10,
+                    "widthInScreens": 4
+                },
+                "0x02d42c": {
+                    "offset": "0x02d42c",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 3
+                },
+                "middleTower": {
+                    "offset": "0x02e02c",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 4
+                },
+                "loadingRoom": {
+                    "offset": "0x03002c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x03022c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "rightTower": {
+                    "offset": "0x03042c",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 4
+                },
+                "saveRoomA": {
+                    "offset": "0x03242c",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
             },
             "layers": {
                 "roomDefinitions": {
@@ -5871,6 +10157,380 @@
                     }
                 }
             },
+            "tilemaps": {
+                "longDrop": {
+                    "offset": "0x00e454",
+                    "type": "tilemap",
+                    "heightInScreens": 11,
+                    "widthInScreens": 1
+                },
+                "0x00fa54": {
+                    "offset": "0x00fa54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "hiddenCrystalEntrance": {
+                    "offset": "0x00fc54",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "hiddenCrystalEntranceBackground": {
+                    "offset": "0x010254",
+                    "type": "tilemap",
+                    "heightInScreens": 3,
+                    "widthInScreens": 1
+                },
+                "crystalBend": {
+                    "offset": "0x010854",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "crystalBendBackground": {
+                    "offset": "0x010c54",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "tallStairwell": {
+                    "offset": "0x011054",
+                    "type": "tilemap",
+                    "heightInScreens": 9,
+                    "widthInScreens": 1
+                },
+                "0x012254": {
+                    "offset": "0x012254",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "plaqueRoomWithLifeMaxUp": {
+                    "offset": "0x012454",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "smallStairwell": {
+                    "offset": "0x012654",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "smallStairwellBackground": {
+                    "offset": "0x012a54",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "claymoreStairwell": {
+                    "offset": "0x012e54",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "claymoreStairwellBackground": {
+                    "offset": "0x013654",
+                    "type": "tilemap",
+                    "heightInScreens": 4,
+                    "widthInScreens": 1
+                },
+                "mealTicketsAndMoonstoneRoom": {
+                    "offset": "0x013e54",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "mealTicketsAndMoonstoneRoomBackground": {
+                    "offset": "0x014254",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 1
+                },
+                "plaqueRoomWithBreakableWall": {
+                    "offset": "0x014654",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId09": {
+                    "offset": "0x014854",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "roomId10": {
+                    "offset": "0x014c54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId10Background": {
+                    "offset": "0x014e54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId11": {
+                    "offset": "0x015054",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 3
+                },
+                "roomId12": {
+                    "offset": "0x015654",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "roomId12Background": {
+                    "offset": "0x015a54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "holySymbolRoom": {
+                    "offset": "0x015e54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "holySymbolRoomBackground": {
+                    "offset": "0x016054",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pentagramRoom": {
+                    "offset": "0x016254",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "pentagramRoomBackground": {
+                    "offset": "0x016454",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dKBridge": {
+                    "offset": "0x016654",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "dKBridgeBackground": {
+                    "offset": "0x016e54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 4
+                },
+                "exitToAbandonedMine": {
+                    "offset": "0x017654",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToAbandonedMineBackground": {
+                    "offset": "0x017854",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dKButton": {
+                    "offset": "0x017a54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "dKButtonBackground": {
+                    "offset": "0x017c54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId18": {
+                    "offset": "0x017e54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId18Background": {
+                    "offset": "0x018054",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId19": {
+                    "offset": "0x018254",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "roomId19Background": {
+                    "offset": "0x018454",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "exitToCastleEntrance": {
+                    "offset": "0x018654",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "exitToCastleEntranceBackground": {
+                    "offset": "0x018a54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 2
+                },
+                "mermanStatueRoom": {
+                    "offset": "0x018e54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "mermanStatueRoomBackground": {
+                    "offset": "0x019054",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "iceFloeRoom": {
+                    "offset": "0x019254",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 9
+                },
+                "iceFloeRoomBackground": {
+                    "offset": "0x01b654",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 9
+                },
+                "rightFerrymanRoute": {
+                    "offset": "0x01da54",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 13
+                },
+                "rightFerrymanRouteBackground": {
+                    "offset": "0x020e54",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 13
+                },
+                "crystalCloakRoom": {
+                    "offset": "0x024254",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "crystalCloakRoomBackground": {
+                    "offset": "0x024454",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "leftFerrymanRoute": {
+                    "offset": "0x024654",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 13
+                },
+                "leftFerrymanRouteBackground": {
+                    "offset": "0x027a54",
+                    "type": "tilemap",
+                    "heightInScreens": 2,
+                    "widthInScreens": 13
+                },
+                "waterfall": {
+                    "offset": "0x02ae54",
+                    "type": "tilemap",
+                    "heightInScreens": 6,
+                    "widthInScreens": 2
+                },
+                "waterfallBackground": {
+                    "offset": "0x02c654",
+                    "type": "tilemap",
+                    "heightInScreens": 6,
+                    "widthInScreens": 2
+                },
+                "scyllaRoom": {
+                    "offset": "0x02de54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "scyllaRoomBackground": {
+                    "offset": "0x02e854",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "scyllaWyrmRoom": {
+                    "offset": "0x02f254",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "scyllaWyrmRoomBackground": {
+                    "offset": "0x02f454",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "risingWaterRoom": {
+                    "offset": "0x02f654",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "risingWaterRoomBackground": {
+                    "offset": "0x030054",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 5
+                },
+                "bandannaRoom": {
+                    "offset": "0x030a54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x030c54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomA": {
+                    "offset": "0x030e54",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomB": {
+                    "offset": "0x031054",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "saveRoomC": {
+                    "offset": "0x031254",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "falseSaveRoom": {
+                    "offset": "0x031454",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                }
+            },
             "layers": {
                 "roomDefinitions": {
                     "indirectOffset": "0x20",
@@ -5976,6 +10636,44 @@
                         "offset": "0x02",
                         "type": "u16"
                     }
+                }
+            },
+            "tilemaps": {
+                "warpRoomToCastleKeep": {
+                    "offset": "0x001d68",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "warpRoomToOlroxsQuarters": {
+                    "offset": "0x001f68",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "warpRoomToOuterWall": {
+                    "offset": "0x002168",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "warpRoomToCastleEntrance": {
+                    "offset": "0x002368",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "warpRoomToAbandonedMine": {
+                    "offset": "0x002568",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
+                },
+                "loadingRoom": {
+                    "offset": "0x002768",
+                    "type": "tilemap",
+                    "heightInScreens": 1,
+                    "widthInScreens": 1
                 }
             },
             "layers": {
