@@ -215,6 +215,48 @@
                 "elementCount": 24,
                 "type": "u16"
             },
+            "horizontalEntityLayouts": {
+                "indirectOffset": "0x3B4",
+                "elementSize": 10,
+                "elementCount": 88,
+                "fields": {
+                    "x": {
+                        "offset": "0x00",
+                        "type": "s16"
+                    },
+                    "y": {
+                        "offset": "0x02",
+                        "type": "s16"
+                    },
+                    "entityTypeId": {
+                        "offset": "0x04",
+                        "type": "u16"
+                    },
+                    "entityRoomIndex": {
+                        "offset": "0x06",
+                        "type": "u16"
+                    },
+                    "params": {
+                        "offset": "0x08",
+                        "type": "u16"
+                    }
+                }
+            },
+            "entityLayouts": {
+                "indirectOffset": "0x0C",
+                "elementSize": "0x28",
+                "elementCount": 1,
+                "fields": {
+                    "horizontalEntities": {
+                        "offset": "0x1C",
+                        "type": "u16"
+                    },
+                    "verticalEntities": {
+                        "offset": "0x28",
+                        "type": "u16"
+                    }
+                }
+            },
             "tilemaps": {
                 "wolfsHeadColumn": {
                     "offset": "0x00a960",
