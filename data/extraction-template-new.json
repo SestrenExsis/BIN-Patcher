@@ -1,0 +1,526 @@
+{
+    "bossTeleporters": {
+        "metadata": {
+            "address": {
+                "value": "0x0009817C",
+                "method": "absolute"
+            },
+            "element": {
+                "structure": "object-array",
+                "constraint": {
+                    "method": "elementCount",
+                    "elementCount": 28
+                },
+                "size": 20,
+                "properties": {
+                    "roomX": {
+                        "offset": 0,
+                        "type": "u8"
+                    },
+                    "roomY": {
+                        "offset": 4,
+                        "type": "u8"
+                    },
+                    "stageId": {
+                        "offset": 8,
+                        "type": "u32"
+                    },
+                    "eventId": {
+                        "offset": 12,
+                        "type": "s8"
+                    },
+                    "teleporterIndex": {
+                        "offset": 16,
+                        "type": "s32"
+                    }
+                }
+            }
+        }
+    },
+    "castleMap": {
+        "metadata": {
+            "address": {
+                "value": "0x001AF800",
+                "method": "absolute"
+            },
+            "element": {
+                "structure": "indexed-bitmap",
+                "rows": 256,
+                "columns": 256
+            }
+        }
+    },
+    "castleMapReveals": {
+        "metadata": {
+            "address": {
+                "value": "0x0009840C",
+                "method": "absolute"
+            },
+            "element": {
+                "structure": "binary-string-array"
+            }
+        }
+    },
+    "constants": {
+        "castleMapColorPalettes": {
+            "dra": {
+                "metadata": {
+                    "address": {
+                        "value": "0x03128800",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value-array",
+                        "constraint": {
+                            "method": "elementCount",
+                            "elementCount": 16
+                        },
+                        "type": "rgba32"
+                    }
+                }
+            },
+            "ric": {
+                "metadata": {
+                    "address": {
+                        "value": "0x0316A800",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value-array",
+                        "constraint": {
+                            "method": "elementCount",
+                            "elementCount": 16
+                        },
+                        "type": "rgba32"
+                    }
+                }
+            }
+        },
+        "specialSaveRooms": {
+            "falseSaveRoomX": {
+                "metadata": {
+                    "address": {
+                        "value": "0x000E7DC8",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value",
+                        "type": "u16"
+                    }
+                }
+            },
+            "falseSaveRoomY": {
+                "metadata": {
+                    "address": {
+                        "value": "0x000E7DD0",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value",
+                        "type": "u16"
+                    }
+                }
+            },
+            "finalSaveRoomX": {
+                "metadata": {
+                    "address": {
+                        "value": "0x000E7D50",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value",
+                        "type": "u16"
+                    }
+                }
+            },
+            "finalSaveRoomY": {
+                "metadata": {
+                    "address": {
+                        "value": "0x000E7D64",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value",
+                        "type": "u16"
+                    }
+                }
+            },
+            "reverseFalseSaveRoomX": {
+                "metadata": {
+                    "address": {
+                        "value": "0x000E7DA4",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value",
+                        "type": "u16"
+                    }
+                }
+            },
+            "reverseFalseSaveRoomY": {
+                "metadata": {
+                    "address": {
+                        "value": "0x000E7DAC",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value",
+                        "type": "u16"
+                    }
+                }
+            }
+        },
+        "messages": {
+            "richterModeInstructions1": {
+                "metadata": {
+                    "address": {
+                        "value": "0x03ACF0B4",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value",
+                        "type": "string"
+                    }
+                }
+            },
+            "richterModeInstructions2": {
+                "metadata": {
+                    "address": {
+                        "value": "0x03ACF0D4",
+                        "method": "absolute"
+                    },
+                    "element": {
+                        "structure": "value",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "secretMapTileReveals": {
+        "metadata": {
+            "address": {
+                "value": "0x000983C0",
+                "method": "absolute"
+            },
+            "element": {
+                "structure": "object-array",
+                "constraint": {
+                    "method": "elementCount",
+                    "elementCount": 15
+                },
+                "size": 5,
+                "properties": {
+                    "roomX": {
+                        "offset": 0,
+                        "type": "u8"
+                    },
+                    "roomY": {
+                        "offset": 1,
+                        "type": "u8"
+                    },
+                    "passageDirection": {
+                        "offset": 2,
+                        "type": "u8"
+                    },
+                    "castleFlagId": {
+                        "offset": 3,
+                        "type": "u8"
+                    },
+                    "reverseCastleFlagId": {
+                        "offset": 4,
+                        "type": "u8"
+                    }
+                }
+            }
+        }
+    },
+    "stages": {
+        "abandonedMine": {
+            "metadata": {
+                "address": {
+                    "value": "0x03CDF800",
+                    "method": "absolute"
+                }
+            },
+            "baseDropRate": {
+                "metadata": {
+                    "address": {
+                        "value": "0x000D6C",
+                        "method": "relative"
+                    },
+                    "element": {
+                        "structure": "value-array",
+                        "constraint": {
+                            "method": "elementCount",
+                            "elementCount": 4
+                        },
+                        "type": "u8"
+                    }
+                }
+            },
+            "demonSwitchWallTiles": {
+                "metadata": {
+                    "address": {
+                        "value": "0x00089C",
+                        "method": "relative"
+                    },
+                    "element": {
+                        "structure": "value-array",
+                        "constraint": {
+                            "method": "elementCount",
+                            "elementCount": 24
+                        },
+                        "type": "u16"
+                    }
+                }
+            },
+            "horizontalEntityLayouts": {
+                "metadata": {
+                    "address": {
+                        "method": "indirect",
+                        "value": "0x0003B4",
+                        "type": "u32",
+                        "base": "0x80180000"
+                    },
+                    "element": {
+                        "structure": "object-array",
+                        "size": 10,
+                        "constraint": {
+                            "method": "elementCount",
+                            "elementCount": 88
+                        },
+                        "properties": {
+                            "x": {
+                                "offset": "0x00",
+                                "type": "s16"
+                            },
+                            "y": {
+                                "offset": "0x02",
+                                "type": "s16"
+                            },
+                            "entityTypeId": {
+                                "offset": "0x04",
+                                "type": "u16"
+                            },
+                            "entityRoomIndex": {
+                                "offset": "0x06",
+                                "type": "u16"
+                            },
+                            "params": {
+                                "offset": "0x08",
+                                "type": "u16"
+                            }
+                        }
+                    }
+                }
+            },
+            "entityLayouts": {
+                "metadata": {
+                    "address": {
+                        "method": "indirect",
+                        "value": "0x00000C",
+                        "type": "u32",
+                        "base": "0x80180000"
+                    },
+                    "element": {
+                        "structure": "object",
+                        "size": "0x2A",
+                        "properties": {
+                            "horizontalEntities": {
+                                "offset": "0x1C",
+                                "type": "u16"
+                            },
+                            "verticalEntities": {
+                                "offset": "0x28",
+                                "type": "u16"
+                            }
+                        }
+                    }
+                }
+            },
+            "tilemaps": {
+                "wolfsHeadColumn": {
+                    "metadata": {
+                        "address": {
+                            "method": "relative",
+                            "value": "0x00b160"
+                        },
+                        "element": {
+                            "structure": "tilemap",
+                            "heightInScreens": 4,
+                            "widthInScreens": 1
+                        }
+                    }
+                },
+                "wellLitSkullRoom": {
+                    "metadata": {
+                        "address": {
+                            "method": "relative",
+                            "value": "0x00b560"
+                        },
+                        "element": {
+                            "structure": "tilemap",
+                            "heightInScreens": 1,
+                            "widthInScreens": 2
+                        }
+                    }
+                }
+            },
+            "layers": {
+                "roomDefinitions": {
+                    "metadata": {
+                        "address": {
+                            "method": "indirect",
+                            "value": "0x000020",
+                            "type": "u32",
+                            "base": "0x80180000"
+                        },
+                        "element": {
+                            "structure": "object-array",
+                            "constraint": {
+                                "method": "sentinelValue",
+                                "sentinelValue": "0x00",
+                                "sentinelType": "u8"
+                            },
+                            "size": "0x08",
+                            "properties": {
+                                "foreground": {
+                                    "offset": "0x00",
+                                    "type": "zone-offset"
+                                },
+                                "background": {
+                                    "offset": "0x04",
+                                    "type": "zone-offset"
+                                }
+                            }
+                        }
+                    }
+                },
+                "layerDefinitions": {
+                    "metadata": {
+                        "address": {
+                            "method": "relative",
+                            "value": "0x0000e8"
+                        },
+                        "element": {
+                            "structure": "object-array",
+                            "constraint": {
+                                "method": "elementCount",
+                                "elementCount": 19
+                            },
+                            "size": 16,
+                            "properties": {
+                                "tilesOffset": {
+                                    "offset": "0x00",
+                                    "type": "zone-offset"
+                                },
+                                "defsOffset": {
+                                    "offset": "0x04",
+                                    "type": "zone-offset"
+                                },
+                                "layoutRect": {
+                                    "offset": "0x08",
+                                    "type": "layout-rect"
+                                },
+                                "zPriority": {
+                                    "offset": "0x0C",
+                                    "type": "u16"
+                                },
+                                "flags": {
+                                    "offset": "0x0E",
+                                    "type": "u16"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "rooms": {
+                "metadata": {
+                    "address": {
+                        "method": "indirect",
+                        "value": "0x000010",
+                        "type": "u32",
+                        "base": "0x80180000"
+                    },
+                    "element": {
+                        "structure": "object-array",
+                        "size": 8,
+                        "constraint": {
+                            "method": "sentinelValue",
+                            "sentinelValue": "0x40",
+                            "sentinelType": "u8"
+                        },
+                        "properties": {
+                            "left": {
+                                "offset": "0x00",
+                                "type": "u8"
+                            },
+                            "top": {
+                                "offset": "0x01",
+                                "type": "u8"
+                            },
+                            "right": {
+                                "offset": "0x02",
+                                "type": "u8"
+                            },
+                            "bottom": {
+                                "offset": "0x03",
+                                "type": "u8"
+                            },
+                            "tileLayoutId": {
+                                "offset": "0x04",
+                                "type": "u8"
+                            },
+                            "tilesetId": {
+                                "offset": "0x05",
+                                "type": "s8"
+                            },
+                            "objectGraphicsId": {
+                                "offset": "0x06",
+                                "type": "u8"
+                            },
+                            "objectLayoutId": {
+                                "offset": "0x07",
+                                "type": "u8"
+                            }
+                        }
+                    }
+                }
+            },
+            "snakeColumnWallTiles": {
+                "metadata": {
+                    "address": {
+                        "value": "0x0008CC",
+                        "method": "relative"
+                    },
+                    "element": {
+                        "structure": "value-array",
+                        "constraint": {
+                            "method": "elementCount",
+                            "elementCount": 24
+                        },
+                        "type": "u16"
+                    }
+                }
+            },
+            "uniqueItemDrops": {
+                "metadata": {
+                    "address": {
+                        "value": "0x0009E4",
+                        "method": "relative"
+                    },
+                    "element": {
+                        "structure": "value-array",
+                        "constraint": {
+                            "method": "elementCount",
+                            "elementCount": 13
+                        },
+                        "type": "u16"
+                    }
+                }
+            }
+        }
+    }
+}

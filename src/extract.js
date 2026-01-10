@@ -1,118 +1,124 @@
 
 import { Address, GameData, getSizeOfType, toHex, toVal } from './common.js'
 
-function extractData(bin, metadata, offset=0) {
-    if ('indirectOffset' in metadata) {
-        metadata.offset = bin.set(offset + toVal(metadata.indirectOffset)).read('u32') - 0x80180000
-    }
-    if ('type' in metadata && metadata.type == 'indexed-bitmap') {
-        return extractIndexedBitmap(bin, metadata, offset)
-    }
-    else if ('type' in metadata && metadata.type == 'tilemap') {
-        return extractTilemap(bin, metadata, offset)
-    }
-    else if ('type' in metadata && metadata.type == 'binary-string-array') {
-        return extractCastleMapReveals(bin, metadata, offset)
-    }
-    else if ('fields' in metadata) {
-        return extractObjectArray(bin, metadata, offset)
-    }
-    else if ('elementCount' in metadata) {
-        return extractValueArray(bin, metadata, offset)
-    }
-    else if ('type' in metadata) {
-        return extractValue(bin, metadata, offset)
-    }
-    else {
-        return null
-    }
-}
-
-function getOffset(metadata, offset=0) {
-    if ('start' in metadata) {
-        return toVal(metadata.start)
-    }
-    else if ('offset' in metadata) {
-        return toVal(metadata.offset) + toVal(offset)
-    }
-    else {
-        return toVal(offset)
+function extractData(bin, elementInfo, offset=0) {
+    switch (elementInfo.structure ?? 'none') {
+        case 'object-array':
+        case 'value-array':
+            return extractArray(bin, elementInfo, offset)
+            break
+        case 'binary-string-array':
+            return extractCastleMapReveals(bin, elementInfo, offset)
+            break
+        case 'indexed-bitmap':
+            return extractIndexedBitmap(bin, elementInfo, offset)
+            break
+        case 'object':
+            return extractObject(bin, elementInfo, offset)
+            break
+        case 'tilemap':
+            return extractTilemap(bin, elementInfo, offset)
+            break
+        case 'value':
+            return extractValue(bin, elementInfo, offset)
+            break
+        default:
+            return null
+            break
     }
 }
 
-function extractValue(bin, metadata, offset=0) {
-    bin.set(getOffset(metadata, offset))
-    const data = bin.read(metadata.type)
-    if (['string', 'shifted-string'].includes(metadata.type)) {
-        metadata.footprint = bin.prevRead.length
-    }
-    const result = {
-        metadata: metadata,
-        data: data,
+function getOffset(bin, addressInfo, baseOffset=0) {
+    let result = 0
+    switch (addressInfo.method ?? 'none') {
+        case 'absolute':
+            result = toVal(addressInfo.value ?? 0)
+            break
+        case 'indirect':
+            const prevCursorAddress = bin.cursor.gameDataAddress
+            const relativeAddress = toVal(baseOffset) + toVal(addressInfo.value ?? 0)
+            const indirectOffset = bin.set(relativeAddress).read(addressInfo.type ?? 'u32')
+            result = toVal(baseOffset) + indirectOffset - toVal(addressInfo.base ?? 0)
+            bin.set(prevCursorAddress)
+            break
+        case 'relative':
+            result = toVal(baseOffset) + toVal(addressInfo.value ?? 0)
+            break
+        case 'none':
+            result = toVal(baseOffset)
+            break
     }
     return result
 }
 
-function extractValueArray(bin, metadata, offset=0) {
-    const data = []
-    metadata.elementSize = getSizeOfType(metadata.type)
-    for (let elementId = 0; elementId < toVal(metadata.elementCount); elementId++) {
-        let elementData = bin.set(getOffset(metadata, offset) + elementId * toVal(metadata.elementSize)).read(metadata.type)
-        data.push(elementData)
-    }
-    const result = {
-        metadata: metadata,
-        data: data,
-    }
+function extractValue(bin, elementInfo, baseOffset=0) {
+    let data = bin.set(toVal(baseOffset)).read(elementInfo.type)
+    elementInfo.size = bin.prevRead.length
+    const result = data
+    bin.set(toVal(baseOffset) + elementInfo.size)
     return result
 }
 
-function extractObjectArray(bin, metadata, offset=0) {
-    const data = []
-    let elementId = 0
-    while (true) {
-        let elementData = {}
-        Object.entries(metadata.fields).forEach(([fieldName, fieldInfo]) => {
-            bin.set(getOffset(metadata, offset) + elementId * toVal(metadata.elementSize) + toVal(fieldInfo.offset))
-            let value = bin.read(fieldInfo.type)
-            if ('shift' in fieldInfo) {
-                value = value >> toVal(fieldInfo.shift)
-            }
-            if ('mask' in fieldInfo) {
-                value = value & toVal(fieldInfo.mask)
-            }
-            elementData[fieldName] = value
-        })
-        data.push(elementData)
-        elementId += 1
-        if (metadata.elementCount !== undefined) {
-            if (elementId >= toVal(metadata.elementCount)) {
-                break
-            }
+function extractObject(bin, elementInfo, baseOffset=0) {
+    const data = {}
+    Object.entries(elementInfo.properties).forEach(([propName, propInfo]) => {
+        const offset = toVal(baseOffset) + toVal(propInfo.offset)
+        let value = bin.set(offset).read(propInfo.type)
+        if ('shift' in propInfo) {
+            value = value >> toVal(propInfo.shift)
         }
-        if (metadata.terminatorValue !== undefined) {
-            if (bin.read('u8', false) == metadata.terminatorValue) {
-                break
-            }
+        if ('mask' in propInfo) {
+            value = value & toVal(propInfo.mask)
         }
-    }
-    metadata.elementCount = data.length
-    const result = {
-        metadata: metadata,
-        data: data,
-    }
+        data[propName] = value
+    })
+    bin.set(toVal(baseOffset) + toVal(elementInfo.size))
+    const result = data
     return result
 }
 
-function extractIndexedBitmap(bin, metadata, offset=0) {
+function extractArray(bin, elementInfo, baseOffset=0) {
     const data = []
-    metadata.indexesPerByte = 2
-    metadata.bytesPerRow = Math.floor(toVal(metadata.columns) / metadata.indexesPerByte)
-    bin.set(getOffset(metadata, offset))
+    const offset = toVal(baseOffset)
+    if (elementInfo.structure == 'value-array') {
+        elementInfo.size = getSizeOfType(elementInfo.type)
+    }
+    let validInd = true
+    while (validInd) {
+        const offset = toVal(baseOffset) + (data.length) * toVal(elementInfo.size)
+        switch (elementInfo.structure) {
+            case 'value-array':
+                data.push(extractValue(bin, elementInfo, offset))
+                break
+            case 'object-array':
+                data.push(extractObject(bin, elementInfo, offset))
+                break
+        }
+        switch (elementInfo.constraint.method) {
+            case 'elementCount':
+                validInd = (data.length < toVal(elementInfo.constraint.elementCount))
+                break
+            case 'sentinelValue':
+                validInd = (bin.read(elementInfo.constraint.sentinelType, false) != toVal(elementInfo.constraint.sentinelValue))
+                break
+        }
+        if (data.length > 99) {
+            break
+        }
+    }
+    const result = data
+    return result
+}
+
+function extractIndexedBitmap(bin, elementInfo, baseOffset=0) {
+    const data = []
+    elementInfo.indexesPerByte = 2
+    elementInfo.bytesPerRow = Math.floor(toVal(elementInfo.columns) / elementInfo.indexesPerByte)
+    bin.set(toVal(baseOffset))
     // Bitmap data is typically stored as an array of 4-bit color indexes
-    for (let row = 0; row < toVal(metadata.rows); row++) {
+    for (let row = 0; row < toVal(elementInfo.rows); row++) {
         let rowData = ''
-        for (let byteIndex = 0; byteIndex < metadata.bytesPerRow; byteIndex++) {
+        for (let byteIndex = 0; byteIndex < elementInfo.bytesPerRow; byteIndex++) {
             // Each byte contains 2 of the color indexes
             const byteData = bin.read('uint8').toString(16).padStart(2, '0')
             // The "left" nibble of the byte refers to the "right" color index, and vice versa
@@ -120,43 +126,37 @@ function extractIndexedBitmap(bin, metadata, offset=0) {
         }
         data.push(rowData)
     }
-    const result = {
-        metadata: metadata,
-        data: data,
-    }
+    const result = data
     return result
 }
 
-function extractTilemap(bin, metadata, offset=0) {
+function extractTilemap(bin, elementInfo, baseOffset=0) {
     const data = []
-    metadata.rows = 16 * toVal(metadata.heightInScreens)
-    metadata.columns = 16 * toVal(metadata.widthInScreens)
-    metadata.bytesPerIndex = 2
-    bin.set(getOffset(metadata, offset))
+    elementInfo.rows = 16 * toVal(elementInfo.heightInScreens)
+    elementInfo.columns = 16 * toVal(elementInfo.widthInScreens)
+    elementInfo.bytesPerIndex = 2
+    bin.set(baseOffset)
     // Each set of tiles can be thought of as a 2D array of 2-byte index values
-    for (let row = 0; row < metadata.rows; row++) {
+    for (let row = 0; row < elementInfo.rows; row++) {
         const rowTiles = []
-        for (let col = 0; col < metadata.columns; col++) {
+        for (let col = 0; col < elementInfo.columns; col++) {
             const tile = bin.read('uint16').toString(16).padStart(4, '0')
             rowTiles.push(tile)
         }
         data.push(rowTiles.join(' '))
     }
-    const result = {
-        metadata: metadata,
-        data: data,
-    }
+    const result = data
     return result
 }
 
-function extractCastleMapReveals(bin, metadata, offset=0) {
+function extractCastleMapReveals(bin, elementInfo, baseOffset=0) {
     const data = []
-    bin.set(getOffset(metadata, offset))
     // Castle map reveal data is stored serially with a sentinel value of 0xFF to signify termination
     // Each section starts with a header that describes how much additional data is read for that particular section
     // While the vanilla game only defines one section, the underlying data format has support for multiple sections
     // However, for ROM hacking purposes, the total footprint will still be a limiting factor
-    metadata.footprint = 0
+    bin.set(toVal(baseOffset))
+    elementInfo.footprint = 0
     while (true) {
         const castleMapReveal = {
             left: bin.read('uint8'),
@@ -165,29 +165,26 @@ function extractCastleMapReveals(bin, metadata, offset=0) {
             rows: bin.read('uint8'),
             grid: [],
         }
-        metadata.footprint += 4
+        elementInfo.footprint += 4
         for (let row = 0; row < castleMapReveal.rows; row++) {
             let rowData = ''
             for (let byteIndex = 0; byteIndex < castleMapReveal.bytesPerRow; byteIndex++) {
                 // For visualization purposes, 0s are replaced with a space and 1s are replaced with a '#'
                 const byteData = bin.read('uint8').toString(2).padStart(8, '0').replaceAll('0', ' ').replaceAll('1', '#')
                 rowData += byteData.split('').reverse().join('')
-                metadata.footprint += 1
+                elementInfo.footprint += 1
             }
             castleMapReveal.grid.push(rowData)
         }
         data.push(castleMapReveal)
         if (bin.read('uint8', false) == 0xFF) {
-            const bytePadding = 4 - metadata.footprint % 4
-            metadata.footprint += bytePadding
+            const bytePadding = 4 - elementInfo.footprint % 4
+            elementInfo.footprint += bytePadding
             break
         }
     }
-    metadata.count = data.length
-    const result = {
-        metadata: metadata,
-        data: data,
-    }
+    elementInfo.count = data.length
+    const result = data
     return result
 }
 
@@ -197,23 +194,32 @@ function extractCastleMapReveals(bin, metadata, offset=0) {
 
 // func_800F24F4: falseSaveRoom and finalSaveRoom
 
-function parseExtractionNode(bin, extractionNode, offset=0) {
-    const node = extractData(bin, extractionNode, offset)
-    if (node === null) {
-        const result = {}
-        let relativeOffset = getOffset(extractionNode, offset)
-        // Process all nodes other than 'start' and 'offset'
-        Object.entries(extractionNode).forEach(([nodeName, nodeInfo]) => {
-            if (nodeName == 'start' || nodeName == 'offset') {
-                return
+function parseExtractionNode(bin, extractionNode, baseOffset=0) {
+    // It is assumed that a node that specifies a metadata.element property 
+    // will not have any other properties at the same scope as metadata
+    let result = {}
+    let nodeOffset = baseOffset
+    if (extractionNode.hasOwnProperty('metadata')) {
+        if (extractionNode.metadata.hasOwnProperty('address')) {
+            nodeOffset = getOffset(bin, extractionNode.metadata.address, baseOffset)
+        }
+        if (extractionNode.metadata.hasOwnProperty('element')) {
+            result.data = extractData(bin, extractionNode.metadata.element, nodeOffset)
+            result.metadata = {
+                address: nodeOffset,
+                element: extractionNode.metadata.element,
             }
-            result[nodeName] = parseExtractionNode(bin, nodeInfo, relativeOffset)
-        })
-        return result
+        }
     }
-    else {
-        return node
-    }
+    Object.entries(extractionNode)
+    .filter(([nodeName, nodeInfo]) => (
+        nodeName != 'metadata' && nodeName != 'data'
+    ))
+    .forEach(([nodeName, nodeInfo]) => {
+        console.log(nodeName)
+        result[nodeName] = parseExtractionNode(bin, nodeInfo, nodeOffset)
+    })
+    return result
 }
 
 function preprocessExtractionTemplate(bin, extractionTemplate) {
