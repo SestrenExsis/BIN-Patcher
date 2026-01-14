@@ -84,6 +84,7 @@ function extractArray(bin, elementInfo, baseOffset=0) {
         elementInfo.size = getSizeOfType(elementInfo.type)
     }
     let validInd = true
+    let sentinelId = 0
     while (validInd) {
         const offset = toVal(baseOffset) + (data.length) * toVal(elementInfo.size)
         switch (elementInfo.structure) {
@@ -98,14 +99,23 @@ function extractArray(bin, elementInfo, baseOffset=0) {
             case 'elementCount':
                 validInd = (data.length < toVal(elementInfo.constraint.elementCount))
                 break
-            case 'sentinelValue':
-                validInd = (bin.read(elementInfo.constraint.sentinelType, false) != toVal(elementInfo.constraint.sentinelValue))
+            case 'sentinelValues':
+                const sentinelValue = elementInfo.constraint.sentinelValues[sentinelId]
+                if (bin.read(sentinelValue.type, false) == toVal(sentinelValue.value)) {
+                    sentinelId++
+                }
+                else {
+                    sentinelId = 0
+                }
+                validInd = (sentinelId < elementInfo.constraint.sentinelValues.length)
                 break
         }
-        if (data.length > 99) {
+        if (data.length >= 512) {
+            console.log('Maximum data length reached!')
             break
         }
     }
+    elementInfo.count = data.length
     const result = data
     return result
 }
