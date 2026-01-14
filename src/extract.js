@@ -78,21 +78,34 @@ function extractObject(bin, elementInfo, baseOffset=0) {
 }
 
 function extractArray(bin, elementInfo, baseOffset=0) {
+    // TODO(sestren): Use seek instead of set in arrays
     const data = []
-    const offset = toVal(baseOffset)
+    let offset = toVal(baseOffset)
     if (elementInfo.structure == 'value-array') {
         elementInfo.size = getSizeOfType(elementInfo.type)
     }
     let validInd = true
     let sentinelId = 0
     while (validInd) {
-        const offset = toVal(baseOffset) + (data.length) * toVal(elementInfo.size)
         switch (elementInfo.structure) {
             case 'value-array':
                 data.push(extractValue(bin, elementInfo, offset))
+                offset += toVal(elementInfo.size)
                 break
             case 'object-array':
                 data.push(extractObject(bin, elementInfo, offset))
+                offset += toVal(elementInfo.size)
+                if (elementInfo.hasOwnProperty('postProcessing')) {
+                    elementInfo.postProcessing.forEach((processInfo) => {
+                        switch (processInfo.process) {
+                            case 'paddingAfterElement':
+                                if (processInfo.whenArrayLength == data.length) {
+                                    offset += processInfo.paddingAmount
+                                }
+                                break
+                        }
+                    })
+                }
                 break
         }
         switch (elementInfo.constraint.method) {

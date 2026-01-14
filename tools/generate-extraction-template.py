@@ -2,6 +2,8 @@ import json
 import os
 import yaml
 
+# TODO(sestren): Familiar Events
+
 data = {
     'stages': {
         'abandonedMine': 0x03CDF800,
@@ -448,7 +450,6 @@ if __name__ == '__main__':
                 horizontal_rows = prev_extraction.get('stages', {}).get(stage_name, {}).get('entities', {}).get('horizontalRows', {}).get('data', None)
                 vertical_rows = prev_extraction.get('stages', {}).get(stage_name, {}).get('entities', {}).get('verticalRows', {}).get('data', None)
                 if horizontal_rows is not None and vertical_rows is not None:
-                    # Marble Gallery [350:356] = (2B42, 8018, 2B7E, 8018, 2BB0, 8018)
                     horizontal_start = min(horizontal_rows)
                     vertical_start = min(vertical_rows)
                     entity_count = (vertical_start - horizontal_start) // 10
@@ -530,4 +531,23 @@ if __name__ == '__main__':
                             },
                         },
                     }
+                    # After processing 70 elements in Marble Gallery's entity layout table, add 12 bytes of padding
+                    # - Marble Gallery has 12 bytes of what appear to be garbage data in the middle of the entity layout table
+                    # - In order to process the entity layout table as one contiguous piece of data, these bytes need to be ignored
+                    # [350:356] = (2B42, 8018, 2B7E, 8018, 2BB0, 8018)
+                    if stage_name == 'marbleGallery':
+                        source['stages'][stage_name]['entities']['vertical']['metadata']['element']['postProcessing'] = [
+                            {
+                                'process': 'paddingAfterElement',
+                                'whenArrayLength': 70,
+                                'paddingAmount': 12,
+                            },
+                        ]
+                        source['stages'][stage_name]['entities']['horizontal']['metadata']['element']['postProcessing'] = [
+                            {
+                                'process': 'paddingAfterElement',
+                                'whenArrayLength': 70,
+                                'paddingAmount': 12,
+                            },
+                        ]
         json.dump(source, target_file, indent='    ', sort_keys=True)
