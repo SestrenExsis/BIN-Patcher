@@ -2,7 +2,8 @@ import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex } from './src/common.js'
-import { getExtractionData } from './src/extract.js'
+import { parseExtractionNode } from './src/extract.js'
+import { toPPF } from './src/ppf.js'
 
 const argv = yargs(process.argv.slice(2))
     .command({ // extract
@@ -31,16 +32,16 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['bin', 'json', 'out'])
         },
         handler: (argv) => {
-            let binFile = fs.openSync(argv.bin, 'r')
-            let binFileSize = fs.fstatSync(binFile).size
+            const binFile = fs.openSync(argv.bin, 'r')
+            const binFileSize = fs.fstatSync(binFile).size
             const buffer = Buffer.alloc(binFileSize)
             fs.readSync(binFile, buffer, 0, binFileSize)
             fs.closeSync(binFile)
-            let digest = crypto.createHash('sha256').update(buffer).digest()
+            const digest = crypto.createHash('sha256').update(buffer).digest()
             console.log('Digest of disc image', digest.toString('hex'))
             const bin = new GameData(buffer)
             let extractionTemplate = JSON.parse(fs.readFileSync(argv.json, 'utf8'))
-            let extractionData = getExtractionData(bin, extractionTemplate)
+            const extractionData = parseExtractionNode(bin, extractionTemplate)
             fs.writeFileSync(argv.out + '/extraction.json', JSON.stringify(extractionData, null, 4));
         }
     })
@@ -67,6 +68,39 @@ const argv = yargs(process.argv.slice(2))
         },
         handler: (argv) => {
             console.log(argv)
+        }
+    })
+    .command({ // ppf
+        command: 'ppf',
+        describe: 'Generate a PPF file given an extraction file and a patch file',
+        builder: (yargs) => {
+            return yargs
+            .option('extraction', {
+                alias: 'e',
+                describe: 'JSON file describing the extraction data',
+                type: 'string',
+                normalize: true,
+            })
+            .option('patch', {
+                alias: 'p',
+                describe: 'JSON file describing the patch data',
+                type: 'string',
+                normalize: true,
+            })
+            .option('out', {
+                alias: 'o',
+                describe: 'Folder to output the PPF to',
+                type: 'string',
+                normalize: true,
+            })
+            .demandOption(['extraction', 'patch', 'out'])
+        },
+        handler: (argv) => {
+            const buffer = Buffer.alloc(2 * 1024 * 1024)
+            let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
+            let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
+            const ppfData = toPPF(extractionData, patchData)
+            // fs.writeFileSync(argv.out + '/current-patch.ppf', ppfData);
         }
     })
     .command({ // address

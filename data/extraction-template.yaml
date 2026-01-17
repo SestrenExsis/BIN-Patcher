@@ -336,6 +336,30 @@ stages:
                         type: u16
     longLibrary:
         constants:
+            shopPurchases:
+                metadata:
+                    address:
+                        value: 0x00134C
+                        method: relative
+                    element:
+                        structure: object-array
+                        constraint:
+                            method: elementCount
+                            elementCount: 49
+                        size: 8
+                        properties:
+                            category:
+                                offset: 0
+                                type: u8
+                            unlockLevel:
+                                offset: 1
+                                type: u8
+                            itemId:
+                                offset: 2
+                                type: u16
+                            price:
+                                offset: 4
+                                type: u32
             shopRelics:
                 metadata:
                     address:
@@ -347,6 +371,27 @@ stages:
                             method: elementCount
                             elementCount: 2
                         type: u16
+            shopSellables:
+                metadata:
+                    address:
+                        value: 0x0014D8
+                        method: relative
+                    element:
+                        structure: object-array
+                        constraint:
+                            method: elementCount
+                            elementCount: 7
+                        size: 8
+                        properties:
+                            category:
+                                offset: 0
+                                type: u16
+                            itemId:
+                                offset: 2
+                                type: u16
+                            price:
+                                offset: 4
+                                type: u32
     marbleGallery:
         constants:
             trapdoorOffsets:

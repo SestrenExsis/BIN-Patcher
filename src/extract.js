@@ -78,7 +78,6 @@ function extractObject(bin, elementInfo, baseOffset=0) {
 }
 
 function extractArray(bin, elementInfo, baseOffset=0) {
-    // TODO(sestren): Use seek instead of set in arrays
     const data = []
     let offset = toVal(baseOffset)
     if (elementInfo.structure == 'value-array') {
@@ -217,7 +216,7 @@ function extractCastleMapReveals(bin, elementInfo, baseOffset=0) {
 
 // func_800F24F4: falseSaveRoom and finalSaveRoom
 
-function parseExtractionNode(bin, extractionNode, baseOffset=0) {
+export function parseExtractionNode(bin, extractionNode, baseOffset=0) {
     // It is assumed that a node that specifies a metadata.element property 
     // will not have any other properties at the same scope as metadata
     let result = {}
@@ -239,23 +238,7 @@ function parseExtractionNode(bin, extractionNode, baseOffset=0) {
         nodeName != 'metadata' && nodeName != 'data'
     ))
     .forEach(([nodeName, nodeInfo]) => {
-        console.log(nodeName)
         result[nodeName] = parseExtractionNode(bin, nodeInfo, nodeOffset)
     })
-    return result
-}
-
-function preprocessExtractionTemplate(bin, extractionTemplate) {
-    // Fill out offset and elementCount for stage layouts
-
-    // offset = MIN(layoutOffsets.foreground, layoutOffsets.background) - 0x80180000
-    // elementCount = (MAX(layoutOffsets.foreground, layoutOffsets.background) - 0x80180000) / 0x10
-}
-
-export function getExtractionData(bin, extractionTemplate) {
-    const OFFSET = 0x80180000
-    preprocessExtractionTemplate(bin, extractionTemplate)
-    let extraction = parseExtractionNode(bin, extractionTemplate)
-    const result = extraction
     return result
 }

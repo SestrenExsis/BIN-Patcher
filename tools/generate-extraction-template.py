@@ -5,6 +5,16 @@ import yaml
 # TODO(sestren): Familiar Events
 
 data = {
+    'familiarEvents': {
+        # NOTE(sestren): Which familiars correspond are educated guesses
+        'bat': 0x0392A760,
+        'ghost': 0x0394BDB0,
+        'faerie': 0x0396FD2C,
+        'demon': 0x03990890,
+        'sword': 0x039AF9E4,
+        'yousei': 0x039D1D38,
+        'noseDemon': 0x039F2664,
+    },
     'stages': {
         'abandonedMine': 0x03CDF800,
         'alchemyLaboratory': 0x049BE800,
@@ -156,6 +166,74 @@ if __name__ == '__main__':
         open(os.path.join('build', 'extraction-template.json'), 'w') as target_file,
     ):
         source = yaml.safe_load(source_file)
+        source['familiarEvents'] = {}
+        for familiar_name in data['familiarEvents']:
+            source['familiarEvents'][familiar_name] = {
+                'metadata': {
+                    'address': {
+                        'method': 'absolute',
+                        'value': data['familiarEvents'][familiar_name],
+                    },
+                    'element': {
+                        'structure': 'object-array',
+                        'size': 48,
+                        'constraint': {
+                            'method': 'elementCount',
+                            'elementCount': 49,
+                        },
+                        'properties': {
+                            '0x00': {
+                                'offset': '0x00',
+                                'type': 'u32',
+                            },
+                            '0x04': {
+                                'offset': '0x04',
+                                'type': 'u32',
+                            },
+                            'servantId': {
+                                'offset': '0x08',
+                                'type': 's32',
+                            },
+                            'roomX': {
+                                'offset': '0x0C',
+                                'type': 's32',
+                            },
+                            'roomY': {
+                                'offset': '0x10',
+                                'type': 's32',
+                            },
+                            'cameraX': {
+                                'offset': '0x14',
+                                'type': 's32',
+                            },
+                            'cameraY': {
+                                'offset': '0x18',
+                                'type': 's32',
+                            },
+                            'condition': {
+                                'offset': '0x1C',
+                                'type': 's32',
+                            },
+                            'delay': {
+                                'offset': '0x20',
+                                'type': 's32',
+                            },
+                            'entityId': {
+                                'offset': '0x24',
+                                'type': 's32',
+                            },
+                            'params': {
+                                'offset': '0x28',
+                                'type': 's32',
+                            },
+                            '0x2C': {
+                                'offset': '0x2C',
+                                'type': 'u32',
+                            },
+                        },
+                    },
+                },
+            }
         for stage_name in data['stages']:
             # stage
             if stage_name not in source['stages']:
