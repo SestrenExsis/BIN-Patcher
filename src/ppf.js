@@ -1,5 +1,5 @@
 
-import { Address, GameData, getSizeOfType, toHex, toVal } from './common.js'
+import { Address, encodeString, GameData, getSizeOfType, toHex, toVal } from './common.js'
 
 // TODO(sestren) structures:
 //     object-array:
@@ -92,6 +92,10 @@ export class PPF {
             case 'zone-offset':
                 break
             case 'string':
+                byteCount = encodeString(data, this.buffer, 0)
+                for (let i = 0; i < byteCount; i++) {
+                    this.writes[(address + i)] = this.buffer.readUint8(i)
+                }
                 break
             case 'shifted-string':
                 break

@@ -208,6 +208,64 @@ export function getSizeOfType(type) {
     return result
 }
 
+export function encodeString(string, buffer, start=0) {
+    let cursor = 0
+    for (let i = 0; i < string.length; i++) {
+        const char = string.charAt(i)
+        switch (char) {
+            case '.':
+            case '?':
+            case "'":
+            case '"':
+                buffer.writeUint8(0x81, start + cursor)
+                cursor++
+                break
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                buffer.writeUint8(0x82, start + cursor)
+                cursor++
+                break
+        }
+        switch (char) {
+            case '.': buffer.writeUint8(0x44, start + cursor); cursor++; break
+            case '?': buffer.writeUint8(0x48, start + cursor); cursor++; break
+            case "'": buffer.writeUint8(0x66, start + cursor); cursor++; break
+            case '"': buffer.writeUint8(0x68, start + cursor); cursor++; break
+            case '0': buffer.writeUint8(0x4F, start + cursor); cursor++; break
+            case '1': buffer.writeUint8(0x50, start + cursor); cursor++; break
+            case '2': buffer.writeUint8(0x51, start + cursor); cursor++; break
+            case '3': buffer.writeUint8(0x52, start + cursor); cursor++; break
+            case '4': buffer.writeUint8(0x53, start + cursor); cursor++; break
+            case '5': buffer.writeUint8(0x54, start + cursor); cursor++; break
+            case '6': buffer.writeUint8(0x55, start + cursor); cursor++; break
+            case '7': buffer.writeUint8(0x56, start + cursor); cursor++; break
+            case '8': buffer.writeUint8(0x57, start + cursor); cursor++; break
+            case '9': buffer.writeUint8(0x58, start + cursor); cursor++; break
+            default:
+                if ('abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(char)) {
+                    buffer.writeUint8(char.charCodeAt(0), start + cursor)
+                    cursor++
+                }
+                break
+        }
+    }
+    const padding = 4 - (cursor % 4)
+    for (let i = 0; i < padding; i++) {
+        buffer.writeUint8(0x00, start + cursor)
+        cursor++
+    }
+    const result = cursor
+    return result
+}
+
 export function decodeString(bytes) {
     let prefixByte = 0x00
     let string = ''
