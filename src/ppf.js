@@ -24,6 +24,53 @@ export class PPF {
         this.buffer = Buffer.alloc(1024)
     }
 
+    bytes(description="Default description") {
+        const descriptionBuffer = Buffer.alloc(50, 0x20) // All spaces
+        descriptionBuffer.write(description, 0)
+        let ppfData = Buffer.alloc(1024 * 1024)
+        let cursor = 0
+        cursor = ppfData.write('PPF30', cursor)
+        cursor = ppfData.writeUInt8(2, cursor) // Encoding method = PPF3.0
+        // cursor = ppfData.write(descriptionBuffer, cursor)
+        cursor += descriptionBuffer.copy(ppfData, cursor, 0, 50)
+        cursor = ppfData.writeUInt8(0, cursor) // Imagetype = BIN
+        cursor = ppfData.writeUInt8(0, cursor) // Blockcheck = Disabled
+        cursor = ppfData.writeUInt8(0, cursor) // Undo data = Not available
+        cursor = ppfData.writeUInt8(0, cursor) // Dummy
+        Object.entries(this.writes)
+        .forEach(([groupKey, groupWrites]) => {
+            let prevAddress = -1
+            let sizeAddress = -1
+            Object.entries(groupWrites)
+            .filter(([addressKey, addressWrites]) => (
+                // Don't write out to the PPF if the final write is the same as the original data
+                addressWrites[0] != addressWrites[addressWrites.length - 1]
+            ))
+            .forEach(([addressKey, addressWrites]) => {
+                const currAddress = parseInt(addressKey, 16)
+                if (currAddress <= prevAddress)  {
+                    throw Error('Addresses processed out of order')
+                }
+                if (currAddress > (prevAddress + 1)) {
+                    // The address is assumed to fit into 32 bits, so the high half is all 0s
+                    cursor = ppfData.writeUInt32LE(currAddress, cursor)
+                    cursor = ppfData.writeUInt32LE(0x00000000, cursor)
+                    sizeAddress = cursor
+                    cursor = ppfData.writeUInt8(0, cursor)
+                    console.log('sizeAddress:', sizeAddress)
+                }
+                cursor = ppfData.writeUint8(addressWrites[addressWrites.length - 1], cursor)
+                // Update the size as we go
+                const currSize = ppfData.readUInt8(sizeAddress)
+                ppfData.writeUInt8(currSize + 1, sizeAddress)
+                prevAddress = currAddress
+            })
+        })
+        console.log(cursor)
+        const result = ppfData.slice(0, cursor)
+        return result
+    }
+
     write(address, type, data) {
         let byteCount = 0
         switch (type) {
@@ -82,7 +129,11 @@ export class PPF {
             if (!this.writes.hasOwnProperty(addressGroup)) {
                 this.writes[addressGroup] = {}
             }
-            this.writes[addressGroup][toHex(discAddress)] = this.buffer.readUint8(i)
+            const addressKey = toHex(discAddress)
+            if (!this.writes[addressGroup].hasOwnProperty(addressKey)) {
+                this.writes[addressGroup][addressKey] = []
+            }
+            this.writes[addressGroup][addressKey].push(this.buffer.readUint8(i))
         }
     }
 
@@ -99,6 +150,7 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
                     patchNode.hasOwnProperty(propertyName)
                 ))
                 .forEach(([propertyName, propertyInfo]) => {
+                    ppf.write(extractMeta.address + propertyInfo.offset, propertyInfo.type, extractData[propertyName])
                     ppf.write(extractMeta.address + propertyInfo.offset, propertyInfo.type, patchNode[propertyName])
                 })
                 break
@@ -109,15 +161,18 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
                         patchNode[i].hasOwnProperty(propertyName)
                     ))
                     .forEach(([propertyName, propertyInfo]) => {
+                        ppf.write(extractMeta.address + i * extractMeta.element.size + propertyInfo.offset, propertyInfo.type, extractData[i][propertyName])
                         ppf.write(extractMeta.address + i * extractMeta.element.size + propertyInfo.offset, propertyInfo.type, patchNode[i][propertyName])
                     })
                 }
                 break
             case 'value':
+                ppf.write(extractMeta.address, extractMeta.element.type, extractData)
                 ppf.write(extractMeta.address, extractMeta.element.type, patchNode)
                 break
             case 'value-array':
                 for (let i = 0; i < patchNode.length; i++) {
+                    ppf.write(extractMeta.address + i * extractMeta.element.size, extractMeta.element.type, extractData[i])
                     ppf.write(extractMeta.address + i * extractMeta.element.size, extractMeta.element.type, patchNode[i])
                 }
                 break
@@ -138,6 +193,6 @@ export function toPPF(extractionData, patchData) {
     let ppf = new PPF()
     parsePatchNode(ppf, extractionData, patchData)
     console.log(ppf.writes)
-    const result = ppf
+    const result = ppf.bytes()
     return result
 }

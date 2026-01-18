@@ -100,7 +100,7 @@ const argv = yargs(process.argv.slice(2))
             let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
             const ppfData = toPPF(extractionData, patchData)
-            // fs.writeFileSync(argv.out + '/current-patch.ppf', ppfData);
+            fs.writeFileSync(argv.out + '/current-patch.ppf', ppfData);
         }
     })
     .command({ // address
