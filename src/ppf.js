@@ -29,51 +29,33 @@ export class PPF {
         switch (type) {
             case 'int8':
             case 's8':
-                byteCount = 1
                 this.buffer.writeInt8(data, 0)
-                for (let i = 0; i < byteCount; i++) {
-                    this.writes[(address + i)] = this.buffer.readUint8(i)
-                }
+                byteCount = 1
                 break
             case 'uint8':
             case 'u8':
-                byteCount = 1
                 this.buffer.writeUInt8(data, 0)
-                for (let i = 0; i < byteCount; i++) {
-                    this.writes[(address + i)] = this.buffer.readUint8(i)
-                }
+                byteCount = 1
                 break
             case 'int16':
             case 's16':
-                byteCount = 2
                 this.buffer.writeInt16LE(data, 0)
-                for (let i = 0; i < byteCount; i++) {
-                    this.writes[(address + i)] = this.buffer.readUint8(i)
-                }
+                byteCount = 2
                 break
             case 'uint16':
             case 'u16':
-                byteCount = 2
                 this.buffer.writeUInt16LE(data, 0)
-                for (let i = 0; i < byteCount; i++) {
-                    this.writes[(address + i)] = this.buffer.readUint8(i)
-                }
+                byteCount = 2
                 break
             case 'int32':
             case 's32':
-                byteCount = 4
                 this.buffer.writeInt32LE(data, 0)
-                for (let i = 0; i < byteCount; i++) {
-                    this.writes[(address + i)] = this.buffer.readUint8(i)
-                }
+                byteCount = 4
                 break
             case 'uint32':
             case 'u32':
-                byteCount = 4
                 this.buffer.writeUInt32LE(data, 0)
-                for (let i = 0; i < byteCount; i++) {
-                    this.writes[(address + i)] = this.buffer.readUint8(i)
-                }
+                byteCount = 4
                 break
             case 'rgba32':
                 let red = Math.floor(parseInt(data.substring(1, 3), 16) / 8)
@@ -81,11 +63,8 @@ export class PPF {
                 let blue = Math.floor(parseInt(data.substring(5, 7), 16) / 8)
                 let alpha = Math.floor(parseInt(data.substring(7, 9), 16) / 128)
                 let value = (alpha << 15) + (blue << 10) + (green << 5) + red
-                byteCount = 2
                 this.buffer.writeUInt16LE(value, 0)
-                for (let i = 0; i < byteCount; i++) {
-                    this.writes[(address + i)] = this.buffer.readUint8(i)
-                }
+                byteCount = 2
                 break
             case 'layout-rect':
                 break
@@ -93,12 +72,17 @@ export class PPF {
                 break
             case 'string':
                 byteCount = encodeString(data, this.buffer, 0)
-                for (let i = 0; i < byteCount; i++) {
-                    this.writes[(address + i)] = this.buffer.readUint8(i)
-                }
                 break
             case 'shifted-string':
                 break
+        }
+        for (let i = 0; i < byteCount; i++) {
+            const discAddress = new Address('GAMEDATA', address + i).toDiscAddress()
+            const addressGroup = toHex(0x80 * (Math.floor(discAddress / 0x80)))
+            if (!this.writes.hasOwnProperty(addressGroup)) {
+                this.writes[addressGroup] = {}
+            }
+            this.writes[addressGroup][toHex(discAddress)] = this.buffer.readUint8(i)
         }
     }
 
@@ -109,6 +93,26 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
         const extractData = extractionNode.data
         const extractMeta = extractionNode.metadata
         switch (extractMeta.element.structure) {
+            case 'object':
+                Object.entries(extractMeta.element.properties)
+                .filter(([propertyName, propertyInfo]) => (
+                    patchNode.hasOwnProperty(propertyName)
+                ))
+                .forEach(([propertyName, propertyInfo]) => {
+                    ppf.write(extractMeta.address + propertyInfo.offset, propertyInfo.type, patchNode[propertyName])
+                })
+                break
+            case 'object-array':
+                for (let i = 0; i < patchNode.length; i++) {
+                    Object.entries(extractMeta.element.properties)
+                    .filter(([propertyName, propertyInfo]) => (
+                        patchNode[i].hasOwnProperty(propertyName)
+                    ))
+                    .forEach(([propertyName, propertyInfo]) => {
+                        ppf.write(extractMeta.address + i * extractMeta.element.size + propertyInfo.offset, propertyInfo.type, patchNode[i][propertyName])
+                    })
+                }
+                break
             case 'value':
                 ppf.write(extractMeta.address, extractMeta.element.type, patchNode)
                 break

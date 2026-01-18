@@ -85,14 +85,18 @@ function extractArray(bin, elementInfo, baseOffset=0) {
     }
     let validInd = true
     let sentinelId = 0
+    let element;
     while (validInd) {
         switch (elementInfo.structure) {
             case 'value-array':
-                data.push(extractValue(bin, elementInfo, offset))
+                element = extractValue(bin, elementInfo, offset)
+                data.push(element)
                 offset += toVal(elementInfo.size)
                 break
             case 'object-array':
-                data.push(extractObject(bin, elementInfo, offset))
+                element = extractObject(bin, elementInfo, offset)
+                element._elementIndex = data.length
+                data.push(element)
                 offset += toVal(elementInfo.size)
                 if (elementInfo.hasOwnProperty('postProcessing')) {
                     elementInfo.postProcessing.forEach((processInfo) => {
