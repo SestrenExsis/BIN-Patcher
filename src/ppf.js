@@ -25,13 +25,12 @@ export class PPF {
     }
 
     bytes(description="Default description") {
-        const descriptionBuffer = Buffer.alloc(50, 0x20) // All spaces
-        descriptionBuffer.write(description, 0)
         let ppfData = Buffer.alloc(1024 * 1024)
         let cursor = 0
         cursor = ppfData.write('PPF30', cursor)
         cursor = ppfData.writeUInt8(2, cursor) // Encoding method = PPF3.0
-        // cursor = ppfData.write(descriptionBuffer, cursor)
+        const descriptionBuffer = Buffer.alloc(50, 0x20) // All spaces
+        descriptionBuffer.write(description, 0)
         cursor += descriptionBuffer.copy(ppfData, cursor, 0, 50)
         cursor = ppfData.writeUInt8(0, cursor) // Imagetype = BIN
         cursor = ppfData.writeUInt8(0, cursor) // Blockcheck = Disabled
@@ -44,7 +43,7 @@ export class PPF {
             Object.entries(groupWrites)
             .filter(([addressKey, addressWrites]) => (
                 // Don't write out to the PPF if the final write is the same as the original data
-                addressWrites[0] != addressWrites[addressWrites.length - 1]
+                addressWrites.at(0) != addressWrites.at(-1)
             ))
             .forEach(([addressKey, addressWrites]) => {
                 const currAddress = parseInt(addressKey, 16)
@@ -57,9 +56,8 @@ export class PPF {
                     cursor = ppfData.writeUInt32LE(0x00000000, cursor)
                     sizeAddress = cursor
                     cursor = ppfData.writeUInt8(0, cursor)
-                    console.log('sizeAddress:', sizeAddress)
                 }
-                cursor = ppfData.writeUint8(addressWrites[addressWrites.length - 1], cursor)
+                cursor = ppfData.writeUint8(addressWrites.at(-1), cursor)
                 // Update the size as we go
                 const currSize = ppfData.readUInt8(sizeAddress)
                 ppfData.writeUInt8(currSize + 1, sizeAddress)
@@ -174,6 +172,42 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
                 for (let i = 0; i < patchNode.length; i++) {
                     ppf.write(extractMeta.address + i * extractMeta.element.size, extractMeta.element.type, extractData[i])
                     ppf.write(extractMeta.address + i * extractMeta.element.size, extractMeta.element.type, patchNode[i])
+                }
+                break
+            case 'indexed-bitmap':
+                for (let row = 0; row < extractMeta.element.rows; row++) {
+                    for (let col2 = 0; col2 < extractMeta.element.bytesPerRow; col2++) {
+                        const address = extractMeta.address + row * extractMeta.element.bytesPerRow + col2
+                        // NOTE(sestren): Color index data is stored 2 colors per byte, in reverse order
+                        const extractByte = extractData.at(row).charAt(2 * col2 + 1) + extractData.at(row).charAt(2 * col2 + 0)
+                        const patchByte = patchNode.at(row).charAt(2 * col2 + 1) + patchNode.at(row).charAt(2 * col2 + 0)
+                        ppf.write(address, 'u8', parseInt(extractByte, 16))
+                        ppf.write(address, 'u8', parseInt(patchByte, 16))
+                    }
+                }
+                break
+            case 'binary-string-array':
+                ppf.write(extractMeta.address + 0, 'u8', extractData.left)
+                ppf.write(extractMeta.address + 0, 'u8', patchNode.left)
+                ppf.write(extractMeta.address + 1, 'u8', extractData.top)
+                ppf.write(extractMeta.address + 1, 'u8', patchNode.top)
+                ppf.write(extractMeta.address + 2, 'u8', extractData.bytesPerRow)
+                ppf.write(extractMeta.address + 2, 'u8', patchNode.bytesPerRow)
+                ppf.write(extractMeta.address + 3, 'u8', extractData.rows)
+                ppf.write(extractMeta.address + 3, 'u8', patchNode.rows)
+                for (let row = 0; row < extractMeta.element.rows; row++) {
+                    for (let col8 = 0; col8 < extractMeta.element.bytesPerRow; col8++) {
+                        const address = extractMeta.address + row * extractMeta.element.bytesPerRow + col8
+                        // NOTE(sestren): Reveal data is stored 8 cells per byte
+                        let extractByte = 0
+                        let patchByte = 0
+                        for (let i = 0; i < 8; i++) {
+                            extractByte += (extractData.at(row).charAt(8 * col8 + i) == ' ') ? '0' : '1'
+                            patchByte += (patchNode.at(row).charAt(8 * col8 + i) == ' ') ? '0' : '1'
+                        }
+                        ppf.write(address, 'u8', parseInt(extractByte, 2))
+                        ppf.write(address, 'u8', parseInt(patchByte, 2))
+                    }
                 }
                 break
         }

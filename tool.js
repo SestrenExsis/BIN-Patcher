@@ -75,7 +75,7 @@ const argv = yargs(process.argv.slice(2))
                                 .replaceAll("'", '')
                                 .replaceAll('-', '')
                                 .replaceAll(' ', '')
-                        tilemapKey = tilemapKey[0].toLowerCase() + tilemapKey.slice(1)
+                        tilemapKey = tilemapKey.at(0).toLowerCase() + tilemapKey.slice(1)
                         if (tilemaps.hasOwnProperty(tilemapKey)) {
                             tilemapKey += ' ' + element.tilesOffset
                         }

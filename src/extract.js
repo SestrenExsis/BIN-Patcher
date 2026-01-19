@@ -148,7 +148,7 @@ function extractIndexedBitmap(bin, elementInfo, baseOffset=0) {
             // Each byte contains 2 of the color indexes
             const byteData = bin.read('uint8').toString(16).padStart(2, '0')
             // The "left" nibble of the byte refers to the "right" color index, and vice versa
-            rowData += byteData[1] + byteData[0]
+            rowData += byteData.at(1) + byteData.at(0)
         }
         data.push(rowData)
     }
