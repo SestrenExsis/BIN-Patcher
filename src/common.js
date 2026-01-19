@@ -3,10 +3,10 @@ export class Address {
     constructor(addressType, address, offset=0) {
         switch (addressType) {
             case 'DISC':
-                this.gameDataAddress = Address.getGamedataAddress(address) + toVal(offset)
+                this.gameDataAddress = Address.getGamedataAddress(toVal(address)) + toVal(offset)
                 break
             default:
-                this.gameDataAddress = address + toVal(offset)
+                this.gameDataAddress = toVal(address) + toVal(offset)
                 break
         }
     }
