@@ -176,22 +176,23 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
                 ))
                 .forEach(([propertyName, propertyInfo]) => {
                     if (sourceData !== null) {
-                        ppf.write(toVal(meta.address) + propertyInfo.offset, propertyInfo.type, sourceData[propertyName], true)
+                        ppf.write(toVal(meta.address) + toVal(propertyInfo.offset), propertyInfo.type, sourceData[propertyName], true)
                     }
-                    ppf.write(toVal(meta.address) + propertyInfo.offset, propertyInfo.type, targetData[propertyName], false)
+                    ppf.write(toVal(meta.address) + toVal(propertyInfo.offset), propertyInfo.type, targetData[propertyName], false)
                 })
                 break
             case 'object-array':
                 for (let i = 0; i < targetData.length; i++) {
+                    const elementIndex = (targetData[i].hasOwnProperty('_elementIndex')) ? targetData[i]['_elementIndex'] : i
                     Object.entries(meta.element.properties)
                     .filter(([propertyName, propertyInfo]) => (
                         targetData[i].hasOwnProperty(propertyName)
                     ))
                     .forEach(([propertyName, propertyInfo]) => {
                         if (sourceData !== null) {
-                            ppf.write(toVal(meta.address) + i * meta.element.size + propertyInfo.offset, propertyInfo.type, sourceData[i][propertyName], true)
+                            ppf.write(toVal(meta.address) + elementIndex * meta.element.size + toVal(propertyInfo.offset), propertyInfo.type, sourceData[elementIndex][propertyName], true)
                         }
-                        ppf.write(toVal(meta.address) + i * meta.element.size + propertyInfo.offset, propertyInfo.type, targetData[i][propertyName], false)
+                        ppf.write(toVal(meta.address) + elementIndex * meta.element.size + toVal(propertyInfo.offset), propertyInfo.type, targetData[i][propertyName], false)
                     })
                 }
                 break

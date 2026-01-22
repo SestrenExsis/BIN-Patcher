@@ -96,7 +96,6 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['extraction', 'patch', 'out'])
         },
         handler: (argv) => {
-            const buffer = Buffer.alloc(2 * 1024 * 1024)
             let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
             const ppfData = toPPF(extractionData, patchData)
