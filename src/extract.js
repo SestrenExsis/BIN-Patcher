@@ -106,6 +106,50 @@ function extractArray(bin, elementInfo, baseOffset=0) {
                                     offset += processInfo.paddingAmount
                                 }
                                 break
+                            case 'calculateDerivedValue':
+                                let finalValue = 0
+                                processInfo.actions.forEach((actionInfo) => {
+                                    let currentValue = 0
+                                    switch (actionInfo.type) {
+                                        case 'constant':
+                                            currentValue = actionInfo.constant
+                                            break
+                                        case 'property':
+                                            currentValue = element[actionInfo.property]
+                                            break
+                                    }
+                                    switch (actionInfo.action) {
+                                        case 'get':
+                                            finalValue = currentValue
+                                            break
+                                        case 'add':
+                                            finalValue += currentValue
+                                            break
+                                        case 'subtract':
+                                            finalValue -= currentValue
+                                            break
+                                    }
+                                })
+                                // if (processInfo.action == data.length) {
+                                //     offset += processInfo.action
+                                // }
+                                // {
+                                //     'action': 'get',
+                                //     'type': 'property',
+                                //     'property': 'bottom',
+                                // },
+                                // {
+                                //     'action': 'add',
+                                //     'type': 'constant',
+                                //     'constant': 1,
+                                // },
+                                // {
+                                //     'action': 'subtract',
+                                //     'type': 'property',
+                                //     'property': 'top',
+                                // }
+                                element[processInfo.propertyName] = finalValue
+                                break
                         }
                     })
                 }

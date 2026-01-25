@@ -47,7 +47,7 @@ const argv = yargs(process.argv.slice(2))
     })
     .command({ // build
         command: 'build',
-        describe: 'Generate a patch file, which describes what kinds of changes will be made',
+        describe: 'Build a change file',
         builder: (yargs) => {
             return yargs
             // Debug logging
@@ -70,9 +70,26 @@ const argv = yargs(process.argv.slice(2))
             console.log(argv)
         }
     })
+    .command({ // patch
+        command: 'patch',
+        describe: 'Generate a patch file, given one or more change files',
+        builder: (yargs) => {
+            return yargs
+            .option('out', {
+                alias: 'o',
+                describe: 'Folder to output the patch file to',
+                type: 'string',
+                normalize: true,
+            })
+            .demandOption(['changes', 'out'])
+        },
+        handler: (argv) => {
+            console.log(argv)
+        }
+    })
     .command({ // ppf
         command: 'ppf',
-        describe: 'Generate a PPF file given an extraction file and a patch file',
+        describe: 'Generate a PPF file, given an extraction file and a patch file',
         builder: (yargs) => {
             return yargs
             .option('extraction', {

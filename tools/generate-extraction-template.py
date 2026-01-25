@@ -307,6 +307,50 @@ if __name__ == '__main__':
                                     },
                                 ],
                             },
+                            'postProcessing': [
+                                {
+                                    'process': 'calculateDerivedValue',
+                                    'propertyName': '_rows',
+                                    'actions': [
+                                        {
+                                            'action': 'get',
+                                            'type': 'property',
+                                            'property': 'bottom',
+                                        },
+                                        {
+                                            'action': 'add',
+                                            'type': 'constant',
+                                            'constant': 1,
+                                        },
+                                        {
+                                            'action': 'subtract',
+                                            'type': 'property',
+                                            'property': 'top',
+                                        }
+                                    ],
+                                },
+                                {
+                                    'process': 'calculateDerivedValue',
+                                    'propertyName': '_columns',
+                                    'actions': [
+                                        {
+                                            'action': 'get',
+                                            'type': 'property',
+                                            'property': 'right',
+                                        },
+                                        {
+                                            'action': 'add',
+                                            'type': 'constant',
+                                            'constant': 1,
+                                        },
+                                        {
+                                            'action': 'subtract',
+                                            'type': 'property',
+                                            'property': 'left',
+                                        }
+                                    ],
+                                },
+                            ],
                             'properties': {
                                 'left': {
                                     'offset': '0x00',

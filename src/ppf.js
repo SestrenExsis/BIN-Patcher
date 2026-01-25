@@ -207,6 +207,9 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
                     meta.element.size = getSizeOfType(meta.element.type)
                 }
                 for (let i = 0; i < targetData.length; i++) {
+                    if (meta.element.hasOwnProperty('nullValue') && targetData[i] == meta.element.nullValue) {
+                        continue
+                    }
                     if (sourceData !== null) {
                         ppf.write(toVal(meta.address) + i * meta.element.size, meta.element.type, sourceData[i], true)
                     }
@@ -218,11 +221,27 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
                     for (let col2 = 0; col2 < meta.element.bytesPerRow; col2++) {
                         const address = toVal(meta.address) + row * meta.element.bytesPerRow + col2
                         // NOTE(sestren): Color index data is stored 2 colors per byte, in reverse order
+                        let targetBytes = targetData.at(row).charAt(2 * col2 + 1) + targetData.at(row).charAt(2 * col2 + 0)
+                        let sourceBytes = null
                         if (sourceData !== null) {
-                            const sourceBytes = sourceData.at(row).charAt(2 * col2 + 1) + sourceData.at(row).charAt(2 * col2 + 0)
+                            sourceBytes = sourceData.at(row).charAt(2 * col2 + 1) + sourceData.at(row).charAt(2 * col2 + 0)
+                        }
+                        if (meta.element.hasOwnProperty('nullValue')) {
+                            if (targetBytes == meta.element.nullValue) {
+                                continue
+                            }
+                            if (sourceBytes !== null) {
+                                if (targetBytes[0] == meta.element.nullValue) {
+                                    targetBytes = sourceBytes[0] + targetBytes[1]
+                                }
+                                if (targetBytes[1] == meta.element.nullValue) {
+                                    targetBytes = targetBytes[0] + sourceBytes[1]
+                                }
+                            }
+                        }
+                        if (sourceBytes !== null) {
                             ppf.write(toVal(address), 'u8', parseInt(sourceBytes, 16), true)
                         }
-                        const targetBytes = targetData.at(row).charAt(2 * col2 + 1) + targetData.at(row).charAt(2 * col2 + 0)
                         ppf.write(toVal(address), 'u8', parseInt(targetBytes, 16), false)
                     }
                 }

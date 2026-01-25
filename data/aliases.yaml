@@ -1,0 +1,126 @@
+---
+bossTeleporters:
+    cutsceneMeetingMariaInClockRoom: 0
+    bossOlroxRight: 3
+    bossGranfaloon: 4
+    bossMinotaurAndWerewolfLeft: 5
+    bossMinotaurAndWerewolfRight: 6
+    bossScyllaLeft: 7
+    bossDoppelgangerLeft: 8
+    bossDoppelgangerRight: 9
+    bossHippogryphLeft: 10
+    bossHippogryphRight: 11
+    '12': ('Castle Keep', 'Castle Keep, Keep Area', 3, 3), # Boss - Richter
+    '13': ('Abandoned Mine', 'Abandoned Mine, Cerberus Room', 0, 0), # Boss - Cerberus
+    '14': ('Abandoned Mine', 'Abandoned Mine, Cerberus Room', 0, 1), # Boss - Cerberus
+    '15': ('Reverse Colosseum', 'Reverse Colosseum, Arena', 0, 0), # Boss - Trio
+    '16': ('Reverse Colosseum', 'Reverse Colosseum, Arena', 0, 1), # Boss - Trio
+    '17': ('Necromancy Laboratory', 'Necromancy Laboratory, Slogra and Gaibon Room', 0, 0), # Boss - Beelzebub
+    '18': ('Necromancy Laboratory', 'Necromancy Laboratory, Slogra and Gaibon Room', 1, 3), # Boss - Beelzebub
+    '19': ('Cave', 'Cave, Cerberus Room', 0, 1), # Boss - Death
+    '20': ('Cave', 'Cave, Cerberus Room', 0, 0), # Boss - Death
+    '21': ('Anti-Chapel', 'Anti-Chapel, Hippogryph Room', 0, 1), # Boss - Medusa
+    '22': ('Anti-Chapel', 'Anti-Chapel, Hippogryph Room', 0, 0), # Boss - Medusa
+    '23': ('Reverse Outer Wall', 'Reverse Outer Wall, Doppelganger Room', 0, 1), # Boss - Creature
+    '24': ('Reverse Outer Wall', 'Reverse Outer Wall, Doppelganger Room', 0, 0), # Boss - Creature
+    '25': ('Reverse Caverns', 'Reverse Caverns, Scylla Wyrm Room', 0, 0), # Boss - Doppelganger 40
+    '26': ('Death Wing\'s Lair', 'Death Wing\'s Lair, Olrox\'s Room', 1, 0), # Boss - Akmodan II
+    '27': ('Floating Catacombs', 'Floating Catacombs, Granfaloon\'s Lair', 1, 0), # Boss - Galamoth
+constants:
+    castleMapColorPalettes:
+        dra:
+            unrevealed: 0
+            revealedFills: 3
+            saveRoomFills: 4
+            warpRoomFills: 5
+            revealedBorders: 13
+            exploredBorders: 14
+        ric:
+            unrevealed: 0
+            revealedFills: 3
+            saveRoomFills: 4
+            warpRoomFills: 5
+            revealedBorders: 13
+            exploredBorders: 14
+familiarEvents:
+    catacombsDarkRoomBat: 1
+    catacombsDarkRoomGhost: 2
+    longLibraryShopDemon: 3
+    abandonedMineDemonSwitchDemon: 4
+    royalChapelConfessionalBoothDemon: 5
+    caveDemonSwitchDemon: 6
+    catacombsDarkRoomDemon: 7
+    longLibraryShopNoseDevil: 8
+    abandonedMineDemonSwitchNoseDevil: 9
+    royalChapelConfessionalBoothNoseDevil: 10
+    caveDemonSwitchNoseDevil: 11
+    catacombsDarkRoomNoseDevil: 12
+    longLibraryShopFaerie: 13
+    royalChapelConfessionalBoothFaerie: 14
+    catacombsDarkRoomFaerie1: 15
+    colosseumMistGateFaerie: 16
+    outerWallMistGateFaerie: 17
+    longLibraryMistGateFaerie: 18
+    royalChapelMistGateFaerie: 19
+    undergroundCavernsBreakableFloorFaerie: 20
+    undergroundCavernsBreakableWallFaerie: 21
+    alchemyLaboratoryBreakableWallFaerie: 22
+    alchemyLaboratoryBreakableFloorFaerie: 23
+    olroxsQuartersBreakableWallFaerie: 24
+    longLibrarySecretBookcaseFaerie: 25
+    clockTowerRightBreakableWallFaerie: 26
+    clockTowerLeftBreakableWallFaerie: 27
+    catacombsDarkRoomFaerie2: 28
+    longLibraryShopYousei: 29
+    royalChapelConfessionalBoothYousei: 30
+    catacombsDarkRoomYousei1: 31
+    colosseum.MistGateYousei: 32
+    outerWall.MistGateYousei: 33
+    longLibraryMistGateYousei: 34
+    royalChapelMistGateYousei: 35
+    undergroundCavernsBreakableFloorYousei: 36
+    undergroundCavernsBreakableWallYousei: 37
+    alchemyLaboratoryBreakableWallYousei: 38
+    alchemyLaboratoryBreakableFloorYousei: 39
+    olroxsQuartersBreakableWallYousei: 40
+    longLibrarySecretBookcaseYousei: 41
+    clockTowerRightBreakableWallYousei: 42
+    clockTowerLeftBreakableWallYousei: 43
+    catacombsDarkRoomYousei2: 44
+    longLibraryShopSword: 45
+    royalChapelConfessionalBoothSword: 46
+    catacombsDarkRoomSword: 47
+stages:
+    abandonedMine:
+        entities:
+            horizontalRows:
+                bend: 1
+                cerberusRoom: 6
+            verticalRows:
+                bend: 1
+                cerberusRoom: 6
+        rooms:
+            bend: 10
+            cerberusRoom: 2
+        tilemaps:
+            bend: '0x00a960'
+            cerberusRoom: ''
+    alchemyLaboratory:
+    bossCerberus:
+        rooms:
+            cerberusRoom: 0
+            fakeRoomA: 1
+            fakeRoomB: 2
+    castleEntrance:
+    castleEntranceRevisited:
+    cave:
+    clockTower:
+    deathWingsLair:
+    longLibrary:
+    marbleGallery:
+    necromancyLaboratory:
+    orloxsQuarters:
+    reverseCaverns:
+    reverseClockTower:
+    undergroundCaverns:
+teleporters:

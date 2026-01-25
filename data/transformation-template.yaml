@@ -1,0 +1,47 @@
+---
+transformations:
+  castleTeleporters:
+    - action: get
+      type: property
+      property: stages.castleKeep.rooms.keepArea.left
+    - action: multiply
+      type: constant
+      constant: -256
+    - action: add
+      type: constant
+      constant: -320
+    - action: set
+      type: address
+      address: 0x000FFCE4
+    - action: set
+      type: address
+      address: 0x0010B48C
+    - action: set
+      type: address
+      address: 0x0010B4D0
+    - action: set
+      type: address
+      address: 0x03285D0C
+    - action: set
+      type: address
+      address: 0x0328ABBC
+    - action: set
+      type: address
+      address: 0x0328AC00
+    - action: get
+      type: property
+      property: stages.castleKeep.rooms.keepArea.top
+    - action: multiply
+      type: constant
+      constant: -256
+    - action: add
+      type: constant
+      constant: -847
+    - action: set
+      type: address
+      address: 0x000FFD18
+    - action: set
+      type: address
+      address: 0x03285D40
+executionOrder:
+    - castleTeleporters
