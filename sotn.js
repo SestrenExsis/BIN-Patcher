@@ -2,8 +2,39 @@ import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex } from './src/common.js'
-import { parseExtractionNode } from './src/extract.js'
+import { parseExtractionNode, parsePatchNode } from './src/extract.js'
 import { toPPF } from './src/ppf.js'
+
+// An EXTRACTION file describes a structured template of modifiable or readable elements in the BINARY
+// An EXTRACTION file can be used to produce an unmodified (i.e., vanilla) PATCH file as a template for further modifications
+// A CHANGE file describes an ordered list of operations intended to alter a given PATCH file, the possible operations are:
+//  - MERGE: Directly overwrite one or more mapped values in the PATCH file, in accordance with the mappings already provided
+//  - EXTEND: Defines a new mapping and provides its own data and metadata to facilitate it
+//  - EVALUATE: An operation that reads from and writes to the PATCH file via a set of simple instructions
+// One or more CHANGE files can be applied to a given PATCH file in succession to alter it
+// An altered PATCH file can be combined with the original EXTRACTION file to produce a PPF
+// A PPF file can be used along with a PPF tool to produce a modified BINARY
+
+// CHANGE file
+//  - authors
+//  - description
+//  - changes (MERGE | EXTEND | EVALUATE)[]
+
+// MERGE
+// changeType: merge
+// merge: ... data
+
+// EXTEND
+// changeType: extend
+// extend: ... data + metadata
+
+// EVALUATE
+// changeType: evaluate
+// evaluate:
+//   evaluationOrder: ...
+//   evaluations: ...
+
+// An ALIAS file provides ...
 
 const argv = yargs(process.argv.slice(2))
     .command({ // extract
@@ -17,19 +48,19 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('json', {
-                alias: 'j',
+            .option('template', {
+                alias: 't',
                 describe: 'JSON file describing the extraction template',
                 type: 'string',
                 normalize: true,
             })
-            .option('out', {
-                alias: 'o',
-                describe: 'Folder to output the extracted data to',
+            .option('extraction', {
+                alias: 'e',
+                describe: 'Path to the extraction file to create',
                 type: 'string',
                 normalize: true,
             })
-            .demandOption(['bin', 'json', 'out'])
+            .demandOption(['bin', 'template', 'extraction'])
         },
         handler: (argv) => {
             const binFile = fs.openSync(argv.bin, 'r')
@@ -40,13 +71,38 @@ const argv = yargs(process.argv.slice(2))
             const digest = crypto.createHash('sha256').update(buffer).digest()
             console.log('Digest of disc image', digest.toString('hex'))
             const bin = new GameData(buffer)
-            let extractionTemplate = JSON.parse(fs.readFileSync(argv.json, 'utf8'))
+            let extractionTemplate = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
             const extractionData = parseExtractionNode(bin, extractionTemplate)
-            fs.writeFileSync(argv.out + '/extraction.json', JSON.stringify(extractionData, null, 4));
+            fs.writeFileSync(argv.extraction, JSON.stringify(extractionData, null, 4));
         }
     })
-    .command({ // build
-        command: 'build',
+    .command({ // template
+        command: 'template',
+        describe: 'Create a plain patch from an extraction file',
+        builder: (yargs) => {
+            return yargs
+            .option('extraction', {
+                alias: 'e',
+                describe: 'Path to the extraction file to create',
+                type: 'string',
+                normalize: true,
+            })
+            .option('patch', {
+                alias: 'p',
+                describe: 'Path to the patch file to create',
+                type: 'string',
+                normalize: true,
+            })
+            .demandOption(['extraction', 'patch'])
+        },
+        handler: (argv) => {
+            let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
+            const patchData = parsePatchNode(extractionData)
+            fs.writeFileSync(argv.patch, JSON.stringify(patchData, null, 4));
+        }
+    })
+    .command({ // change
+        command: 'change',
         describe: 'Build a change file',
         builder: (yargs) => {
             return yargs
@@ -72,16 +128,22 @@ const argv = yargs(process.argv.slice(2))
     })
     .command({ // patch
         command: 'patch',
-        describe: 'Generate a patch file, given one or more change files',
+        describe: 'Apply a changes file to a patch file',
         builder: (yargs) => {
             return yargs
-            .option('out', {
-                alias: 'o',
-                describe: 'Folder to output the patch file to',
+            .option('changes', {
+                alias: 'c',
+                describe: 'Path to the changes file to apply',
                 type: 'string',
                 normalize: true,
             })
-            .demandOption(['changes', 'out'])
+            .option('patch', {
+                alias: 'p',
+                describe: 'Path to the patch file',
+                type: 'string',
+                normalize: true,
+            })
+            .demandOption(['changes', 'patch'])
         },
         handler: (argv) => {
             console.log(argv)

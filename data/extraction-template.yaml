@@ -628,3 +628,13 @@ teleporters:
                 targetStageId:
                     offset: 8
                     type: u16
+textures:
+    warpRooms:
+        metadata:
+            address:
+                value: 0x04CB8000
+                method: absolute
+            element:
+                structure: indexed-bitmap
+                rows: 128
+                columns: 128

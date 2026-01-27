@@ -290,3 +290,18 @@ export function parseExtractionNode(bin, extractionNode, baseOffset=0) {
     })
     return result
 }
+
+export function parsePatchNode(extractionNode) {
+    if (extractionNode.hasOwnProperty('data') && extractionNode.hasOwnProperty('metadata')) {
+        return extractionNode.data
+    }
+    let result = {}
+    Object.entries(extractionNode)
+    .filter(([nodeName, nodeInfo]) => (
+        nodeName != 'metadata' && nodeName != 'data'
+    ))
+    .forEach(([nodeName, nodeInfo]) => {
+        result[nodeName] = parsePatchNode(nodeInfo)
+    })
+    return result
+}

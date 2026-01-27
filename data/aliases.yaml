@@ -10,22 +10,22 @@ bossTeleporters:
     bossDoppelgangerRight: 9
     bossHippogryphLeft: 10
     bossHippogryphRight: 11
-    '12': ('Castle Keep', 'Castle Keep, Keep Area', 3, 3), # Boss - Richter
-    '13': ('Abandoned Mine', 'Abandoned Mine, Cerberus Room', 0, 0), # Boss - Cerberus
-    '14': ('Abandoned Mine', 'Abandoned Mine, Cerberus Room', 0, 1), # Boss - Cerberus
-    '15': ('Reverse Colosseum', 'Reverse Colosseum, Arena', 0, 0), # Boss - Trio
-    '16': ('Reverse Colosseum', 'Reverse Colosseum, Arena', 0, 1), # Boss - Trio
-    '17': ('Necromancy Laboratory', 'Necromancy Laboratory, Slogra and Gaibon Room', 0, 0), # Boss - Beelzebub
-    '18': ('Necromancy Laboratory', 'Necromancy Laboratory, Slogra and Gaibon Room', 1, 3), # Boss - Beelzebub
-    '19': ('Cave', 'Cave, Cerberus Room', 0, 1), # Boss - Death
-    '20': ('Cave', 'Cave, Cerberus Room', 0, 0), # Boss - Death
-    '21': ('Anti-Chapel', 'Anti-Chapel, Hippogryph Room', 0, 1), # Boss - Medusa
-    '22': ('Anti-Chapel', 'Anti-Chapel, Hippogryph Room', 0, 0), # Boss - Medusa
-    '23': ('Reverse Outer Wall', 'Reverse Outer Wall, Doppelganger Room', 0, 1), # Boss - Creature
-    '24': ('Reverse Outer Wall', 'Reverse Outer Wall, Doppelganger Room', 0, 0), # Boss - Creature
-    '25': ('Reverse Caverns', 'Reverse Caverns, Scylla Wyrm Room', 0, 0), # Boss - Doppelganger 40
-    '26': ('Death Wing\'s Lair', 'Death Wing\'s Lair, Olrox\'s Room', 1, 0), # Boss - Akmodan II
-    '27': ('Floating Catacombs', 'Floating Catacombs, Granfaloon\'s Lair', 1, 0), # Boss - Galamoth
+    bossRichter: 12
+    bossCerberusLeft: 13
+    bossCerberusRight: 14
+    bossTrioLeft: 15
+    bossTrioRight: 16
+    bossBeelzebubLeft: 17
+    bossBeelzebubRight: 18
+    bossDeathRight: 19
+    bossDeathLeft: 20
+    bossMedusaRight: 21
+    bossMedusaLeft: 22
+    bossCreatureRight: 23
+    bossCreatureLeft: 24
+    bossDoppelganger40: 25
+    bossAkmodanII: 26
+    bossGalamoth: 27
 constants:
     castleMapColorPalettes:
         dra:
@@ -102,17 +102,130 @@ stages:
         rooms:
             bend: 10
             cerberusRoom: 2
+            demonSwitchRoom: 3
+            demonCardRoom: 11
+            fakeRoomToCatacombs: 18
+            fakeRoomToUndergroundCaverns: 16
+            fakeRoomToWarpRooms: 17
+            fourWayIntersection: 7
+            karmaCoinRoom: 9
+            loadingRoomToCatacombs: 12
+            loadingRoomToUndergroundCaverns: 14
+            loadingRoomToWarpRooms: 13
+            lowerStairwell: 8
+            peanutsRoom: 6
+            saveRoom: 15
+            snakColumn: 5
+            venusWeedRoom: 4
+            wellLitSkullRoom: 1
+            wolfsHeadColumn: 0
         tilemaps:
             bend: '0x00a960'
             cerberusRoom: ''
     alchemyLaboratory:
+        rooms:
+            batCardRoom: 0
+            bloodyZombieHallway: 3
+            blueDoorHallway: 2
+            boxPuzzleRoom: 17
+            cannonRoom: 4
+            clothCapeRoom: 5
+            corridorToElevator: 21
+            elevatorShaft: 22
+            emptyZigZagRoom: 12
+            entryway: 10
+            exitToMarbleGallery: 20
+            exitToRoyalChapel: 1
+            fakeRoomToCastleEntrance: 31
+            fakeRoomToMarbleGallery: 29
+            fakeRoomToRoyalChapel: 30
+            glassVats: 7
+            heartMaxUpRoom: 9
+            loadingRoomToCastleEntrance: 28
+            loadingRoomToMarbleGallery: 26
+            loadingRoomToRoyalChapel: 27
+            redSkeletonLiftRoom: 18
+            saveRoomA: 23
+            saveRoomB: 24
+            saveRoomC: 25
+            secretLifeMaxUpRoom: 15
+            shortZigZagRoom: 13
+            skillOfWolfRoom: 8
+            slograAndGaibonRoom: 16
+            sunglassesRoom: 6
+            tallSpittleboneRoom: 11
+            tallZigZagRoom: 14
+            tetrominoRoom: 19
     bossCerberus:
         rooms:
             cerberusRoom: 0
             fakeRoomA: 1
             fakeRoomB: 2
     castleEntrance:
+        rooms:
+            afterDrawbridge: 0
+            atticEntrance: 6
+            atticHallway: 5
+            atticStaircase: 4
+            cubeOfZoeRoom: 15
+            dropUnderPortcullis: 1
+            fakeRoomToAlchemyLaboratory: 28
+            fakeRoomToMarbleGallery: 29
+            fakeRoomToUndergroundCaverns: 31
+            fakeRoomToWarpRooms: 30
+            forestCutscene: 18
+            gargoyleRoom: 13
+            heartMaxUpRoom: 14
+            holyMailRoom: 3
+            jewelSwordRoom: 8
+            lifeMaxUpRoom: 17
+            loadingRoomToAlchemyLaboratory: 23
+            loadingRoomToMarbleGallery: 21
+            loadingRoomToUndergroundCaverns: 24
+            loadingRoomToWarpRooms: 22
+            meetingRoomWithDeath: 11
+            mermanRoom: 7
+            saveRoomA: 25
+            saveRoomB: 26
+            saveRoomC: 27
+            shortcutToUndergroundCaverns: 10
+            shortcutToWarpRooms: 16
+            stairwellAfterDeath: 12
+            unknownRoom19: 19
+            unknownRoom20: 20
+            wargHallway: 9
+            zombieHallway: 2
     castleEntranceRevisited:
+        rooms:
+            afterDrawbridge: 0
+            atticEntrance: 6
+            atticHallway: 5
+            atticStaircase: 4
+            cubeOfZoeRoom: 15
+            dropUnderPortcullis: 1
+            fakeRoomToAlchemyLaboratory: 25
+            fakeRoomToMarbleGallery: 26
+            fakeRoomToUndergroundCaverns: 28
+            fakeRoomToWarpRooms: 27
+            gargoyleRoom: 13
+            heartMaxUpRoom: 14
+            holyMailRoom: 3
+            jewelSwordRoom: 8
+            lifeMaxUpRoom: 17
+            loadingRoomToAlchemyLaboratory: 20
+            loadingRoomToMarbleGallery: 18
+            loadingRoomToUndergroundCaverns: 21
+            loadingRoomToWarpRooms: 19
+            meetingRoomWithDeath: 11
+            mermanRoom: 7
+            saveRoomA: 22
+            saveRoomB: 23
+            saveRoomC: 24
+            shortcutToUndergroundCaverns: 10
+            shortcutToWarpRooms: 16
+            stairwellAfterDeath: 12
+            wargHallway: 9
+            zombieHallway: 2
     cave:
     clockTower:
     deathWingsLair:

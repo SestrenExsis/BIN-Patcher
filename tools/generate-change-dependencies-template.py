@@ -141,14 +141,11 @@ data = {
 
 if __name__ == '__main__':
     with (
-        open(os.path.join('data', 'transformation-template.yaml')) as source_file,
-        open(os.path.join('build', 'transformation.json'), 'w') as target_file,
+        open(os.path.join('data', 'change-dependencies-template.yaml')) as source_file,
+        open(os.path.join('build', 'change-dependencies.json'), 'w') as target_file,
     ):
         target = yaml.safe_load(source_file)
-        if 'transformations' not in target:
-            target['transformations'] = {}
-        if 'executionOrder' not in target:
-            target['executionOrder'] = []
+        evaluate = target['changes'][0]['evaluate']
         # Rooms
         for (stage_name, room_names) in data['rooms'].items():
             print('', stage_name)
@@ -183,8 +180,8 @@ if __name__ == '__main__':
                             'property': transformation_name,
                         },
                     ]
-                    target['transformations'][transformation_name] = transformation
-                    target['executionOrder'].append(transformation_name)
+                    evaluate['evaluations'][transformation_name] = transformation
+                    evaluate['evaluationOrder'].append(transformation_name)
                 # Calculate bottom
         # TODO(sestren): Boss Rooms
         # 'bossCerberusCerberusRoom': 'stages.bossCerberus.rooms.cerberusRoom.left' = 'stages.abandonedMine.rooms.cerberusRoom.left',
@@ -229,8 +226,8 @@ if __name__ == '__main__':
         #                 'type': 'property',
         #                 'property': transformation_name,
         #             })
-        #             target['transformations'][transformation_name] = transformation
-        #             target['executionOrder'].append(transformation_name)
+        #             evaluate['evaluations'][transformation_name] = transformation
+        #             evaluate['evaluationOrder'].append(transformation_name)
         # TODO(sestren): Reverse Stages
         # Secret Map Tile Reveals and Boss Teleporters
         for transformation_group_key in (
@@ -260,8 +257,8 @@ if __name__ == '__main__':
                         'type': 'property',
                         'property': transformation_name,
                     })
-                    target['transformations'][transformation_name] = transformation
-                    target['executionOrder'].append(transformation_name)
+                    evaluate['evaluations'][transformation_name] = transformation
+                    evaluate['evaluationOrder'].append(transformation_name)
         # Familiar Events
         for familiar_key in (
             'bat',
@@ -295,6 +292,6 @@ if __name__ == '__main__':
                         'type': 'property',
                         'property': transformation_name,
                     })
-                    target['transformations'][transformation_name] = transformation
-                    target['executionOrder'].append(transformation_name)
+                    evaluate['evaluations'][transformation_name] = transformation
+                    evaluate['evaluationOrder'].append(transformation_name)
         json.dump(target, target_file, indent='    ', sort_keys=True)
