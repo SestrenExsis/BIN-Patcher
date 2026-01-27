@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex } from './src/common.js'
-import { parseExtractionNode, parsePatchNode } from './src/extract.js'
+import { parseExtractionNode, convertExtractionNodeToPatchNode } from './src/extract.js'
 import { toPPF } from './src/ppf.js'
 
 // An EXTRACTION file describes a structured template of modifiable or readable elements in the BINARY
@@ -97,7 +97,7 @@ const argv = yargs(process.argv.slice(2))
         },
         handler: (argv) => {
             let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
-            const patchData = parsePatchNode(extractionData)
+            const patchData = convertExtractionNodeToPatchNode(extractionData)
             fs.writeFileSync(argv.patch, JSON.stringify(patchData, null, 4));
         }
     })
@@ -143,10 +143,11 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .demandOption(['changes', 'patch'])
+            .demandOption(['patch'])
         },
         handler: (argv) => {
-            console.log(argv)
+            let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
+            fs.writeFileSync(argv.patch, JSON.stringify(patchData, null, 4));
         }
     })
     .command({ // ppf

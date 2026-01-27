@@ -291,7 +291,7 @@ export function parseExtractionNode(bin, extractionNode, baseOffset=0) {
     return result
 }
 
-export function parsePatchNode(extractionNode) {
+export function convertExtractionNodeToPatchNode(extractionNode) {
     if (extractionNode.hasOwnProperty('data') && extractionNode.hasOwnProperty('metadata')) {
         return extractionNode.data
     }
@@ -301,7 +301,7 @@ export function parsePatchNode(extractionNode) {
         nodeName != 'metadata' && nodeName != 'data'
     ))
     .forEach(([nodeName, nodeInfo]) => {
-        result[nodeName] = parsePatchNode(nodeInfo)
+        result[nodeName] = convertExtractionNodeToPatchNode(nodeInfo)
     })
     return result
 }

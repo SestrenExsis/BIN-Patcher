@@ -307,9 +307,7 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
 
 export function toPPF(extractionData, patchData) {
     let ppf = new PPF()
-    patchData.patches.forEach((patchElement, patchIndex) => {
-        parsePatchNode(ppf, extractionData, patchElement)
-    })
+    parsePatchNode(ppf, extractionData, patchData)
     const result = ppf.bytes()
     return result
 }
