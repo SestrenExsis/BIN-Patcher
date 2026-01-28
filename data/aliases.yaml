@@ -226,6 +226,9 @@ stages:
             stairwellAfterDeath: 12
             wargHallway: 9
             zombieHallway: 2
+    castleKeep:
+        rooms:
+            keepArea: 2
     cave:
     clockTower:
     deathWingsLair:

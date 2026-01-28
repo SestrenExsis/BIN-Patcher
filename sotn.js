@@ -3,6 +3,7 @@ import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex } from './src/common.js'
 import { parseExtractionNode, convertExtractionNodeToPatchNode } from './src/extract.js'
+import { applyChange } from './src/change.js'
 import { toPPF } from './src/ppf.js'
 
 // An EXTRACTION file describes a structured template of modifiable or readable elements in the BINARY
@@ -97,6 +98,10 @@ const argv = yargs(process.argv.slice(2))
         },
         handler: (argv) => {
             let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
+            // const patchData = {
+            //     patch: convertExtractionNodeToPatchNode(extractionData),
+            //     pokes: [],
+            // }
             const patchData = convertExtractionNodeToPatchNode(extractionData)
             fs.writeFileSync(argv.patch, JSON.stringify(patchData, null, 4));
         }
@@ -143,10 +148,21 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .demandOption(['patch'])
+            .option('aliases', {
+                alias: 'a',
+                describe: 'Path to the aliases file',
+                type: 'string',
+                normalize: true,
+            })
+            .demandOption(['changes', 'patch', 'aliases'])
         },
         handler: (argv) => {
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
+            let changesData = JSON.parse(fs.readFileSync(argv.changes, 'utf8'))
+            let aliasesData = JSON.parse(fs.readFileSync(argv.aliases, 'utf8'))
+            changesData.changes.forEach((changeData) => {
+                applyChange(patchData, changeData, aliasesData)
+            })
             fs.writeFileSync(argv.patch, JSON.stringify(patchData, null, 4));
         }
     })

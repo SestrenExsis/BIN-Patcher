@@ -1,0 +1,1 @@
+node sotn ppf -e "build/extraction.json" -p "build/current-patch.json" -o "build"
