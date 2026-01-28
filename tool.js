@@ -2,7 +2,6 @@ import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex } from './src/common.js'
-import { getExtractionData } from './src/extract.js'
 
 const argv = yargs(process.argv.slice(2))
     .command({ // search
