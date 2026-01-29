@@ -211,6 +211,58 @@ export function getSizeOfType(type) {
     return result
 }
 
+export function decodeString(bytes) {
+    let prefixByte = 0x00
+    let string = ''
+    bytes.forEach((byte) => {
+        let char = ''
+        if (prefixByte == 0x81) {
+            switch (byte) {
+                case 0x44: char = '.'; break
+                case 0x48: char = '?'; break
+                case 0x66: char = "'"; break
+                case 0x68: char = '"'; break
+                default:   char = '*'; break
+            }
+            prefixByte = 0x00
+        }
+        else if (prefixByte == 0x82) {
+            switch (byte) {
+                case 0x4F: char = '0'; break
+                case 0x50: char = '1'; break
+                case 0x51: char = '2'; break
+                case 0x52: char = '3'; break
+                case 0x53: char = '4'; break
+                case 0x54: char = '5'; break
+                case 0x55: char = '6'; break
+                case 0x56: char = '7'; break
+                case 0x57: char = '8'; break
+                case 0x58: char = '9'; break
+                default:   char = '*'; break
+            }
+            prefixByte = 0x00
+        }
+        else {
+            switch (byte) {
+                case 0x00:
+                case 0x81:
+                case 0x82:
+                    break
+                default:
+                    char = String.fromCharCode(byte)
+                    if (!'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(char)) {
+                        char = '*'
+                    }
+                    break
+            }
+            prefixByte = byte
+        }
+        string += char
+    })
+    const result = string
+    return result
+}
+
 export function encodeString(string, buffer, start=0) {
     let cursor = 0
     for (let i = 0; i < string.length; i++) {
@@ -266,58 +318,6 @@ export function encodeString(string, buffer, start=0) {
         cursor++
     }
     const result = cursor
-    return result
-}
-
-export function decodeString(bytes) {
-    let prefixByte = 0x00
-    let string = ''
-    bytes.forEach((byte) => {
-        let char = ''
-        if (prefixByte == 0x81) {
-            switch (byte) {
-                case 0x44: char = '.'; break
-                case 0x48: char = '?'; break
-                case 0x66: char = "'"; break
-                case 0x68: char = '"'; break
-                default:   char = '*'; break
-            }
-            prefixByte = 0x00
-        }
-        else if (prefixByte == 0x82) {
-            switch (byte) {
-                case 0x4F: char = '0'; break
-                case 0x50: char = '1'; break
-                case 0x51: char = '2'; break
-                case 0x52: char = '3'; break
-                case 0x53: char = '4'; break
-                case 0x54: char = '5'; break
-                case 0x55: char = '6'; break
-                case 0x56: char = '7'; break
-                case 0x57: char = '8'; break
-                case 0x58: char = '9'; break
-                default:   char = '*'; break
-            }
-            prefixByte = 0x00
-        }
-        else {
-            switch (byte) {
-                case 0x00:
-                case 0x81:
-                case 0x82:
-                    break
-                default:
-                    char = String.fromCharCode(byte)
-                    if (!'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(char)) {
-                        char = '*'
-                    }
-                    break
-            }
-            prefixByte = byte
-        }
-        string += char
-    })
-    const result = string
     return result
 }
 
@@ -386,6 +386,50 @@ export function decodeTextCrawl(bytes) {
         }
     })
     const result = text
+    return result
+}
+
+export function encodeTextCrawl(text, buffer, start=0) {
+    console.log('encodeTextCrawl')
+    let cursor = 0
+    let lineSpacing = 0
+    text.forEach((line, lineIndex) => {
+        if (lineSpacing > 0) {
+            buffer.writeUint8(lineSpacing, start + cursor)
+            cursor++
+            lineSpacing = 0
+        }
+        if (line.length < 1) {
+            lineSpacing++
+        }
+        let indentation = 0
+        while (line.charAt(indentation) == '_') {
+            indentation++
+        }
+        if (lineIndex > 0) {
+            buffer.writeUint8(indentation, start + cursor)
+            cursor++
+        }
+        for (let i = indentation; i < line.length; i++) {
+            const char = line.charAt(i)
+            if ('abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 .,'.includes(char)) {
+                // console.log(char, lineIndex)
+                buffer.writeUint8(char.charCodeAt(0), start + cursor)
+                cursor++
+            }
+        }
+        lineSpacing++
+    })
+    // Text crawls are NULL-terminated
+    buffer.writeUint8(0x00, start + cursor)
+    cursor++
+    // Add padding
+    const padding = 4 - (cursor % 4)
+    for (let i = 0; i < padding; i++) {
+        buffer.writeUint8(0x00, start + cursor)
+        cursor++
+    }
+    const result = cursor
     return result
 }
 

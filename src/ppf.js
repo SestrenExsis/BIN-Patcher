@@ -1,5 +1,5 @@
 
-import { Address, encodeString, GameData, getSizeOfType, toHex, toVal } from './common.js'
+import { Address, encodeString, encodeTextCrawl, GameData, getSizeOfType, toHex, toVal } from './common.js'
 
 // TODO(sestren) structures:
 //     object-array:
@@ -22,7 +22,7 @@ export class PPF {
     constructor(buffer, cursorOffset=0) {
         this.writes = {}
         this.originalValues = {}
-        this.buffer = Buffer.alloc(1024)
+        this.buffer = Buffer.alloc(2048)
     }
 
     bytes(description="Default description") {
@@ -139,6 +139,9 @@ export class PPF {
             case 'shifted-string':
                 // TODO(sestren)
                 break
+            case 'text-crawl':
+                byteCount = encodeTextCrawl(data, this.buffer, 0)
+                break
         }
         for (let i = 0; i < byteCount; i++) {
             const addressKey = toHex(address + i)
@@ -200,7 +203,7 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
                 }
                 break
             case 'value':
-                if (sourceData !== null) {
+                if (sourceData !== null && meta.element.type != 'text-crawl') {
                     ppf.write(toVal(meta.address), meta.element.type, sourceData, true)
                 }
                 ppf.write(toVal(meta.address), meta.element.type, targetData, false)
