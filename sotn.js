@@ -1,7 +1,7 @@
 import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
-import { Address, GameData, toHex } from './src/common.js'
+import { Address, GameData, toHex, toVal } from './src/common.js'
 import { parseExtractionNode, convertExtractionNodeToPatchNode } from './src/extract.js'
 import { applyChange } from './src/change.js'
 import { toPPF } from './src/ppf.js'
@@ -234,6 +234,61 @@ const argv = yargs(process.argv.slice(2))
                 },
             }
             console.log(conversions)
+        }
+    })
+    .command({ // search
+        command: 'search',
+        describe: 'Search for data on a PS1 binary',
+        builder: (yargs) => {
+            return yargs
+            .option('bin', {
+                alias: 'b',
+                describe: 'Binary file to extract data from',
+                type: 'string',
+                normalize: true,
+            })
+            .option('hex', {
+                alias: 'h',
+                describe: 'Byte-string to search for',
+                type: 'string',
+            })
+            .option('start', {
+                alias: 's',
+                describe: 'Starting index in GAMEDATA',
+                type: 'number',
+            })
+            .option('length', {
+                alias: 'l',
+                describe: 'Number of bytes in GAMEDATA to search',
+                type: 'number',
+            })
+            .demandOption(['bin', 'hex'])
+        },
+        handler: (argv) => {
+            const binFile = fs.openSync(argv.bin, 'r')
+            const binFileSize = fs.fstatSync(binFile).size
+            const buffer = Buffer.alloc(binFileSize)
+            fs.readSync(binFile, buffer, 0, binFileSize)
+            fs.closeSync(binFile)
+            const digest = crypto.createHash('sha256').update(buffer).digest()
+            console.log('Digest of disc image', digest.toString('hex'))
+            const bin = new GameData(buffer, toVal(argv.start))
+            const bytes = argv.hex.split(' ').map((hexString) => { return Number.parseInt(hexString, 16)})
+            for (let offset = 0; offset < argv.length; offset++) {
+                bin.set(argv.start + offset)
+                let matchInd = true
+                for (let matchCount = 0; matchCount < bytes.length; matchCount++) {
+                    const byte = bin.read('u8')
+                    if (byte != bytes[matchCount])  {
+                        matchInd = false
+                        break
+                    }
+                }
+                if (matchInd) {
+                    const address = new Address('GAMEDATA', argv.start, offset)
+                    console.log('game:', toHex(address.gameDataAddress, 8), 'disc:', toHex(address.toDiscAddress(), 8))
+                }
+            }
         }
     })
     .demandCommand(1)
