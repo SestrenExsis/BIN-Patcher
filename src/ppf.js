@@ -128,13 +128,16 @@ export class PPF {
                 byteCount = 2
                 break
             case 'layout-rect':
+                // TODO(sestren)
                 break
             case 'zone-offset':
+                // TODO(sestren)
                 break
             case 'string':
                 byteCount = encodeString(data, this.buffer, 0)
                 break
             case 'shifted-string':
+                // TODO(sestren)
                 break
         }
         for (let i = 0; i < byteCount; i++) {
@@ -247,34 +250,24 @@ export function parsePatchNode(ppf, extractionNode, patchNode) {
                 }
                 break
             case 'binary-string-array':
-                if (sourceData !== null) {
-                    ppf.write(toVal(meta.address) + 0, 'u8', sourceData.left, true)
-                    ppf.write(toVal(meta.address) + 1, 'u8', sourceData.top, true)
-                    ppf.write(toVal(meta.address) + 2, 'u8', sourceData.bytesPerRow, true)
-                    ppf.write(toVal(meta.address) + 3, 'u8', sourceData.rows, true)
-                }
+                // NOTE(sestren): Source data is being skipped for now
                 ppf.write(toVal(meta.address) + 0, 'u8', targetData.left, false)
                 ppf.write(toVal(meta.address) + 1, 'u8', targetData.top, false)
                 ppf.write(toVal(meta.address) + 2, 'u8', targetData.bytesPerRow, false)
                 ppf.write(toVal(meta.address) + 3, 'u8', targetData.rows, false)
-                for (let row = 0; row < meta.element.rows; row++) {
-                    for (let col8 = 0; col8 < meta.element.bytesPerRow; col8++) {
-                        const address = toVal(meta.address) + row * meta.element.bytesPerRow + col8
+                for (let row = 0; row < targetData.rows; row++) {
+                    for (let col8 = 0; col8 < targetData.bytesPerRow; col8++) {
+                        const address = toVal(meta.address) + 4 + row * targetData.bytesPerRow + col8
                         // NOTE(sestren): Reveal data is stored 8 cells per byte
-                        let sourceBytes = 0
                         let targetBytes = 0
-                        for (let i = 0; i < 8; i++) {
-                            if (sourceData !== null) {
-                                sourceBytes += (sourceData.at(row).charAt(8 * col8 + i) == ' ') ? '0' : '1'
-                            }
-                            targetBytes += (targetData.at(row).charAt(8 * col8 + i) == ' ') ? '0' : '1'
-                        }
-                        if (sourceData !== null) {
-                            ppf.write(toVal(address), 'u8', parseInt(sourceBytes, 2), true)
+                        // NOTE(sestren): Process the bits in reverse order
+                        for (let i = 7; i >= 0; i--) {
+                            targetBytes += (targetData.grid.at(row).charAt(8 * col8 + i) == ' ') ? '0' : '1'
                         }
                         ppf.write(toVal(address), 'u8', parseInt(targetBytes, 2), false)
                     }
                 }
+                ppf.write(toVal(meta.address) + 4 + targetData.rows * targetData.bytesPerRow, 'u8', 0xFF, false)
                 break
             case 'tilemap':
                 const bytesPerRow = meta.element.rows * meta.element.bytesPerIndex

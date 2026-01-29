@@ -79,9 +79,9 @@ export class GameData {
 
     read(type, advanceCursor=true) {
         let byteCount = 0
-        if (['string', 'shifted-string'].includes(type)) {
+        if (['string', 'shifted-string', 'text-crawl'].includes(type)) {
             // Strings are terminated with a sentinel value and have a 4-byte alignment
-            let sentinelValue = (type == 'string') ? 0x00 : 0xFF
+            let sentinelValue = (type == 'shifted-string') ? 0xFF : 0x00
             while (true) {
                 const byteOffset = this.cursor.toDiscAddress(byteCount)
                 const byte = this.buffer.readUInt8(byteOffset)
@@ -135,6 +135,9 @@ export class GameData {
                 break
             case 'shifted-string':
                 value = decodeShiftedString(bytes)
+                break
+            case 'text-crawl':
+                value = decodeTextCrawl(bytes)
                 break
         }
         let result = value
@@ -319,7 +322,6 @@ export function decodeString(bytes) {
 }
 
 export function decodeShiftedString(bytes) {
-    let prefixByte = 0x00
     let string = ''
     bytes.forEach((byte) => {
         let char = ''
@@ -336,6 +338,54 @@ export function decodeShiftedString(bytes) {
         string += char
     })
     const result = string
+    return result
+}
+
+export function decodeTextCrawl(bytes) {
+    const ALIGN = '_'
+    const DEFAULT = ' '
+    console.log('decodeTextCrawl')
+    const text = [
+        // NOTE(sestren): The first line has a fixed amount of indentation, it seems
+        ALIGN.repeat(22),
+    ]
+    // NOTE(sestren): Indentations are 4 pixels wide, the SPACE character is 8 pixels wide, and all other characters are 12 pixels wide
+    let mode = 'TEXT'
+    bytes.forEach((byte) => {
+        switch (mode) {
+            case 'TEXT':
+                let char = ''
+                switch (byte) {
+                    case 0x00:
+                        mode = 'END'
+                        break
+                    case 0x01:
+                        mode = 'INDENT'
+                        break
+                    case 0x02:
+                        text.push('')
+                        mode = 'INDENT'
+                        break
+                    default:
+                        char = String.fromCharCode(byte)
+                        if (!'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 .,'.includes(char)) {
+                            char = DEFAULT
+                        }
+                        const kerning = (char == ' ') ? 1 : 2
+                        text[text.length - 1] += char + ALIGN.repeat(kerning)
+                        break
+                }
+                break
+            case 'INDENT':
+                text.push(ALIGN.repeat(byte))
+                mode = 'TEXT'
+                break
+            default:
+                return
+                break
+        }
+    })
+    const result = text
     return result
 }
 

@@ -223,8 +223,6 @@ function extractCastleMapReveals(bin, elementInfo, baseOffset=0) {
     const data = []
     // Castle map reveal data is stored serially with a sentinel value of 0xFF to signify termination
     // Each section starts with a header that describes how much additional data is read for that particular section
-    // While the vanilla game only defines one section, the underlying data format has support for multiple sections
-    // However, for ROM hacking purposes, the total footprint will still be a limiting factor
     bin.set(toVal(baseOffset))
     elementInfo.footprint = 0
     while (true) {
@@ -253,8 +251,9 @@ function extractCastleMapReveals(bin, elementInfo, baseOffset=0) {
             break
         }
     }
-    elementInfo.count = data.length
-    const result = data
+    const result = data[0]
+    // While the vanilla game only defines one section, the underlying data format may potentially have support for multiple sections in the future
+    // However, for ROM hacking purposes, the total footprint will still be a limiting factor
     return result
 }
 

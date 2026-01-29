@@ -116,6 +116,14 @@ constants:
                     structure: value
                     type: u16
     messages:
+        prologueCredits:
+            metadata:
+                address:
+                    value: 0x0487f458
+                    method: absolute
+                element:
+                    structure: value
+                    type: text-crawl
         richterModeInstructions1:
             metadata:
                 address:
