@@ -263,7 +263,7 @@ function extractCastleMapReveals(bin, elementInfo, baseOffset=0) {
 
 // func_800F24F4: falseSaveRoom and finalSaveRoom
 
-export function parseExtractionNode(bin, extractionNode, baseOffset=0) {
+export function parseExtractionNode(bin, extractionNode, baseOffset=0, includeData=true, includeMeta=true) {
     // It is assumed that a node that specifies a metadata.element property 
     // will not have any other properties at the same scope as metadata
     let result = {}
@@ -273,10 +273,20 @@ export function parseExtractionNode(bin, extractionNode, baseOffset=0) {
             nodeOffset = getOffset(bin, extractionNode.metadata.address, baseOffset)
         }
         if (extractionNode.metadata.hasOwnProperty('element')) {
-            result.data = extractData(bin, extractionNode.metadata.element, nodeOffset)
-            result.metadata = {
-                address: nodeOffset,
-                element: extractionNode.metadata.element,
+            if (includeData) {
+                result.data = extractData(bin, extractionNode.metadata.element, nodeOffset)
+                if (!includeMeta) {
+                    result = result.data
+                }
+            }
+            if (includeMeta) {
+                result.metadata = {
+                    address: nodeOffset,
+                    element: extractionNode.metadata.element,
+                }
+                if (!includeData) {
+                    result = result.metadata
+                }
             }
         }
     }
@@ -285,22 +295,7 @@ export function parseExtractionNode(bin, extractionNode, baseOffset=0) {
         nodeName != 'metadata' && nodeName != 'data'
     ))
     .forEach(([nodeName, nodeInfo]) => {
-        result[nodeName] = parseExtractionNode(bin, nodeInfo, nodeOffset)
-    })
-    return result
-}
-
-export function convertExtractionNodeToPatchNode(extractionNode) {
-    if (extractionNode.hasOwnProperty('data') && extractionNode.hasOwnProperty('metadata')) {
-        return extractionNode.data
-    }
-    let result = {}
-    Object.entries(extractionNode)
-    .filter(([nodeName, nodeInfo]) => (
-        nodeName != 'metadata' && nodeName != 'data'
-    ))
-    .forEach(([nodeName, nodeInfo]) => {
-        result[nodeName] = convertExtractionNodeToPatchNode(nodeInfo)
+        result[nodeName] = parseExtractionNode(bin, nodeInfo, nodeOffset, includeData, includeMeta)
     })
     return result
 }

@@ -390,7 +390,6 @@ export function decodeTextCrawl(bytes) {
 }
 
 export function encodeTextCrawl(text, buffer, start=0) {
-    console.log('encodeTextCrawl')
     let cursor = 0
     let lineSpacing = 0
     text.forEach((line, lineIndex) => {

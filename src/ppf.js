@@ -128,16 +128,16 @@ export class PPF {
                 byteCount = 2
                 break
             case 'layout-rect':
-                // TODO(sestren)
+                // TODO(sestren): Write layout-rect changes back to PPF
                 break
             case 'zone-offset':
-                // TODO(sestren)
+                // TODO(sestren): Write zone-offset changes back to PPF
                 break
             case 'string':
                 byteCount = encodeString(data, this.buffer, 0)
                 break
             case 'shifted-string':
-                // TODO(sestren)
+                // TODO(sestren): Write shifted-string changes back to PPF
                 break
             case 'text-crawl':
                 byteCount = encodeTextCrawl(data, this.buffer, 0)

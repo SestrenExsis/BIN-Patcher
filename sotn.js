@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex, toVal } from './src/common.js'
-import { parseExtractionNode, convertExtractionNodeToPatchNode } from './src/extract.js'
+import { parseExtractionNode } from './src/extract.js'
 import { applyChange } from './src/change.js'
 import { toPPF } from './src/ppf.js'
 
@@ -49,15 +49,27 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('template', {
-                alias: 't',
-                describe: 'JSON file describing the extraction template',
-                type: 'string',
-                normalize: true,
+            .option('data', {
+                alias: 'd',
+                describe: 'Include data in the output',
+                type: 'boolean',
+                default: true,
             })
             .option('extraction', {
                 alias: 'e',
                 describe: 'Path to the extraction file to create',
+                type: 'string',
+                normalize: true,
+            })
+            .option('meta', {
+                alias: 'm',
+                describe: 'Include metadata in the output',
+                type: 'boolean',
+                default: true,
+            })
+            .option('template', {
+                alias: 't',
+                describe: 'JSON file describing the extraction template',
                 type: 'string',
                 normalize: true,
             })
@@ -73,37 +85,8 @@ const argv = yargs(process.argv.slice(2))
             console.log('Digest of disc image', digest.toString('hex'))
             const bin = new GameData(buffer)
             let extractionTemplate = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
-            const extractionData = parseExtractionNode(bin, extractionTemplate)
+            const extractionData = parseExtractionNode(bin, extractionTemplate, 0, argv.data, argv.meta)
             fs.writeFileSync(argv.extraction, JSON.stringify(extractionData, null, 4));
-        }
-    })
-    .command({ // template
-        command: 'template',
-        describe: 'Create a plain patch from an extraction file',
-        builder: (yargs) => {
-            return yargs
-            .option('extraction', {
-                alias: 'e',
-                describe: 'Path to the extraction file to create',
-                type: 'string',
-                normalize: true,
-            })
-            .option('patch', {
-                alias: 'p',
-                describe: 'Path to the patch file to create',
-                type: 'string',
-                normalize: true,
-            })
-            .demandOption(['extraction', 'patch'])
-        },
-        handler: (argv) => {
-            let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
-            // const patchData = {
-            //     patch: convertExtractionNodeToPatchNode(extractionData),
-            //     pokes: [],
-            // }
-            const patchData = convertExtractionNodeToPatchNode(extractionData)
-            fs.writeFileSync(argv.patch, JSON.stringify(patchData, null, 4));
         }
     })
     .command({ // change
