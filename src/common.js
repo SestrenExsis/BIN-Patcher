@@ -167,7 +167,7 @@ export class GameData {
                 break
             case 'zone-offset':
                 if (value == 0x00000000) {
-                    result = null
+                    result = 'NULL'
                 }
                 else {
                     result = toHex(value - 0x80180000, 6)
