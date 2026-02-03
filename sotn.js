@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex, toVal } from './src/common.js'
-import { parseExtractionNode } from './src/extract.js'
+import { dropNodes, parseExtractionNode, promoteNodes } from './src/extract.js'
 import { applyChange } from './src/change.js'
 import { toPPF } from './src/ppf.js'
 
@@ -49,7 +49,7 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('data', {
+            .option('includeData', {
                 alias: 'd',
                 describe: 'Include data in the output',
                 type: 'boolean',
@@ -61,7 +61,13 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('meta', {
+            .option('hideData', {
+                alias: ['h', 'hide-data'],
+                describe: 'Display generic data instead of the data found',
+                type: 'boolean',
+                default: false,
+            })
+            .option('includeMeta', {
                 alias: 'm',
                 describe: 'Include metadata in the output',
                 type: 'boolean',
@@ -85,8 +91,54 @@ const argv = yargs(process.argv.slice(2))
             console.log('Digest of disc image', digest.toString('hex'))
             const bin = new GameData(buffer)
             let extractionTemplate = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
-            const extractionData = parseExtractionNode(bin, extractionTemplate, 0, argv.data, argv.meta)
+            let extraOptions = {
+                includeData: argv.includeData,
+                includeMeta: argv.includeMeta,
+            }
+            const extractionData = parseExtractionNode(bin, extractionTemplate, 0, extraOptions)
+            // TODO(sestren): Post-process the extraction data to scrub hidden data, rather than modify the parseExtractionNode function
             fs.writeFileSync(argv.extraction, JSON.stringify(extractionData, null, 4));
+        }
+    })
+    .command({ // 
+        command: 'alter',
+        describe: 'Alter a source JSON file',
+        builder: (yargs) => {
+            return yargs
+            .option('drop', {
+                alias: 'd',
+                describe: 'Name to match for dropping nodes',
+                type: 'string',
+            })
+            .option('promote', {
+                alias: 'p',
+                describe: 'Name to match for promoting nodes',
+                type: 'string',
+            })
+            .option('source', {
+                alias: 's',
+                describe: 'Path to the source file to alter',
+                type: 'string',
+                normalize: true,
+            })
+            .option('target', {
+                alias: 't',
+                describe: 'Path to the target file to create',
+                type: 'string',
+                normalize: true,
+            })
+            .demandOption(['source', 'target'])
+        },
+        handler: (argv) => {
+            let sourceData = JSON.parse(fs.readFileSync(argv.source, 'utf8'))
+            let targetData = sourceData
+            if (argv.drop != null) {
+                targetData = dropNodes(targetData, argv.drop)
+            }
+            if (argv.promote != null) {
+                targetData = promoteNodes(targetData, argv.promote)
+            }
+            fs.writeFileSync(argv.target, JSON.stringify(targetData, null, 4));
         }
     })
     .command({ // change
