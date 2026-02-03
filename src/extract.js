@@ -286,13 +286,82 @@ export function dropNodes(sourceData, nodeNameToDrop) {
     let result = {}
     Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
         if (nodeName == nodeNameToDrop) {
-            // skip
+            // Drop the node
         }
         else if (['metadata', 'data'].includes(nodeName)) {
             result[nodeName] = nodeInfo
         }
         else {
             result[nodeName] = dropNodes(nodeInfo, nodeNameToDrop)
+        }
+    })
+    return result
+}
+
+export function maskNode(nodeInfo, nodeStructure) {
+    switch (nodeStructure) {
+        case 'binary-string-array':
+            nodeInfo.left = null
+            nodeInfo.top = null
+            nodeInfo.bytesPerRow = null
+            nodeInfo.rows = null
+            nodeInfo.grid = null
+            break
+        case 'indexed-bitmap':
+            for (let row = 0; row < nodeInfo.length; row++) {
+                nodeInfo[row] = '.'.repeat(nodeInfo[row].length)
+            }
+            break
+        case 'object':
+            Object.keys(nodeInfo).forEach((propertyName) => {
+                if (propertyName.at(0) != '_') {
+                    nodeInfo[propertyName] = null
+                }
+            })
+            break
+        case 'object-array':
+            for (let index = 0; index < nodeInfo.length; index++) {
+                Object.keys(nodeInfo[index]).forEach((propertyName) => {
+                    if (propertyName.at(0) != '_') {
+                        nodeInfo[index][propertyName] = null
+                    }
+                })
+            }
+            break
+        case 'tilemap':
+            for (let row = 0; row < nodeInfo.length; row++) {
+                const columns = Math.floor((nodeInfo[row].length + 1) / 5)
+                
+                nodeInfo[row] = ('.... '.repeat(columns)).slice(0, -1)
+            }
+            break
+        case 'value':
+            nodeInfo = null
+            break
+        case 'value-array':
+            for (let index = 0; index < nodeInfo.length; index++) {
+                nodeInfo[index] = null
+            }
+            break
+        default:
+            nodeInfo = null
+            break
+    }
+    return nodeInfo
+}
+
+export function maskNodes(sourceData, nodeNameToMask) {
+    let result = {}
+    Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
+        if (nodeName == nodeNameToMask) {
+            const nodeStructure = sourceData.metadata.element.structure
+            result[nodeName] = maskNode(nodeInfo, nodeStructure)
+        }
+        else if (['metadata', 'data'].includes(nodeName)) {
+            result[nodeName] = nodeInfo
+        }
+        else {
+            result[nodeName] = maskNodes(nodeInfo, nodeNameToMask)
         }
     })
     return result

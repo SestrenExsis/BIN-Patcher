@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex, toVal } from './src/common.js'
-import { dropNodes, parseExtractionNode, promoteNodes } from './src/extract.js'
+import { dropNodes, maskNodes, parseExtractionNode, promoteNodes } from './src/extract.js'
 import { applyChange } from './src/change.js'
 import { toPPF } from './src/ppf.js'
 
@@ -100,7 +100,7 @@ const argv = yargs(process.argv.slice(2))
             fs.writeFileSync(argv.extraction, JSON.stringify(extractionData, null, 4));
         }
     })
-    .command({ // 
+    .command({ // alter
         command: 'alter',
         describe: 'Alter a source JSON file',
         builder: (yargs) => {
@@ -108,6 +108,11 @@ const argv = yargs(process.argv.slice(2))
             .option('drop', {
                 alias: 'd',
                 describe: 'Name to match for dropping nodes',
+                type: 'string',
+            })
+            .option('mask', {
+                alias: 'm',
+                describe: 'Name to match for masking nodes',
                 type: 'string',
             })
             .option('promote', {
@@ -134,6 +139,9 @@ const argv = yargs(process.argv.slice(2))
             let targetData = sourceData
             if (argv.drop != null) {
                 targetData = dropNodes(targetData, argv.drop)
+            }
+            if (argv.mask != null) {
+                targetData = maskNodes(targetData, argv.mask)
             }
             if (argv.promote != null) {
                 targetData = promoteNodes(targetData, argv.promote)
