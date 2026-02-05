@@ -301,11 +301,7 @@ export function dropNodes(sourceData, nodeNameToDrop) {
 export function maskNode(nodeInfo, nodeStructure) {
     switch (nodeStructure) {
         case 'binary-string-array':
-            nodeInfo.left = null
-            nodeInfo.top = null
-            nodeInfo.bytesPerRow = null
-            nodeInfo.rows = null
-            nodeInfo.grid = null
+            nodeInfo = null
             break
         case 'indexed-bitmap':
             for (let row = 0; row < nodeInfo.length; row++) {

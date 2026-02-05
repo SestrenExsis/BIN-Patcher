@@ -149,7 +149,7 @@ const argv = yargs(process.argv.slice(2))
             fs.writeFileSync(argv.target, JSON.stringify(targetData, null, 4));
         }
     })
-    .command({ // change
+    .command({ // WIP: change
         command: 'change',
         describe: 'Build a change file',
         builder: (yargs) => {
@@ -174,7 +174,7 @@ const argv = yargs(process.argv.slice(2))
             console.log(argv)
         }
     })
-    .command({ // patch
+    .command({ // WIP: patch
         command: 'patch',
         describe: 'Apply a changes file to a patch file',
         builder: (yargs) => {
@@ -226,19 +226,19 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('out', {
-                alias: 'o',
-                describe: 'Folder to output the PPF to',
+            .option('target', {
+                alias: 't',
+                describe: 'Path to the target PPF file to create',
                 type: 'string',
                 normalize: true,
             })
-            .demandOption(['extraction', 'patch', 'out'])
+            .demandOption(['extraction', 'patch', 'target'])
         },
         handler: (argv) => {
             let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
-            const ppfData = toPPF(extractionData, patchData)
-            fs.writeFileSync(argv.out + '/current-patch.ppf', ppfData);
+            const ppfData = toPPF(patchData, extractionData)
+            fs.writeFileSync(argv.target, ppfData);
         }
     })
     .command({ // address
