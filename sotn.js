@@ -96,7 +96,6 @@ const argv = yargs(process.argv.slice(2))
                 includeMeta: argv.includeMeta,
             }
             const extractionData = parseExtractionNode(bin, extractionTemplate, 0, extraOptions)
-            // TODO(sestren): Post-process the extraction data to scrub hidden data, rather than modify the parseExtractionNode function
             fs.writeFileSync(argv.extraction, JSON.stringify(extractionData, null, 4));
         }
     })

@@ -1,5 +1,14 @@
 
-import { Address, encodeString, encodeTextCrawl, GameData, getSizeOfType, toHex, toVal } from './common.js'
+import {
+    Address,
+    encodeShiftedString,
+    encodeString,
+    encodeTextCrawl,
+    GameData,
+    getSizeOfType,
+    toHex,
+    toVal
+} from './common.js'
 
 // TODO(sestren) structures:
 //     object-array:
@@ -86,7 +95,11 @@ export class PPF {
     }
 
     write(address, type, data, isOriginalValue=false) {
+        if (data == null) {
+            return
+        }
         let byteCount = 0
+        let value
         switch (type) {
             case 'int8':
             case 's8':
@@ -123,21 +136,30 @@ export class PPF {
                 let green = Math.floor(parseInt(data.substring(3, 5), 16) / 8)
                 let blue = Math.floor(parseInt(data.substring(5, 7), 16) / 8)
                 let alpha = Math.floor(parseInt(data.substring(7, 9), 16) / 128)
-                let value = (alpha << 15) + (blue << 10) + (green << 5) + red
+                value = (alpha << 15) + (blue << 10) + (green << 5) + red
                 this.buffer.writeUInt16LE(value, 0)
                 byteCount = 2
                 break
             case 'layout-rect':
-                // TODO(sestren): Write layout-rect changes back to PPF
+                value = (data.flags << 24) + (data.bottom << 18) + (data.right << 12) + (data.top << 6) + data.left
+                this.buffer.writeUInt32LE(value, 0)
+                byteCount = 4
                 break
             case 'zone-offset':
-                // TODO(sestren): Write zone-offset changes back to PPF
+                if (data == 'NULL') {
+                    value = 0x00000000
+                }
+                else {
+                    value = parseInt(data, 16) + 0x80180000
+                }
+                this.buffer.writeUInt32LE(value, 0)
+                byteCount = 4
                 break
             case 'string':
                 byteCount = encodeString(data, this.buffer, 0)
                 break
             case 'shifted-string':
-                // TODO(sestren): Write shifted-string changes back to PPF
+                byteCount = encodeShiftedString(data, this.buffer, 0)
                 break
             case 'text-crawl':
                 byteCount = encodeTextCrawl(data, this.buffer, 0)
@@ -156,12 +178,6 @@ export class PPF {
                 this.writes[addressKey].push(value)
             }
         }
-        // [null, 1, 2, 3]  --> UPDATE
-        // [null, 1, 2, 1]  --> UPDATE
-        // [null]           --> IDENTICAL
-        // [1]              --> UPDATE
-        // [1, 2, 3]        --> UPDATE
-        // [1, 2, 1]        --> IDENTICAL
     }
 
 }
