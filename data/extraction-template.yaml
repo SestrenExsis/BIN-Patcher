@@ -344,6 +344,15 @@ stages:
                         type: u16
     longLibrary:
         constants:
+            messages:
+                shopItemName1: 
+                    metadata:
+                        address:
+                            value: 0x02D088
+                            method: relative
+                        element:
+                            structure: value
+                            type: shifted-string
             shopPurchases:
                 metadata:
                     address:

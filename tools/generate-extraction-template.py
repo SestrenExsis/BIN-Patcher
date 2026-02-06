@@ -481,7 +481,7 @@ if __name__ == '__main__':
             if layer_defs is not None:
                 tilemaps = {}
                 for layer_def in layer_defs:
-                    if layer_def['tilesOffset'] is None:
+                    if layer_def['tilesOffset'] in (None, 'NULL'):
                         continue
                     tilemap_id = layer_def['tilesOffset']
                     layout_rect = layer_def['layoutRect']

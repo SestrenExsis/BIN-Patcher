@@ -1,7 +1,7 @@
 
 import { Address, GameData, getSizeOfType, toHex, toVal } from './common.js'
 
-function extractData(bin, elementInfo, offset=0) {
+function extractData(bin, elementInfo, offset) {
     switch (elementInfo.structure ?? 'none') {
         case 'object-array':
         case 'value-array':
@@ -28,7 +28,7 @@ function extractData(bin, elementInfo, offset=0) {
     }
 }
 
-function getOffset(bin, addressInfo, baseOffset=0) {
+function getOffset(bin, addressInfo, baseOffset) {
     let result = 0
     switch (addressInfo.method ?? 'none') {
         case 'absolute':
@@ -51,7 +51,7 @@ function getOffset(bin, addressInfo, baseOffset=0) {
     return result
 }
 
-function extractValue(bin, elementInfo, baseOffset=0) {
+function extractValue(bin, elementInfo, baseOffset) {
     let data = bin.set(toVal(baseOffset)).read(elementInfo.type)
     elementInfo.size = bin.prevRead.length
     const result = data
@@ -59,7 +59,7 @@ function extractValue(bin, elementInfo, baseOffset=0) {
     return result
 }
 
-function extractObject(bin, elementInfo, baseOffset=0) {
+function extractObject(bin, elementInfo, baseOffset) {
     const data = {}
     Object.entries(elementInfo.properties).forEach(([propName, propInfo]) => {
         const offset = toVal(baseOffset) + toVal(propInfo.offset)
@@ -77,7 +77,7 @@ function extractObject(bin, elementInfo, baseOffset=0) {
     return result
 }
 
-function extractArray(bin, elementInfo, baseOffset=0) {
+function extractArray(bin, elementInfo, baseOffset) {
     const data = []
     let offset = toVal(baseOffset)
     if (elementInfo.structure == 'value-array') {
@@ -130,24 +130,6 @@ function extractArray(bin, elementInfo, baseOffset=0) {
                                             break
                                     }
                                 })
-                                // if (processInfo.action == data.length) {
-                                //     offset += processInfo.action
-                                // }
-                                // {
-                                //     'action': 'get',
-                                //     'type': 'property',
-                                //     'property': 'bottom',
-                                // },
-                                // {
-                                //     'action': 'add',
-                                //     'type': 'constant',
-                                //     'constant': 1,
-                                // },
-                                // {
-                                //     'action': 'subtract',
-                                //     'type': 'property',
-                                //     'property': 'top',
-                                // }
                                 element[processInfo.propertyName] = finalValue
                                 break
                         }
@@ -180,7 +162,7 @@ function extractArray(bin, elementInfo, baseOffset=0) {
     return result
 }
 
-function extractIndexedBitmap(bin, elementInfo, baseOffset=0) {
+function extractIndexedBitmap(bin, elementInfo, baseOffset) {
     const data = []
     elementInfo.indexesPerByte = 2
     elementInfo.bytesPerRow = Math.floor(toVal(elementInfo.columns) / elementInfo.indexesPerByte)
@@ -200,7 +182,7 @@ function extractIndexedBitmap(bin, elementInfo, baseOffset=0) {
     return result
 }
 
-function extractTilemap(bin, elementInfo, baseOffset=0) {
+function extractTilemap(bin, elementInfo, baseOffset) {
     const data = []
     elementInfo.rows = 16 * toVal(elementInfo.heightInScreens)
     elementInfo.columns = 16 * toVal(elementInfo.widthInScreens)
@@ -219,7 +201,7 @@ function extractTilemap(bin, elementInfo, baseOffset=0) {
     return result
 }
 
-function extractCastleMapReveals(bin, elementInfo, baseOffset=0) {
+function extractCastleMapReveals(bin, elementInfo, baseOffset) {
     const data = []
     // Castle map reveal data is stored serially with a sentinel value of 0xFF to signify termination
     // Each section starts with a header that describes how much additional data is read for that particular section
@@ -263,7 +245,7 @@ function extractCastleMapReveals(bin, elementInfo, baseOffset=0) {
 
 // func_800F24F4: falseSaveRoom and finalSaveRoom
 
-export function parseExtractionNode(bin, extractionNode, baseOffset=0, includeData=true, includeMeta=true) {
+export function parseExtractionNode(bin, extractionNode, baseOffset, extraOptions) {
     // It is assumed that a node that specifies a metadata.element property 
     // will not have any other properties at the same scope as metadata
     let result = {}
@@ -273,18 +255,18 @@ export function parseExtractionNode(bin, extractionNode, baseOffset=0, includeDa
             nodeOffset = getOffset(bin, extractionNode.metadata.address, baseOffset)
         }
         if (extractionNode.metadata.hasOwnProperty('element')) {
-            if (includeData) {
+            if (extraOptions.includeData) {
                 result.data = extractData(bin, extractionNode.metadata.element, nodeOffset)
-                if (!includeMeta) {
+                if (!extraOptions.includeMeta) {
                     result = result.data
                 }
             }
-            if (includeMeta) {
+            if (extraOptions.includeMeta) {
                 result.metadata = {
                     address: nodeOffset,
                     element: extractionNode.metadata.element,
                 }
-                if (!includeData) {
+                if (!extraOptions.includeData) {
                     result = result.metadata
                 }
             }
@@ -295,7 +277,104 @@ export function parseExtractionNode(bin, extractionNode, baseOffset=0, includeDa
         nodeName != 'metadata' && nodeName != 'data'
     ))
     .forEach(([nodeName, nodeInfo]) => {
-        result[nodeName] = parseExtractionNode(bin, nodeInfo, nodeOffset, includeData, includeMeta)
+        result[nodeName] = parseExtractionNode(bin, nodeInfo, nodeOffset, extraOptions)
+    })
+    return result
+}
+
+export function dropNodes(sourceData, nodeNameToDrop) {
+    let result = {}
+    Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
+        if (nodeName == nodeNameToDrop) {
+            // Drop the node
+        }
+        else if (['metadata', 'data'].includes(nodeName)) {
+            result[nodeName] = nodeInfo
+        }
+        else {
+            result[nodeName] = dropNodes(nodeInfo, nodeNameToDrop)
+        }
+    })
+    return result
+}
+
+export function maskNode(nodeInfo, nodeStructure) {
+    switch (nodeStructure) {
+        case 'binary-string-array':
+            nodeInfo = null
+            break
+        case 'indexed-bitmap':
+            for (let row = 0; row < nodeInfo.length; row++) {
+                nodeInfo[row] = '.'.repeat(nodeInfo[row].length)
+            }
+            break
+        case 'object':
+            Object.keys(nodeInfo).forEach((propertyName) => {
+                if (propertyName.at(0) != '_') {
+                    nodeInfo[propertyName] = null
+                }
+            })
+            break
+        case 'object-array':
+            for (let index = 0; index < nodeInfo.length; index++) {
+                Object.keys(nodeInfo[index]).forEach((propertyName) => {
+                    if (propertyName.at(0) != '_') {
+                        nodeInfo[index][propertyName] = null
+                    }
+                })
+            }
+            break
+        case 'tilemap':
+            for (let row = 0; row < nodeInfo.length; row++) {
+                const columns = Math.floor((nodeInfo[row].length + 1) / 5)
+                
+                nodeInfo[row] = ('.... '.repeat(columns)).slice(0, -1)
+            }
+            break
+        case 'value':
+            nodeInfo = null
+            break
+        case 'value-array':
+            for (let index = 0; index < nodeInfo.length; index++) {
+                nodeInfo[index] = null
+            }
+            break
+        default:
+            nodeInfo = null
+            break
+    }
+    return nodeInfo
+}
+
+export function maskNodes(sourceData, nodeNameToMask) {
+    let result = {}
+    Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
+        if (nodeName == nodeNameToMask) {
+            const nodeStructure = sourceData.metadata.element.structure
+            result[nodeName] = maskNode(nodeInfo, nodeStructure)
+        }
+        else if (['metadata', 'data'].includes(nodeName)) {
+            result[nodeName] = nodeInfo
+        }
+        else {
+            result[nodeName] = maskNodes(nodeInfo, nodeNameToMask)
+        }
+    })
+    return result
+}
+
+export function promoteNodes(sourceData, nodeNameToPromote) {
+    let result = {}
+    Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
+        if (nodeName == nodeNameToPromote) {
+            result = nodeInfo
+        }
+        else if (['metadata', 'data'].includes(nodeName)) {
+            result[nodeName] = nodeInfo
+        }
+        else {
+            result[nodeName] = promoteNodes(nodeInfo, nodeNameToPromote)
+        }
     })
     return result
 }

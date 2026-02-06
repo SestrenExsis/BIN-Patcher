@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex, toVal } from './src/common.js'
-import { parseExtractionNode } from './src/extract.js'
+import { dropNodes, maskNodes, parseExtractionNode, promoteNodes } from './src/extract.js'
 import { applyChange } from './src/change.js'
 import { toPPF } from './src/ppf.js'
 
@@ -49,7 +49,7 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('data', {
+            .option('includeData', {
                 alias: 'd',
                 describe: 'Include data in the output',
                 type: 'boolean',
@@ -61,7 +61,13 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('meta', {
+            .option('hideData', {
+                alias: ['h', 'hide-data'],
+                describe: 'Display generic data instead of the data found',
+                type: 'boolean',
+                default: false,
+            })
+            .option('includeMeta', {
                 alias: 'm',
                 describe: 'Include metadata in the output',
                 type: 'boolean',
@@ -85,11 +91,64 @@ const argv = yargs(process.argv.slice(2))
             console.log('Digest of disc image', digest.toString('hex'))
             const bin = new GameData(buffer)
             let extractionTemplate = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
-            const extractionData = parseExtractionNode(bin, extractionTemplate, 0, argv.data, argv.meta)
+            let extraOptions = {
+                includeData: argv.includeData,
+                includeMeta: argv.includeMeta,
+            }
+            const extractionData = parseExtractionNode(bin, extractionTemplate, 0, extraOptions)
             fs.writeFileSync(argv.extraction, JSON.stringify(extractionData, null, 4));
         }
     })
-    .command({ // change
+    .command({ // alter
+        command: 'alter',
+        describe: 'Alter a source JSON file',
+        builder: (yargs) => {
+            return yargs
+            .option('drop', {
+                alias: 'd',
+                describe: 'Name to match for dropping nodes',
+                type: 'string',
+            })
+            .option('mask', {
+                alias: 'm',
+                describe: 'Name to match for masking nodes',
+                type: 'string',
+            })
+            .option('promote', {
+                alias: 'p',
+                describe: 'Name to match for promoting nodes',
+                type: 'string',
+            })
+            .option('source', {
+                alias: 's',
+                describe: 'Path to the source file to alter',
+                type: 'string',
+                normalize: true,
+            })
+            .option('target', {
+                alias: 't',
+                describe: 'Path to the target file to create',
+                type: 'string',
+                normalize: true,
+            })
+            .demandOption(['source', 'target'])
+        },
+        handler: (argv) => {
+            let sourceData = JSON.parse(fs.readFileSync(argv.source, 'utf8'))
+            let targetData = sourceData
+            if (argv.drop != null) {
+                targetData = dropNodes(targetData, argv.drop)
+            }
+            if (argv.mask != null) {
+                targetData = maskNodes(targetData, argv.mask)
+            }
+            if (argv.promote != null) {
+                targetData = promoteNodes(targetData, argv.promote)
+            }
+            fs.writeFileSync(argv.target, JSON.stringify(targetData, null, 4));
+        }
+    })
+    .command({ // WIP: change
         command: 'change',
         describe: 'Build a change file',
         builder: (yargs) => {
@@ -114,7 +173,7 @@ const argv = yargs(process.argv.slice(2))
             console.log(argv)
         }
     })
-    .command({ // patch
+    .command({ // WIP: patch
         command: 'patch',
         describe: 'Apply a changes file to a patch file',
         builder: (yargs) => {
@@ -166,19 +225,19 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('out', {
-                alias: 'o',
-                describe: 'Folder to output the PPF to',
+            .option('target', {
+                alias: 't',
+                describe: 'Path to the target PPF file to create',
                 type: 'string',
                 normalize: true,
             })
-            .demandOption(['extraction', 'patch', 'out'])
+            .demandOption(['extraction', 'patch', 'target'])
         },
         handler: (argv) => {
             let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
-            const ppfData = toPPF(extractionData, patchData)
-            fs.writeFileSync(argv.out + '/current-patch.ppf', ppfData);
+            const ppfData = toPPF(patchData, extractionData)
+            fs.writeFileSync(argv.target, ppfData);
         }
     })
     .command({ // address

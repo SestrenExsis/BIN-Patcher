@@ -1,1 +1,1 @@
-node sotn ppf -e "build/extraction.json" -p "build/current-patch.json" -o "build"
+node sotn ppf -e "build/extraction-masked-data.json" -p "build/current-patch.json" -t "build/current-patch.ppf"

@@ -167,7 +167,7 @@ export class GameData {
                 break
             case 'zone-offset':
                 if (value == 0x00000000) {
-                    result = null
+                    result = 'NULL'
                 }
                 else {
                     result = toHex(value - 0x80180000, 6)
@@ -341,10 +341,33 @@ export function decodeShiftedString(bytes) {
     return result
 }
 
+export function encodeShiftedString(string, buffer, start=0) {
+    let cursor = 0
+    for (let i = 0; i < string.length; i++) {
+        const char = string.charAt(i)
+        switch (char) {
+            default:
+                if ('abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789'.includes(char)) {
+                    buffer.writeUint8(char.charCodeAt(0) - 0x20, start + cursor)
+                    cursor++
+                }
+                break
+        }
+    }
+    buffer.writeUint8(0xFF, start + cursor)
+    cursor++
+    const padding = 4 - (cursor % 4)
+    for (let i = 0; i < padding; i++) {
+        buffer.writeUint8(0x00, start + cursor)
+        cursor++
+    }
+    const result = cursor
+    return result
+}
+
 export function decodeTextCrawl(bytes) {
     const ALIGN = '_'
     const DEFAULT = ' '
-    console.log('decodeTextCrawl')
     const text = [
         // NOTE(sestren): The first line has a fixed amount of indentation, it seems
         ALIGN.repeat(22),
