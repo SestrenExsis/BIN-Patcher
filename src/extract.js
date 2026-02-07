@@ -245,7 +245,7 @@ function extractCastleMapReveals(bin, elementInfo, baseOffset) {
 
 // func_800F24F4: falseSaveRoom and finalSaveRoom
 
-export function parseExtractionNode(bin, extractionNode, baseOffset, extraOptions) {
+export function parseExtractionNode(bin, extractionNode, baseOffset) {
     // It is assumed that a node that specifies a metadata.element property 
     // will not have any other properties at the same scope as metadata
     let result = {}
@@ -255,20 +255,10 @@ export function parseExtractionNode(bin, extractionNode, baseOffset, extraOption
             nodeOffset = getOffset(bin, extractionNode.metadata.address, baseOffset)
         }
         if (extractionNode.metadata.hasOwnProperty('element')) {
-            if (extraOptions.includeData) {
-                result.data = extractData(bin, extractionNode.metadata.element, nodeOffset)
-                if (!extraOptions.includeMeta) {
-                    result = result.data
-                }
-            }
-            if (extraOptions.includeMeta) {
-                result.metadata = {
-                    address: nodeOffset,
-                    element: extractionNode.metadata.element,
-                }
-                if (!extraOptions.includeData) {
-                    result = result.metadata
-                }
+            result.data = extractData(bin, extractionNode.metadata.element, nodeOffset)
+            result.metadata = {
+                address: nodeOffset,
+                element: extractionNode.metadata.element,
             }
         }
     }
@@ -277,7 +267,53 @@ export function parseExtractionNode(bin, extractionNode, baseOffset, extraOption
         nodeName != 'metadata' && nodeName != 'data'
     ))
     .forEach(([nodeName, nodeInfo]) => {
-        result[nodeName] = parseExtractionNode(bin, nodeInfo, nodeOffset, extraOptions)
+        result[nodeName] = parseExtractionNode(bin, nodeInfo, nodeOffset)
+    })
+    return result
+}
+
+export function aliasNodes(sourceData, aliasesData) {
+    let result = {}
+    Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
+        if (aliasesData !== null && aliasesData.hasOwnProperty(nodeName)) {
+            const aliasNode = aliasesData[nodeName]
+            let leafNodeFound = false
+            if (aliasesData[nodeName] !== null) {
+                const aliasesLookup = {}
+                let hasAliasLookup = false
+                Object.entries(aliasNode).forEach(([aliasName, aliasKey]) => {
+                    if (typeof aliasKey === 'number') {
+                        leafNodeFound = true
+                        if (nodeInfo.hasOwnProperty('data')) {
+                            hasAliasLookup = true
+                            aliasesLookup[aliasName] = aliasKey
+                            if (typeof nodeInfo.data[aliasKey] === 'object') {
+                                nodeInfo.data[aliasKey]._alias = aliasName
+                            }
+                        }
+                        else {
+                            if (typeof nodeInfo[aliasKey] === 'object') {
+                                nodeInfo[aliasKey]._alias = aliasName
+                            }
+                        }
+                    }
+                })
+                if (hasAliasLookup) {
+                    if (nodeInfo.hasOwnProperty('data')) {
+                        nodeInfo.aliases = aliasesLookup
+                    }
+                }
+            }
+            if (leafNodeFound) {
+                result[nodeName] = nodeInfo
+            }
+            else {
+                result[nodeName] = aliasNodes(nodeInfo, aliasNode)
+            }
+        }
+        else {
+            result[nodeName] = nodeInfo
+        }
     })
     return result
 }

@@ -2,8 +2,6 @@ import json
 import os
 import yaml
 
-# TODO(sestren): Familiar Events
-
 data = {
     'familiarEvents': {
         # NOTE(sestren): Which familiars correspond are educated guesses

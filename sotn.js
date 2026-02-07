@@ -2,7 +2,13 @@ import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex, toVal } from './src/common.js'
-import { dropNodes, maskNodes, parseExtractionNode, promoteNodes } from './src/extract.js'
+import {
+    aliasNodes,
+    dropNodes,
+    maskNodes,
+    parseExtractionNode,
+    promoteNodes,
+} from './src/extract.js'
 import { applyChange } from './src/change.js'
 import { toPPF } from './src/ppf.js'
 
@@ -49,29 +55,11 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('includeData', {
-                alias: 'd',
-                describe: 'Include data in the output',
-                type: 'boolean',
-                default: true,
-            })
             .option('extraction', {
                 alias: 'e',
                 describe: 'Path to the extraction file to create',
                 type: 'string',
                 normalize: true,
-            })
-            .option('hideData', {
-                alias: ['h', 'hide-data'],
-                describe: 'Display generic data instead of the data found',
-                type: 'boolean',
-                default: false,
-            })
-            .option('includeMeta', {
-                alias: 'm',
-                describe: 'Include metadata in the output',
-                type: 'boolean',
-                default: true,
             })
             .option('template', {
                 alias: 't',
@@ -91,11 +79,7 @@ const argv = yargs(process.argv.slice(2))
             console.log('Digest of disc image', digest.toString('hex'))
             const bin = new GameData(buffer)
             let extractionTemplate = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
-            let extraOptions = {
-                includeData: argv.includeData,
-                includeMeta: argv.includeMeta,
-            }
-            const extractionData = parseExtractionNode(bin, extractionTemplate, 0, extraOptions)
+            const extractionData = parseExtractionNode(bin, extractionTemplate, 0)
             fs.writeFileSync(argv.extraction, JSON.stringify(extractionData, null, 4));
         }
     })
@@ -104,6 +88,12 @@ const argv = yargs(process.argv.slice(2))
         describe: 'Alter a source JSON file',
         builder: (yargs) => {
             return yargs
+            .option('aliases', {
+                alias: 'a',
+                describe: 'Path to the aliases file for renaming properties and adding aliases to arrays',
+                type: 'string',
+                normalize: true,
+            })
             .option('drop', {
                 alias: 'd',
                 describe: 'Name to match for dropping nodes',
@@ -144,6 +134,10 @@ const argv = yargs(process.argv.slice(2))
             }
             if (argv.promote != null) {
                 targetData = promoteNodes(targetData, argv.promote)
+            }
+            if (argv.aliases != null) {
+                let aliasesData = JSON.parse(fs.readFileSync(argv.aliases, 'utf8'))
+                targetData = aliasNodes(targetData, aliasesData)
             }
             fs.writeFileSync(argv.target, JSON.stringify(targetData, null, 4));
         }
