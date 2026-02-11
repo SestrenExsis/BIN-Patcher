@@ -5,8 +5,8 @@ import yaml
 data = {
     'bossTeleporters': {
         'cutsceneMeetingMariaInClockRoom': ('stages.marbleGallery.rooms.clockRoom', 0, 0),
-        'bossOlrox': ('stages.olroxsQuarters.rooms.olroxsRoom', 0, 1),
-        'bossGranfaloon': ('stages.catacombs.rooms.granfaloonsLair', 0, 1),
+        'bossOlroxRight': ('stages.olroxsQuarters.rooms.olroxsRoom', 0, 1),
+        'bossGranfaloonRight': ('stages.catacombs.rooms.granfaloonsLair', 0, 1),
         'bossMinotaurAndWerewolfLeft': ('stages.colosseum.rooms.arena', 0, 0),
         'bossMinotaurAndWerewolfRight': ('stages.colosseum.rooms.arena', 0, 1),
     #
