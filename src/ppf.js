@@ -21,7 +21,7 @@ import {
 //     value:
 //         - simple replace only
 //     tilemap:
-//         - TODO(sestren): add to extract
+//         - can specify a range of tiles
 //     indexed-bitmap:
 //         - can specify a square, sparse region, with some restrictions
 //     binary-string-array:
@@ -183,10 +183,6 @@ export class PPF {
 }
 
 export function parsePatchNode(ppf, patchNode, extractionNode=null) {
-    // A write occurs whenever ANY of the following are true:
-    // - the patch node defines both metadata and data properties
-    // - the patch node has a corresponding extraction node
-    // A null or surrogate null element in a patch node is to be interpreted as "revert to vanilla data"
     let targetMeta = null
     let sourceData = null
     let targetData = null

@@ -4,7 +4,44 @@ import crypto from 'crypto'
 import { Address, GameData, toHex } from './src/common.js'
 
 const argv = yargs(process.argv.slice(2))
-    .command({ // search
+    .command({ // alias
+        command: 'alias',
+        describe: 'Reformat room names for stage in alias file',
+        builder: (yargs) => {
+            return yargs
+        },
+        handler: (argv) => {
+            let aliasData = JSON.parse(fs.readFileSync('./build/alias.json', 'utf8'))
+            console.log('stages:')
+            Object.entries(aliasData).forEach(([stageName, aliasInfo]) => {
+                let stageProperty = stageName
+                    .replaceAll(" to ", " To ")
+                    .replaceAll(" of ", " Of ")
+                    .replaceAll(" and ", " And ")
+                    .replaceAll(" ID ", " Id ")
+                    .replaceAll("'", '')
+                    .replaceAll('-', '')
+                    .replaceAll(' ', '')
+                stageProperty = stageProperty.at(0).toLowerCase() + stageProperty.slice(1)
+                console.log(`    ${stageProperty}:`)
+                console.log('        rooms:')
+                Object.entries(aliasInfo).forEach(([roomName, roomKey]) => {
+                    let roomProperty = roomName
+                        .replaceAll("Fake Room with", "trigger")
+                        .replaceAll(" to ", " To ")
+                        .replaceAll(" of ", " Of ")
+                        .replaceAll(" and ", " And ")
+                        .replaceAll(" ID ", " Id ")
+                        .replaceAll("'", '')
+                        .replaceAll('-', '')
+                        .replaceAll(' ', '')
+                    roomProperty = roomProperty.at(0).toLowerCase() + roomProperty.slice(1)
+                    console.log(`            ${roomProperty}: ${roomKey}`)
+                })
+            })
+        }
+    })
+    .command({ // tilemap
         command: 'tilemap',
         describe: 'Search for matching stage info for tilemaps',
         builder: (yargs) => {

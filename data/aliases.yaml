@@ -2,7 +2,7 @@
 bossTeleporters:
     cutsceneMeetingMariaInClockRoom: 0
     bossOlroxRight: 3
-    bossGranfaloon: 4
+    bossGranfaloonRight: 4
     bossMinotaurAndWerewolfLeft: 5
     bossMinotaurAndWerewolfRight: 6
     bossScyllaLeft: 7
@@ -24,12 +24,13 @@ bossTeleporters:
     bossCreatureRight: 23
     bossCreatureLeft: 24
     bossDoppelganger40: 25
-    bossAkmodanII: 26
-    bossGalamoth: 27
+    bossAkmodanIILeft: 26
+    bossGalamothLeft: 27
 constants:
     castleMapColorPalettes:
         dra:
             unrevealed: 0
+            exploredFills: 1
             revealedFills: 3
             saveRoomFills: 4
             warpRoomFills: 5
@@ -37,59 +38,365 @@ constants:
             exploredBorders: 14
         ric:
             unrevealed: 0
+            exploredFills: 1
             revealedFills: 3
             saveRoomFills: 4
             warpRoomFills: 5
             revealedBorders: 13
             exploredBorders: 14
 familiarEvents:
-    catacombsDarkRoomBat: 1
-    catacombsDarkRoomGhost: 2
-    longLibraryShopDemon: 3
-    abandonedMineDemonSwitchDemon: 4
-    royalChapelConfessionalBoothDemon: 5
-    caveDemonSwitchDemon: 6
-    catacombsDarkRoomDemon: 7
-    longLibraryShopNoseDevil: 8
-    abandonedMineDemonSwitchNoseDevil: 9
-    royalChapelConfessionalBoothNoseDevil: 10
-    caveDemonSwitchNoseDevil: 11
-    catacombsDarkRoomNoseDevil: 12
-    longLibraryShopFaerie: 13
-    royalChapelConfessionalBoothFaerie: 14
-    catacombsDarkRoomFaerie1: 15
-    colosseumMistGateFaerie: 16
-    outerWallMistGateFaerie: 17
-    longLibraryMistGateFaerie: 18
-    royalChapelMistGateFaerie: 19
-    undergroundCavernsBreakableFloorFaerie: 20
-    undergroundCavernsBreakableWallFaerie: 21
-    alchemyLaboratoryBreakableWallFaerie: 22
-    alchemyLaboratoryBreakableFloorFaerie: 23
-    olroxsQuartersBreakableWallFaerie: 24
-    longLibrarySecretBookcaseFaerie: 25
-    clockTowerRightBreakableWallFaerie: 26
-    clockTowerLeftBreakableWallFaerie: 27
-    catacombsDarkRoomFaerie2: 28
-    longLibraryShopYousei: 29
-    royalChapelConfessionalBoothYousei: 30
-    catacombsDarkRoomYousei1: 31
-    colosseum.MistGateYousei: 32
-    outerWall.MistGateYousei: 33
-    longLibraryMistGateYousei: 34
-    royalChapelMistGateYousei: 35
-    undergroundCavernsBreakableFloorYousei: 36
-    undergroundCavernsBreakableWallYousei: 37
-    alchemyLaboratoryBreakableWallYousei: 38
-    alchemyLaboratoryBreakableFloorYousei: 39
-    olroxsQuartersBreakableWallYousei: 40
-    longLibrarySecretBookcaseYousei: 41
-    clockTowerRightBreakableWallYousei: 42
-    clockTowerLeftBreakableWallYousei: 43
-    catacombsDarkRoomYousei2: 44
-    longLibraryShopSword: 45
-    royalChapelConfessionalBoothSword: 46
-    catacombsDarkRoomSword: 47
+    bat:
+        catacombsDarkRoomBat: 1
+        catacombsDarkRoomGhost: 2
+        longLibraryShopDemon: 3
+        abandonedMineDemonSwitchDemon: 4
+        royalChapelConfessionalBoothDemon: 5
+        caveDemonSwitchDemon: 6
+        catacombsDarkRoomDemon: 7
+        longLibraryShopNoseDevil: 8
+        abandonedMineDemonSwitchNoseDevil: 9
+        royalChapelConfessionalBoothNoseDevil: 10
+        caveDemonSwitchNoseDevil: 11
+        catacombsDarkRoomNoseDevil: 12
+        longLibraryShopFaerie: 13
+        royalChapelConfessionalBoothFaerie: 14
+        catacombsDarkRoomFaerie1: 15
+        colosseumMistGateFaerie: 16
+        outerWallMistGateFaerie: 17
+        longLibraryMistGateFaerie: 18
+        royalChapelMistGateFaerie: 19
+        undergroundCavernsBreakableFloorFaerie: 20
+        undergroundCavernsBreakableWallFaerie: 21
+        alchemyLaboratoryBreakableWallFaerie: 22
+        alchemyLaboratoryBreakableFloorFaerie: 23
+        olroxsQuartersBreakableWallFaerie: 24
+        longLibrarySecretBookcaseFaerie: 25
+        clockTowerRightBreakableWallFaerie: 26
+        clockTowerLeftBreakableWallFaerie: 27
+        catacombsDarkRoomFaerie2: 28
+        longLibraryShopYousei: 29
+        royalChapelConfessionalBoothYousei: 30
+        catacombsDarkRoomYousei1: 31
+        colosseum.MistGateYousei: 32
+        outerWall.MistGateYousei: 33
+        longLibraryMistGateYousei: 34
+        royalChapelMistGateYousei: 35
+        undergroundCavernsBreakableFloorYousei: 36
+        undergroundCavernsBreakableWallYousei: 37
+        alchemyLaboratoryBreakableWallYousei: 38
+        alchemyLaboratoryBreakableFloorYousei: 39
+        olroxsQuartersBreakableWallYousei: 40
+        longLibrarySecretBookcaseYousei: 41
+        clockTowerRightBreakableWallYousei: 42
+        clockTowerLeftBreakableWallYousei: 43
+        catacombsDarkRoomYousei2: 44
+        longLibraryShopSword: 45
+        royalChapelConfessionalBoothSword: 46
+        catacombsDarkRoomSword: 47
+    demon:
+        catacombsDarkRoomBat: 1
+        catacombsDarkRoomGhost: 2
+        longLibraryShopDemon: 3
+        abandonedMineDemonSwitchDemon: 4
+        royalChapelConfessionalBoothDemon: 5
+        caveDemonSwitchDemon: 6
+        catacombsDarkRoomDemon: 7
+        longLibraryShopNoseDevil: 8
+        abandonedMineDemonSwitchNoseDevil: 9
+        royalChapelConfessionalBoothNoseDevil: 10
+        caveDemonSwitchNoseDevil: 11
+        catacombsDarkRoomNoseDevil: 12
+        longLibraryShopFaerie: 13
+        royalChapelConfessionalBoothFaerie: 14
+        catacombsDarkRoomFaerie1: 15
+        colosseumMistGateFaerie: 16
+        outerWallMistGateFaerie: 17
+        longLibraryMistGateFaerie: 18
+        royalChapelMistGateFaerie: 19
+        undergroundCavernsBreakableFloorFaerie: 20
+        undergroundCavernsBreakableWallFaerie: 21
+        alchemyLaboratoryBreakableWallFaerie: 22
+        alchemyLaboratoryBreakableFloorFaerie: 23
+        olroxsQuartersBreakableWallFaerie: 24
+        longLibrarySecretBookcaseFaerie: 25
+        clockTowerRightBreakableWallFaerie: 26
+        clockTowerLeftBreakableWallFaerie: 27
+        catacombsDarkRoomFaerie2: 28
+        longLibraryShopYousei: 29
+        royalChapelConfessionalBoothYousei: 30
+        catacombsDarkRoomYousei1: 31
+        colosseum.MistGateYousei: 32
+        outerWall.MistGateYousei: 33
+        longLibraryMistGateYousei: 34
+        royalChapelMistGateYousei: 35
+        undergroundCavernsBreakableFloorYousei: 36
+        undergroundCavernsBreakableWallYousei: 37
+        alchemyLaboratoryBreakableWallYousei: 38
+        alchemyLaboratoryBreakableFloorYousei: 39
+        olroxsQuartersBreakableWallYousei: 40
+        longLibrarySecretBookcaseYousei: 41
+        clockTowerRightBreakableWallYousei: 42
+        clockTowerLeftBreakableWallYousei: 43
+        catacombsDarkRoomYousei2: 44
+        longLibraryShopSword: 45
+        royalChapelConfessionalBoothSword: 46
+        catacombsDarkRoomSword: 47
+    faerie:
+        catacombsDarkRoomBat: 1
+        catacombsDarkRoomGhost: 2
+        longLibraryShopDemon: 3
+        abandonedMineDemonSwitchDemon: 4
+        royalChapelConfessionalBoothDemon: 5
+        caveDemonSwitchDemon: 6
+        catacombsDarkRoomDemon: 7
+        longLibraryShopNoseDevil: 8
+        abandonedMineDemonSwitchNoseDevil: 9
+        royalChapelConfessionalBoothNoseDevil: 10
+        caveDemonSwitchNoseDevil: 11
+        catacombsDarkRoomNoseDevil: 12
+        longLibraryShopFaerie: 13
+        royalChapelConfessionalBoothFaerie: 14
+        catacombsDarkRoomFaerie1: 15
+        colosseumMistGateFaerie: 16
+        outerWallMistGateFaerie: 17
+        longLibraryMistGateFaerie: 18
+        royalChapelMistGateFaerie: 19
+        undergroundCavernsBreakableFloorFaerie: 20
+        undergroundCavernsBreakableWallFaerie: 21
+        alchemyLaboratoryBreakableWallFaerie: 22
+        alchemyLaboratoryBreakableFloorFaerie: 23
+        olroxsQuartersBreakableWallFaerie: 24
+        longLibrarySecretBookcaseFaerie: 25
+        clockTowerRightBreakableWallFaerie: 26
+        clockTowerLeftBreakableWallFaerie: 27
+        catacombsDarkRoomFaerie2: 28
+        longLibraryShopYousei: 29
+        royalChapelConfessionalBoothYousei: 30
+        catacombsDarkRoomYousei1: 31
+        colosseum.MistGateYousei: 32
+        outerWall.MistGateYousei: 33
+        longLibraryMistGateYousei: 34
+        royalChapelMistGateYousei: 35
+        undergroundCavernsBreakableFloorYousei: 36
+        undergroundCavernsBreakableWallYousei: 37
+        alchemyLaboratoryBreakableWallYousei: 38
+        alchemyLaboratoryBreakableFloorYousei: 39
+        olroxsQuartersBreakableWallYousei: 40
+        longLibrarySecretBookcaseYousei: 41
+        clockTowerRightBreakableWallYousei: 42
+        clockTowerLeftBreakableWallYousei: 43
+        catacombsDarkRoomYousei2: 44
+        longLibraryShopSword: 45
+        royalChapelConfessionalBoothSword: 46
+        catacombsDarkRoomSword: 47
+    ghost:
+        catacombsDarkRoomBat: 1
+        catacombsDarkRoomGhost: 2
+        longLibraryShopDemon: 3
+        abandonedMineDemonSwitchDemon: 4
+        royalChapelConfessionalBoothDemon: 5
+        caveDemonSwitchDemon: 6
+        catacombsDarkRoomDemon: 7
+        longLibraryShopNoseDevil: 8
+        abandonedMineDemonSwitchNoseDevil: 9
+        royalChapelConfessionalBoothNoseDevil: 10
+        caveDemonSwitchNoseDevil: 11
+        catacombsDarkRoomNoseDevil: 12
+        longLibraryShopFaerie: 13
+        royalChapelConfessionalBoothFaerie: 14
+        catacombsDarkRoomFaerie1: 15
+        colosseumMistGateFaerie: 16
+        outerWallMistGateFaerie: 17
+        longLibraryMistGateFaerie: 18
+        royalChapelMistGateFaerie: 19
+        undergroundCavernsBreakableFloorFaerie: 20
+        undergroundCavernsBreakableWallFaerie: 21
+        alchemyLaboratoryBreakableWallFaerie: 22
+        alchemyLaboratoryBreakableFloorFaerie: 23
+        olroxsQuartersBreakableWallFaerie: 24
+        longLibrarySecretBookcaseFaerie: 25
+        clockTowerRightBreakableWallFaerie: 26
+        clockTowerLeftBreakableWallFaerie: 27
+        catacombsDarkRoomFaerie2: 28
+        longLibraryShopYousei: 29
+        royalChapelConfessionalBoothYousei: 30
+        catacombsDarkRoomYousei1: 31
+        colosseum.MistGateYousei: 32
+        outerWall.MistGateYousei: 33
+        longLibraryMistGateYousei: 34
+        royalChapelMistGateYousei: 35
+        undergroundCavernsBreakableFloorYousei: 36
+        undergroundCavernsBreakableWallYousei: 37
+        alchemyLaboratoryBreakableWallYousei: 38
+        alchemyLaboratoryBreakableFloorYousei: 39
+        olroxsQuartersBreakableWallYousei: 40
+        longLibrarySecretBookcaseYousei: 41
+        clockTowerRightBreakableWallYousei: 42
+        clockTowerLeftBreakableWallYousei: 43
+        catacombsDarkRoomYousei2: 44
+        longLibraryShopSword: 45
+        royalChapelConfessionalBoothSword: 46
+        catacombsDarkRoomSword: 47
+    noseDemon:
+        catacombsDarkRoomBat: 1
+        catacombsDarkRoomGhost: 2
+        longLibraryShopDemon: 3
+        abandonedMineDemonSwitchDemon: 4
+        royalChapelConfessionalBoothDemon: 5
+        caveDemonSwitchDemon: 6
+        catacombsDarkRoomDemon: 7
+        longLibraryShopNoseDevil: 8
+        abandonedMineDemonSwitchNoseDevil: 9
+        royalChapelConfessionalBoothNoseDevil: 10
+        caveDemonSwitchNoseDevil: 11
+        catacombsDarkRoomNoseDevil: 12
+        longLibraryShopFaerie: 13
+        royalChapelConfessionalBoothFaerie: 14
+        catacombsDarkRoomFaerie1: 15
+        colosseumMistGateFaerie: 16
+        outerWallMistGateFaerie: 17
+        longLibraryMistGateFaerie: 18
+        royalChapelMistGateFaerie: 19
+        undergroundCavernsBreakableFloorFaerie: 20
+        undergroundCavernsBreakableWallFaerie: 21
+        alchemyLaboratoryBreakableWallFaerie: 22
+        alchemyLaboratoryBreakableFloorFaerie: 23
+        olroxsQuartersBreakableWallFaerie: 24
+        longLibrarySecretBookcaseFaerie: 25
+        clockTowerRightBreakableWallFaerie: 26
+        clockTowerLeftBreakableWallFaerie: 27
+        catacombsDarkRoomFaerie2: 28
+        longLibraryShopYousei: 29
+        royalChapelConfessionalBoothYousei: 30
+        catacombsDarkRoomYousei1: 31
+        colosseum.MistGateYousei: 32
+        outerWall.MistGateYousei: 33
+        longLibraryMistGateYousei: 34
+        royalChapelMistGateYousei: 35
+        undergroundCavernsBreakableFloorYousei: 36
+        undergroundCavernsBreakableWallYousei: 37
+        alchemyLaboratoryBreakableWallYousei: 38
+        alchemyLaboratoryBreakableFloorYousei: 39
+        olroxsQuartersBreakableWallYousei: 40
+        longLibrarySecretBookcaseYousei: 41
+        clockTowerRightBreakableWallYousei: 42
+        clockTowerLeftBreakableWallYousei: 43
+        catacombsDarkRoomYousei2: 44
+        longLibraryShopSword: 45
+        royalChapelConfessionalBoothSword: 46
+        catacombsDarkRoomSword: 47
+    sword:
+        catacombsDarkRoomBat: 1
+        catacombsDarkRoomGhost: 2
+        longLibraryShopDemon: 3
+        abandonedMineDemonSwitchDemon: 4
+        royalChapelConfessionalBoothDemon: 5
+        caveDemonSwitchDemon: 6
+        catacombsDarkRoomDemon: 7
+        longLibraryShopNoseDevil: 8
+        abandonedMineDemonSwitchNoseDevil: 9
+        royalChapelConfessionalBoothNoseDevil: 10
+        caveDemonSwitchNoseDevil: 11
+        catacombsDarkRoomNoseDevil: 12
+        longLibraryShopFaerie: 13
+        royalChapelConfessionalBoothFaerie: 14
+        catacombsDarkRoomFaerie1: 15
+        colosseumMistGateFaerie: 16
+        outerWallMistGateFaerie: 17
+        longLibraryMistGateFaerie: 18
+        royalChapelMistGateFaerie: 19
+        undergroundCavernsBreakableFloorFaerie: 20
+        undergroundCavernsBreakableWallFaerie: 21
+        alchemyLaboratoryBreakableWallFaerie: 22
+        alchemyLaboratoryBreakableFloorFaerie: 23
+        olroxsQuartersBreakableWallFaerie: 24
+        longLibrarySecretBookcaseFaerie: 25
+        clockTowerRightBreakableWallFaerie: 26
+        clockTowerLeftBreakableWallFaerie: 27
+        catacombsDarkRoomFaerie2: 28
+        longLibraryShopYousei: 29
+        royalChapelConfessionalBoothYousei: 30
+        catacombsDarkRoomYousei1: 31
+        colosseum.MistGateYousei: 32
+        outerWall.MistGateYousei: 33
+        longLibraryMistGateYousei: 34
+        royalChapelMistGateYousei: 35
+        undergroundCavernsBreakableFloorYousei: 36
+        undergroundCavernsBreakableWallYousei: 37
+        alchemyLaboratoryBreakableWallYousei: 38
+        alchemyLaboratoryBreakableFloorYousei: 39
+        olroxsQuartersBreakableWallYousei: 40
+        longLibrarySecretBookcaseYousei: 41
+        clockTowerRightBreakableWallYousei: 42
+        clockTowerLeftBreakableWallYousei: 43
+        catacombsDarkRoomYousei2: 44
+        longLibraryShopSword: 45
+        royalChapelConfessionalBoothSword: 46
+        catacombsDarkRoomSword: 47
+    yousei:
+        catacombsDarkRoomBat: 1
+        catacombsDarkRoomGhost: 2
+        longLibraryShopDemon: 3
+        abandonedMineDemonSwitchDemon: 4
+        royalChapelConfessionalBoothDemon: 5
+        caveDemonSwitchDemon: 6
+        catacombsDarkRoomDemon: 7
+        longLibraryShopNoseDevil: 8
+        abandonedMineDemonSwitchNoseDevil: 9
+        royalChapelConfessionalBoothNoseDevil: 10
+        caveDemonSwitchNoseDevil: 11
+        catacombsDarkRoomNoseDevil: 12
+        longLibraryShopFaerie: 13
+        royalChapelConfessionalBoothFaerie: 14
+        catacombsDarkRoomFaerie1: 15
+        colosseumMistGateFaerie: 16
+        outerWallMistGateFaerie: 17
+        longLibraryMistGateFaerie: 18
+        royalChapelMistGateFaerie: 19
+        undergroundCavernsBreakableFloorFaerie: 20
+        undergroundCavernsBreakableWallFaerie: 21
+        alchemyLaboratoryBreakableWallFaerie: 22
+        alchemyLaboratoryBreakableFloorFaerie: 23
+        olroxsQuartersBreakableWallFaerie: 24
+        longLibrarySecretBookcaseFaerie: 25
+        clockTowerRightBreakableWallFaerie: 26
+        clockTowerLeftBreakableWallFaerie: 27
+        catacombsDarkRoomFaerie2: 28
+        longLibraryShopYousei: 29
+        royalChapelConfessionalBoothYousei: 30
+        catacombsDarkRoomYousei1: 31
+        colosseum.MistGateYousei: 32
+        outerWall.MistGateYousei: 33
+        longLibraryMistGateYousei: 34
+        royalChapelMistGateYousei: 35
+        undergroundCavernsBreakableFloorYousei: 36
+        undergroundCavernsBreakableWallYousei: 37
+        alchemyLaboratoryBreakableWallYousei: 38
+        alchemyLaboratoryBreakableFloorYousei: 39
+        olroxsQuartersBreakableWallYousei: 40
+        longLibrarySecretBookcaseYousei: 41
+        clockTowerRightBreakableWallYousei: 42
+        clockTowerLeftBreakableWallYousei: 43
+        catacombsDarkRoomYousei2: 44
+        longLibraryShopSword: 45
+        royalChapelConfessionalBoothSword: 46
+        catacombsDarkRoomSword: 47
+secretMapTileReveals:
+    anteroomStaircase: 11
+    demonSwitch: 2
+    snakeColumn: 3
+    alchemyLaboratoryBreakableFloor: 1
+    alchemyLaboratoryBreakableWall: 0
+    jewelSwordPassage: 6
+    clockTowerSecretWall: 5
+    clockTowerBreakableWall: 4
+    colosseumBreakableCeiling: 8
+    colosseumUnknown: 7
+    marbleGallerySecretFloor: 14
+    olroxsQuartersBreakableCeiling: 10
+    olroxsQuartersBreakableWall: 9
+    undergroundCavernsBreakableFloor: 12
+    undergroundCavernsBreakableWall: 13
 stages:
     abandonedMine:
         entities:
@@ -104,9 +411,9 @@ stages:
             cerberusRoom: 2
             demonSwitchRoom: 3
             demonCardRoom: 11
-            fakeRoomToCatacombs: 18
-            fakeRoomToUndergroundCaverns: 16
-            fakeRoomToWarpRooms: 17
+            triggerTeleporterToCatacombs: 18
+            triggerTeleporterToUndergroundCaverns: 16
+            triggerTeleporterToWarpRooms: 17
             fourWayIntersection: 7
             karmaCoinRoom: 9
             loadingRoomToCatacombs: 12
@@ -115,13 +422,12 @@ stages:
             lowerStairwell: 8
             peanutsRoom: 6
             saveRoom: 15
-            snakColumn: 5
+            snakeColumn: 5
             venusWeedRoom: 4
             wellLitSkullRoom: 1
             wolfsHeadColumn: 0
         tilemaps:
             bend: '0x00a960'
-            cerberusRoom: ''
     alchemyLaboratory:
         rooms:
             batCardRoom: 0
@@ -136,9 +442,9 @@ stages:
             entryway: 10
             exitToMarbleGallery: 20
             exitToRoyalChapel: 1
-            fakeRoomToCastleEntrance: 31
-            fakeRoomToMarbleGallery: 29
-            fakeRoomToRoyalChapel: 30
+            triggerTeleporterToCastleEntrance: 31
+            triggerTeleporterToMarbleGallery: 29
+            triggerTeleporterToRoyalChapel: 30
             glassVats: 7
             heartMaxUpRoom: 9
             loadingRoomToCastleEntrance: 28
@@ -156,11 +462,204 @@ stages:
             tallSpittleboneRoom: 11
             tallZigZagRoom: 14
             tetrominoRoom: 19
+    antiChapel:
+        rooms:
+            chapelStaircase: 11
+            confessionalBooth: 7
+            emptyRoom: 10
+            triggerTeleporterToAlchemyLaboratory: 22
+            triggerTeleporterToCastleKeep: 25
+            triggerTeleporterToColosseum: 23
+            triggerTeleporterToOlroxsQuarters: 24
+            gogglesRoom: 8
+            hippogryphRoom: 4
+            leftTower: 13
+            loadingRoomToAlchemyLaboratory: 19
+            loadingRoomToCastleKeep: 15
+            loadingRoomToColosseum: 20
+            loadingRoomToOlroxsQuarters: 21
+            middleTower: 14
+            nave: 9
+            pushingStatueShortcut: 6
+            rightTower: 17
+            saveRoomA: 18
+            saveRoomB: 16
+            silverRingRoom: 0
+            spikeHallway: 1
+            statueLedge: 12
+            walkwayBetweenTowers: 2
+            walkwayLeftOfHippogryph: 3
+            walkwayRightOfHippogryph: 5
+    blackMarbleGallery:
+        rooms:
+            alucartRoom: 25
+            beneathDropoff: 4
+            beneathLeftTrapdoor: 23
+            beneathRightTrapdoor: 24
+            blueDoorRoom: 12
+            clockRoom: 9
+            dropoff: 5
+            elevatorRoom: 21
+            emptyRoom: 11
+            entrance: 6
+            triggerTeleporterToAlchemyLaboratory: 36
+            triggerTeleporterToCastleCenter: 34
+            triggerTeleporterToCastleEntrance: 33
+            triggerTeleporterToOlroxsQuarters: 38
+            triggerTeleporterToOuterWall: 37
+            triggerTeleporterToUndergroundCaverns: 35
+            gravityBootsRoom: 20
+            leftOfClockRoom: 10
+            loadingRoomToAlchemyLaboratory: 28
+            loadingRoomToCastleEntrance: 30
+            loadingRoomToOlroxsQuarters: 29
+            loadingRoomToOuterWall: 26
+            loadingRoomToUndergroundCaverns: 27
+            longHallway: 8
+            ouijaTableStairway: 15
+            pathwayAfterLeftStatue: 13
+            pathwayAfterRightStatue: 14
+            powerUpRoom: 22
+            rightOfClockRoom: 19
+            sShapedHallways: 0
+            saveRoomA: 31
+            saveRoomB: 32
+            slingerStaircase: 18
+            spiritOrbRoom: 2
+            stainedGlassCorner: 3
+            stairwellToUndergroundCaverns: 17
+            stopwatchRoom: 7
+            tallStainedGlassWindows: 1
+            threePaths: 16
+    bossAkmodanII:
+        rooms:
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+            olroxsRoom: 0
+    bossBeelzebub:
+        rooms:
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+            triggerTeleporterC: 3
+            slograAndGaibonRoom: 0
     bossCerberus:
         rooms:
             cerberusRoom: 0
-            fakeRoomA: 1
-            fakeRoomB: 2
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+    bossCreature:
+        rooms:
+            doppelgangerRoom: 0
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+    bossDeath:
+        rooms:
+            cerberusRoom: 0
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+    bossDoppelganger10:
+        rooms:
+            doppelgangerRoom: 0
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+    bossDoppelganger40:
+        rooms:
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+            scyllaWyrmRoom: 0
+    bossGalamoth:
+        rooms:
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+            granfaloonsLair: 0
+    bossGranfaloon:
+        rooms:
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+            granfaloonsLair: 0
+    bossHippogryph:
+        rooms:
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+            hippogryphRoom: 0
+    bossMedusa:
+        rooms:
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+            hippogryphRoom: 0
+    bossMinotaurAndWerewolf:
+        rooms:
+            arena: 0
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+    bossOlrox:
+        rooms:
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+            olroxsRoom: 0
+    bossRichter:
+        rooms:
+            throneRoom: 0
+    bossScylla:
+        rooms:
+            crystalCloakRoom: 3
+            triggerTeleporterA: 4
+            risingWaterRoom: 2
+            scyllaRoom: 0
+            scyllaWyrmRoom: 1
+    bossShaftAndDracula:
+        rooms:
+            elevatorShaft: 0
+            centerCube: 1
+            unknownRoomId02: 2
+            triggerTeleporterA: 3
+    bossSuccubus:
+        rooms:
+            unknownRoomId00: 0
+            unknownRoomId01: 1
+    bossTrio:
+        rooms:
+            arena: 0
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+    castleCenter:
+        rooms:
+            centerCube: 1
+            elevatorShaft: 0
+            triggerTeleporterToBO6: 4
+            triggerTeleporterToMarbleGallery: 3
+            unknownRoomId02: 2
+    castleEntranceRevisited:
+        rooms:
+            afterDrawbridge: 0
+            atticEntrance: 6
+            atticHallway: 5
+            atticStaircase: 4
+            cubeOfZoeRoom: 15
+            dropUnderPortcullis: 1
+            triggerTeleporterToAlchemyLaboratory: 25
+            triggerTeleporterToMarbleGallery: 26
+            triggerTeleporterToUndergroundCaverns: 28
+            triggerTeleporterToWarpRooms: 27
+            gargoyleRoom: 13
+            heartMaxUpRoom: 14
+            holyMailRoom: 3
+            jewelSwordRoom: 8
+            lifeMaxUpRoom: 17
+            loadingRoomToAlchemyLaboratory: 20
+            loadingRoomToMarbleGallery: 18
+            loadingRoomToUndergroundCaverns: 21
+            loadingRoomToWarpRooms: 19
+            meetingRoomWithDeath: 11
+            mermanRoom: 7
+            saveRoomA: 22
+            saveRoomB: 23
+            saveRoomC: 24
+            shortcutToUndergroundCaverns: 10
+            shortcutToWarpRooms: 16
+            stairwellAfterDeath: 12
+            wargHallway: 9
+            zombieHallway: 2
     castleEntrance:
         rooms:
             afterDrawbridge: 0
@@ -169,10 +668,10 @@ stages:
             atticStaircase: 4
             cubeOfZoeRoom: 15
             dropUnderPortcullis: 1
-            fakeRoomToAlchemyLaboratory: 28
-            fakeRoomToMarbleGallery: 29
-            fakeRoomToUndergroundCaverns: 31
-            fakeRoomToWarpRooms: 30
+            triggerTeleporterToAlchemyLaboratory: 28
+            triggerTeleporterToMarbleGallery: 29
+            triggerTeleporterToUndergroundCaverns: 31
+            triggerTeleporterToWarpRooms: 30
             forestCutscene: 18
             gargoyleRoom: 13
             heartMaxUpRoom: 14
@@ -195,7 +694,444 @@ stages:
             unknownRoom20: 20
             wargHallway: 9
             zombieHallway: 2
-    castleEntranceRevisited:
+    castleKeep:
+        rooms:
+            bend: 4
+            dualPlatforms: 7
+            triggerTeleporterToClockTower: 13
+            triggerTeleporterToRoyalChapel: 14
+            triggerTeleporterToWarpRooms: 15
+            falchionRoom: 5
+            ghostCardRoom: 3
+            keepArea: 2
+            lionTorchPlatform: 6
+            loadingRoomToClockTower: 10
+            loadingRoomToRoyalChapel: 12
+            loadingRoomToWarpRooms: 11
+            lowerAttic: 1
+            saveRoomA: 9
+            tyrfingRoom: 8
+            upperAttic: 0
+    catacombs:
+        rooms:
+            ballroomMaskRoom: 11
+            boneArkRoom: 18
+            catEyeCircletRoom: 13
+            exitToAbandonedMine: 17
+            triggerTeleporterToAbandonedMine: 29
+            granfaloonsLair: 3
+            hellfireBeastRoom: 16
+            icebrandRoom: 9
+            leftLavaPath: 10
+            loadingRoomToAbandonedMine: 28
+            mormegilRoom: 1
+            pitchBlackSpikeMaze: 24
+            rightLavaPath: 12
+            roomId00: 0
+            roomId02: 2
+            roomId04: 4
+            roomId05: 5
+            roomId14: 14
+            roomId19: 19
+            roomId20: 20
+            roomId21: 21
+            roomId22: 22
+            roomId23: 23
+            roomId25: 25
+            roomId26: 26
+            saveRoomA: 7
+            saveRoomB: 15
+            smallGremlinRoom: 6
+            spikeBreakerRoom: 27
+            walkArmorRoom: 8
+    cave:
+        rooms:
+            bend: 10
+            cerberusRoom: 2
+            crumblingStairwellsWithDemonSwitch: 3
+            crumblingStairwellsWithMushrooms: 8
+            demonCardRoom: 11
+            triggerTeleporterToCatacombs: 16
+            triggerTeleporterToUndergroundCaverns: 18
+            triggerTeleporterToWarpRooms: 17
+            fourWayIntersection: 7
+            karmaCoinRoom: 9
+            loadingRoomToCatacombs: 12
+            loadingRoomToUndergroundCaverns: 14
+            loadingRoomToWarpRooms: 13
+            peanutsRoom: 6
+            saveRoomA: 15
+            snakeColumn: 5
+            venusWeedRoom: 4
+            wellLitSkullRoom: 1
+            wolfsHeadColumn: 0
+    clockTower:
+        rooms:
+            belfry: 9
+            exitToCourtyard: 8
+            triggerTeleporterToCastleKeep: 15
+            triggerTeleporterToOuterWall: 16
+            fireOfBatRoom: 12
+            healingMailRoom: 2
+            hiddenArmory: 5
+            karasumansRoom: 0
+            leftGearRoom: 6
+            loadingRoomToCastleKeep: 14
+            loadingRoomToOuterWall: 13
+            openCourtyard: 10
+            pathToKarasuman: 1
+            pendulumRoom: 3
+            rightGearRoom: 7
+            spire: 4
+            stairwellToOuterWall: 11
+    colosseum:
+        rooms:
+            arena: 5
+            bladeMasterRoom: 2
+            bloodCloakRoom: 10
+            bottomOfElevatorShaft: 11
+            triggerTeleporterToOlroxsQuarters: 19
+            triggerTeleporterToRoyalChapel: 18
+            fountainRoom: 9
+            holySwordRoom: 0
+            leftSideArmory: 12
+            loadingRoomToOlroxsQuarters: 15
+            loadingRoomToRoyalChapel: 14
+            passagewayBetweenArenaAndRoyalChapel: 4
+            rightSideArmory: 13
+            saveRoomA: 16
+            saveRoomB: 17
+            spiralStaircases: 7
+            topOfElevatorShaft: 6
+            topOfLeftSpiralStaircase: 1
+            topOfRightSpiralStaircase: 3
+            valhallaKnightRoom: 8
+    cutsceneMeetingMariainClockRoom:
+        rooms:
+            clockRoom: 0
+            triggerTeleporterA: 1
+            triggerTeleporterB: 2
+    deathWingsLair:
+        rooms:
+            bottomOfStairwell: 1
+            catwalkCrypt: 15
+            echoOfBatRoom: 13
+            emptyCells: 9
+            emptyRoom: 5
+            triggerTeleporterToColosseum: 22
+            triggerTeleporterToMarbleGallery: 21
+            triggerTeleporterToRoyalChapel: 24
+            triggerTeleporterToWarpRooms: 23
+            garnetRoom: 10
+            grandStaircase: 2
+            hammerAndBladeRoom: 4
+            loadingRoomToColosseum: 18
+            loadingRoomToMarbleGallery: 17
+            loadingRoomToRoyalChapel: 20
+            loadingRoomToWarpRooms: 19
+            narrowHallwayToOlrox: 11
+            olroxsRoom: 12
+            openCourtyard: 8
+            prison: 7
+            saveRoomA: 16
+            secretOnyxRoom: 3
+            skelerangRoom: 0
+            swordCardRoom: 14
+            tallShaft: 6
+    floatingCatacombs:
+        rooms:
+            ballroomMaskRoom: 11
+            boneArkRoom: 18
+            catEyeCircletRoom: 13
+            exitToAbandonedMine: 17
+            triggerTeleporterToAbandonedMine: 29
+            granfaloonsLair: 3
+            hellfireBeastRoom: 16
+            icebrandRoom: 9
+            leftLavaPath: 10
+            loadingRoomToAbandonedMine: 28
+            mormegilRoom: 1
+            pitchBlackSpikeMaze: 24
+            rightLavaPath: 12
+            roomId00: 0
+            roomId02: 2
+            roomId04: 4
+            roomId05: 5
+            roomId14: 14
+            roomId19: 19
+            roomId20: 20
+            roomId21: 21
+            roomId22: 22
+            roomId23: 23
+            roomId25: 25
+            roomId26: 26
+            saveRoomA: 7
+            saveRoomB: 15
+            smallGremlinRoom: 6
+            spikeBreakerRoom: 27
+            walkArmorRoom: 8
+    forbiddenLibrary:
+        rooms:
+            dhuronAndFleaArmorRoom: 3
+            dhuronAndFleaManRoom: 10
+            exitToOuterWall: 12
+            faerieCardRoom: 7
+            triggerTeleporterToOuterWall: 15
+            fleaManRoom: 6
+            footOfStaircase: 11
+            holyRodRoom: 2
+            lesserDemonArea: 0
+            loadingRoomToOuterWall: 13
+            outsideShop: 5
+            saveRoomA: 14
+            secretBookcaseRoom: 1
+            shop: 4
+            spellbookArea: 9
+            threeLayerRoom: 8
+    longLibrary:
+        rooms:
+            dhuronAndFleaArmorRoom: 3
+            dhuronAndFleaManRoom: 10
+            exitToOuterWall: 12
+            faerieCardRoom: 7
+            triggerTeleporterToOuterWall: 15
+            fleaManRoom: 6
+            footOfStaircase: 11
+            holyRodRoom: 2
+            lesserDemonArea: 0
+            loadingRoomToOuterWall: 13
+            outsideShop: 5
+            saveRoomA: 14
+            secretBookcaseRoom: 1
+            shop: 4
+            spellbookArea: 9
+            threeLayerRoom: 8
+    marbleGallery:
+        rooms:
+            alucartRoom: 25
+            beneathDropoff: 4
+            beneathLeftTrapdoor: 23
+            beneathRightTrapdoor: 24
+            blueDoorRoom: 12
+            clockRoom: 9
+            dropoff: 5
+            elevatorRoom: 21
+            emptyRoom: 11
+            entrance: 6
+            triggerTeleporterToAlchemyLaboratory: 35
+            triggerTeleporterToCastleCenter: 37
+            triggerTeleporterToCastleEntrance: 38
+            triggerTeleporterToOlroxsQuarters: 33
+            triggerTeleporterToOuterWall: 34
+            triggerTeleporterToUndergroundCaverns: 36
+            gravityBootsRoom: 20
+            leftOfClockRoom: 10
+            loadingRoomToAlchemyLaboratory: 28
+            loadingRoomToCastleEntrance: 30
+            loadingRoomToOlroxsQuarters: 29
+            loadingRoomToOuterWall: 26
+            loadingRoomToUndergroundCaverns: 27
+            longHallway: 8
+            ouijaTableStairway: 15
+            pathwayAfterLeftStatue: 13
+            pathwayAfterRightStatue: 14
+            powerUpRoom: 22
+            rightOfClockRoom: 19
+            sShapedHallways: 0
+            saveRoomA: 31
+            saveRoomB: 32
+            slingerStaircase: 18
+            spiritOrbRoom: 2
+            stainedGlassCorner: 3
+            stairwellToUndergroundCaverns: 17
+            stopwatchRoom: 7
+            tallStainedGlassWindows: 1
+            threePaths: 16
+    necromancyLaboratory:
+        rooms:
+            batCardRoom: 0
+            bloodyZombieHallway: 3
+            blueDoorHallway: 2
+            boxPuzzleRoom: 17
+            cannonRoom: 4
+            clothCapeRoom: 5
+            corridorToElevator: 21
+            elevatorShaft: 22
+            emptyZigZagRoom: 12
+            entryway: 10
+            exitToMarbleGallery: 20
+            exitToRoyalChapel: 1
+            triggerTeleporterToCastleEntrance: 29
+            triggerTeleporterToMarbleGallery: 31
+            triggerTeleporterToRoyalChapel: 30
+            glassVats: 7
+            heartMaxUpRoom: 9
+            loadingRoomToCastleEntrance: 28
+            loadingRoomToMarbleGallery: 26
+            loadingRoomToRoyalChapel: 27
+            redSkeletonLiftRoom: 18
+            saveRoomA: 23
+            saveRoomB: 24
+            saveRoomC: 25
+            secretLifeMaxUpRoom: 15
+            shortZigZagRoom: 13
+            skillOfWolfRoom: 8
+            slograAndGaibonRoom: 16
+            sunglassesRoom: 6
+            tallSpittleboneRoom: 11
+            tallZigZagRoom: 14
+            tetrominoRoom: 19
+    olroxsQuarters:
+        rooms:
+            bottomOfStairwell: 1
+            catwalkCrypt: 15
+            echoOfBatRoom: 13
+            emptyCells: 9
+            emptyRoom: 5
+            triggerTeleporterToColosseum: 23
+            triggerTeleporterToMarbleGallery: 24
+            triggerTeleporterToRoyalChapel: 21
+            triggerTeleporterToWarpRooms: 22
+            garnetRoom: 10
+            grandStaircase: 2
+            hammerAndBladeRoom: 4
+            loadingRoomToColosseum: 18
+            loadingRoomToMarbleGallery: 17
+            loadingRoomToRoyalChapel: 20
+            loadingRoomToWarpRooms: 19
+            narrowHallwayToOlrox: 11
+            olroxsRoom: 12
+            openCourtyard: 8
+            prison: 7
+            saveRoomA: 16
+            secretOnyxRoom: 3
+            skelerangRoom: 0
+            swordCardRoom: 14
+            tallShaft: 6
+    outerWall:
+        rooms:
+            blueAxeKnightRoom: 9
+            doppelgangerRoom: 11
+            elevatorShaftRoom: 13
+            exitToClockTower: 2
+            exitToMarbleGallery: 7
+            triggerTeleporterToClockTower: 19
+            triggerTeleporterToLongLibrary: 21
+            triggerTeleporterToMarbleGallery: 22
+            triggerTeleporterToWarpRooms: 20
+            garlicRoom: 10
+            garnetVaseRoom: 8
+            gladiusRoom: 12
+            jewelKnucklesRoom: 5
+            loadingRoomToClockTower: 15
+            loadingRoomToLongLibrary: 16
+            loadingRoomToMarbleGallery: 18
+            loadingRoomToWarpRooms: 0
+            lowerMedusaRoom: 4
+            saveRoomA: 14
+            saveRoomB: 17
+            secretPlatformRoom: 6
+            telescopeRoom: 3
+            topOfOuterWall: 1
+    prologue:
+        rooms:
+            throneRoomArea: 0
+            upperAttic: 1
+            unknownRoomId02: 2
+            lowerAttic: 3
+    reverseCastleCenter:
+        rooms:
+            centerCube: 1
+            elevatorShaft: 0
+            triggerTeleporterToBO6: 3
+            triggerTeleporterToMarbleGallery: 4
+            unknownRoomId02: 2
+    reverseCaverns:
+        rooms:
+            bandannaRoom: 30
+            claymoreStairwell: 6
+            crystalBend: 2
+            crystalCloakRoom: 24
+            dKBridge: 15
+            dKButton: 17
+            exitToAbandonedMine: 16
+            exitToCastleEntrance: 20
+            triggerTeleporterToAbandonedMine: 39
+            triggerTeleporterToBossSuccubus: 40
+            triggerTeleporterToCastleEntrance: 38
+            triggerTeleporterToMarbleGallery: 41
+            falseSaveRoom: 37
+            hiddenCrystalEntrance: 1
+            holySymbolRoom: 13
+            iceFloeRoom: 22
+            leftFerrymanRoute: 25
+            loadingRoomToAbandonedMine: 33
+            loadingRoomToCastleEntrance: 31
+            loadingRoomToMarbleGallery: 32
+            longDrop: 0
+            mealTicketsAndMoonstoneRoom: 7
+            mermanStatueRoom: 21
+            pentagramRoom: 14
+            plaqueRoomWithBreakableWall: 8
+            plaqueRoomWithLifeMaxUp: 4
+            rightFerrymanRoute: 23
+            risingWaterRoom: 29
+            roomId09: 9
+            roomId10: 10
+            roomId11: 11
+            roomId12: 12
+            roomId18: 18
+            roomId19: 19
+            saveRoomA: 34
+            saveRoomB: 35
+            saveRoomC: 36
+            scyllaRoom: 27
+            scyllaWyrmRoom: 28
+            smallStairwell: 5
+            tallStairwell: 3
+            waterfall: 26
+    reverseClockTower:
+        rooms:
+            belfry: 9
+            exitToCourtyard: 8
+            triggerTeleporterToCastleKeep: 16
+            triggerTeleporterToOuterWall: 15
+            fireOfBatRoom: 12
+            healingMailRoom: 2
+            hiddenArmory: 5
+            karasumansRoom: 0
+            leftGearRoom: 6
+            loadingRoomToCastleKeep: 14
+            loadingRoomToOuterWall: 13
+            openCourtyard: 10
+            pathToKarasuman: 1
+            pendulumRoom: 3
+            rightGearRoom: 7
+            spire: 4
+            stairwellToOuterWall: 11
+    reverseColosseum:
+        rooms:
+            arena: 5
+            bladeMasterRoom: 2
+            bloodCloakRoom: 10
+            bottomOfElevatorShaft: 11
+            triggerTeleporterToOlroxsQuarters: 18
+            triggerTeleporterToRoyalChapel: 19
+            fountainRoom: 9
+            holySwordRoom: 0
+            leftSideArmory: 12
+            loadingRoomToOlroxsQuarters: 15
+            loadingRoomToRoyalChapel: 14
+            passagewayBetweenArenaAndRoyalChapel: 4
+            rightSideArmory: 13
+            saveRoomA: 16
+            saveRoomB: 17
+            spiralStaircases: 7
+            topOfElevatorShaft: 6
+            topOfLeftSpiralStaircase: 1
+            topOfRightSpiralStaircase: 3
+            valhallaKnightRoom: 8
+    reverseEntrance:
         rooms:
             afterDrawbridge: 0
             atticEntrance: 6
@@ -203,40 +1139,231 @@ stages:
             atticStaircase: 4
             cubeOfZoeRoom: 15
             dropUnderPortcullis: 1
-            fakeRoomToAlchemyLaboratory: 25
-            fakeRoomToMarbleGallery: 26
-            fakeRoomToUndergroundCaverns: 28
-            fakeRoomToWarpRooms: 27
+            triggerTeleporterToAlchemyLaboratory: 31
+            triggerTeleporterToMarbleGallery: 30
+            triggerTeleporterToUndergroundCaverns: 28
+            triggerTeleporterToWarpRooms: 29
+            forestCutscene: 18
             gargoyleRoom: 13
             heartMaxUpRoom: 14
             holyMailRoom: 3
             jewelSwordRoom: 8
             lifeMaxUpRoom: 17
-            loadingRoomToAlchemyLaboratory: 20
-            loadingRoomToMarbleGallery: 18
-            loadingRoomToUndergroundCaverns: 21
-            loadingRoomToWarpRooms: 19
+            loadingRoomToAlchemyLaboratory: 23
+            loadingRoomToMarbleGallery: 21
+            loadingRoomToUndergroundCaverns: 24
+            loadingRoomToWarpRooms: 22
             meetingRoomWithDeath: 11
             mermanRoom: 7
-            saveRoomA: 22
-            saveRoomB: 23
-            saveRoomC: 24
+            saveRoomA: 25
+            saveRoomB: 26
+            saveRoomC: 27
             shortcutToUndergroundCaverns: 10
             shortcutToWarpRooms: 16
             stairwellAfterDeath: 12
+            unknownRoom19: 19
+            unknownRoom20: 20
             wargHallway: 9
             zombieHallway: 2
-    castleKeep:
+    reverseKeep:
         rooms:
+            bend: 4
+            dualPlatforms: 7
+            triggerTeleporterToClockTower: 15
+            triggerTeleporterToRoyalChapel: 14
+            triggerTeleporterToWarpRooms: 13
+            falchionRoom: 5
+            ghostCardRoom: 3
             keepArea: 2
-    cave:
-    clockTower:
-    deathWingsLair:
-    longLibrary:
-    marbleGallery:
-    necromancyLaboratory:
-    orloxsQuarters:
-    reverseCaverns:
-    reverseClockTower:
+            lionTorchPlatform: 6
+            loadingRoomToClockTower: 10
+            loadingRoomToRoyalChapel: 12
+            loadingRoomToWarpRooms: 11
+            lowerAttic: 1
+            saveRoomA: 9
+            tyrfingRoom: 8
+            upperAttic: 0
+    reverseOuterWall:
+        rooms:
+            blueAxeKnightRoom: 9
+            doppelgangerRoom: 11
+            elevatorShaftRoom: 13
+            exitToClockTower: 2
+            exitToMarbleGallery: 7
+            triggerTeleporterToClockTower: 22
+            triggerTeleporterToLongLibrary: 20
+            triggerTeleporterToMarbleGallery: 19
+            triggerTeleporterToWarpRooms: 21
+            garlicRoom: 10
+            garnetVaseRoom: 8
+            gladiusRoom: 12
+            jewelKnucklesRoom: 5
+            loadingRoomToClockTower: 15
+            loadingRoomToLongLibrary: 16
+            loadingRoomToMarbleGallery: 18
+            loadingRoomToWarpRooms: 0
+            lowerMedusaRoom: 4
+            saveRoomA: 14
+            saveRoomB: 17
+            secretPlatformRoom: 6
+            telescopeRoom: 3
+            topOfOuterWall: 1
+    reverseWarpRooms:
+        rooms:
+            triggerTeleporterToAbandonedMine: 10
+            triggerTeleporterToCastleEntrance: 11
+            triggerTeleporterToCastleKeep: 14
+            triggerTeleporterToOlroxsQuarters: 12
+            triggerTeleporterToOuterWall: 13
+            loadingRoomToAbandonedMine: 5
+            loadingRoomToCastleEntrance: 6
+            loadingRoomToCastleKeep: 9
+            loadingRoomToOlroxsQuarters: 7
+            loadingRoomToOuterWall: 8
+            warpRoomToAbandonedMine: 4
+            warpRoomToCastleEntrance: 3
+            warpRoomToCastleKeep: 0
+            warpRoomToOlroxsQuarters: 1
+            warpRoomToOuterWall: 2
+    royalChapel:
+        rooms:
+            chapelStaircase: 11
+            confessionalBooth: 7
+            emptyRoom: 10
+            triggerTeleporterToAlchemyLaboratory: 25
+            triggerTeleporterToCastleKeep: 22
+            triggerTeleporterToColosseum: 24
+            triggerTeleporterToOlroxsQuarters: 23
+            gogglesRoom: 8
+            hippogryphRoom: 4
+            leftTower: 13
+            loadingRoomToAlchemyLaboratory: 19
+            loadingRoomToCastleKeep: 15
+            loadingRoomToColosseum: 20
+            loadingRoomToOlroxsQuarters: 21
+            middleTower: 14
+            nave: 9
+            pushingStatueShortcut: 6
+            rightTower: 17
+            saveRoomA: 18
+            saveRoomB: 16
+            silverRingRoom: 0
+            spikeHallway: 1
+            statueLedge: 12
+            walkwayBetweenTowers: 2
+            walkwayLeftOfHippogryph: 3
+            walkwayRightOfHippogryph: 5
     undergroundCaverns:
+        rooms:
+            bandannaRoom: 30
+            claymoreStairwell: 6
+            crystalBend: 2
+            crystalCloakRoom: 24
+            dKBridge: 15
+            dKButton: 17
+            exitToAbandonedMine: 16
+            exitToCastleEntrance: 20
+            triggerTeleporterToAbandonedMine: 40
+            triggerTeleporterToBossSuccubus: 39
+            triggerTeleporterToCastleEntrance: 41
+            triggerTeleporterToMarbleGallery: 38
+            falseSaveRoom: 37
+            hiddenCrystalEntrance: 1
+            holySymbolRoom: 13
+            iceFloeRoom: 22
+            leftFerrymanRoute: 25
+            loadingRoomToAbandonedMine: 33
+            loadingRoomToCastleEntrance: 31
+            loadingRoomToMarbleGallery: 32
+            longDrop: 0
+            mealTicketsAndMoonstoneRoom: 7
+            mermanStatueRoom: 21
+            pentagramRoom: 14
+            plaqueRoomWithBreakableWall: 8
+            plaqueRoomWithLifeMaxUp: 4
+            rightFerrymanRoute: 23
+            risingWaterRoom: 29
+            roomId09: 9
+            roomId10: 10
+            roomId11: 11
+            roomId12: 12
+            roomId18: 18
+            roomId19: 19
+            saveRoomA: 34
+            saveRoomB: 35
+            saveRoomC: 36
+            scyllaRoom: 27
+            scyllaWyrmRoom: 28
+            smallStairwell: 5
+            tallStairwell: 3
+            waterfall: 26
+    warpRooms:
+        rooms:
+            triggerTeleporterToAbandonedMine: 14
+            triggerTeleporterToCastleEntrance: 13
+            triggerTeleporterToCastleKeep: 10
+            triggerTeleporterToOlroxsQuarters: 12
+            triggerTeleporterToOuterWall: 11
+            loadingRoomToAbandonedMine: 5
+            loadingRoomToCastleEntrance: 6
+            loadingRoomToCastleKeep: 9
+            loadingRoomToOlroxsQuarters: 7
+            loadingRoomToOuterWall: 8
+            warpRoomToAbandonedMine: 4
+            warpRoomToCastleEntrance: 3
+            warpRoomToCastleKeep: 0
+            warpRoomToOlroxsQuarters: 1
+            warpRoomToOuterWall: 2
 teleporters:
+    fromAbandonedMineToCatacombs: 18
+    fromAbandonedMineToUndergroundCaverns: 19
+    fromAbandonedMineToWarpRooms: 20
+    fromAlchemyLaboratoryToCastleEntrance: 21
+    fromAlchemyLaboratoryToMarbleGallery: 22
+    fromAlchemyLaboratoryToRoyalChapel: 23
+    fromCastleCenterToMarbleGallery: 7
+    fromCastleEntranceToAlchemyLaboratory: 13
+    fromCastleEntranceToMarbleGallery: 11
+    fromCastleEntranceToUndergroundCaverns: 12
+    fromCastleEntranceToWarpRooms: 14
+    fromCastleEntranceRevisitedToAlchemyLaboratory: 58
+    fromCastleEntranceRevisitedToMarbleGallery: 56
+    fromCastleEntranceRevisitedToUndergroundCaverns: 57
+    fromCastleEntranceRevisitedToWarpRooms: 59
+    fromCastleKeepToClockTower: 45
+    fromCastleKeepToRoyalChapel: 47
+    fromCastleKeepToWarpRooms: 46
+    fromCatacombsToAbandonedMine: 16
+    fromClockTowerToCastleKeep: 9
+    fromClockTowerToOuterWall: 10
+    fromColosseumToOlroxsQuarters: 53
+    fromColosseumToRoyalChapel: 52
+    fromLongLibraryToOuterWall: 6
+    fromMarbleGalleryToAlchemyLaboratory: 0
+    fromMarbleGalleryToCastleCenter: 5
+    fromMarbleGalleryToCastleEntrance: 3
+    fromMarbleGalleryToOlroxsQuarters: 1
+    fromMarbleGalleryToOuterWall: 2
+    fromMarbleGalleryToUndergroundCaverns: 4
+    fromOlroxsQuartersToColosseum: 26
+    fromOlroxsQuartersToMarbleGallery: 24
+    fromOlroxsQuartersToRoyalChapel: 25
+    fromOlroxsQuartersToWarpRooms: 27
+    fromOuterWallToClockTower: 43
+    fromOuterWallToLongLibrary: 41
+    fromOuterWallToMarbleGallery: 40
+    fromOuterWallToWarpRooms: 42
+    fromRoyalChapelToAlchemyLaboratory: 35
+    fromRoyalChapelToCastleKeep: 36
+    fromRoyalChapelToColosseum: 34
+    fromRoyalChapelToOlroxsQuarters: 33
+    fromBossSuccubsToUndergroundCaverns: 60
+    fromUndergroundCavernsToAbandonedMine: 50
+    fromUndergroundCavernsToBossSuccubus: 51
+    fromUndergroundCavernsToCastleEntrance: 48
+    fromUndergroundCavernsToMarbleGallery: 49
+    fromWarpRoomsToAbandonedMine: 32
+    fromWarpRoomsToCastleEntrance: 31
+    fromWarpRoomsToCastleKeep: 28
+    fromWarpRoomsToOlroxsQuarters: 30
+    fromWarpRoomsToOuterWall: 29

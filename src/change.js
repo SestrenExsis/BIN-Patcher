@@ -34,6 +34,9 @@ export function parsePropertyPath(propertyPath, patchInfo, aliasInfo) {
     propertyPath.split('.').forEach((propertyName) => {
         console.log(propertyName)
         parsedPath.propertyname = propertyName
+        if (aliasElement == null) {
+            console.log(propertyName, propertyPath)
+        }
         if (aliasElement.hasOwnProperty(propertyName)) {
             aliasElement = aliasElement[propertyName]
         }
@@ -61,6 +64,11 @@ export function parsePropertyPath(propertyPath, patchInfo, aliasInfo) {
 export function applyChange(patchInfo, changeInfo, aliasesInfo) {
     switch (changeInfo.changeType) {
         case 'merge':
+            // TODO(sestren)
+            // changeInfo.merge.forEach((evaluateKey) => {
+            //     const mergeInfo = changeInfo.evaluate.evaluations[evaluateKey]
+            //     applyMerge(patchInfo, mergeInfo, aliasesInfo)
+            // })
             break
         case 'extend':
             break
