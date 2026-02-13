@@ -324,7 +324,7 @@ export function parsePatchNode(ppf, patchNode, extractionNode=null) {
             return (nodeInfo !== null) && !(['data', 'metadata'].includes(nodeName))
         })
         .forEach(([nodeName, nodeInfo]) => {
-            console.log(nodeName)
+            // console.log(nodeName)
             if (extractionNode !== null && extractionNode.hasOwnProperty(nodeName)) {
                 parsePatchNode(ppf, patchNode[nodeName], extractionNode[nodeName])
             }

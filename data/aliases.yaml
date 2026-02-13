@@ -77,8 +77,8 @@ familiarEvents:
         longLibraryShopYousei: 29
         royalChapelConfessionalBoothYousei: 30
         catacombsDarkRoomYousei1: 31
-        colosseum.MistGateYousei: 32
-        outerWall.MistGateYousei: 33
+        colosseumMistGateYousei: 32
+        outerWallMistGateYousei: 33
         longLibraryMistGateYousei: 34
         royalChapelMistGateYousei: 35
         undergroundCavernsBreakableFloorYousei: 36
@@ -125,8 +125,8 @@ familiarEvents:
         longLibraryShopYousei: 29
         royalChapelConfessionalBoothYousei: 30
         catacombsDarkRoomYousei1: 31
-        colosseum.MistGateYousei: 32
-        outerWall.MistGateYousei: 33
+        colosseumMistGateYousei: 32
+        outerWallMistGateYousei: 33
         longLibraryMistGateYousei: 34
         royalChapelMistGateYousei: 35
         undergroundCavernsBreakableFloorYousei: 36
@@ -173,8 +173,8 @@ familiarEvents:
         longLibraryShopYousei: 29
         royalChapelConfessionalBoothYousei: 30
         catacombsDarkRoomYousei1: 31
-        colosseum.MistGateYousei: 32
-        outerWall.MistGateYousei: 33
+        colosseumMistGateYousei: 32
+        outerWallMistGateYousei: 33
         longLibraryMistGateYousei: 34
         royalChapelMistGateYousei: 35
         undergroundCavernsBreakableFloorYousei: 36
@@ -221,8 +221,8 @@ familiarEvents:
         longLibraryShopYousei: 29
         royalChapelConfessionalBoothYousei: 30
         catacombsDarkRoomYousei1: 31
-        colosseum.MistGateYousei: 32
-        outerWall.MistGateYousei: 33
+        colosseumMistGateYousei: 32
+        outerWallMistGateYousei: 33
         longLibraryMistGateYousei: 34
         royalChapelMistGateYousei: 35
         undergroundCavernsBreakableFloorYousei: 36
@@ -269,8 +269,8 @@ familiarEvents:
         longLibraryShopYousei: 29
         royalChapelConfessionalBoothYousei: 30
         catacombsDarkRoomYousei1: 31
-        colosseum.MistGateYousei: 32
-        outerWall.MistGateYousei: 33
+        colosseumMistGateYousei: 32
+        outerWallMistGateYousei: 33
         longLibraryMistGateYousei: 34
         royalChapelMistGateYousei: 35
         undergroundCavernsBreakableFloorYousei: 36
@@ -317,8 +317,8 @@ familiarEvents:
         longLibraryShopYousei: 29
         royalChapelConfessionalBoothYousei: 30
         catacombsDarkRoomYousei1: 31
-        colosseum.MistGateYousei: 32
-        outerWall.MistGateYousei: 33
+        colosseumMistGateYousei: 32
+        outerWallMistGateYousei: 33
         longLibraryMistGateYousei: 34
         royalChapelMistGateYousei: 35
         undergroundCavernsBreakableFloorYousei: 36
@@ -365,8 +365,8 @@ familiarEvents:
         longLibraryShopYousei: 29
         royalChapelConfessionalBoothYousei: 30
         catacombsDarkRoomYousei1: 31
-        colosseum.MistGateYousei: 32
-        outerWall.MistGateYousei: 33
+        colosseumMistGateYousei: 32
+        outerWallMistGateYousei: 33
         longLibraryMistGateYousei: 34
         royalChapelMistGateYousei: 35
         undergroundCavernsBreakableFloorYousei: 36
@@ -409,8 +409,8 @@ stages:
         rooms:
             bend: 10
             cerberusRoom: 2
-            demonSwitchRoom: 3
-            demonCardRoom: 11
+            demonSwitch: 3
+            demonCard: 11
             triggerTeleporterToCatacombs: 18
             triggerTeleporterToUndergroundCaverns: 16
             triggerTeleporterToWarpRooms: 17
@@ -748,19 +748,19 @@ stages:
         rooms:
             bend: 10
             cerberusRoom: 2
-            crumblingStairwellsWithDemonSwitch: 3
-            crumblingStairwellsWithMushrooms: 8
-            demonCardRoom: 11
-            triggerTeleporterToCatacombs: 16
-            triggerTeleporterToUndergroundCaverns: 18
+            demonSwitch: 3
+            demonCard: 11
+            triggerTeleporterToCatacombs: 18
+            triggerTeleporterToUndergroundCaverns: 16
             triggerTeleporterToWarpRooms: 17
             fourWayIntersection: 7
             karmaCoinRoom: 9
             loadingRoomToCatacombs: 12
             loadingRoomToUndergroundCaverns: 14
             loadingRoomToWarpRooms: 13
+            lowerStairwell: 8
             peanutsRoom: 6
-            saveRoomA: 15
+            saveRoom: 15
             snakeColumn: 5
             venusWeedRoom: 4
             wellLitSkullRoom: 1

@@ -11,5 +11,3 @@ python tools/generate-extraction-template.py
 node sotn extract -b "build/Castlevania - Symphony of the Night (Track 1).bin" -t "build/extraction-template.json" -e "build/extraction.json"
 @REM node sotn extract -b "build/Castlevania - Symphony of the Night (Track 1).bin" -t "build/extraction-template.json" -e "build/extraction-meta.json" --no-data
 @REM node sotn extract -b "build/Castlevania - Symphony of the Night (Track 1).bin" -t "build/extraction-template.json" -e "build/extraction-generic.json" -h
-
-python tools/generate-aliases.py

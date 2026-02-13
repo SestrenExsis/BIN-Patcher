@@ -88,6 +88,8 @@ export function applyEvaluate(patchInfo, evaluateInfo, aliasesInfo) {
         console.log(actionInfo)
         switch (actionInfo.action) {
             case 'get':
+                // TODO(sestren): Implement getting address
+                // TODO(sestren): Implement getting constant
                 currentValue = parsePropertyPath(actionInfo.property, patchInfo, aliasesInfo).node
                 break
             case 'set':
@@ -96,7 +98,17 @@ export function applyEvaluate(patchInfo, evaluateInfo, aliasesInfo) {
                     parsedPath.parent[parsedPath.propertyName] = currentValue
                 }
                 else if (actionInfo.type == 'address') {
-                    // currentValue += actionInfo.constant
+                    if (!patchInfo.hasOwnProperty('_writes')) {
+                        patchInfo['_writes'] = []
+                    }
+                    const write = {
+                        data: currentValue,
+                        metadata: {
+                            address: actionInfo.address,
+                            element: actionInfo.element,
+                        },
+                    }
+                    patchInfo['_writes'].push(write)
                 }
                 break
             case 'add':
@@ -126,5 +138,4 @@ export function applyEvaluate(patchInfo, evaluateInfo, aliasesInfo) {
             }
         console.log(currentValue)
     })
-    // console.log(evaluateInfo.length)
 }
