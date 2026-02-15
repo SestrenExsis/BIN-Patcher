@@ -29,7 +29,6 @@ export function parsePropertyPath(propertyPath, patchInfo) {
     let node = patchInfo
     let propertyName = null
     for (const pathSegment of propertyPath.split('.')) {
-        console.log(pathSegment)
         propertyName = pathSegment
         if (node.hasOwnProperty(propertyName)) {
             parentNode = node
@@ -64,7 +63,6 @@ export function applyChange(patchInfo, changeInfo) {
             break
         case 'evaluate':
             for (const evaluateKey of changeInfo.evaluate.evaluationOrder) {
-                console.log(evaluateKey)
                 const evaluateInfo = changeInfo.evaluate.evaluations[evaluateKey]
                 applyEvaluate(patchInfo, evaluateInfo)
             }
@@ -73,19 +71,16 @@ export function applyChange(patchInfo, changeInfo) {
 }
 
 export function applyMerge(patchInfo, mergeInfo) {
-    // TODO(sestren): Implement simple merge
-    Object.entries(mergeInfo).forEach(([propertyPath, nodeInfo]) => {
-        const parsedPath = parsePropertyPath(propertyPath, nodeInfo)
-        console.log(Object.keys(parsedPath.node))
-        console.log('')
-        applyMerge(nodeInfo, parsedPath.node)
+    Object.entries(mergeInfo).forEach(([propertyPath, nodeValue]) => {
+        console.log(propertyPath, '-->', nodeValue)
+        const parsedPatch = parsePropertyPath(propertyPath, patchInfo)
+        parsedPatch.parentNode[parsedPatch.propertyName] = nodeValue
     })
 }
 
 export function applyEvaluate(patchInfo, evaluateInfo) {
     let currentValue;
     for (const actionInfo of evaluateInfo) {
-        console.log(actionInfo)
         switch (actionInfo.action) {
             case 'get':
                 // TODO(sestren): Implement getting address
