@@ -184,21 +184,14 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('aliases', {
-                alias: 'a',
-                describe: 'Path to the aliases file',
-                type: 'string',
-                normalize: true,
-            })
-            .demandOption(['changes', 'patch', 'aliases'])
+            .demandOption(['changes', 'patch'])
         },
         handler: (argv) => {
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
             let changesData = JSON.parse(fs.readFileSync(argv.changes, 'utf8'))
-            let aliasesData = JSON.parse(fs.readFileSync(argv.aliases, 'utf8'))
-            changesData.changes.forEach((changeData) => {
-                applyChange(patchData, changeData, aliasesData)
-            })
+            for (const changeData of changesData.changes) {
+                applyChange(patchData, changeData)
+            }
             fs.writeFileSync(argv.patch, JSON.stringify(patchData, null, 4));
         }
     })

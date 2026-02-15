@@ -24,82 +24,82 @@
 //   evaluationOrder: ...
 //   evaluations: ...
 
-export function parsePropertyPath(propertyPath, patchInfo, aliasInfo) {
-    const parsedPath = {
-        parent: null,
-        propertyName: null,
-        node: patchInfo,
-    }
-    let aliasElement = aliasInfo
-    propertyPath.split('.').forEach((propertyName) => {
-        console.log(propertyName)
-        parsedPath.propertyname = propertyName
-        if (aliasElement == null) {
-            console.log(propertyName, propertyPath)
+export function parsePropertyPath(propertyPath, patchInfo) {
+    let parentNode = null
+    let node = patchInfo
+    let propertyName = null
+    for (const pathSegment of propertyPath.split('.')) {
+        console.log(pathSegment)
+        propertyName = pathSegment
+        if (node.hasOwnProperty(propertyName)) {
+            parentNode = node
+            node = node[propertyName]
         }
-        if (aliasElement.hasOwnProperty(propertyName)) {
-            aliasElement = aliasElement[propertyName]
-        }
-        if (parsedPath.node.hasOwnProperty(propertyName)) {
-            parsedPath.parent = parsedPath.node
-            parsedPath.node = parsedPath.node[propertyName]
-        }
-        else if (parsedPath.node.hasOwnProperty(aliasElement[propertyName])) {
-            parsedPath.parent = parsedPath.node
-            parsedPath.node = parsedPath.node[aliasElement[propertyName]]
-        }
-        else if (Array.isArray(parsedPath.node) && parsedPath.node.length >= aliasElement) {
-            parsedPath.parent = parsedPath.node
-            parsedPath.node = parsedPath.node.at(aliasElement)
+        else if (node.hasOwnProperty('aliases') && node.aliases.hasOwnProperty(propertyName)) {
+            const elementIndex = node.aliases[propertyName]
+            parentNode = node
+            node = node.data[elementIndex]
         }
         else {
-            console.log(propertyPath, propertyName)
+            console.log(propertyPath, pathSegment)
+            console.log(node)
             throw new Error('Property not found:', propertyPath)
         }
-    })
-    const result = parsedPath
+    }
+    const result = {
+        parentNode: parentNode,
+        node: node,
+        propertyName: propertyName,
+    }
     return result
 }
 
-export function applyChange(patchInfo, changeInfo, aliasesInfo) {
+export function applyChange(patchInfo, changeInfo) {
     switch (changeInfo.changeType) {
         case 'merge':
-            // TODO(sestren)
-            // changeInfo.merge.forEach((evaluateKey) => {
-            //     const mergeInfo = changeInfo.evaluate.evaluations[evaluateKey]
-            //     applyMerge(patchInfo, mergeInfo, aliasesInfo)
-            // })
+            applyMerge(patchInfo, changeInfo.merge)
             break
         case 'extend':
+            // TODO(sestren): Implement extend (goes to _writes?)
             break
         case 'evaluate':
-            changeInfo.evaluate.evaluationOrder.forEach((evaluateKey) => {
+            for (const evaluateKey of changeInfo.evaluate.evaluationOrder) {
                 console.log(evaluateKey)
                 const evaluateInfo = changeInfo.evaluate.evaluations[evaluateKey]
-                applyEvaluate(patchInfo, evaluateInfo, aliasesInfo)
-            })
+                applyEvaluate(patchInfo, evaluateInfo)
+            }
             break
     }
 }
 
-export function applyEvaluate(patchInfo, evaluateInfo, aliasesInfo) {
+export function applyMerge(patchInfo, mergeInfo) {
+    // TODO(sestren): Implement simple merge
+    Object.entries(mergeInfo).forEach(([propertyPath, nodeInfo]) => {
+        const parsedPath = parsePropertyPath(propertyPath, nodeInfo)
+        console.log(Object.keys(parsedPath.node))
+        console.log('')
+        applyMerge(nodeInfo, parsedPath.node)
+    })
+}
+
+export function applyEvaluate(patchInfo, evaluateInfo) {
     let currentValue;
-    evaluateInfo.forEach((actionInfo) => {
+    for (const actionInfo of evaluateInfo) {
         console.log(actionInfo)
         switch (actionInfo.action) {
             case 'get':
                 // TODO(sestren): Implement getting address
                 // TODO(sestren): Implement getting constant
-                currentValue = parsePropertyPath(actionInfo.property, patchInfo, aliasesInfo).node
+                currentValue = parsePropertyPath(actionInfo.property, patchInfo).node
                 break
             case 'set':
                 if (actionInfo.type == 'property') {
-                    const parsedPath = parsePropertyPath(actionInfo.property, patchInfo, aliasesInfo)
-                    parsedPath.parent[parsedPath.propertyName] = currentValue
+                    const parsedPath = parsePropertyPath(actionInfo.property, patchInfo)
+                    parsedPath.parentNode[parsedPath.propertyName] = currentValue
                 }
                 else if (actionInfo.type == 'address') {
                     if (!patchInfo.hasOwnProperty('_writes')) {
-                        patchInfo['_writes'] = []
+                        patchInfo['_writes'] = {}
                     }
                     const write = {
                         data: currentValue,
@@ -108,12 +108,12 @@ export function applyEvaluate(patchInfo, evaluateInfo, aliasesInfo) {
                             element: actionInfo.element,
                         },
                     }
-                    patchInfo['_writes'].push(write)
+                    patchInfo['_writes'][actionInfo.name] =write
                 }
                 break
             case 'add':
                 if (actionInfo.type == 'property') {
-                    currentValue += parsePropertyPath(actionInfo.property, patchInfo, aliasesInfo).node
+                    currentValue += parsePropertyPath(actionInfo.property, patchInfo).node
                 }
                 else {
                     currentValue += actionInfo.constant
@@ -121,7 +121,7 @@ export function applyEvaluate(patchInfo, evaluateInfo, aliasesInfo) {
                 break
             case 'subtract':
                 if (actionInfo.type == 'property') {
-                    currentValue -= parsePropertyPath(actionInfo.property, patchInfo, aliasesInfo).node
+                    currentValue -= parsePropertyPath(actionInfo.property, patchInfo).node
                 }
                 else {
                     currentValue -= actionInfo.constant
@@ -129,7 +129,7 @@ export function applyEvaluate(patchInfo, evaluateInfo, aliasesInfo) {
                 break
             case 'multiply':
                 if (actionInfo.type == 'property') {
-                    currentValue *= parsePropertyPath(actionInfo.property, patchInfo, aliasesInfo).node
+                    currentValue *= parsePropertyPath(actionInfo.property, patchInfo).node
                 }
                 else {
                     currentValue *= actionInfo.constant
@@ -137,5 +137,5 @@ export function applyEvaluate(patchInfo, evaluateInfo, aliasesInfo) {
                 break
             }
         console.log(currentValue)
-    })
+    }
 }

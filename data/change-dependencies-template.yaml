@@ -19,36 +19,42 @@ changes:
                 constant: -320
               - action: set
                 type: address
+                name: castleTeleporters.left.0x000FFCE4
                 address: 0x000FFCE4
                 element:
                   structure: value
                   type: s16
               - action: set
                 type: address
+                name: castleTeleporters.left.0x0010B48C
                 address: 0x0010B48C
                 element:
                   structure: value
                   type: s16
               - action: set
                 type: address
+                name: castleTeleporters.left.0x0010B4D0
                 address: 0x0010B4D0
                 element:
                   structure: value
                   type: s16
               - action: set
                 type: address
+                name: castleTeleporters.left.0x03285D0C
                 address: 0x03285D0C
                 element:
                   structure: value
                   type: s16
               - action: set
                 type: address
+                name: castleTeleporters.left.0x0328ABBC
                 address: 0x0328ABBC
                 element:
                   structure: value
                   type: s16
               - action: set
                 type: address
+                name: castleTeleporters.left.0x0328AC00
                 address: 0x0328AC00
                 element:
                   structure: value
@@ -64,12 +70,14 @@ changes:
                 constant: -847
               - action: set
                 type: address
+                name: castleTeleporters.top.0x000FFD18
                 address: 0x000FFD18
                 element:
                   structure: value
                   type: s16
               - action: set
                 type: address
+                name: castleTeleporters.top.0x03285D40
                 address: 0x03285D40
                 element:
                   structure: value

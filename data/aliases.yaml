@@ -630,6 +630,11 @@ stages:
             triggerTeleporterToMarbleGallery: 3
             unknownRoomId02: 2
     castleEntranceRevisited:
+        entities:
+            horizontal:
+                relicPowerOfWolf: 111
+            vertical:
+                relicPowerOfWolf: 100
         rooms:
             afterDrawbridge: 0
             atticEntrance: 6
@@ -661,6 +666,11 @@ stages:
             wargHallway: 9
             zombieHallway: 2
     castleEntrance:
+        entities:
+            horizontal:
+                relicPowerOfWolf: 105
+            vertical:
+                relicPowerOfWolf: 96
         rooms:
             afterDrawbridge: 0
             atticEntrance: 6

@@ -389,7 +389,7 @@ export function maskNodes(sourceData, nodeNameToMask) {
             const nodeStructure = sourceData.metadata.element.structure
             result[nodeName] = maskNode(nodeInfo, nodeStructure)
         }
-        else if (['metadata', 'data'].includes(nodeName)) {
+        else if (['metadata', 'data', 'aliases'].includes(nodeName)) {
             result[nodeName] = nodeInfo
         }
         else {
