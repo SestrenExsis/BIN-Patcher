@@ -41,8 +41,11 @@ export function parsePropertyPath(propertyPath, patchInfo) {
         }
         else {
             console.log(propertyPath, pathSegment)
-            console.log(node)
-            throw new Error('Property not found:', propertyPath)
+            node[propertyName] = {}
+            parentNode = node
+            node = node[propertyName]
+            // console.log(node)
+            // throw new Error('Property not found:', propertyPath)
         }
     }
     const result = {
@@ -73,7 +76,10 @@ export function applyChange(patchInfo, changeInfo) {
 export function applyMerge(patchInfo, mergeInfo) {
     Object.entries(mergeInfo).forEach(([propertyPath, mergeNode]) => {
         const parsedPatch = parsePropertyPath(propertyPath, patchInfo)
-        if (typeof mergeNode === 'object')  {
+        if (parsedPatch.propertyName == 'data' || parsedPatch.propertyName == 'metadata')  {
+            parsedPatch.parentNode[parsedPatch.propertyName] = mergeNode
+        }
+        else if (typeof mergeNode === 'object')  {
             applyMerge(parsedPatch.node, mergeNode)
         }
         else {

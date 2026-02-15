@@ -214,6 +214,12 @@ export function parsePatchNode(ppf, patchNode) {
                     if (targetData[i] == null) {
                         continue
                     }
+                    if (targetData[i] == ' '.repeat(targetData[i].length)) {
+                        continue
+                    }
+                    if (targetData[i] == '.'.repeat(targetData[i].length)) {
+                        continue
+                    }
                     ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size, targetMeta.element.type, targetData[i], false)
                 }
                 break
