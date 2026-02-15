@@ -200,12 +200,6 @@ const argv = yargs(process.argv.slice(2))
         describe: 'Generate a PPF file, given an extraction file and a patch file',
         builder: (yargs) => {
             return yargs
-            .option('extraction', {
-                alias: 'e',
-                describe: 'JSON file describing the extraction data',
-                type: 'string',
-                normalize: true,
-            })
             .option('patch', {
                 alias: 'p',
                 describe: 'JSON file describing the patch data',
@@ -218,12 +212,11 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .demandOption(['extraction', 'patch', 'target'])
+            .demandOption(['patch', 'target'])
         },
         handler: (argv) => {
-            let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
-            const ppfData = toPPF(patchData, extractionData)
+            const ppfData = toPPF(patchData)
             fs.writeFileSync(argv.target, ppfData);
         }
     })

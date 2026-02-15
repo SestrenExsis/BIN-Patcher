@@ -30,21 +30,14 @@ import {
 export class PPF {
     constructor(buffer, cursorOffset=0) {
         this.writes = {}
-        this.originalValues = {}
         this.buffer = Buffer.alloc(2048)
     }
 
     bytes(description="Default description") {
         const changes = {}
         Object.entries(this.writes)
+        .sort()
         .forEach(([writeKey, writeValues]) => {
-            // Don't write out to the PPF if the final write is the same as the original data
-            if (
-                this.originalValues.hasOwnProperty(writeKey) &&
-                this.originalValues[writeKey] == writeValues.at(-1)
-            ) {
-                return
-            }
             // Group writes into sub-regions so that no single write will be too big for the PPF3 format
             const discAddress = new Address('GAMEDATA', toVal(writeKey)).toDiscAddress()
             const addressGroup = toHex(0x80 * (Math.floor(discAddress / 0x80)))
@@ -94,7 +87,7 @@ export class PPF {
         return result
     }
 
-    write(address, type, data, isOriginalValue=false) {
+    write(address, type, data) {
         if (data == null) {
             return
         }
@@ -168,34 +161,19 @@ export class PPF {
         for (let i = 0; i < byteCount; i++) {
             const addressKey = toHex(address + i)
             const value = this.buffer.readUint8(i)
-            if (isOriginalValue) {
-                this.originalValues[addressKey] = value
+            if (!this.writes.hasOwnProperty(addressKey)) {
+                this.writes[addressKey] = []
             }
-            else {
-                if (!this.writes.hasOwnProperty(addressKey)) {
-                    this.writes[addressKey] = []
-                }
-                this.writes[addressKey].push(value)
-            }
+            this.writes[addressKey].push(value)
         }
     }
 
 }
 
-export function parsePatchNode(ppf, patchNode, extractionNode=null) {
-    let targetMeta = null
-    let sourceData = null
-    let targetData = null
-    if (extractionNode !== null && extractionNode.hasOwnProperty('metadata') && extractionNode.hasOwnProperty('data')) {
-        targetMeta = extractionNode.metadata
-        sourceData = extractionNode.data
-        targetData = patchNode
-    } else if (patchNode.hasOwnProperty('metadata') && patchNode.hasOwnProperty('data')) {
-        targetMeta = patchNode.metadata
-        sourceData = null
-        targetData = patchNode.data
-    }
-    if (targetMeta !== null && targetData !== null) {
+export function parsePatchNode(ppf, patchNode) {
+    if (patchNode.hasOwnProperty('metadata') && patchNode.hasOwnProperty('data')) {
+        const targetMeta = patchNode.metadata
+        const targetData = patchNode.data
         switch (targetMeta.element.structure) {
             case 'object':
                 Object.entries(targetMeta.element.properties)
@@ -205,9 +183,6 @@ export function parsePatchNode(ppf, patchNode, extractionNode=null) {
                 .forEach(([propertyName, propertyInfo]) => {
                     if (targetData[propertyName] == null) {
                         return
-                    }
-                    if (sourceData !== null) {
-                        ppf.write(toVal(targetMeta.address) + toVal(propertyInfo.offset), propertyInfo.type, sourceData[propertyName], true)
                     }
                     ppf.write(toVal(targetMeta.address) + toVal(propertyInfo.offset), propertyInfo.type, targetData[propertyName], false)
                 })
@@ -222,18 +197,12 @@ export function parsePatchNode(ppf, patchNode, extractionNode=null) {
                         if (targetData[i][propertyName] == null) {
                             return
                         }
-                        if (sourceData !== null) {
-                            ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size + toVal(propertyInfo.offset), propertyInfo.type, sourceData[i][propertyName], true)
-                        }
                         ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size + toVal(propertyInfo.offset), propertyInfo.type, targetData[i][propertyName], false)
                     })
                 }
                 break
             case 'value':
                 if (targetData !== null) {
-                    if (sourceData !== null && targetMeta.element.type != 'text-crawl') {
-                        ppf.write(toVal(targetMeta.address), targetMeta.element.type, sourceData, true)
-                    }
                     ppf.write(toVal(targetMeta.address), targetMeta.element.type, targetData, false)
                 }
                 break
@@ -245,9 +214,6 @@ export function parsePatchNode(ppf, patchNode, extractionNode=null) {
                     if (targetData[i] == null) {
                         continue
                     }
-                    if (sourceData !== null) {
-                        ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size, targetMeta.element.type, sourceData[i], true)
-                    }
                     ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size, targetMeta.element.type, targetData[i], false)
                 }
                 break
@@ -257,21 +223,8 @@ export function parsePatchNode(ppf, patchNode, extractionNode=null) {
                         const address = toVal(targetMeta.address) + row * targetMeta.element.bytesPerRow + col2
                         // NOTE(sestren): Color index data is stored 2 colors per byte, in reverse order
                         let targetBytes = targetData.at(row).charAt(2 * col2 + 1) + targetData.at(row).charAt(2 * col2 + 0)
-                        let sourceBytes = null
-                        if (sourceData !== null) {
-                            sourceBytes = sourceData.at(row).charAt(2 * col2 + 1) + sourceData.at(row).charAt(2 * col2 + 0)
-                            if (targetBytes[0] == '.') {
-                                targetBytes = sourceBytes[0] + targetBytes[1]
-                            }
-                            if (targetBytes[1] == '.') {
-                                targetBytes = targetBytes[0] + sourceBytes[1]
-                            }
-                        }
                         if (targetBytes == '..') {
                             continue
-                        }
-                        if (sourceBytes !== null) {
-                            ppf.write(toVal(address), 'u8', parseInt(sourceBytes, 16), true)
                         }
                         ppf.write(toVal(address), 'u8', parseInt(targetBytes, 16), false)
                     }
@@ -279,7 +232,6 @@ export function parsePatchNode(ppf, patchNode, extractionNode=null) {
                 break
             case 'binary-string-array':
                 if (targetData != null) {
-                    // NOTE(sestren): Source data is being skipped for now
                     ppf.write(toVal(targetMeta.address) + 0, 'u8', targetData.left, false)
                     ppf.write(toVal(targetMeta.address) + 1, 'u8', targetData.top, false)
                     ppf.write(toVal(targetMeta.address) + 2, 'u8', targetData.bytesPerRow, false)
@@ -308,10 +260,6 @@ export function parsePatchNode(ppf, patchNode, extractionNode=null) {
                         if (targetBytes == '....') {
                             continue
                         }
-                        if (sourceData !== null) {
-                            const sourceBytes = sourceData.at(row).substring(5 * col, 5 * col + 4)
-                            ppf.write(toVal(address), 'u16', parseInt(sourceBytes, 16), true)
-                        }
                         ppf.write(toVal(address), 'u16', parseInt(targetBytes, 16), false)
                     }
                 }
@@ -325,19 +273,14 @@ export function parsePatchNode(ppf, patchNode, extractionNode=null) {
         })
         .forEach(([nodeName, nodeInfo]) => {
             // console.log(nodeName)
-            if (extractionNode !== null && extractionNode.hasOwnProperty(nodeName)) {
-                parsePatchNode(ppf, patchNode[nodeName], extractionNode[nodeName])
-            }
-            else {
-                parsePatchNode(ppf, patchNode[nodeName])
-            }
+            parsePatchNode(ppf, patchNode[nodeName])
         })
     }
 }
 
-export function toPPF(patchData, extractionData) {
+export function toPPF(patchData) {
     let ppf = new PPF()
-    parsePatchNode(ppf, patchData, extractionData)
+    parsePatchNode(ppf, patchData)
     const result = ppf.bytes()
     return result
 }
