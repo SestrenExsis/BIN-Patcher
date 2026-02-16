@@ -1,0 +1,32 @@
+{
+    "authors": [
+        "Eldritch",
+        "Mottzilla"
+    ],
+    "description": [
+        "Prevent using trapdoor from deleting Power of Wolf"
+    ],
+    "changes": [
+        {
+            "changeType": "merge",
+            "merge": {
+                "stages.castleEntrance": {
+                    "entities.horizontal.relicPowerOfWolf": {
+                        "entityRoomIndex": 18
+                    },
+                    "entities.vertical.relicPowerOfWolf": {
+                        "entityRoomIndex": 18
+                    }
+                },
+                "stages.castleEntranceRevisited": {
+                    "entities.horizontal.relicPowerOfWolf": {
+                        "entityRoomIndex": 18
+                    },
+                    "entities.vertical.relicPowerOfWolf": {
+                        "entityRoomIndex": 18
+                    }
+                }
+            }
+        }
+    ]
+}

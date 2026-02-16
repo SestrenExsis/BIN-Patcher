@@ -258,7 +258,7 @@ export function parsePatchNode(ppf, patchNode) {
                 }
                 break
             case 'tilemap':
-                const bytesPerRow = targetMeta.element.rows * targetMeta.element.bytesPerIndex
+                const bytesPerRow = targetMeta.element.columns * targetMeta.element.bytesPerIndex
                 for (let row = 0; row < targetMeta.element.rows; row++) {
                     for (let col = 0; col < targetMeta.element.columns; col++) {
                         const address = toVal(targetMeta.address) + row * bytesPerRow + 2 * col

@@ -1,0 +1,110 @@
+{
+    "authors": [
+        "Sestren"
+    ],
+    "description": [
+        "Clock hands display minutes and seconds"
+    ],
+    "changes": [
+        {
+            "changeType": "merge",
+            "merge": {
+                "stages": {
+                    "marbleGallery": {
+                        "functions": {
+                            "entityClockRoomController": {
+                                "data": [
+                                    "0x8CA302D4",
+                                    "          ",
+                                    "          ",
+                                    "          ",
+                                    "          ",
+                                    "          ",
+                                    "0x00000000",
+                                    "          ",
+                                    "0x00000000",
+                                    "0x00000000",
+                                    "0x00051900",
+                                    "0x00651823",
+                                    "          ",
+                                    "0x00000000",
+                                    "0x00000000",
+                                    "0x00000000"
+                                ],
+                                "metadata": {
+                                    "address": "0x03FD7C2C",
+                                    "element": {
+                                        "structure": "value-array",
+                                        "type": "u32"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "blackMarbleGallery": {
+                        "functions": {
+                            "entityClockRoomController": {
+                                "data": [
+                                    "0x8CA302D4",
+                                    "          ",
+                                    "          ",
+                                    "          ",
+                                    "          ",
+                                    "          ",
+                                    "0x00000000",
+                                    "          ",
+                                    "0x00000000",
+                                    "0x00000000",
+                                    "0x00051900",
+                                    "0x00651823",
+                                    "          ",
+                                    "0x00000000",
+                                    "0x00000000",
+                                    "0x00000000"
+                                ],
+                                "metadata": {
+                                    "address": "0x0457E5D4",
+                                    "element": {
+                                        "structure": "value-array",
+                                        "type": "u32"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "cutsceneMeetingMariaInClockRoom": {
+                        "functions": {
+                            "entityClockRoomController": {
+                                "data": [
+                                    "0x8E6302D4",
+                                    "          ",
+                                    "          ",
+                                    "          ",
+                                    "          ",
+                                    "          ",
+                                    "0x00000000",
+                                    "          ",
+                                    "0x00000000",
+                                    "0x00000000",
+                                    "0x00041900",
+                                    "0x00641823",
+                                    "          ",
+                                    "0x00000000",
+                                    "0x00000000",
+                                    "0x00000000"
+                                ],
+                                "metadata": {
+                                    "address": "0x05811C94",
+                                    "element": {
+                                        "structure": "value-array",
+                                        "type": "u32"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

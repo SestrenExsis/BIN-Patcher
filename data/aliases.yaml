@@ -462,6 +462,41 @@ stages:
             tallSpittleboneRoom: 11
             tallZigZagRoom: 14
             tetrominoRoom: 19
+        tilemaps:
+            batCardRoom: '0x016a5c'
+            exitToRoyalChapel: '0x016c5c'
+            blueDoorHallway: '0x016e5c'
+            bloodyZombieHallway: '0x01725c'
+            cannonRoom: '0x017a5c'
+            clothCapeRoom: '0x017c5c'
+            sunglassesRoom: '0x017e5c'
+            glassVats: '0x01805c'
+            '0x01845c': '0x01845c'
+            skillOfWolfRoom: '0x01865c'
+            heartMaxUpRoom: '0x01885c'
+            entryway: '0x018a5c'
+            '0x01905c': '0x01905c'
+            tallSpittleboneRoom: '0x01925c'
+            emptyZigZagRoom: '0x019c5c'
+            shortZigZagRoom: '0x01a05c'
+            tallZigZagRoom: '0x01a45c'
+            secretLifeMaxUpRoom: '0x01aa5c'
+            slograAndGaibonRoom: '0x01ae5c'
+            boxPuzzleRoom: '0x01be5c'
+            '0x01c65c': '0x01c65c'
+            redSkeletonLiftRoom: '0x01c85c'
+            '0x01d45c': '0x01d45c'
+            tetrominoRoom: '0x01d65c'
+            exitToMarbleGallery: '0x01e25c'
+            corridorToElevator: '0x01ee5c'
+            elevatorShaft: '0x01f25c'
+            '0x02005c': '0x02005c'
+            saveRoomA: '0x02025c'
+            saveRoomB: '0x02045c'
+            saveRoomC: '0x02065c'
+            loadingRoomToMarbleGallery: '0x02085c'
+            loadingRoomToRoyalChapel: '0x02085c'
+            loadingRoomToCastleEntrance: '0x02085c'
     antiChapel:
         rooms:
             chapelStaircase: 11

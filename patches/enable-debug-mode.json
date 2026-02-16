@@ -1,0 +1,27 @@
+{
+    "authors": [
+        "Sestren"
+    ],
+    "changes": [
+        {
+            "changeType": "merge",
+            "merge": {
+                "_writes": {
+                    "debugMode": {
+                        "data": "0xAC258850",
+                        "metadata": {
+                            "address": "0x000D9364",
+                            "element": {
+                                "structure": "value",
+                                "type": "u32"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "description": [
+        "Enables the game's hidden debug mode"
+    ]
+}

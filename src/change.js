@@ -76,7 +76,10 @@ export function applyChange(patchInfo, changeInfo) {
 export function applyMerge(patchInfo, mergeInfo) {
     Object.entries(mergeInfo).forEach(([propertyPath, mergeNode]) => {
         const parsedPatch = parsePropertyPath(propertyPath, patchInfo)
-        if (parsedPatch.propertyName == 'data' || parsedPatch.propertyName == 'metadata')  {
+        if (parsedPatch.node !== null && parsedPatch.node.hasOwnProperty('data') && parsedPatch.node.hasOwnProperty('metadata')) {
+            parsedPatch.node.data = mergeNode
+        }
+        else if (parsedPatch.propertyName === 'data' || parsedPatch.propertyName === 'metadata')  {
             parsedPatch.parentNode[parsedPatch.propertyName] = mergeNode
         }
         else if (typeof mergeNode === 'object')  {
