@@ -427,7 +427,22 @@ stages:
             wellLitSkullRoom: 1
             wolfsHeadColumn: 0
         tilemaps:
-            bend: '0x00a960'
+            wolfsHeadColumn: '0x00a960'
+            wellLitSkullRoom: '0x00b160'
+            cerberusRoom: '0x00b560'
+            demonSwitch: '0x00b960'
+            '0x00c160': '0x00c160'
+            venusWeedRoom: '0x00c760'
+            snakeColumn: '0x00cf60'
+            peanutsRoom: '0x00d360'
+            fourWayIntersection: '0x00d560'
+            lowerStairwell: '0x00db60'
+            '0x00e360': '0x00e360'
+            karmaCoinRoom: '0x00e960'
+            bend: '0x00eb60'
+            demonCardRoom: '0x00ef60'
+            loadingRoom: '0x00f360'
+            saveRoomA: '0x00f560'
     alchemyLaboratory:
         rooms:
             batCardRoom: 0
@@ -494,9 +509,7 @@ stages:
             saveRoomA: '0x02025c'
             saveRoomB: '0x02045c'
             saveRoomC: '0x02065c'
-            loadingRoomToMarbleGallery: '0x02085c'
-            loadingRoomToRoyalChapel: '0x02085c'
-            loadingRoomToCastleEntrance: '0x02085c'
+            loadingRoom: '0x02085c'
     antiChapel:
         rooms:
             chapelStaircase: 11
@@ -525,6 +538,39 @@ stages:
             walkwayBetweenTowers: 2
             walkwayLeftOfHippogryph: 3
             walkwayRightOfHippogryph: 5
+        tilemaps:
+            silverRingRoom: '0x00a680'
+            silverRingRoom 0x00aa80: '0x00aa80'
+            spikeHallway: '0x00ae80'
+            spikeHallway 0x00b880: '0x00b880'
+            walkwayBetweenTowers: '0x00c280'
+            walkwayBetweenTowers 0x00cc80: '0x00cc80'
+            walkwayLeftOfHippogryph: '0x00d680'
+            walkwayLeftOfHippogryph 0x00dc80: '0x00dc80'
+            hippogryphRoom: '0x00e280'
+            hippogryphRoom 0x00e680: '0x00e680'
+            walkwayRightOfHippogryph: '0x00ea80'
+            walkwayRightOfHippogryph 0x00f080: '0x00f080'
+            pushingStatueShortcut: '0x00f680'
+            pushingStatueShortcut 0x00f880: '0x00f880'
+            confessionalBooth: '0x00fa80'
+            confessionalBooth 0x00fc80: '0x00fc80'
+            gogglesRoom: '0x00fe80'
+            gogglesRoom 0x010480: '0x010480'
+            nave: '0x010a80'
+            emptyRoom: '0x011280'
+            emptyRoom 0x011480: '0x011480'
+            chapelStaircase: '0x011680'
+            '0x018680': '0x018680'
+            statueLedge: '0x01ae80'
+            statueLedge 0x01b080: '0x01b080'
+            leftTower: '0x01b280'
+            '0x020280': '0x020280'
+            middleTower: '0x020e80'
+            saveRoomB: '0x023080'
+            rightTower: '0x023280'
+            saveRoomA: '0x025280'
+            loadingRoom: '0x022e80'
     blackMarbleGallery:
         rooms:
             alucartRoom: 25

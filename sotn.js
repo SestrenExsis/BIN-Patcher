@@ -3,7 +3,8 @@ import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex, toVal } from './src/common.js'
 import {
-    aliasNodes,
+    aliasIndexedNodes,
+    aliasNodeKeys,
     dropNodes,
     maskNodes,
     parseExtractionNode,
@@ -137,7 +138,8 @@ const argv = yargs(process.argv.slice(2))
             }
             if (argv.aliases != null) {
                 let aliasesData = JSON.parse(fs.readFileSync(argv.aliases, 'utf8'))
-                targetData = aliasNodes(targetData, aliasesData)
+                targetData = aliasIndexedNodes(targetData, aliasesData)
+                targetData = aliasNodeKeys(targetData, aliasesData)
             }
             fs.writeFileSync(argv.target, JSON.stringify(targetData, null, 4));
         }

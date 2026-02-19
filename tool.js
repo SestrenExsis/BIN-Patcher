@@ -62,12 +62,14 @@ const argv = yargs(process.argv.slice(2))
             let legacyData = JSON.parse(fs.readFileSync('./build/extraction-legacy.json', 'utf8'))
             let extractionData = JSON.parse(fs.readFileSync('./build/extraction.json', 'utf8'))
             let aliasData = JSON.parse(fs.readFileSync('./build/alias.json', 'utf8'))
+            console.log('stages:')
             Object.entries(extractionData.stages).forEach(([stageName, stageInfo]) => {
                 if (stageName != argv.property) {
                     return;
                 }
+                console.log(`    ${stageName}:`)
+                console.log('        rooms:')
                 const tilemaps = {}
-                console.log(stageName)
                 stageInfo.layers.layerDefinitions.data.map((element, index) => {
                     const rows = 1 + element.layoutRect.bottom - element.layoutRect.top
                     const cols = 1 + element.layoutRect.right - element.layoutRect.left
@@ -117,9 +119,10 @@ const argv = yargs(process.argv.slice(2))
                         }
                     }
                     tilemaps[tilemapKey] = tilemap
-                    console.log(' ', index, element.tilesOffset, element.layoutRect.top, element.layoutRect.left, 'hw(', rows, ',', cols, ')', matchingRoomId, '->', matchingAlias)
+                    // console.log(' ', index, element.tilesOffset, element.layoutRect.top, element.layoutRect.left, 'hw(', rows, ',', cols, ')', matchingRoomId, '->', matchingAlias)
+                    console.log(`            ${tilemapKey}: '${element.tilesOffset}'`)
                 })
-                console.log(JSON.stringify(tilemaps, null, '    '))
+                // console.log(JSON.stringify(tilemaps, null, '    '))
             });
         }
     })

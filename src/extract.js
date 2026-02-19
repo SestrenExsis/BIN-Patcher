@@ -272,7 +272,7 @@ export function parseExtractionNode(bin, extractionNode, baseOffset) {
     return result
 }
 
-export function aliasNodes(sourceData, aliasesData) {
+export function aliasIndexedNodes(sourceData, aliasesData) {
     let result = {}
     Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
         if (aliasesData !== null && aliasesData.hasOwnProperty(nodeName)) {
@@ -308,11 +308,40 @@ export function aliasNodes(sourceData, aliasesData) {
                 result[nodeName] = nodeInfo
             }
             else {
-                result[nodeName] = aliasNodes(nodeInfo, aliasNode)
+                result[nodeName] = aliasIndexedNodes(nodeInfo, aliasNode)
             }
         }
         else {
             result[nodeName] = nodeInfo
+        }
+    })
+    return result
+}
+
+export function aliasNodeKeys(sourceData, aliasesData) {
+    let result = {}
+    Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
+        let nodeKey = nodeName
+        if (aliasesData !== null && typeof aliasesData === 'object') {
+            let leafNodeFound = false
+            if (nodeInfo.hasOwnProperty("data")) {
+                leafNodeFound = true
+            }
+            Object.entries(aliasesData).forEach(([aliasName, aliasKey]) => {
+                if (typeof aliasKey === 'string' && aliasKey == nodeName) {
+                    leafNodeFound = true
+                    nodeKey = aliasName
+                }
+            })
+            if (leafNodeFound) {
+                result[nodeKey] = nodeInfo
+            }
+            else {
+                result[nodeKey] = aliasNodeKeys(nodeInfo, aliasesData[nodeKey])
+            }
+        }
+        else {
+            result[nodeKey] = nodeInfo
         }
     })
     return result

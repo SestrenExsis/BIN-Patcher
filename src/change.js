@@ -40,7 +40,7 @@ export function parsePropertyPath(propertyPath, patchInfo) {
             node = node.data[elementIndex]
         }
         else {
-            console.log(propertyPath, pathSegment)
+            // console.log(propertyPath, pathSegment)
             node[propertyName] = {}
             parentNode = node
             node = node[propertyName]
