@@ -95,10 +95,10 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('drop', {
+            .option('drops', {
                 alias: 'd',
-                describe: 'Name to match for dropping nodes',
-                type: 'string',
+                describe: 'Names to match for dropping nodes',
+                type: 'array',
             })
             .option('mask', {
                 alias: 'm',
@@ -127,11 +127,11 @@ const argv = yargs(process.argv.slice(2))
         handler: (argv) => {
             let sourceData = JSON.parse(fs.readFileSync(argv.source, 'utf8'))
             let targetData = sourceData
-            if (argv.drop != null) {
-                targetData = dropNodes(targetData, argv.drop)
-            }
             if (argv.mask != null) {
                 targetData = maskNodes(targetData, argv.mask)
+            }
+            if (argv.drops != null) {
+                targetData = dropNodes(targetData, argv.drops)
             }
             if (argv.promote != null) {
                 targetData = promoteNodes(targetData, argv.promote)

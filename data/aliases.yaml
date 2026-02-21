@@ -26,24 +26,23 @@ bossTeleporters:
     bossDoppelganger40: 25
     bossAkmodanIILeft: 26
     bossGalamothLeft: 27
-constants:
-    castleMapColorPalettes:
-        dra:
-            unrevealed: 0
-            exploredFills: 1
-            revealedFills: 3
-            saveRoomFills: 4
-            warpRoomFills: 5
-            revealedBorders: 13
-            exploredBorders: 14
-        ric:
-            unrevealed: 0
-            exploredFills: 1
-            revealedFills: 3
-            saveRoomFills: 4
-            warpRoomFills: 5
-            revealedBorders: 13
-            exploredBorders: 14
+castleMapColorPalettes:
+    dra:
+        unrevealed: 0
+        exploredFills: 1
+        revealedFills: 3
+        saveRoomFills: 4
+        warpRoomFills: 5
+        revealedBorders: 13
+        exploredBorders: 14
+    ric:
+        unrevealed: 0
+        exploredFills: 1
+        revealedFills: 3
+        saveRoomFills: 4
+        warpRoomFills: 5
+        revealedBorders: 13
+        exploredBorders: 14
 familiarEvents:
     bat:
         catacombsDarkRoomBat: 1

@@ -42,104 +42,103 @@ castleMapReveals:
             method: absolute
         element:
             structure: binary-string-array
-constants:
-    castleMapColorPalettes:
-        dra:
-            metadata:
-                address:
-                    value: 0x03128800
-                    method: absolute
-                element:
-                    structure: value-array
-                    constraint:
-                        method: elementCount
-                        elementCount: 16
-                    type: rgba32
-        ric:
-            metadata:
-                address:
-                    value: 0x0316A800
-                    method: absolute
-                element:
-                    structure: value-array
-                    constraint:
-                        method: elementCount
-                        elementCount: 16
-                    type: rgba32
-    specialSaveRooms:
-        falseSaveRoomX:
-            metadata:
-                address:
-                    value: 0x000E7DC8
-                    method: absolute
-                element:
-                    structure: value
-                    type: u16
-        falseSaveRoomY:
-            metadata:
-                address:
-                    value: 0x000E7DD0
-                    method: absolute
-                element:
-                    structure: value
-                    type: u16
-        finalSaveRoomX:
-            metadata:
-                address:
-                    value: 0x000E7D50
-                    method: absolute
-                element:
-                    structure: value
-                    type: u16
-        finalSaveRoomY:
-            metadata:
-                address:
-                    value: 0x000E7D64
-                    method: absolute
-                element:
-                    structure: value
-                    type: u16
-        reverseFalseSaveRoomX:
-            metadata:
-                address:
-                    value: 0x000E7DA4
-                    method: absolute
-                element:
-                    structure: value
-                    type: u16
-        reverseFalseSaveRoomY:
-            metadata:
-                address:
-                    value: 0x000E7DAC
-                    method: absolute
-                element:
-                    structure: value
-                    type: u16
-    messages:
-        prologueCredits:
-            metadata:
-                address:
-                    value: 0x0487f458
-                    method: absolute
-                element:
-                    structure: value
-                    type: text-crawl
-        richterModeInstructions1:
-            metadata:
-                address:
-                    value: 0x03ACF0B4
-                    method: absolute
-                element:
-                    structure: value
-                    type: string
-        richterModeInstructions2:
-            metadata:
-                address:
-                    value: 0x03ACF0D4
-                    method: absolute
-                element:
-                    structure: value
-                    type: string
+castleMapColorPalettes:
+    dra:
+        metadata:
+            address:
+                value: 0x03128800
+                method: absolute
+            element:
+                structure: value-array
+                constraint:
+                    method: elementCount
+                    elementCount: 16
+                type: rgba32
+    ric:
+        metadata:
+            address:
+                value: 0x0316A800
+                method: absolute
+            element:
+                structure: value-array
+                constraint:
+                    method: elementCount
+                    elementCount: 16
+                type: rgba32
+specialSaveRooms:
+    falseSaveRoomX:
+        metadata:
+            address:
+                value: 0x000E7DC8
+                method: absolute
+            element:
+                structure: value
+                type: u16
+    falseSaveRoomY:
+        metadata:
+            address:
+                value: 0x000E7DD0
+                method: absolute
+            element:
+                structure: value
+                type: u16
+    finalSaveRoomX:
+        metadata:
+            address:
+                value: 0x000E7D50
+                method: absolute
+            element:
+                structure: value
+                type: u16
+    finalSaveRoomY:
+        metadata:
+            address:
+                value: 0x000E7D64
+                method: absolute
+            element:
+                structure: value
+                type: u16
+    reverseFalseSaveRoomX:
+        metadata:
+            address:
+                value: 0x000E7DA4
+                method: absolute
+            element:
+                structure: value
+                type: u16
+    reverseFalseSaveRoomY:
+        metadata:
+            address:
+                value: 0x000E7DAC
+                method: absolute
+            element:
+                structure: value
+                type: u16
+messages:
+    prologueCredits:
+        metadata:
+            address:
+                value: 0x0487f458
+                method: absolute
+            element:
+                structure: value
+                type: text-crawl
+    richterModeInstructions1:
+        metadata:
+            address:
+                value: 0x03ACF0B4
+                method: absolute
+            element:
+                structure: value
+                type: string
+    richterModeInstructions2:
+        metadata:
+            address:
+                value: 0x03ACF0D4
+                method: absolute
+            element:
+                structure: value
+                type: string
 secretMapTileReveals:
     metadata:
         address:

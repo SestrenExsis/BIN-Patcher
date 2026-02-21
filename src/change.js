@@ -24,35 +24,47 @@
 //   evaluationOrder: ...
 //   evaluations: ...
 
-export function parsePropertyPath(propertyPath, patchInfo) {
-    let parentNode = null
-    let node = patchInfo
-    let propertyName = null
-    for (const pathSegment of propertyPath.split('.')) {
-        propertyName = pathSegment
-        if (node.hasOwnProperty(propertyName)) {
-            parentNode = node
-            node = node[propertyName]
+export function getCanonicalPath(nonNormalPath, startingNode) {
+    let canonicalPath = []
+    let currentNode = startingNode
+    for (let pathToken of nonNormalPath.split('.')) {
+        const assignmentInd = pathToken.at(-1) === '='
+        if (assignmentInd) {
+            pathToken = pathToken.slice(0, -1)
         }
-        else if (node.hasOwnProperty('aliases') && node.aliases.hasOwnProperty(propertyName)) {
-            const elementIndex = node.aliases[propertyName]
-            parentNode = node
-            node = node.data[elementIndex]
+        const segmentsToPush = []
+        if (currentNode?.hasOwnProperty(pathToken)) {
+            currentNode = currentNode[pathToken]
+            segmentsToPush.push(pathToken)
+        }
+        else if (currentNode?.hasOwnProperty('aliases') && currentNode?.aliases.hasOwnProperty(pathToken)) {
+            const elementIndex = currentNode.aliases[pathToken]
+            currentNode = currentNode.data[elementIndex]
+            segmentsToPush.push('data')
+            segmentsToPush.push(elementIndex)
         }
         else {
-            // console.log(propertyPath, pathSegment)
-            node[propertyName] = {}
-            parentNode = node
-            node = node[propertyName]
-            // console.log(node)
-            // throw new Error('Property not found:', propertyPath)
+            currentNode = null
+            segmentsToPush.push(pathToken)
+        }
+        canonicalPath = canonicalPath.concat(segmentsToPush)
+        if (assignmentInd) {
+            canonicalPath.push('=')
         }
     }
-    const result = {
-        parentNode: parentNode,
-        node: node,
-        propertyName: propertyName,
+    const result = canonicalPath
+    return result
+}
+
+export function traverseCanonicalPath(canonicalPath, startingNode) {
+    let currentNode = startingNode
+    for (const pathToken of canonicalPath) {
+        if (typeof currentNode === 'object' && !currentNode.hasOwnProperty(pathToken)) {
+            currentNode[pathToken] = {}
+        }
+        currentNode = currentNode[pathToken]
     }
+    const result = currentNode
     return result
 }
 
@@ -75,18 +87,16 @@ export function applyChange(patchInfo, changeInfo) {
 
 export function applyMerge(patchInfo, mergeInfo) {
     Object.entries(mergeInfo).forEach(([propertyPath, mergeNode]) => {
-        const parsedPatch = parsePropertyPath(propertyPath, patchInfo)
-        if (parsedPatch.node !== null && parsedPatch.node.hasOwnProperty('data') && parsedPatch.node.hasOwnProperty('metadata')) {
-            parsedPatch.node.data = mergeNode
-        }
-        else if (parsedPatch.propertyName === 'data' || parsedPatch.propertyName === 'metadata')  {
-            parsedPatch.parentNode[parsedPatch.propertyName] = mergeNode
-        }
-        else if (typeof mergeNode === 'object')  {
-            applyMerge(parsedPatch.node, mergeNode)
+        const canonicalPath = getCanonicalPath(propertyPath, patchInfo)
+        if (canonicalPath.at(-1) === '=') {
+            const assignmentInd = canonicalPath.pop()
+            const propertyName = canonicalPath.pop()
+            const patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+            patchNode[propertyName] = mergeNode
         }
         else {
-            parsedPatch.parentNode[parsedPatch.propertyName] = mergeNode
+            const patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+            applyMerge(patchNode, mergeNode)
         }
     })
 }

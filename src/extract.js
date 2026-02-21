@@ -347,17 +347,17 @@ export function aliasNodeKeys(sourceData, aliasesData) {
     return result
 }
 
-export function dropNodes(sourceData, nodeNameToDrop) {
+export function dropNodes(sourceData, nodeNamesToDrop) {
     let result = {}
     Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
-        if (nodeName == nodeNameToDrop) {
+        if (nodeNamesToDrop.includes(nodeName)) {
             // Drop the node
         }
-        else if (['metadata', 'data'].includes(nodeName)) {
+        else if (['metadata', 'data', 'aliases'].includes(nodeName)) {
             result[nodeName] = nodeInfo
         }
         else {
-            result[nodeName] = dropNodes(nodeInfo, nodeNameToDrop)
+            result[nodeName] = dropNodes(nodeInfo, nodeNamesToDrop)
         }
     })
     return result

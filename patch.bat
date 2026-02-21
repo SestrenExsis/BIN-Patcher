@@ -7,4 +7,5 @@ node sotn patch -p "build/current-patch.json" -c "patches/enable-debug-mode.json
 node sotn patch -p "build/current-patch.json" -c "patches/normalize-alchemy-laboratory-passages.json"
 
 @REM node sotn patch -p "build/current-patch.json" -c "build/change-dependencies.json"
-node sotn ppf   -p "build/current-patch.json" -t "build/current-patch.ppf"
+
+@REM node sotn ppf   -p "build/current-patch.json" -t "build/current-patch.ppf"

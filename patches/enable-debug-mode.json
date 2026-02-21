@@ -7,7 +7,7 @@
             "changeType": "merge",
             "merge": {
                 "_writes": {
-                    "debugMode": {
+                    "debugMode=": {
                         "data": "0xAC258850",
                         "metadata": {
                             "address": "0x000D9364",

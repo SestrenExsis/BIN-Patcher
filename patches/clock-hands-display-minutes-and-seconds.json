@@ -12,7 +12,7 @@
                 "stages": {
                     "marbleGallery": {
                         "functions": {
-                            "entityClockRoomController": {
+                            "entityClockRoomController=": {
                                 "data": [
                                     "0x8CA302D4",
                                     "          ",
@@ -43,7 +43,7 @@
                     },
                     "blackMarbleGallery": {
                         "functions": {
-                            "entityClockRoomController": {
+                            "entityClockRoomController=": {
                                 "data": [
                                     "0x8CA302D4",
                                     "          ",
@@ -74,7 +74,7 @@
                     },
                     "cutsceneMeetingMariaInClockRoom": {
                         "functions": {
-                            "entityClockRoomController": {
+                            "entityClockRoomController=": {
                                 "data": [
                                     "0x8E6302D4",
                                     "          ",

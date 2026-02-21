@@ -9,13 +9,13 @@
         {
             "changeType": "merge",
             "merge": {
-                "constants.castleMapColorPalettes.dra": {
-                    "exploredBorders": "#F0A0F8FF",
-                    "exploredFills": "#A028E8FF"
+                "castleMapColorPalettes.dra": {
+                    "exploredBorders=": "#F0A0F8FF",
+                    "exploredFills=": "#A028E8FF"
                 },
-                "constants.castleMapColorPalettes.ric": {
-                    "exploredBorders": "#F0A0F8FF",
-                    "exploredFills": "#A028E8FF"
+                "castleMapColorPalettes.ric": {
+                    "exploredBorders=": "#F0A0F8FF",
+                    "exploredFills=": "#A028E8FF"
                 }
             }
         }

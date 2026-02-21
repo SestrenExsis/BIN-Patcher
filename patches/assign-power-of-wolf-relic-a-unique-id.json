@@ -12,18 +12,18 @@
             "merge": {
                 "stages.castleEntrance": {
                     "entities.horizontal.relicPowerOfWolf": {
-                        "entityRoomIndex": 18
+                        "entityRoomIndex=": 18
                     },
                     "entities.vertical.relicPowerOfWolf": {
-                        "entityRoomIndex": 18
+                        "entityRoomIndex=": 18
                     }
                 },
                 "stages.castleEntranceRevisited": {
                     "entities.horizontal.relicPowerOfWolf": {
-                        "entityRoomIndex": 18
+                        "entityRoomIndex=": 18
                     },
                     "entities.vertical.relicPowerOfWolf": {
-                        "entityRoomIndex": 18
+                        "entityRoomIndex=": 18
                     }
                 }
             }
