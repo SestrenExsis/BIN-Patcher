@@ -8,4 +8,4 @@ node sotn patch -p "build/current-patch.json" -c "patches/normalize-alchemy-labo
 
 @REM node sotn patch -p "build/current-patch.json" -c "build/change-dependencies.json"
 
-@REM node sotn ppf   -p "build/current-patch.json" -t "build/current-patch.ppf"
+node sotn ppf   -p "build/current-patch.json" -t "build/current-patch.ppf"

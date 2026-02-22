@@ -275,7 +275,7 @@ export function parsePatchNode(ppf, patchNode) {
     else {
         Object.entries(patchNode)
         .filter(([nodeName, nodeInfo]) => {
-            return (nodeInfo !== null) && !(['data', 'metadata'].includes(nodeName))
+            return (nodeInfo !== null) && !(['data', 'metadata', 'aliases'].includes(nodeName))
         })
         .forEach(([nodeName, nodeInfo]) => {
             // console.log(nodeName)
