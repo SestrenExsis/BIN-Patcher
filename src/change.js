@@ -73,9 +73,6 @@ export function applyChange(patchInfo, changeInfo) {
         case 'merge':
             applyMerge(patchInfo, changeInfo.merge)
             break
-        case 'extend':
-            // TODO(sestren): Implement extend (goes to _writes?)
-            break
         case 'evaluate':
             for (const evaluateKey of changeInfo.evaluate.evaluationOrder) {
                 const evaluateInfo = changeInfo.evaluate.evaluations[evaluateKey]

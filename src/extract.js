@@ -96,6 +96,9 @@ function extractArray(bin, elementInfo, baseOffset) {
             case 'object-array':
                 element = extractObject(bin, elementInfo, offset)
                 element._elementIndex = data.length
+                if (element?.layoutRect?.hasOwnProperty('flags')) {
+                    element._layoutRectFlags = element.layoutRect.flags
+                }
                 data.push(element)
                 offset += toVal(elementInfo.size)
                 if (elementInfo.hasOwnProperty('postProcessing')) {
@@ -375,7 +378,7 @@ export function maskNode(nodeInfo, nodeStructure) {
             break
         case 'object':
             Object.keys(nodeInfo).forEach((propertyName) => {
-                if (propertyName.at(0) != '_') {
+                if (propertyName.at(0) !== '_') {
                     nodeInfo[propertyName] = null
                 }
             })
@@ -383,7 +386,7 @@ export function maskNode(nodeInfo, nodeStructure) {
         case 'object-array':
             for (let index = 0; index < nodeInfo.length; index++) {
                 Object.keys(nodeInfo[index]).forEach((propertyName) => {
-                    if (propertyName.at(0) != '_') {
+                    if (propertyName.at(0) !== '_') {
                         nodeInfo[index][propertyName] = null
                     }
                 })

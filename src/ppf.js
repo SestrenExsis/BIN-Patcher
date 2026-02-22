@@ -11,21 +11,10 @@ import {
 } from './common.js'
 
 // TODO(sestren) structures:
-//     object-array:
-//         - can index into array
-//         - sparse access to root-level properties
-//     value-array:
-//         - can index into array
-//     object:
-//         - sparse access to root-level properties
-//     value:
-//         - simple replace only
 //     tilemap:
 //         - can specify a range of tiles
 //     indexed-bitmap:
 //         - can specify a square, sparse region, with some restrictions
-//     binary-string-array:
-//         - simple replace only
 
 export class PPF {
     constructor(buffer, cursorOffset=0) {
