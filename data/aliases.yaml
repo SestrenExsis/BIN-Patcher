@@ -461,6 +461,37 @@ stages:
             loadingRoom: '0x00f360'
             saveRoomA: '0x00f560'
     alchemyLaboratory:
+        layers:
+            layerDefinitions:
+                batCardRoom: 1
+                bloodyZombieHallway: 4
+                blueDoorHallway: 3
+                boxPuzzleRoom: 20
+                cannonRoom: 5
+                clothCapeRoom: 6
+                corridorToElevator: 26
+                elevatorShaft: 27
+                emptyZigZagRoom: 15
+                entryway: 12
+                exitToMarbleGallery: 25
+                exitToRoyalChapel: 2
+                glassVats: 8
+                heartMaxUpRoom: 11
+                loadingRoomToCastleEntrance: 34
+                loadingRoomToMarbleGallery: 32
+                loadingRoomToRoyalChapel: 33
+                redSkeletonLiftRoom: 22
+                saveRoomA: 29
+                saveRoomB: 30
+                saveRoomC: 31
+                secretLifeMaxUpRoom: 18
+                shortZigZagRoom: 16
+                skillOfWolfRoom: 10
+                slograAndGaibonRoom: 19
+                sunglassesRoom: 7
+                tallSpittleboneRoom: 14
+                tallZigZagRoom: 17
+                tetrominoRoom: 24
         rooms:
             batCardRoom: 0
             bloodyZombieHallway: 3
