@@ -405,6 +405,24 @@ stages:
             verticalRows:
                 bend: 1
                 cerberusRoom: 6
+        layers:
+            layerDefinitions:
+                bend: 13
+                cerberusRoom: 3
+                demonSwitch: 4
+                demonCard: 14
+                fourWayIntersection: 9
+                karmaCoinRoom: 12
+                loadingRoomToCatacombs: 15
+                loadingRoomToUndergroundCaverns: 17
+                loadingRoomToWarpRooms: 16
+                lowerStairwell: 10
+                peanutsRoom: 8
+                saveRoom: 18
+                snakeColumn: 7
+                venusWeedRoom: 6
+                wellLitSkullRoom: 2
+                wolfsHeadColumn: 1
         rooms:
             bend: 10
             cerberusRoom: 2

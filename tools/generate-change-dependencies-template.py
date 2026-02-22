@@ -19,9 +19,9 @@ data = {
         # '11': ('Royal Chapel', 'Royal Chapel, Hippogryph Room', 0, 1), # Boss - Hippogryph
     #
         'bossRichter': ('stages.castleKeep.rooms.keepArea', 3, 3),
+        'bossCerberusLeft': ('stages.abandonedMine.rooms.cerberusRoom', 0, 0),
+        'bossCerberusRight': ('stages.abandonedMine.rooms.cerberusRoom', 0, 1),
     #
-        # '13': ('Abandoned Mine', 'Abandoned Mine, Cerberus Room', 0, 0), # Boss - Cerberus
-        # '14': ('Abandoned Mine', 'Abandoned Mine, Cerberus Room', 0, 1), # Boss - Cerberus
         # '15': ('Reverse Colosseum', 'Reverse Colosseum, Arena', 0, 0), # Boss - Trio
         # '16': ('Reverse Colosseum', 'Reverse Colosseum, Arena', 0, 1), # Boss - Trio
         # '17': ('Necromancy Laboratory', 'Necromancy Laboratory, Slogra and Gaibon Room', 0, 0), # Boss - Beelzebub
@@ -104,7 +104,25 @@ data = {
     },
     'rooms': {
         'abandonedMine': [
+            'bend',
             'cerberusRoom',
+            'demonCard',
+            'demonSwitch',
+            'fourWayIntersection',
+            'karmaCoinRoom',
+            'loadingRoomToCatacombs',
+            'loadingRoomToUndergroundCaverns',
+            'loadingRoomToWarpRooms',
+            'lowerStairwell',
+            'peanutsRoom',
+            'saveRoom',
+            'snakeColumn',
+            'triggerTeleporterToCatacombs',
+            'triggerTeleporterToUndergroundCaverns',
+            'triggerTeleporterToWarpRooms',
+            'venusWeedRoom',
+            'wellLitSkullRoom',
+            'wolfsHeadColumn',
         ],
     },
     'bossRooms': {
@@ -150,6 +168,7 @@ if __name__ == '__main__':
         for (stage_name, room_names) in data['rooms'].items():
             print('', stage_name)
             for room_name in room_names:
+                # Calculate right and bottom
                 print(' -', room_name)
                 for (target_property_name, source_property_a, source_property_b) in (
                     ('right', 'left', '_columns'),
@@ -182,7 +201,48 @@ if __name__ == '__main__':
                     ]
                     evaluate['evaluations'][transformation_name] = transformation
                     evaluate['evaluationOrder'].append(transformation_name)
-                # Calculate bottom
+                # Copy boundaries to layerDefinitions
+                for property_name in (
+                    'left',
+                    'top',
+                    'right',
+                    'bottom',
+                ):
+                    source_property_key = '.'.join(('stages', stage_name, 'rooms', room_name, property_name))
+                    target_property_key = '.'.join(('stages', stage_name, 'layers', 'layerDefinitions', room_name, 'layoutRect', property_name))
+                    print('   -', target_property_key)
+                    transformation = [
+                        {
+                            'action': 'get',
+                            'type': 'property',
+                            'property': source_property_key,
+                        },
+                        {
+                            'action': 'set',
+                            'type': 'property',
+                            'property': target_property_key,
+                        },
+                    ]
+                    evaluate['evaluations'][target_property_key] = transformation
+                    evaluate['evaluationOrder'].append(target_property_key)
+                # Copy stored flags
+                source_property_key = '.'.join(('stages', stage_name, 'layers', 'layerDefinitions', room_name, '_layoutRectFlags'))
+                target_property_key = '.'.join(('stages', stage_name, 'layers', 'layerDefinitions', room_name, 'layoutRect', 'flags'))
+                print('   -', target_property_key)
+                transformation = [
+                    {
+                        'action': 'get',
+                        'type': 'property',
+                        'property': source_property_key,
+                    },
+                    {
+                        'action': 'set',
+                        'type': 'property',
+                        'property': target_property_key,
+                    },
+                ]
+                evaluate['evaluations'][target_property_key] = transformation
+                evaluate['evaluationOrder'].append(target_property_key)
         # TODO(sestren): Boss Rooms
         # 'bossCerberusCerberusRoom': 'stages.bossCerberus.rooms.cerberusRoom.left' = 'stages.abandonedMine.rooms.cerberusRoom.left',
         # for (transformation_key, (target_property_key, source_property_key, offset_top, offset_left)) in data[transformation_group_key].items():

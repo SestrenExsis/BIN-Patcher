@@ -59,7 +59,7 @@ export function getCanonicalPath(nonNormalPath, startingNode) {
 export function traverseCanonicalPath(canonicalPath, startingNode) {
     let currentNode = startingNode
     for (const pathToken of canonicalPath) {
-        if (typeof currentNode === 'object' && !currentNode.hasOwnProperty(pathToken)) {
+        if (typeof currentNode === 'object' && (!currentNode.hasOwnProperty(pathToken) || currentNode[pathToken] === null)) {
             currentNode[pathToken] = {}
         }
         currentNode = currentNode[pathToken]
@@ -100,17 +100,26 @@ export function applyMerge(patchInfo, mergeInfo) {
 
 export function applyEvaluate(patchInfo, evaluateInfo) {
     let currentValue;
+    let canonicalPath;
+    let parentPropertyName;
+    let propertyName;
+    let patchNode;
     for (const actionInfo of evaluateInfo) {
         switch (actionInfo.action) {
             case 'get':
                 // TODO(sestren): Implement getting address
                 // TODO(sestren): Implement getting constant
-                currentValue = parsePropertyPath(actionInfo.property, patchInfo).node
+                canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                propertyName = canonicalPath.pop()
+                patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                currentValue = patchNode[propertyName]
                 break
             case 'set':
                 if (actionInfo.type == 'property') {
-                    const parsedPath = parsePropertyPath(actionInfo.property, patchInfo)
-                    parsedPath.parentNode[parsedPath.propertyName] = currentValue
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    patchNode[propertyName] = currentValue
                 }
                 else if (actionInfo.type == 'address') {
                     if (!patchInfo.hasOwnProperty('_writes')) {
@@ -128,7 +137,10 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 break
             case 'add':
                 if (actionInfo.type == 'property') {
-                    currentValue += parsePropertyPath(actionInfo.property, patchInfo).node
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    currentValue += patchNode[propertyName]
                 }
                 else {
                     currentValue += actionInfo.constant
@@ -136,7 +148,10 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 break
             case 'subtract':
                 if (actionInfo.type == 'property') {
-                    currentValue -= parsePropertyPath(actionInfo.property, patchInfo).node
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    currentValue -= patchNode[propertyName]
                 }
                 else {
                     currentValue -= actionInfo.constant
@@ -144,13 +159,16 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 break
             case 'multiply':
                 if (actionInfo.type == 'property') {
-                    currentValue *= parsePropertyPath(actionInfo.property, patchInfo).node
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    currentValue *= patchNode[propertyName]
                 }
                 else {
                     currentValue *= actionInfo.constant
                 }
                 break
             }
-        console.log(currentValue)
+        // console.log('currentValue:', currentValue)
     }
 }

@@ -9,14 +9,42 @@
         {
             "changeType": "merge",
             "merge": {
-                "castleMapColorPalettes.dra": {
-                    "exploredBorders=": "#F0A0F8FF",
-                    "exploredFills=": "#A028E8FF"
-                },
-                "castleMapColorPalettes.ric": {
-                    "exploredBorders=": "#F0A0F8FF",
-                    "exploredFills=": "#A028E8FF"
-                }
+                "castleMapColorPalettes.dra.data=": [
+                    "#0000007F",
+                    "#0000FFFF",
+                    "#002858FF",
+                    "#101810FF",
+                    "#F80000FF",
+                    "#F88000FF",
+                    "#B78C4DFF",
+                    "#FF1A57FF",
+                    "#E600B8FF",
+                    "#008099FF",
+                    "#B64FFFFF",
+                    "#00B300FF",
+                    "#666666FF",
+                    "#036333FF",
+                    "#C0C0C0FF",
+                    "#009DFFFF"
+                ],
+                "castleMapColorPalettes.ric.data=": [
+                    "#0000007F",
+                    "#0000FFFF",
+                    "#002858FF",
+                    "#101810FF",
+                    "#F80000FF",
+                    "#F88000FF",
+                    "#B78C4DFF",
+                    "#FF1A57FF",
+                    "#E600B8FF",
+                    "#008099FF",
+                    "#B64FFFFF",
+                    "#00B300FF",
+                    "#666666FF",
+                    "#036333FF",
+                    "#C0C0C0FF",
+                    "#009DFFFF"
+                ]
             }
         }
     ]
