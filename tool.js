@@ -126,6 +126,60 @@ const argv = yargs(process.argv.slice(2))
             });
         }
     })
+    .command({ // layerDefinitions
+        command: 'layerDefinitions',
+        describe: 'Search for matching stage info for layer definitions',
+        builder: (yargs) => {
+            return yargs
+            .option('property', {
+                alias: 'p',
+                describe: 'Stage property (e.g., alchemyLaboratory)',
+                type: 'string',
+            })
+            .demandOption(['property'])
+        },
+        handler: (argv) => {
+            let extractionData = JSON.parse(fs.readFileSync('./build/extraction-aliased.json', 'utf8'))
+            console.log('stages:')
+            Object.entries(extractionData.stages).forEach(([stageName, stageInfo]) => {
+                if (stageName != argv.property) {
+                    return;
+                }
+                console.log(`    ${stageName}:`)
+                console.log('        layers:')
+                console.log('            layerDefinitions:')
+                const tilemaps = {}
+                stageInfo.layers.layerDefinitions.data.filter((layerDefinition) => {
+                    return (
+                        layerDefinition.left !== 0 ||
+                        layerDefinition.top !== 0 ||
+                        layerDefinition.right !== 0 ||
+                        layerDefinition.bottom !== 0 ||
+                        layerDefinition.flags !== 0 ||
+                        layerDefinition.tilesOffset !== 'NULL'
+                    )
+                }).map((layerDefinition, index) => {
+                    let roomAlias = 'unknown' + index
+                    const possibleIndexes = []
+                    Object.values(stageInfo.rooms.data).filter((roomInfo) => {
+                        return (
+                            roomInfo.hasOwnProperty('_alias') &&
+                            roomInfo.left == layerDefinition.layoutRect.left &&
+                            roomInfo.top == layerDefinition.layoutRect.top &&
+                            roomInfo.right == layerDefinition.layoutRect.right &&
+                            roomInfo.bottom == layerDefinition.layoutRect.bottom
+                        )
+                    }).map((roomInfo) => {
+                        roomAlias = roomInfo._alias
+                        possibleIndexes.push(layerDefinition._elementIndex)
+                    })
+                    if (possibleIndexes.length > 0) {
+                        console.log(`                ${roomAlias}: ${possibleIndexes.join(', ')}`)
+                    }
+                })
+            });
+        }
+    })
     .demandCommand(1)
     .help()
     .parse()

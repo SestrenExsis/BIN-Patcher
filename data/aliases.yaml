@@ -559,6 +559,41 @@ stages:
             saveRoomC: '0x02065c'
             loadingRoom: '0x02085c'
     antiChapel:
+        layers:
+            layerDefinitions:
+                silverRingRoom: 1
+                silverRingRoomBackground: 2
+                spikeHallway: 3
+                spikeHallwayBackground: 4
+                walkwayBetweenTowers: 5
+                walkwayBetweenTowersBackground: 6
+                walkwayLeftOfHippogryph: 7
+                walkwayLeftOfHippogryphBackground: 8
+                hippogryphRoom: 9
+                hippogryphRoom 0x00e680: 10
+                walkwayRightOfHippogryph: 11
+                walkwayRightOfHippogryphBackground: 12
+                pushingStatueShortcut: 13
+                pushingStatueShortcutBackground: 14
+                confessionalBooth: 15
+                confessionalBoothBackground: 16
+                gogglesRoom: 17
+                gogglesRoomBackground: 18
+                nave: 19
+                emptyRoom: 20
+                emptyRoomBackground: 21
+                chapelStaircase: 22
+                statueLedge: 24
+                statueLedgeBackground: 25
+                leftTower: 26
+                middleTower: 28
+                loadingRoomToCastleKeep: 29
+                saveRoomB: 30
+                rightTower: 31
+                saveRoomA: 32
+                loadingRoomToAlchemyLaboratory: 33
+                loadingRoomToColosseum: 34
+                loadingRoomToOlroxsQuarters: 35
         rooms:
             chapelStaircase: 11
             confessionalBooth: 7
@@ -620,6 +655,60 @@ stages:
             saveRoomA: '0x025280'
             loadingRoom: '0x022e80'
     blackMarbleGallery:
+        layers:
+            layerDefinitions:
+                sShapedHallways: 1
+                sShapedHallwaysBackground: 2
+                tallStainedGlassWindows: 3
+                tallStainedGlassWindowsBackground: 4
+                spiritOrbRoom: 5
+                spiritOrbRoomBackground: 6
+                stainedGlassCorner: 7
+                stainedGlassCornerBackground: 8
+                beneathDropoff: 9
+                beneathDropoffBackground: 10
+                dropoff: 11
+                dropoffBackground: 12
+                entrance: 13
+                entranceBackground: 14
+                stopwatchRoom: 15
+                stopwatchRoomBackground: 16
+                longHallway: 17
+                clockRoom: 19
+                clockRoomBackground: 20
+                leftOfClockRoom: 21
+                leftOfClockRoomBackground: 22
+                emptyRoom: 23
+                emptyRoomBackground: 24
+                blueDoorRoom: 25
+                blueDoorRoomBackground: 26
+                pathwayAfterLeftStatue: 27
+                pathwayAfterRightStatue: 28
+                ouijaTableStairway: 29
+                ouijaTableStairwayBackground: 30
+                threePaths: 31
+                threePathsBackground: 32
+                stairwellToUndergroundCaverns: 33
+                stairwellToUndergroundCavernsBackground: 34
+                slingerStaircase: 35
+                slingerStaircaseBackground: 36
+                rightOfClockRoom: 37
+                rightOfClockRoomBackground: 38
+                gravityBootsRoom: 39
+                elevatorRoom: 40
+                powerUpRoom: 41
+                beneathLeftTrapdoor: 42
+                beneathLeftTrapdoorBackground: 43
+                beneathRightTrapdoor: 44
+                beneathRightTrapdoorBackground: 45
+                alucartRoom: 46
+                loadingRoomToOuterWall: 47
+                loadingRoomToUndergroundCaverns: 48
+                loadingRoomToAlchemyLaboratory: 49
+                loadingRoomToOlroxsQuarters: 50
+                loadingRoomToCastleEntrance: 51
+                saveRoomA: 52
+                saveRoomB: 53
         rooms:
             alucartRoom: 25
             beneathDropoff: 4
@@ -767,6 +856,46 @@ stages:
                 relicPowerOfWolf: 111
             vertical:
                 relicPowerOfWolf: 100
+        layers:
+            layerDefinitions:
+                afterDrawbridge: 1
+                dropUnderPortcullis: 3
+                dropUnderPortcullisBackground: 4
+                zombieHallway: 5
+                holyMailRoom: 7
+                holyMailRoomBackground: 8
+                atticStaircase: 9
+                atticStaircaseBackground: 10
+                atticHallway: 11
+                atticHallwayBackground: 12
+                atticEntrance: 13
+                atticEntranceBackground: 14
+                mermanRoom: 15
+                mermanRoomBackground: 16
+                jewelSwordRoom: 17
+                jewelSwordRoomBackground: 18
+                wargHallway: 19
+                shortcutToUndergroundCaverns: 21
+                shortcutToUndergroundCavernsBackground: 22
+                meetingRoomWithDeath: 23
+                stairwellAfterDeath: 25
+                stairwellAfterDeathBackground: 26
+                gargoyleRoom: 27
+                heartMaxUpRoom: 29
+                heartMaxUpRoomBackground: 30
+                cubeOfZoeRoom: 31
+                cubeOfZoeRoomBackground: 32
+                shortcutToWarpRooms: 33
+                shortcutToWarpRoomsBackground: 34
+                lifeMaxUpRoom: 35
+                lifeMaxUpRoomBackground: 36
+                loadingRoomToMarbleGallery: 37
+                loadingRoomToWarpRooms: 38
+                loadingRoomToAlchemyLaboratory: 39
+                loadingRoomToUndergroundCaverns: 40
+                saveRoomA: 41
+                saveRoomB: 42
+                saveRoomC: 43
         rooms:
             afterDrawbridge: 0
             atticEntrance: 6
@@ -803,6 +932,49 @@ stages:
                 relicPowerOfWolf: 105
             vertical:
                 relicPowerOfWolf: 96
+        layers:
+            layerDefinitions:
+                afterDrawbridge: 1
+                dropUnderPortcullis: 3
+                dropUnderPortcullisBackground: 4
+                zombieHallway: 5
+                holyMailRoom: 7
+                holyMailRoomBackground: 8
+                atticStaircase: 9
+                atticStaircaseBackground: 10
+                atticHallway: 11
+                atticHallwayBackground: 12
+                atticEntrance: 13
+                atticEntranceBackground: 14
+                mermanRoom: 15
+                mermanRoomBackground: 16
+                jewelSwordRoom: 17
+                jewelSwordRoomBackground: 18
+                wargHallway: 19
+                shortcutToUndergroundCaverns: 21
+                shortcutToUndergroundCavernsBackground: 22
+                meetingRoomWithDeath: 23
+                stairwellAfterDeath: 25
+                stairwellAfterDeathBackground: 26
+                gargoyleRoom: 27
+                heartMaxUpRoom: 29
+                heartMaxUpRoomBackground: 30
+                cubeOfZoeRoom: 31
+                cubeOfZoeRoomBackground: 32
+                shortcutToWarpRooms: 33
+                shortcutToWarpRoomsBackground: 34
+                lifeMaxUpRoom: 35
+                lifeMaxUpRoomBackground: 36
+                forestCutscene: 37
+                unknownRoom19: 39
+                unknownRoom20: 40
+                loadingRoomToMarbleGallery: 41
+                loadingRoomToWarpRooms: 42
+                loadingRoomToAlchemyLaboratory: 43
+                loadingRoomToUndergroundCaverns: 44
+                saveRoomA: 45
+                saveRoomB: 46
+                saveRoomC: 47
         rooms:
             afterDrawbridge: 0
             atticEntrance: 6
@@ -1049,6 +1221,60 @@ stages:
             spellbookArea: 9
             threeLayerRoom: 8
     marbleGallery:
+        layers:
+            layerDefinitions:
+                sShapedHallways: 1
+                sShapedHallwaysBackground: 2
+                tallStainedGlassWindows: 3
+                tallStainedGlassWindowsBackground: 4
+                spiritOrbRoom: 5
+                spiritOrbRoomBackground: 6
+                stainedGlassCorner: 7
+                stainedGlassCornerBackground: 8
+                beneathDropoff: 9
+                beneathDropoffBackground: 10
+                dropoff: 11
+                dropoffBackground: 12
+                entrance: 13
+                entranceBackground: 14
+                stopwatchRoom: 15
+                stopwatchRoomBackground: 16
+                longHallway: 17
+                clockRoom: 19
+                clockRoomBackground: 20
+                leftOfClockRoom: 21
+                leftOfClockRoomBackground: 22
+                emptyRoom: 23
+                emptyRoomBackground: 24
+                blueDoorRoom: 25
+                blueDoorRoomBackground: 26
+                pathwayAfterLeftStatue: 27
+                pathwayAfterRightStatue: 28
+                ouijaTableStairway: 29
+                ouijaTableStairwayBackground: 30
+                threePaths: 31
+                threePathsBackground: 32
+                stairwellToUndergroundCaverns: 33
+                stairwellToUndergroundCavernsBackground: 34
+                slingerStaircase: 35
+                slingerStaircaseBackground: 36
+                rightOfClockRoom: 37
+                rightOfClockRoomBackground: 38
+                gravityBootsRoom: 39
+                elevatorRoom: 40
+                powerUpRoom: 41
+                beneathLeftTrapdoor: 42
+                beneathLeftTrapdoorBackground: 43
+                beneathRightTrapdoor: 44
+                beneathRightTrapdoorBackground: 45
+                alucartRoom: 46
+                loadingRoomToOuterWall: 47
+                loadingRoomToUndergroundCaverns: 48
+                loadingRoomToAlchemyLaboratory: 49
+                loadingRoomToOlroxsQuarters: 50
+                loadingRoomToCastleEntrance: 51
+                saveRoomA: 52
+                saveRoomB: 53
         rooms:
             alucartRoom: 25
             beneathDropoff: 4
