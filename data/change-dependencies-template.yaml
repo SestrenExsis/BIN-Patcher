@@ -113,4 +113,41 @@ changes:
               - action: set
                 type: property
                 property: stages.castleEntrance.layers.layerDefinitions.unknownRoom20.flags
+            specialSaveRooms:
+              - action: get
+                type: property
+                property: stages.undergroundCaverns.rooms.falseSaveRoom.left
+              - action: set
+                type: property
+                property: specialSaveRooms.falseSaveRoomX.data
+              - action: get
+                type: property
+                property: stages.undergroundCaverns.rooms.falseSaveRoom.top
+              - action: set
+                type: property
+                property: specialSaveRooms.falseSaveRoomY.data
+              - action: get
+                type: property
+                property: stages.reverseCaverns.rooms.falseSaveRoom.left
+              - action: set
+                type: property
+                property: specialSaveRooms.reverseFalseSaveRoomX.data
+              - action: get
+                type: property
+                property: stages.reverseCaverns.rooms.falseSaveRoom.top
+              - action: set
+                type: property
+                property: specialSaveRooms.reverseFalseSaveRoomY.data
+              - action: get
+                type: property
+                property: stages.blackMarbleGallery.rooms.saveRoomA.left
+              - action: set
+                type: property
+                property: specialSaveRooms.finalSaveRoomX.data
+              - action: get
+                type: property
+                property: stages.blackMarbleGallery.rooms.saveRoomA.top
+              - action: set
+                type: property
+                property: specialSaveRooms.finalSaveRoomY.data
         evaluationOrder: []
