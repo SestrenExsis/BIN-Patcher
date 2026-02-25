@@ -56,11 +56,16 @@ export function getCanonicalPath(nonNormalPath, startingNode) {
     return result
 }
 
-export function traverseCanonicalPath(canonicalPath, startingNode) {
+export function traverseCanonicalPath(canonicalPath, startingNode, createMissingNodes=false) {
     let currentNode = startingNode
     for (const pathToken of canonicalPath) {
         if (typeof currentNode === 'object' && (!currentNode.hasOwnProperty(pathToken) || currentNode[pathToken] === null)) {
-            currentNode[pathToken] = {}
+            if (createMissingNodes) {
+                currentNode[pathToken] = {}
+            }
+            else {
+                return null
+            }
         }
         currentNode = currentNode[pathToken]
     }
@@ -88,11 +93,11 @@ export function applyMerge(patchInfo, mergeInfo) {
         if (canonicalPath.at(-1) === '=') {
             const assignmentInd = canonicalPath.pop()
             const propertyName = canonicalPath.pop()
-            const patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+            const patchNode = traverseCanonicalPath(canonicalPath, patchInfo, true)
             patchNode[propertyName] = mergeNode
         }
         else {
-            const patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+            const patchNode = traverseCanonicalPath(canonicalPath, patchInfo, true)
             applyMerge(patchNode, mergeNode)
         }
     })
@@ -104,21 +109,33 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
     let parentPropertyName;
     let propertyName;
     let patchNode;
+    let validInd = true;
     for (const actionInfo of evaluateInfo) {
+        if (!validInd) {
+            break
+        }
         switch (actionInfo.action) {
             case 'get':
                 // TODO(sestren): Implement getting address
-                // TODO(sestren): Implement getting constant
-                canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
-                propertyName = canonicalPath.pop()
-                patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
-                currentValue = patchNode[propertyName]
+                if (actionInfo.type == 'property') {
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    if (patchNode === null || patchNode[propertyName] === null) {
+                        validInd = false
+                        continue
+                    }
+                    currentValue = patchNode[propertyName]
+                }
+                else {
+                    currentValue = actionInfo.constant
+                }
                 break
             case 'set':
                 if (actionInfo.type == 'property') {
                     canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
                     propertyName = canonicalPath.pop()
-                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo, true)
                     patchNode[propertyName] = currentValue
                 }
                 else if (actionInfo.type == 'address') {

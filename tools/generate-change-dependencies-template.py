@@ -85,22 +85,23 @@ data = {
         'undergroundCavernsBreakableWallFaerie': ('stages.undergroundCaverns.rooms.plaqueRoomWithBreakableWall', False),
         'undergroundCavernsBreakableWallYousei': ('stages.undergroundCaverns.rooms.plaqueRoomWithBreakableWall', False),
     },
-    'reversedStages': {
-        'abandonedMine': 'cave',
-        'alchemyLaboratory': 'necromancyLaboratory',
-        'castleCenter': 'reverseCastleCenter',
-        'castleEntrance': 'reverseEntrance',
-        'castleKeep': 'reverseKeep',
-        'catacombs': 'floatingCatacombs',
-        'clockTower': 'reverseClockTower',
-        'colosseum': 'reverseColosseum',
-        'longLibrary': 'forbiddenLibrary',
-        'marbleGallery': 'blackMarbleGallery',
-        'olroxsQuarters': 'deathWingsLair',
-        'outerWall': 'reverseOuterWall',
-        'royalChapel': 'antiChapel',
-        'undergroundCaverns': 'reverseCaverns',
-        'warpRooms': 'reverseWarpRooms',
+    'associatedStages': {
+        'abandonedMine': ('cave', True),
+        'alchemyLaboratory': ('necromancyLaboratory', True),
+        'castleCenter': ('reverseCastleCenter', True),
+        'castleEntrance': ('reverseEntrance', True),
+        'castleEntrance': ('castleEntranceRevisited', False),
+        'castleKeep': ('reverseKeep', True),
+        'catacombs': ('floatingCatacombs', True),
+        'clockTower': ('reverseClockTower', True),
+        'colosseum': ('reverseColosseum', True),
+        'longLibrary': ('forbiddenLibrary', True),
+        'marbleGallery': ('blackMarbleGallery', True),
+        'olroxsQuarters': ('deathWingsLair', True),
+        'outerWall': ('reverseOuterWall', True),
+        'royalChapel': ('antiChapel', True),
+        'undergroundCaverns': ('reverseCaverns', True),
+        'warpRooms': ('reverseWarpRooms', True),
     },
     'rooms': {
         'abandonedMine': [
@@ -163,6 +164,112 @@ data = {
             'triggerTeleporterA',
             'triggerTeleporterB',
         ],
+        'castleEntrance': [
+            'afterDrawbridge',
+            'atticEntrance',
+            'atticHallway',
+            'atticStaircase',
+            'cubeOfZoeRoom',
+            'dropUnderPortcullis',
+            'triggerTeleporterToAlchemyLaboratory',
+            'triggerTeleporterToMarbleGallery',
+            'triggerTeleporterToUndergroundCaverns',
+            'triggerTeleporterToWarpRooms',
+            'forestCutscene',
+            'gargoyleRoom',
+            'heartMaxUpRoom',
+            'holyMailRoom',
+            'jewelSwordRoom',
+            'lifeMaxUpRoom',
+            'loadingRoomToAlchemyLaboratory',
+            'loadingRoomToMarbleGallery',
+            'loadingRoomToUndergroundCaverns',
+            'loadingRoomToWarpRooms',
+            'meetingRoomWithDeath',
+            'mermanRoom',
+            'saveRoomA',
+            'saveRoomB',
+            'saveRoomC',
+            'shortcutToUndergroundCaverns',
+            'shortcutToWarpRooms',
+            'stairwellAfterDeath',
+            'unknownRoom19',
+            'unknownRoom20',
+            'wargHallway',
+            'zombieHallway',
+        ],
+        'castleEntranceRevisited': [
+            'afterDrawbridge',
+            'atticEntrance',
+            'atticHallway',
+            'atticStaircase',
+            'cubeOfZoeRoom',
+            'dropUnderPortcullis',
+            'triggerTeleporterToAlchemyLaboratory',
+            'triggerTeleporterToMarbleGallery',
+            'triggerTeleporterToUndergroundCaverns',
+            'triggerTeleporterToWarpRooms',
+            'gargoyleRoom',
+            'heartMaxUpRoom',
+            'holyMailRoom',
+            'jewelSwordRoom',
+            'lifeMaxUpRoom',
+            'loadingRoomToAlchemyLaboratory',
+            'loadingRoomToMarbleGallery',
+            'loadingRoomToUndergroundCaverns',
+            'loadingRoomToWarpRooms',
+            'meetingRoomWithDeath',
+            'mermanRoom',
+            'saveRoomA',
+            'saveRoomB',
+            'saveRoomC',
+            'shortcutToUndergroundCaverns',
+            'shortcutToWarpRooms',
+            'stairwellAfterDeath',
+            'wargHallway',
+            'zombieHallway',
+        ],
+        'marbleGallery': [
+            'alucartRoom',
+            'beneathDropoff',
+            'beneathLeftTrapdoor',
+            'beneathRightTrapdoor',
+            'blueDoorRoom',
+            'clockRoom',
+            'dropoff',
+            'elevatorRoom',
+            'emptyRoom',
+            'entrance',
+            'triggerTeleporterToAlchemyLaboratory',
+            'triggerTeleporterToCastleCenter',
+            'triggerTeleporterToCastleEntrance',
+            'triggerTeleporterToOlroxsQuarters',
+            'triggerTeleporterToOuterWall',
+            'triggerTeleporterToUndergroundCaverns',
+            'gravityBootsRoom',
+            'leftOfClockRoom',
+            'loadingRoomToAlchemyLaboratory',
+            'loadingRoomToCastleEntrance',
+            'loadingRoomToOlroxsQuarters',
+            'loadingRoomToOuterWall',
+            'loadingRoomToUndergroundCaverns',
+            'longHallway',
+            'ouijaTableStairway',
+            'pathwayAfterLeftStatue',
+            'pathwayAfterRightStatue',
+            'powerUpRoom',
+            'rightOfClockRoom',
+            'sShapedHallways',
+            'saveRoomA',
+            'saveRoomB',
+            'slingerStaircase',
+            'spiritOrbRoom',
+            'stainedGlassCorner',
+            'stairwellToUndergroundCaverns',
+            'stopwatchRoom',
+            'tallStainedGlassWindows',
+            'threePaths',
+        ],
     },
     'secretMapTileReveals': {
         'anteroomStaircase': ('stages.castleKeep.rooms.keepArea', 3, 5),
@@ -180,14 +287,6 @@ data = {
         'olroxsQuartersBreakableWall': ('stages.olroxsQuarters.rooms.grandStaircase', 1, 2),
         'undergroundCavernsBreakableFloor': ('stages.undergroundCaverns.rooms.hiddenCrystalEntrance', 1, 2),
         'undergroundCavernsBreakableWall': ('stages.undergroundCaverns.rooms.plaqueRoomWithBreakableWall', 0, 0),
-    },
-    'stages': {
-        'castleKeep': {
-            'reversedStage': '',
-            'rooms': {
-                'keepArea': True,
-            },
-        },
     },
 }
 
@@ -305,7 +404,71 @@ if __name__ == '__main__':
                 ]
                 evaluate['evaluations'][target_property_key] = transformation
                 evaluate['evaluationOrder'].append(target_property_key)
-        # TODO(sestren): Reverse Stages
+        # Associated Stages
+        for (stage_name, (associated_stage_name, reverse_ind)) in data['associatedStages'].items():
+            if stage_name not in data['rooms']:
+                continue
+            for room_name in data['rooms'][stage_name]:
+                if associated_stage_name not in data['rooms'] or room_name not in data['rooms'][associated_stage_name]:
+                    continue
+                for (primary_property_name, secondary_property_name) in (
+                    ('left', '_columns'),
+                    ('top', '_rows'),
+                    ('right', '_columns'),
+                    ('bottom', '_rows'),
+                ):
+                    primary_property_key = '.'.join(('stages', stage_name, 'rooms', room_name, primary_property_name))
+                    secondary_property_key = '.'.join(('stages', stage_name, 'rooms', room_name, secondary_property_name))
+                    target_property_key = '.'.join(('stages', associated_stage_name, 'rooms', room_name, primary_property_name))
+                    transformation = []
+                    if reverse_ind:
+                        transformation.append({
+                            'action': 'get',
+                            'type': 'constant',
+                            'constant': 64,
+                        })
+                        transformation.append({
+                            'action': 'subtract',
+                            'type': 'property',
+                            'property': primary_property_key,
+                        })
+                        transformation.append({
+                            'action': 'subtract',
+                            'type': 'property',
+                            'property': secondary_property_key,
+                        })
+                    else:
+                        transformation.append({
+                            'action': 'get',
+                            'type': 'property',
+                            'property': primary_property_key,
+                        })
+                    transformation.append({
+                        'action': 'set',
+                        'type': 'property',
+                        'property': target_property_key,
+                    })
+                    evaluate['evaluations'][target_property_key] = transformation
+                    evaluate['evaluationOrder'].append(target_property_key)
+                for (property_name) in (
+                    'left',
+                    'top',
+                ):
+                    source_property_key = '.'.join(('stages', associated_stage_name, 'rooms', room_name, property_name))
+                    target_property_key = '.'.join(('stages', associated_stage_name, 'layers', 'layerDefinitions', room_name, 'layoutRect', property_name))
+                    transformation = []
+                    transformation.append({
+                        'action': 'get',
+                        'type': 'property',
+                        'property': source_property_key,
+                    })
+                    transformation.append({
+                        'action': 'set',
+                        'type': 'property',
+                        'property': target_property_key,
+                    })
+                    evaluate['evaluations'][target_property_key] = transformation
+                    evaluate['evaluationOrder'].append(target_property_key)
         # Boss Teleporters and Secret Map Tile Reveals
         for transformation_group_key in (
             'bossTeleporters',
@@ -371,4 +534,7 @@ if __name__ == '__main__':
                     })
                     evaluate['evaluations'][transformation_name] = transformation
                     evaluate['evaluationOrder'].append(transformation_name)
+        # Put template evaluations last
+        evaluate['evaluationOrder'].append('castleTeleporters')
+        evaluate['evaluationOrder'].append('castleEntranceDrawbridgeCutscene')
         json.dump(target, target_file, indent='    ', sort_keys=True)

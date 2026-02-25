@@ -82,5 +82,35 @@ changes:
                 element:
                   structure: value
                   type: s16
-        evaluationOrder:
-          - castleTeleporters
+            castleEntranceDrawbridgeCutscene:
+              - action: get
+                type: property
+                property: stages.castleEntrance.rooms.unknownRoom20.left
+              - action: add
+                type: constant
+                constant: 1
+              - action: set
+                type: property
+                property: stages.castleEntrance.layers.layerDefinitions.unknownRoom19.zPriority
+              - action: get
+                type: property
+                property: stages.castleEntrance.rooms.unknownRoom20.top
+              - action: set
+                type: property
+                property: stages.castleEntrance.layers.layerDefinitions.unknownRoom19.flags
+              - action: get
+                type: property
+                property: stages.castleEntrance.rooms.unknownRoom19.left
+              - action: add
+                type: constant
+                constant: -1
+              - action: set
+                type: property
+                property: stages.castleEntrance.layers.layerDefinitions.unknownRoom20.zPriority
+              - action: get
+                type: property
+                property: stages.castleEntrance.rooms.unknownRoom19.top
+              - action: set
+                type: property
+                property: stages.castleEntrance.layers.layerDefinitions.unknownRoom20.flags
+        evaluationOrder: []

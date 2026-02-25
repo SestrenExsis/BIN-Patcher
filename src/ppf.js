@@ -123,7 +123,8 @@ export class PPF {
                 byteCount = 2
                 break
             case 'layout-rect':
-                value = (data.flags << 24) + (data.bottom << 18) + (data.right << 12) + (data.top << 6) + data.left
+                // NOTE(sestren): Using a weird workaround for shifting flags left 24 bits to avoid overflow issues
+                value = 2 * (data.flags << 23) + (data.bottom << 18) + (data.right << 12) + (data.top << 6) + data.left
                 this.buffer.writeUInt32LE(value, 0)
                 byteCount = 4
                 break
