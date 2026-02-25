@@ -1577,6 +1577,13 @@ stages:
             telescopeRoom: 3
             topOfOuterWall: 1
     reverseWarpRooms:
+        constants:
+            warpCoordinates:
+                castleEntrance: 0
+                abandonedMine: 1
+                outerWall: 2
+                castleKeep: 3
+                olroxsQuarters: 4
         rooms:
             triggerTeleporterToAbandonedMine: 10
             triggerTeleporterToCastleEntrance: 11
@@ -1666,6 +1673,13 @@ stages:
             tallStairwell: 3
             waterfall: 26
     warpRooms:
+        constants:
+            warpCoordinates:
+                castleEntrance: 0
+                abandonedMine: 1
+                outerWall: 2
+                castleKeep: 3
+                olroxsQuarters: 4
         rooms:
             triggerTeleporterToAbandonedMine: 14
             triggerTeleporterToCastleEntrance: 13
