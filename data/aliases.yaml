@@ -1680,6 +1680,18 @@ stages:
                 outerWall: 2
                 castleKeep: 3
                 olroxsQuarters: 4
+        layers:
+            layerDefinitions:
+                warpRoomToCastleKeep: 1
+                warpRoomToOlroxsQuarters: 2
+                warpRoomToOuterWall: 3
+                warpRoomToCastleEntrance: 4
+                warpRoomToAbandonedMine: 5
+                loadingRoomToAbandonedMine: 6
+                loadingRoomToCastleEntrance: 7
+                loadingRoomToOlroxsQuarters: 8
+                loadingRoomToOuterWall: 9
+                loadingRoomToCastleKeep: 10
         rooms:
             triggerTeleporterToAbandonedMine: 14
             triggerTeleporterToCastleEntrance: 13

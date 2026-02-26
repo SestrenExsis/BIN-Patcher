@@ -150,4 +150,65 @@ changes:
               - action: set
                 type: property
                 property: specialSaveRooms.finalSaveRoomY.data
+            warpRoomCoordinates:
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToCastleEntrance.left
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.castleEntrance.roomX
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToCastleEntrance.top
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.castleEntrance.roomY
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToAbandonedMine.left
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.abandonedMine.roomX
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToAbandonedMine.top
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.abandonedMine.roomY
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToOuterWall.left
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.outerWall.roomX
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToOuterWall.top
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.outerWall.roomY
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToCastleKeep.left
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.castleKeep.roomX
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToCastleKeep.top
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.castleKeep.roomY
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToOlroxsQuarters.left
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomX
+              - action: get
+                type: property
+                property: stages.warpRooms.rooms.warpRoomToOlroxsQuarters.top
+              - action: set
+                type: property
+                property: stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomY
         evaluationOrder: []

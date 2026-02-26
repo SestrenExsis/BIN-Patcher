@@ -270,6 +270,23 @@ data = {
             'tallStainedGlassWindows',
             'threePaths',
         ],
+        'warpRooms': [
+            'triggerTeleporterToAbandonedMine',
+            'triggerTeleporterToCastleEntrance',
+            'triggerTeleporterToCastleKeep',
+            'triggerTeleporterToOlroxsQuarters',
+            'triggerTeleporterToOuterWall',
+            'loadingRoomToAbandonedMine',
+            'loadingRoomToCastleEntrance',
+            'loadingRoomToCastleKeep',
+            'loadingRoomToOlroxsQuarters',
+            'loadingRoomToOuterWall',
+            'warpRoomToAbandonedMine',
+            'warpRoomToCastleEntrance',
+            'warpRoomToCastleKeep',
+            'warpRoomToOlroxsQuarters',
+            'warpRoomToOuterWall',
+        ],
     },
     'secretMapTileReveals': {
         'anteroomStaircase': ('stages.castleKeep.rooms.keepArea', 3, 5),
@@ -537,4 +554,6 @@ if __name__ == '__main__':
         # Put template evaluations last
         evaluate['evaluationOrder'].append('castleTeleporters')
         evaluate['evaluationOrder'].append('castleEntranceDrawbridgeCutscene')
+        evaluate['evaluationOrder'].append('specialSaveRooms')
+        evaluate['evaluationOrder'].append('warpRoomCoordinates')
         json.dump(target, target_file, indent='    ', sort_keys=True)
