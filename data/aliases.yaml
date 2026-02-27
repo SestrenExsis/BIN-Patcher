@@ -570,7 +570,7 @@ stages:
                 walkwayLeftOfHippogryph: 7
                 walkwayLeftOfHippogryphBackground: 8
                 hippogryphRoom: 9
-                hippogryphRoom 0x00e680: 10
+                hippogryphRoomBackground: 10
                 walkwayRightOfHippogryph: 11
                 walkwayRightOfHippogryphBackground: 12
                 pushingStatueShortcut: 13
@@ -1601,6 +1601,41 @@ stages:
             warpRoomToOlroxsQuarters: 1
             warpRoomToOuterWall: 2
     royalChapel:
+        layers:
+            layerDefinitions:
+                silverRingRoom: 1
+                silverRingRoomBackground: 2
+                spikeHallway: 3
+                spikeHallwayBackground: 4
+                walkwayBetweenTowers: 5
+                walkwayBetweenTowersBackground: 6
+                walkwayLeftOfHippogryph: 7
+                walkwayLeftOfHippogryphBackground: 8
+                hippogryphRoom: 9
+                hippogryphRoomBackground: 10
+                walkwayRightOfHippogryph: 11
+                walkwayRightOfHippogryphBackground: 12
+                pushingStatueShortcut: 13
+                pushingStatueShortcutBackground: 14
+                confessionalBooth: 15
+                confessionalBoothBackground: 16
+                gogglesRoom: 17
+                gogglesRoomBackground: 18
+                nave: 19
+                emptyRoom: 20
+                emptyRoomBackground: 21
+                chapelStaircase: 22
+                statueLedge: 24
+                statueLedgeBackground: 25
+                leftTower: 26
+                middleTower: 28
+                loadingRoomToCastleKeep: 29
+                saveRoomB: 30
+                rightTower: 31
+                saveRoomA: 32
+                loadingRoomToAlchemyLaboratory: 33
+                loadingRoomToColosseum: 34
+                loadingRoomToOlroxsQuarters: 35
         rooms:
             chapelStaircase: 11
             confessionalBooth: 7

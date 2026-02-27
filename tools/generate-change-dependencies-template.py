@@ -3,10 +3,90 @@ import os
 import yaml
 
 data = {
+    'associatedStages': {
+        'abandonedMine': ('cave', True),
+        'alchemyLaboratory': ('necromancyLaboratory', True),
+        'castleCenter': ('reverseCastleCenter', True),
+        'castleEntrance': ('reverseEntrance', True),
+        'castleEntrance': ('castleEntranceRevisited', False),
+        'castleKeep': ('reverseKeep', True),
+        'catacombs': ('floatingCatacombs', True),
+        'clockTower': ('reverseClockTower', True),
+        'colosseum': ('reverseColosseum', True),
+        'longLibrary': ('forbiddenLibrary', True),
+        'marbleGallery': ('blackMarbleGallery', True),
+        'olroxsQuarters': ('deathWingsLair', True),
+        'outerWall': ('reverseOuterWall', True),
+        'royalChapel': ('antiChapel', True),
+        'undergroundCaverns': ('reverseCaverns', True),
+        'warpRooms': ('reverseWarpRooms', True),
+    },
     'bossRooms': {
-        'bossCerberusCerberusRoom': ('stages.bossCerberus.rooms.cerberusRoom', 'stages.abandonedMine.rooms.cerberusRoom', 0, 0),
-        'bossCerberusTriggerTeleporterA': ('stages.bossCerberus.rooms.triggerTeleporterA', 'stages.abandonedMine.rooms.cerberusRoom', 0, -1),
-        'bossCerberusTriggerTeleporterB': ('stages.bossCerberus.rooms.triggerTeleporterB', 'stages.abandonedMine.rooms.cerberusRoom', 0, 2),
+        # bossCerberus
+        ('stages.bossCerberus.rooms.cerberusRoom', 'stages.abandonedMine.rooms.cerberusRoom', 0, 0),
+        ('stages.bossCerberus.rooms.triggerTeleporterA', 'stages.abandonedMine.rooms.cerberusRoom', 0, -1),
+        ('stages.bossCerberus.rooms.triggerTeleporterB', 'stages.abandonedMine.rooms.cerberusRoom', 0, 2),
+        # bossMedusa
+        ('stages.bossMedusa.rooms.hippogryphRoom', 'stages.antiChapel.rooms.hippogryphRoom', 0, 0),
+        ('stages.bossMedusa.rooms.triggerTeleporterA', 'stages.antiChapel.rooms.hippogryphRoom', 0, -1),
+        ('stages.bossMedusa.rooms.triggerTeleporterB', 'stages.antiChapel.rooms.hippogryphRoom', 0, 2),
+        # bossRichter
+        ('stages.bossRichter.rooms.throneRoom', 'stages.castleKeep.rooms.keepArea', 3, 3),
+        # bossGranfaloon
+        ('stages.bossGranfaloon.rooms.granfaloonsLair', 'stages.catacombs.rooms.granfaloonsLair', 0, 0),
+        ('stages.bossGranfaloon.rooms.triggerTeleporterA', 'stages.catacombs.rooms.granfaloonsLair', 0, 2),
+        ('stages.bossGranfaloon.rooms.triggerTeleporterB', 'stages.catacombs.rooms.granfaloonsLair', 1, -1),
+        # bossDeath
+        ('stages.bossDeath.rooms.cerberusRoom', 'stages.cave.rooms.cerberusRoom', 0, 0),
+        ('stages.bossDeath.rooms.triggerTeleporterA', 'stages.cave.rooms.cerberusRoom', 0, -1),
+        ('stages.bossDeath.rooms.triggerTeleporterB', 'stages.cave.rooms.cerberusRoom', 0, 2),
+        # bossMedusa
+        ('stages.bossMinotaurAndWerewolf.rooms.arena', 'stages.colosseum.rooms.arena', 0, 0),
+        ('stages.bossMinotaurAndWerewolf.rooms.triggerTeleporterA', 'stages.colosseum.rooms.arena', 0, -1),
+        ('stages.bossMinotaurAndWerewolf.rooms.triggerTeleporterB', 'stages.colosseum.rooms.arena', 0, 2),
+        # bossAkmodanII
+        ('stages.bossAkmodanII.rooms.olroxsRoom', 'stages.deathWingsLair.rooms.olroxsRoom', 0, 0),
+        ('stages.bossAkmodanII.rooms.triggerTeleporterA', 'stages.deathWingsLair.rooms.olroxsRoom', 1, -1),
+        ('stages.bossAkmodanII.rooms.triggerTeleporterB', 'stages.deathWingsLair.rooms.olroxsRoom', 1, 2),
+        # bossGalamoth
+        ('stages.bossGalamoth.rooms.granfaloonsLair', 'stages.floatingCatacombs.rooms.granfaloonsLair', 0, 0),
+        ('stages.bossGalamoth.rooms.triggerTeleporterA', 'stages.floatingCatacombs.rooms.granfaloonsLair', 0, 2),
+        ('stages.bossGalamoth.rooms.triggerTeleporterB', 'stages.floatingCatacombs.rooms.granfaloonsLair', 1, -1),
+        # bossBeelzebub
+        ('stages.bossBeelzebub.rooms.slograAndGaibonRoom', 'stages.necromancyLaboratory.rooms.slograAndGaibonRoom', 0, 0),
+        ('stages.bossBeelzebub.rooms.triggerTeleporterA', 'stages.necromancyLaboratory.rooms.slograAndGaibonRoom', 0, -1),
+        ('stages.bossBeelzebub.rooms.triggerTeleporterB', 'stages.necromancyLaboratory.rooms.slograAndGaibonRoom', 1, -1),
+        ('stages.bossBeelzebub.rooms.triggerTeleporterB', 'stages.necromancyLaboratory.rooms.slograAndGaibonRoom', 1, 4),
+        # bossOlrox
+        ('stages.bossOlrox.rooms.olroxsRoom', 'stages.olroxsQuarters.rooms.olroxsRoom', 0, 0),
+        ('stages.bossOlrox.rooms.triggerTeleporterA', 'stages.olroxsQuarters.rooms.olroxsRoom', 0, -1),
+        ('stages.bossOlrox.rooms.triggerTeleporterB', 'stages.olroxsQuarters.rooms.olroxsRoom', 0, 2),
+        # bossDoppelganger10
+        ('stages.bossDoppelganger10.rooms.doppelgangerRoom', 'stages.outerWall.rooms.doppelgangerRoom', 0, 0),
+        ('stages.bossDoppelganger10.rooms.triggerTeleporterA', 'stages.outerWall.rooms.doppelgangerRoom', 0, -1),
+        ('stages.bossDoppelganger10.rooms.triggerTeleporterB', 'stages.outerWall.rooms.doppelgangerRoom', 0, 2),
+        # bossDoppelganger40
+        ('stages.bossDoppelganger40.rooms.scyllaWyrmRoom', 'stages.reverseCaverns.rooms.scyllaWyrmRoom', 0, 0),
+        ('stages.bossDoppelganger40.rooms.triggerTeleporterA', 'stages.reverseCaverns.rooms.scyllaWyrmRoom', 0, -1),
+        ('stages.bossDoppelganger40.rooms.triggerTeleporterB', 'stages.reverseCaverns.rooms.scyllaWyrmRoom', 0, 1),
+        # bossTrio
+        ('stages.bossTrio.rooms.arena', 'stages.reverseColosseum.rooms.arena', 0, 0),
+        ('stages.bossTrio.rooms.triggerTeleporterA', 'stages.reverseColosseum.rooms.arena', 0, -1),
+        ('stages.bossTrio.rooms.triggerTeleporterB', 'stages.reverseColosseum.rooms.arena', 0, 2),
+        # bossCreature
+        ('stages.bossCreature.rooms.doppelgangerRoom', 'stages.reverseOuterWall.rooms.doppelgangerRoom', 0, 0),
+        ('stages.bossCreature.rooms.triggerTeleporterA', 'stages.reverseOuterWall.rooms.doppelgangerRoom', 0, -1),
+        ('stages.bossCreature.rooms.triggerTeleporterB', 'stages.reverseOuterWall.rooms.doppelgangerRoom', 0, 2),
+        # bossHippogryph
+        ('stages.bossHippogryph.rooms.hippogryphRoom', 'stages.outerWall.rooms.hippogryphRoom', 0, 0),
+        ('stages.bossHippogryph.rooms.triggerTeleporterA', 'stages.outerWall.rooms.hippogryphRoom', 0, -1),
+        ('stages.bossHippogryph.rooms.triggerTeleporterB', 'stages.outerWall.rooms.hippogryphRoom', 0, 2),
+        # bossScylla
+        ('stages.bossScylla.rooms.scyllaWyrmRoom', 'stages.outerWaundergroundCavernsll.rooms.scyllaWyrmRoom', 0, 0),
+        ('stages.bossScylla.rooms.triggerTeleporterA', 'stages.undergroundCaverns.rooms.scyllaWyrmRoom', 0, -1),
+        ('stages.bossScylla.rooms.risingWaterRoom', 'stages.undergroundCaverns.rooms.scyllaWyrmRoom', 0, 1),
+        ('stages.bossScylla.rooms.scyllaRoom', 'stages.undergroundCaverns.rooms.scyllaWyrmRoom', -1, 1),
+        ('stages.bossScylla.rooms.crystalCloakRoom', 'stages.undergroundCaverns.rooms.scyllaWyrmRoom', -1, 0),
     },
     'bossTeleporters': {
         'cutsceneMeetingMariaInClockRoom': ('stages.marbleGallery.rooms.clockRoom', 0, 0),
@@ -85,24 +165,6 @@ data = {
         'undergroundCavernsBreakableWallFaerie': ('stages.undergroundCaverns.rooms.plaqueRoomWithBreakableWall', False),
         'undergroundCavernsBreakableWallYousei': ('stages.undergroundCaverns.rooms.plaqueRoomWithBreakableWall', False),
     },
-    'associatedStages': {
-        'abandonedMine': ('cave', True),
-        'alchemyLaboratory': ('necromancyLaboratory', True),
-        'castleCenter': ('reverseCastleCenter', True),
-        'castleEntrance': ('reverseEntrance', True),
-        'castleEntrance': ('castleEntranceRevisited', False),
-        'castleKeep': ('reverseKeep', True),
-        'catacombs': ('floatingCatacombs', True),
-        'clockTower': ('reverseClockTower', True),
-        'colosseum': ('reverseColosseum', True),
-        'longLibrary': ('forbiddenLibrary', True),
-        'marbleGallery': ('blackMarbleGallery', True),
-        'olroxsQuarters': ('deathWingsLair', True),
-        'outerWall': ('reverseOuterWall', True),
-        'royalChapel': ('antiChapel', True),
-        'undergroundCaverns': ('reverseCaverns', True),
-        'warpRooms': ('reverseWarpRooms', True),
-    },
     'rooms': {
         'abandonedMine': [
             'bend',
@@ -124,6 +186,34 @@ data = {
             'venusWeedRoom',
             'wellLitSkullRoom',
             'wolfsHeadColumn',
+        ],
+        'antiChapel': [
+            'chapelStaircase',
+            'confessionalBooth',
+            'emptyRoom',
+            'triggerTeleporterToAlchemyLaboratory',
+            'triggerTeleporterToCastleKeep',
+            'triggerTeleporterToColosseum',
+            'triggerTeleporterToOlroxsQuarters',
+            'gogglesRoom',
+            'hippogryphRoom',
+            'leftTower',
+            'loadingRoomToAlchemyLaboratory',
+            'loadingRoomToCastleKeep',
+            'loadingRoomToColosseum',
+            'loadingRoomToOlroxsQuarters',
+            'middleTower',
+            'nave',
+            'pushingStatueShortcut',
+            'rightTower',
+            'saveRoomA',
+            'saveRoomB',
+            'silverRingRoom',
+            'spikeHallway',
+            'statueLedge',
+            'walkwayBetweenTowers',
+            'walkwayLeftOfHippogryph',
+            'walkwayRightOfHippogryph',
         ],
         'alchemyLaboratory': [
             'batCardRoom',
@@ -163,6 +253,14 @@ data = {
             'cerberusRoom',
             'triggerTeleporterA',
             'triggerTeleporterB',
+        ],
+        'bossMedusa': [
+            'hippogryphRoom',
+            'triggerTeleporterA',
+            'triggerTeleporterB',
+        ],
+        'bossRichter': [
+            'throneRoom',
         ],
         'castleEntrance': [
             'afterDrawbridge',
@@ -270,6 +368,34 @@ data = {
             'tallStainedGlassWindows',
             'threePaths',
         ],
+        'royalChapel': [
+            'chapelStaircase',
+            'confessionalBooth',
+            'emptyRoom',
+            'triggerTeleporterToAlchemyLaboratory',
+            'triggerTeleporterToCastleKeep',
+            'triggerTeleporterToColosseum',
+            'triggerTeleporterToOlroxsQuarters',
+            'gogglesRoom',
+            'hippogryphRoom',
+            'leftTower',
+            'loadingRoomToAlchemyLaboratory',
+            'loadingRoomToCastleKeep',
+            'loadingRoomToColosseum',
+            'loadingRoomToOlroxsQuarters',
+            'middleTower',
+            'nave',
+            'pushingStatueShortcut',
+            'rightTower',
+            'saveRoomA',
+            'saveRoomB',
+            'silverRingRoom',
+            'spikeHallway',
+            'statueLedge',
+            'walkwayBetweenTowers',
+            'walkwayLeftOfHippogryph',
+            'walkwayRightOfHippogryph',
+        ],
         'warpRooms': [
             'triggerTeleporterToAbandonedMine',
             'triggerTeleporterToCastleEntrance',
@@ -307,6 +433,14 @@ data = {
     },
 }
 
+# Change dependencies are processed according to the following order, organized by dependency level
+# Level 0: rooms (First Castle, excluding Castle Entrance Revisited)
+# Level 1: rooms (Castle Entrance Revisited and Inverted Castle)
+# Level 1: secretMapTileReveals
+# Level 2: bossTeleporters
+# Level 2: familiarEvents
+# Level 2: bossRooms
+
 if __name__ == '__main__':
     with (
         open(os.path.join('data', 'change-dependencies-template.yaml')) as source_file,
@@ -314,38 +448,10 @@ if __name__ == '__main__':
     ):
         target = yaml.safe_load(source_file)
         evaluate = target['changes'][0]['evaluate']
-        # Boss Rooms
-        for (transformation_key, (target_room_key, source_room_key, offset_top, offset_left)) in data['bossRooms'].items():
-            print('', transformation_key)
-            for (property_name, offset_value) in (
-                ('top', offset_top),
-                ('left', offset_left),
-            ):
-                source_property_key = '.'.join((source_room_key, property_name))
-                target_property_key = '.'.join((target_room_key, property_name))
-                transformation = []
-                transformation.append({
-                    'action': 'get',
-                    'type': 'property',
-                    'property': source_property_key,
-                })
-                if offset_value != 0:
-                    transformation.append({
-                        'action': 'add',
-                        'type': 'constant',
-                        'constant': offset_value,
-                    })
-                transformation.append({
-                    'action': 'set',
-                    'type': 'property',
-                    'property': target_property_key,
-                })
-                evaluate['evaluations'][target_property_key] = transformation
-                evaluate['evaluationOrder'].append(target_property_key)
         # Rooms
-        for (stage_name, room_names) in data['rooms'].items():
+        for stage_name in sorted(data['rooms'], key=lambda stage_name: (stage_name not in data['associatedStages'], stage_name)):
             print('', stage_name)
-            for room_name in room_names:
+            for room_name in data['rooms'][stage_name]:
                 # Calculate right and bottom
                 print(' -', room_name)
                 for (target_property_name, source_property_a, source_property_b) in (
@@ -488,8 +594,8 @@ if __name__ == '__main__':
                     evaluate['evaluationOrder'].append(target_property_key)
         # Boss Teleporters and Secret Map Tile Reveals
         for transformation_group_key in (
-            'bossTeleporters',
             'secretMapTileReveals',
+            'bossTeleporters',
         ):
             for (transformation_key, (room_key, top, left)) in data[transformation_group_key].items():
                 for (source_key, source_value, target_key) in (
@@ -551,6 +657,34 @@ if __name__ == '__main__':
                     })
                     evaluate['evaluations'][transformation_name] = transformation
                     evaluate['evaluationOrder'].append(transformation_name)
+        # Boss Rooms
+        for (target_room_key, source_room_key, offset_top, offset_left) in data['bossRooms']:
+            print('', target_room_key)
+            for (property_name, offset_value) in (
+                ('top', offset_top),
+                ('left', offset_left),
+            ):
+                source_property_key = '.'.join((source_room_key, property_name))
+                target_property_key = '.'.join((target_room_key, property_name))
+                transformation = []
+                transformation.append({
+                    'action': 'get',
+                    'type': 'property',
+                    'property': source_property_key,
+                })
+                if offset_value != 0:
+                    transformation.append({
+                        'action': 'add',
+                        'type': 'constant',
+                        'constant': offset_value,
+                    })
+                transformation.append({
+                    'action': 'set',
+                    'type': 'property',
+                    'property': target_property_key,
+                })
+                evaluate['evaluations'][target_property_key] = transformation
+                evaluate['evaluationOrder'].append(target_property_key)
         # Put template evaluations last
         evaluate['evaluationOrder'].append('castleTeleporters')
         evaluate['evaluationOrder'].append('castleEntranceDrawbridgeCutscene')
