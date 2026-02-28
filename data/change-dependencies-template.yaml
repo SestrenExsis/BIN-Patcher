@@ -1,214 +1,206 @@
 ---
-authors:
-  - Sestren
-description:
-  - Updates secondary values to be consistent with the primary values they are dependent on
-changes:
-  - changeType: evaluate
-    evaluate:
-        evaluations:
-            castleTeleporters:
-              - action: get
-                type: property
-                property: stages.castleKeep.rooms.keepArea.left
-              - action: multiply
-                type: constant
-                constant: -256
-              - action: add
-                type: constant
-                constant: -320
-              - action: set
-                type: address
-                name: castleTeleporters.left.0x000FFCE4
-                address: 0x000FFCE4
-                element:
-                  structure: value
-                  type: s16
-              - action: set
-                type: address
-                name: castleTeleporters.left.0x0010B48C
-                address: 0x0010B48C
-                element:
-                  structure: value
-                  type: s16
-              - action: set
-                type: address
-                name: castleTeleporters.left.0x0010B4D0
-                address: 0x0010B4D0
-                element:
-                  structure: value
-                  type: s16
-              - action: set
-                type: address
-                name: castleTeleporters.left.0x03285D0C
-                address: 0x03285D0C
-                element:
-                  structure: value
-                  type: s16
-              - action: set
-                type: address
-                name: castleTeleporters.left.0x0328ABBC
-                address: 0x0328ABBC
-                element:
-                  structure: value
-                  type: s16
-              - action: set
-                type: address
-                name: castleTeleporters.left.0x0328AC00
-                address: 0x0328AC00
-                element:
-                  structure: value
-                  type: s16
-              - action: get
-                type: property
-                property: stages.castleKeep.rooms.keepArea.top
-              - action: multiply
-                type: constant
-                constant: -256
-              - action: add
-                type: constant
-                constant: -847
-              - action: set
-                type: address
-                name: castleTeleporters.top.0x000FFD18
-                address: 0x000FFD18
-                element:
-                  structure: value
-                  type: s16
-              - action: set
-                type: address
-                name: castleTeleporters.top.0x03285D40
-                address: 0x03285D40
-                element:
-                  structure: value
-                  type: s16
-            castleEntranceDrawbridgeCutscene:
-              - action: get
-                type: property
-                property: stages.castleEntrance.rooms.unknownRoom20.left
-              - action: add
-                type: constant
-                constant: 1
-              - action: set
-                type: property
-                property: stages.castleEntrance.layers.layerDefinitions.unknownRoom19.zPriority
-              - action: get
-                type: property
-                property: stages.castleEntrance.rooms.unknownRoom20.top
-              - action: set
-                type: property
-                property: stages.castleEntrance.layers.layerDefinitions.unknownRoom19.flags
-              - action: get
-                type: property
-                property: stages.castleEntrance.rooms.unknownRoom19.left
-              - action: add
-                type: constant
-                constant: -1
-              - action: set
-                type: property
-                property: stages.castleEntrance.layers.layerDefinitions.unknownRoom20.zPriority
-              - action: get
-                type: property
-                property: stages.castleEntrance.rooms.unknownRoom19.top
-              - action: set
-                type: property
-                property: stages.castleEntrance.layers.layerDefinitions.unknownRoom20.flags
-            specialSaveRooms:
-              - action: get
-                type: property
-                property: stages.undergroundCaverns.rooms.falseSaveRoom.left
-              - action: set
-                type: property
-                property: specialSaveRooms.falseSaveRoomX.data
-              - action: get
-                type: property
-                property: stages.undergroundCaverns.rooms.falseSaveRoom.top
-              - action: set
-                type: property
-                property: specialSaveRooms.falseSaveRoomY.data
-              - action: get
-                type: property
-                property: stages.reverseCaverns.rooms.falseSaveRoom.left
-              - action: set
-                type: property
-                property: specialSaveRooms.reverseFalseSaveRoomX.data
-              - action: get
-                type: property
-                property: stages.reverseCaverns.rooms.falseSaveRoom.top
-              - action: set
-                type: property
-                property: specialSaveRooms.reverseFalseSaveRoomY.data
-              - action: get
-                type: property
-                property: stages.blackMarbleGallery.rooms.saveRoomA.left
-              - action: set
-                type: property
-                property: specialSaveRooms.finalSaveRoomX.data
-              - action: get
-                type: property
-                property: stages.blackMarbleGallery.rooms.saveRoomA.top
-              - action: set
-                type: property
-                property: specialSaveRooms.finalSaveRoomY.data
-            warpRoomCoordinates:
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToCastleEntrance.left
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.castleEntrance.roomX
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToCastleEntrance.top
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.castleEntrance.roomY
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToAbandonedMine.left
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.abandonedMine.roomX
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToAbandonedMine.top
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.abandonedMine.roomY
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToOuterWall.left
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.outerWall.roomX
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToOuterWall.top
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.outerWall.roomY
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToCastleKeep.left
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.castleKeep.roomX
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToCastleKeep.top
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.castleKeep.roomY
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToOlroxsQuarters.left
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomX
-              - action: get
-                type: property
-                property: stages.warpRooms.rooms.warpRoomToOlroxsQuarters.top
-              - action: set
-                type: property
-                property: stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomY
-        evaluationOrder: []
+miscellaneous:
+    castleTeleporters:
+      - action: get
+        type: property
+        property: stages.castleKeep.rooms.keepArea.left
+      - action: multiply
+        type: constant
+        constant: -256
+      - action: add
+        type: constant
+        constant: -320
+      - action: set
+        type: address
+        name: castleTeleporters.left.0x000FFCE4
+        address: 0x000FFCE4
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.left.0x0010B48C
+        address: 0x0010B48C
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.left.0x0010B4D0
+        address: 0x0010B4D0
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.left.0x03285D0C
+        address: 0x03285D0C
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.left.0x0328ABBC
+        address: 0x0328ABBC
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.left.0x0328AC00
+        address: 0x0328AC00
+        element:
+          structure: value
+          type: s16
+      - action: get
+        type: property
+        property: stages.castleKeep.rooms.keepArea.top
+      - action: multiply
+        type: constant
+        constant: -256
+      - action: add
+        type: constant
+        constant: -847
+      - action: set
+        type: address
+        name: castleTeleporters.top.0x000FFD18
+        address: 0x000FFD18
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.top.0x03285D40
+        address: 0x03285D40
+        element:
+          structure: value
+          type: s16
+    castleEntranceDrawbridgeCutscene:
+      - action: get
+        type: property
+        property: stages.castleEntrance.rooms.unknownRoom20.left
+      - action: add
+        type: constant
+        constant: 1
+      - action: set
+        type: property
+        property: stages.castleEntrance.layers.layerDefinitions.unknownRoom19.zPriority
+      - action: get
+        type: property
+        property: stages.castleEntrance.rooms.unknownRoom20.top
+      - action: set
+        type: property
+        property: stages.castleEntrance.layers.layerDefinitions.unknownRoom19.flags
+      - action: get
+        type: property
+        property: stages.castleEntrance.rooms.unknownRoom19.left
+      - action: add
+        type: constant
+        constant: -1
+      - action: set
+        type: property
+        property: stages.castleEntrance.layers.layerDefinitions.unknownRoom20.zPriority
+      - action: get
+        type: property
+        property: stages.castleEntrance.rooms.unknownRoom19.top
+      - action: set
+        type: property
+        property: stages.castleEntrance.layers.layerDefinitions.unknownRoom20.flags
+    specialSaveRooms:
+      - action: get
+        type: property
+        property: stages.undergroundCaverns.rooms.falseSaveRoom.left
+      - action: set
+        type: property
+        property: specialSaveRooms.falseSaveRoomX.data
+      - action: get
+        type: property
+        property: stages.undergroundCaverns.rooms.falseSaveRoom.top
+      - action: set
+        type: property
+        property: specialSaveRooms.falseSaveRoomY.data
+      - action: get
+        type: property
+        property: stages.reverseCaverns.rooms.falseSaveRoom.left
+      - action: set
+        type: property
+        property: specialSaveRooms.reverseFalseSaveRoomX.data
+      - action: get
+        type: property
+        property: stages.reverseCaverns.rooms.falseSaveRoom.top
+      - action: set
+        type: property
+        property: specialSaveRooms.reverseFalseSaveRoomY.data
+      - action: get
+        type: property
+        property: stages.blackMarbleGallery.rooms.saveRoomA.left
+      - action: set
+        type: property
+        property: specialSaveRooms.finalSaveRoomX.data
+      - action: get
+        type: property
+        property: stages.blackMarbleGallery.rooms.saveRoomA.top
+      - action: set
+        type: property
+        property: specialSaveRooms.finalSaveRoomY.data
+    warpRoomCoordinates:
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToCastleEntrance.left
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.castleEntrance.roomX
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToCastleEntrance.top
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.castleEntrance.roomY
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToAbandonedMine.left
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.abandonedMine.roomX
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToAbandonedMine.top
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.abandonedMine.roomY
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToOuterWall.left
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.outerWall.roomX
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToOuterWall.top
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.outerWall.roomY
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToCastleKeep.left
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.castleKeep.roomX
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToCastleKeep.top
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.castleKeep.roomY
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToOlroxsQuarters.left
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomX
+          - action: get
+            type: property
+            property: stages.warpRooms.rooms.warpRoomToOlroxsQuarters.top
+          - action: set
+            type: property
+            property: stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomY
