@@ -79,10 +79,9 @@ export function applyChange(patchInfo, changeInfo) {
             applyMerge(patchInfo, changeInfo.merge)
             break
         case 'evaluate':
-            for (const evaluateKey of changeInfo.evaluate.evaluationOrder) {
-                const evaluateInfo = changeInfo.evaluate.evaluations[evaluateKey]
+            Object.entries(changeInfo.evaluate).forEach(([evaluateName, evaluateInfo]) => {
                 applyEvaluate(patchInfo, evaluateInfo)
-            }
+            })
             break
     }
 }
