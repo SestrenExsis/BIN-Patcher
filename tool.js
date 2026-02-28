@@ -3,28 +3,6 @@ import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex } from './src/common.js'
 
-
-// 'antiChapel': {
-//     'chapelStaircase': [
-//         'chapelStaircase',
-//     ],
-//     'confessionalBooth': [
-//         'confessionalBooth',
-//         'confessionalBoothBackground',
-//     ],
-//     'emptyRoom': [
-//         'emptyRoom',
-//         'emptyRoomBackground',
-//     ],
-//     'triggerTeleporterToAlchemyLaboratory': [],
-//     'triggerTeleporterToCastleKeep': [],
-//     'triggerTeleporterToColosseum': [],
-//     'triggerTeleporterToOlroxsQuarters': [],
-//     'gogglesRoom': [
-//         'gogglesRoom',
-//         'gogglesRoomBackground',
-//     ],
-
 const argv = yargs(process.argv.slice(2))
     .command({ // alias
         command: 'alias',

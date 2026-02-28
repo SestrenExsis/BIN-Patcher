@@ -750,11 +750,17 @@ stages:
             tallStainedGlassWindows: 1
             threePaths: 16
     bossAkmodanII:
+        layers:
+            layerDefinitions:
+                olroxsRoom: 1
         rooms:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
             olroxsRoom: 0
     bossBeelzebub:
+        layers:
+            layerDefinitions:
+                slograAndGaibonRoom: 1
         rooms:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
@@ -769,59 +775,107 @@ stages:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     bossCreature:
+        layers:
+            layerDefinitions:
+                doppelgangerRoom: 1
         rooms:
             doppelgangerRoom: 0
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     bossDeath:
+        layers:
+            layerDefinitions:
+                cerberusRoom: 1
         rooms:
             cerberusRoom: 0
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     bossDoppelganger10:
+        layers:
+            layerDefinitions:
+                doppelgangerRoom: 1
         rooms:
             doppelgangerRoom: 0
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     bossDoppelganger40:
+        layers:
+            layerDefinitions:
+                scyllaWyrmRoom: 0
+                scyllaWyrmRoomBackground: 1
         rooms:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
             scyllaWyrmRoom: 0
     bossGalamoth:
+        layers:
+            layerDefinitions:
+                granfaloonsLair: 0
+                granfaloonsLairBackground: 1
         rooms:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
             granfaloonsLair: 0
     bossGranfaloon:
+        layers:
+            layerDefinitions:
+                granfaloonsLair: 0
+                granfaloonsLairBackground: 1
         rooms:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
             granfaloonsLair: 0
     bossHippogryph:
+        layers:
+            layerDefinitions:
+                hippogryphRoom: 0
+                hippogryphRoomBackground: 1
         rooms:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
             hippogryphRoom: 0
     bossMedusa:
+        layers:
+            layerDefinitions:
+                hippogryphRoom: 0
+                hippogryphRoomBackground: 1
         rooms:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
             hippogryphRoom: 0
     bossMinotaurAndWerewolf:
+        layers:
+            layerDefinitions:
+                arena: 1
         rooms:
             arena: 0
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     bossOlrox:
+        layers:
+            layerDefinitions:
+                olroxsRoom: 1
         rooms:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
             olroxsRoom: 0
     bossRichter:
+        layers:
+            layerDefinitions:
+                throneRoom: 1
         rooms:
             throneRoom: 0
     bossScylla:
+        layers:
+            layerDefinitions:
+                scyllaRoom: 0
+                scyllaRoomBackground: 1
+                scyllaWyrmRoom: 2
+                scyllaWyrmRoomBackground: 3
+                risingWaterRoom: 4
+                risingWaterRoomBackground: 5
+                crystalCloakRoom: 6
+                crystalCloakRoomBackground: 7
         rooms:
             crystalCloakRoom: 3
             triggerTeleporterA: 4
@@ -829,21 +883,38 @@ stages:
             scyllaRoom: 0
             scyllaWyrmRoom: 1
     bossShaftAndDracula:
+        layers:
+            layerDefinitions:
+                elevatorShaft: 1
+                centerCube: 2
+                unknownRoomId02: 3
         rooms:
             elevatorShaft: 0
             centerCube: 1
             unknownRoomId02: 2
             triggerTeleporterA: 3
     bossSuccubus:
+        layers:
+            layerDefinitions:
+                unknownRoomId00: 1
+                unknownRoomId01: 2
         rooms:
             unknownRoomId00: 0
             unknownRoomId01: 1
     bossTrio:
+        layers:
+            layerDefinitions:
+                arena: 1
         rooms:
             arena: 0
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     castleCenter:
+        layers:
+            layerDefinitions:
+                elevatorShaft: 1
+                centerCube: 2
+                unknownRoomId02: 3
         rooms:
             centerCube: 1
             elevatorShaft: 0
@@ -1009,6 +1080,21 @@ stages:
             wargHallway: 9
             zombieHallway: 2
     castleKeep:
+        layers:
+            layerDefinitions:
+                upperAttic: 1
+                lowerAttic: 2
+                keepArea: 3
+                ghostCardRoom: 4
+                bend: 5
+                falchionRoom: 6
+                lionTorchPlatform: 7
+                dualPlatforms: 8
+                tyrfingRoom: 9
+                saveRoomA: 10
+                loadingRoomToClockTower: 11
+                loadingRoomToWarpRooms: 12
+                loadingRoomToRoyalChapel: 13
         rooms:
             bend: 4
             dualPlatforms: 7
@@ -1027,6 +1113,62 @@ stages:
             tyrfingRoom: 8
             upperAttic: 0
     catacombs:
+        layers:
+            layerDefinitions:
+                roomId00: 1
+                roomId00Background: 2
+                mormegilRoom: 3
+                mormegilRoomBackground: 4
+                roomId02: 5
+                roomId02Background: 6
+                granfaloonsLair: 7
+                granfaloonsLairBackground: 8
+                roomId04: 9
+                roomId04Background: 10
+                roomId05: 11
+                roomId05Background: 12
+                smallGremlinRoom: 13
+                smallGremlinRoomBackground: 14
+                saveRoomA: 15
+                walkArmorRoom: 16
+                walkArmorRoomBackground: 17
+                icebrandRoom: 18
+                icebrandRoomBackground: 19
+                leftLavaPath: 20
+                ballroomMaskRoom: 21
+                ballroomMaskRoomBackground: 22
+                rightLavaPath: 23
+                rightLavaPathBackground: 24
+                catEyeCircletRoom: 25
+                catEyeCircletRoomBackground: 26
+                roomId14: 27
+                roomId14Background: 28
+                saveRoomB: 29
+                hellfireBeastRoom: 30
+                hellfireBeastRoomBackground: 31
+                exitToAbandonedMine: 32
+                exitToAbandonedMineBackground: 33
+                boneArkRoom: 34
+                boneArkRoomBackground: 35
+                roomId19: 36
+                roomId19Background: 37
+                roomId20: 38
+                roomId20Background: 39
+                roomId21: 40
+                roomId21Background: 41
+                roomId22: 42
+                roomId22Background: 43
+                roomId23: 44
+                roomId23Background: 45
+                pitchBlackSpikeMaze: 46
+                pitchBlackSpikeMazeBackground: 47
+                roomId25: 48
+                roomId25Background: 49
+                roomId26: 50
+                roomId26Background: 51
+                spikeBreakerRoom: 52
+                spikeBreakerRoomBackground: 53
+                loadingRoomToAbandonedMine: 54
         rooms:
             ballroomMaskRoom: 11
             boneArkRoom: 18
@@ -1059,6 +1201,24 @@ stages:
             spikeBreakerRoom: 27
             walkArmorRoom: 8
     cave:
+        layers:
+            layerDefinitions:
+                wolfsHeadColumn: 1
+                wellLitSkullRoom: 2
+                cerberusRoom: 3
+                demonSwitch: 4
+                venusWeedRoom: 6
+                snakeColumn: 7
+                peanutsRoom: 8
+                fourWayIntersection: 9
+                lowerStairwell: 10
+                karmaCoinRoom: 12
+                bend: 13
+                demonCard: 14
+                loadingRoomToCatacombs: 15
+                loadingRoomToWarpRooms: 16
+                loadingRoomToUndergroundCaverns: 17
+                saveRoom: 18
         rooms:
             bend: 10
             cerberusRoom: 2
@@ -1080,6 +1240,26 @@ stages:
             wellLitSkullRoom: 1
             wolfsHeadColumn: 0
     clockTower:
+        layers:
+            layerDefinitions:
+                karasumansRoom: 1
+                karasumansRoomBackground: 2
+                pathToKarasuman: 3
+                healingMailRoom: 5
+                healingMailRoomBackground: 6
+                pendulumRoom: 7
+                spire: 9
+                hiddenArmory: 11
+                leftGearRoom: 12
+                rightGearRoom: 13
+                exitToCourtyard: 14
+                belfry: 15
+                openCourtyard: 16
+                stairwellToOuterWall: 18
+                fireOfBatRoom: 20
+                fireOfBatRoomBackground: 21
+                loadingRoomToOuterWall: 22
+                loadingRoomToCastleKeep: 23
         rooms:
             belfry: 9
             exitToCourtyard: 8
@@ -1099,6 +1279,27 @@ stages:
             spire: 4
             stairwellToOuterWall: 11
     colosseum:
+        layers:
+            layerDefinitions:
+                holySwordRoom: 1
+                topOfLeftSpiralStaircase: 2
+                bladeMasterRoom: 3
+                topOfRightSpiralStaircase: 4
+                passagewayBetweenArenaAndRoyalChapel: 5
+                arena: 6
+                topOfElevatorShaft: 7
+                spiralStaircases: 8
+                valhallaKnightRoom: 9
+                fountainRoom: 10
+                fountainRoomBackground: 11
+                bloodCloakRoom: 12
+                bottomOfElevatorShaft: 13
+                leftSideArmory: 14
+                rightSideArmory: 15
+                loadingRoomToRoyalChapel: 16
+                loadingRoomToOlroxsQuarters: 17
+                saveRoomA: 18
+                saveRoomB: 19
         rooms:
             arena: 5
             bladeMasterRoom: 2
@@ -1120,12 +1321,51 @@ stages:
             topOfLeftSpiralStaircase: 1
             topOfRightSpiralStaircase: 3
             valhallaKnightRoom: 8
-    cutsceneMeetingMariainClockRoom:
+    cutsceneMeetingMariaInClockRoom:
+        layers:
+            layerDefinitions:
+                clockRoom: 0
+                clockRoomBackground: 1
         rooms:
             clockRoom: 0
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     deathWingsLair:
+        layers:
+            layerDefinitions:
+                skelerangRoom: 1
+                skelerangRoomBackground: 2
+                bottomOfStairwell: 3
+                bottomOfStairwellBackground: 4
+                grandStaircase: 5
+                grandStaircaseBackground: 6
+                secretOnyxRoom: 7
+                secretOnyxRoomBackground: 8
+                hammerAndBladeRoom: 9
+                hammerAndBladeRoomBackground: 10
+                emptyRoom: 11
+                emptyRoomBackground: 12
+                tallShaft: 13
+                tallShaftBackground: 14
+                prison: 15
+                prisonBackground: 16
+                openCourtyard: 17
+                emptyCells: 19
+                emptyCellsBackground: 20
+                garnetRoom: 21
+                garnetRoomBackground: 22
+                narrowHallwayToOlrox: 23
+                olroxsRoom: 24
+                echoOfBatRoom: 25
+                echoOfBatRoomBackground: 26
+                swordCardRoom: 27
+                catwalkCrypt: 28
+                catwalkCryptBackground: 29
+                saveRoomA: 30
+                loadingRoomToMarbleGallery: 31
+                loadingRoomToColosseum: 32
+                loadingRoomToWarpRooms: 33
+                loadingRoomToRoyalChapel: 34
         rooms:
             bottomOfStairwell: 1
             catwalkCrypt: 15
@@ -1153,6 +1393,62 @@ stages:
             swordCardRoom: 14
             tallShaft: 6
     floatingCatacombs:
+        layers:
+            layerDefinitions:
+                roomId00: 1
+                roomId00Background: 2
+                mormegilRoom: 3
+                mormegilRoomBackground: 4
+                roomId02: 5
+                roomId02Background: 6
+                granfaloonsLair: 7
+                granfaloonsLairBackground: 8
+                roomId04: 9
+                roomId04Background: 10
+                roomId05: 11
+                roomId05Background: 12
+                smallGremlinRoom: 13
+                smallGremlinRoomBackground: 14
+                saveRoomA: 15
+                walkArmorRoom: 16
+                walkArmorRoomBackground: 17
+                icebrandRoom: 18
+                icebrandRoomBackground: 19
+                leftLavaPath: 20
+                ballroomMaskRoom: 21
+                ballroomMaskRoomBackground: 22
+                rightLavaPath: 23
+                rightLavaPathBackground: 24
+                catEyeCircletRoom: 25
+                catEyeCircletRoomBackground: 26
+                roomId14: 27
+                roomId14Background: 28
+                saveRoomB: 29
+                hellfireBeastRoom: 30
+                hellfireBeastRoomBackground: 31
+                exitToAbandonedMine: 32
+                exitToAbandonedMineBackground: 33
+                boneArkRoom: 34
+                boneArkRoomBackground: 35
+                roomId19: 36
+                roomId19Background: 37
+                roomId20: 38
+                roomId20Background: 39
+                roomId21: 40
+                roomId21Background: 41
+                roomId22: 42
+                roomId22Background: 43
+                roomId23: 44
+                roomId23Background: 45
+                pitchBlackSpikeMaze: 46
+                pitchBlackSpikeMazeBackground: 47
+                roomId25: 48
+                roomId25Background: 49
+                roomId26: 50
+                roomId26Background: 51
+                spikeBreakerRoom: 52
+                spikeBreakerRoomBackground: 53
+                loadingRoomToAbandonedMine: 54
         rooms:
             ballroomMaskRoom: 11
             boneArkRoom: 18
@@ -1185,6 +1481,23 @@ stages:
             spikeBreakerRoom: 27
             walkArmorRoom: 8
     forbiddenLibrary:
+        layers:
+            layerDefinitions:
+                lesserDemonArea: 1
+                secretBookcaseRoom: 2
+                holyRodRoom: 3
+                dhuronAndFleaArmorRoom: 4
+                shop: 5
+                outsideShop: 6
+                fleaManRoom: 7
+                faerieCardRoom: 8
+                threeLayerRoom: 9
+                spellbookArea: 10
+                dhuronAndFleaManRoom: 11
+                footOfStaircase: 12
+                exitToOuterWall: 13
+                loadingRoomToOuterWall: 14
+                saveRoomA: 15
         rooms:
             dhuronAndFleaArmorRoom: 3
             dhuronAndFleaManRoom: 10
@@ -1203,6 +1516,23 @@ stages:
             spellbookArea: 9
             threeLayerRoom: 8
     longLibrary:
+        layers:
+            layerDefinitions:
+                lesserDemonArea: 1
+                secretBookcaseRoom: 2
+                holyRodRoom: 3
+                dhuronAndFleaArmorRoom: 4
+                shop: 5
+                outsideShop: 6
+                fleaManRoom: 7
+                faerieCardRoom: 8
+                threeLayerRoom: 9
+                spellbookArea: 10
+                dhuronAndFleaManRoom: 11
+                footOfStaircase: 12
+                exitToOuterWall: 13
+                loadingRoomToOuterWall: 14
+                saveRoomA: 15
         rooms:
             dhuronAndFleaArmorRoom: 3
             dhuronAndFleaManRoom: 10
@@ -1316,6 +1646,37 @@ stages:
             tallStainedGlassWindows: 1
             threePaths: 16
     necromancyLaboratory:
+        layers:
+            layerDefinitions:
+                batCardRoom: 1
+                exitToRoyalChapel: 2
+                blueDoorHallway: 3
+                bloodyZombieHallway: 4
+                cannonRoom: 5
+                clothCapeRoom: 6
+                sunglassesRoom: 7
+                glassVats: 8
+                skillOfWolfRoom: 10
+                heartMaxUpRoom: 11
+                entryway: 12
+                tallSpittleboneRoom: 14
+                emptyZigZagRoom: 15
+                shortZigZagRoom: 16
+                tallZigZagRoom: 17
+                secretLifeMaxUpRoom: 18
+                slograAndGaibonRoom: 19
+                boxPuzzleRoom: 20
+                redSkeletonLiftRoom: 22
+                tetrominoRoom: 24
+                exitToMarbleGallery: 25
+                corridorToElevator: 26
+                elevatorShaft: 27
+                saveRoomA: 29
+                saveRoomB: 30
+                saveRoomC: 31
+                loadingRoomToMarbleGallery: 32
+                loadingRoomToRoyalChapel: 33
+                loadingRoomToCastleEntrance: 34
         rooms:
             batCardRoom: 0
             bloodyZombieHallway: 3
@@ -1350,6 +1711,41 @@ stages:
             tallZigZagRoom: 14
             tetrominoRoom: 19
     olroxsQuarters:
+        layers:
+            layerDefinitions:
+                skelerangRoom: 1
+                skelerangRoomBackground: 2
+                bottomOfStairwell: 3
+                bottomOfStairwellBackground: 4
+                grandStaircase: 5
+                grandStaircaseBackground: 6
+                secretOnyxRoom: 7
+                secretOnyxRoomBackground: 8
+                hammerAndBladeRoom: 9
+                hammerAndBladeRoomBackground: 10
+                emptyRoom: 11
+                emptyRoomBackground: 12
+                tallShaft: 13
+                tallShaftBackground: 14
+                prison: 15
+                prisonBackground: 16
+                openCourtyard: 17
+                emptyCells: 19
+                emptyCellsBackground: 20
+                garnetRoom: 21
+                garnetRoomBackground: 22
+                narrowHallwayToOlrox: 23
+                olroxsRoom: 24
+                echoOfBatRoom: 25
+                echoOfBatRoomBackground: 26
+                swordCardRoom: 27
+                catwalkCrypt: 28
+                catwalkCryptBackground: 29
+                saveRoomA: 30
+                loadingRoomToMarbleGallery: 31
+                loadingRoomToColosseum: 32
+                loadingRoomToWarpRooms: 33
+                loadingRoomToRoyalChapel: 34
         rooms:
             bottomOfStairwell: 1
             catwalkCrypt: 15
@@ -1377,6 +1773,27 @@ stages:
             swordCardRoom: 14
             tallShaft: 6
     outerWall:
+        layers:
+            layerDefinitions:
+                loadingRoomToWarpRooms: 1
+                topOfOuterWall: 2
+                exitToClockTower: 3
+                telescopeRoom: 4
+                lowerMedusaRoom: 5
+                jewelKnucklesRoom: 6
+                secretPlatformRoom: 7
+                exitToMarbleGallery: 8
+                garnetVaseRoom: 9
+                blueAxeKnightRoom: 10
+                garlicRoom: 11
+                doppelgangerRoom: 12
+                gladiusRoom: 13
+                elevatorShaftRoom: 14
+                saveRoomA: 15
+                loadingRoomToClockTower: 16
+                loadingRoomToLongLibrary: 17
+                saveRoomB: 18
+                loadingRoomToMarbleGallery: 19
         rooms:
             blueAxeKnightRoom: 9
             doppelgangerRoom: 11
@@ -1402,12 +1819,24 @@ stages:
             telescopeRoom: 3
             topOfOuterWall: 1
     prologue:
+        layers:
+            layerDefinitions:
+                throneRoomArea: 1
+                throneRoomAreaBackground: 2
+                upperAttic: 3
+                unknownRoomId02: 4
+                lowerAttic: 5
         rooms:
             throneRoomArea: 0
             upperAttic: 1
             unknownRoomId02: 2
             lowerAttic: 3
     reverseCastleCenter:
+        layers:
+            layerDefinitions:
+                elevatorShaft: 1
+                centerCube: 2
+                unknownRoomId02: 3
         rooms:
             centerCube: 1
             elevatorShaft: 0
@@ -1415,6 +1844,70 @@ stages:
             triggerTeleporterToMarbleGallery: 4
             unknownRoomId02: 2
     reverseCaverns:
+        layers:
+            layerDefinitions:
+                longDrop: 1
+                hiddenCrystalEntrance: 3
+                hiddenCrystalEntranceBackground: 4
+                crystalBend: 5
+                crystalBendBackground: 6
+                tallStairwell: 7
+                plaqueRoomWithLifeMaxUp: 9
+                smallStairwell: 10
+                smallStairwellBackground: 11
+                claymoreStairwell: 12
+                claymoreStairwellBackground: 13
+                mealTicketsAndMoonstoneRoom: 14
+                mealTicketsAndMoonstoneRoomBackground: 15
+                plaqueRoomWithBreakableWall: 16
+                roomId09: 17
+                roomId10: 18
+                roomId10Background: 19
+                roomId11: 20
+                roomId12: 21
+                roomId12Background: 22
+                holySymbolRoom: 23
+                holySymbolRoomBackground: 24
+                pentagramRoom: 25
+                pentagramRoomBackground: 26
+                dKBridge: 27
+                dKBridgeBackground: 28
+                exitToAbandonedMine: 29
+                exitToAbandonedMineBackground: 30
+                dKButton: 31
+                dKButtonBackground: 32
+                roomId18: 33
+                roomId18Background: 34
+                roomId19: 35
+                roomId19Background: 36
+                exitToCastleEntrance: 37
+                exitToCastleEntranceBackground: 38
+                mermanStatueRoom: 39
+                mermanStatueRoomBackground: 40
+                iceFloeRoom: 41
+                iceFloeRoomBackground: 42
+                rightFerrymanRoute: 43
+                rightFerrymanRouteBackground: 44
+                crystalCloakRoom: 45
+                crystalCloakRoomBackground: 46
+                leftFerrymanRoute: 47
+                leftFerrymanRouteBackground: 48
+                waterfall: 49
+                waterfallBackground: 50
+                scyllaRoom: 51
+                scyllaRoomBackground: 52
+                scyllaWyrmRoom: 53
+                scyllaWyrmRoomBackground: 54
+                risingWaterRoom: 55
+                risingWaterRoomBackground: 56
+                bandannaRoom: 57
+                loadingRoomToCastleEntrance: 58
+                loadingRoomToMarbleGallery: 59
+                loadingRoomToAbandonedMine: 60
+                saveRoomA: 61
+                saveRoomB: 62
+                saveRoomC: 63
+                falseSaveRoom: 64
         rooms:
             bandannaRoom: 30
             claymoreStairwell: 6
@@ -1459,6 +1952,26 @@ stages:
             tallStairwell: 3
             waterfall: 26
     reverseClockTower:
+        layers:
+            layerDefinitions:
+                karasumansRoom: 1
+                karasumansRoomBackground: 2
+                pathToKarasuman: 3
+                healingMailRoom: 5
+                healingMailRoomBackground: 6
+                pendulumRoom: 7
+                spire: 9
+                hiddenArmory: 11
+                leftGearRoom: 12
+                rightGearRoom: 13
+                exitToCourtyard: 14
+                belfry: 15
+                openCourtyard: 16
+                stairwellToOuterWall: 18
+                fireOfBatRoom: 20
+                fireOfBatRoomBackground: 21
+                loadingRoomToOuterWall: 22
+                loadingRoomToCastleKeep: 23
         rooms:
             belfry: 9
             exitToCourtyard: 8
@@ -1478,6 +1991,27 @@ stages:
             spire: 4
             stairwellToOuterWall: 11
     reverseColosseum:
+        layers:
+            layerDefinitions:
+                holySwordRoom: 1
+                topOfLeftSpiralStaircase: 2
+                bladeMasterRoom: 3
+                topOfRightSpiralStaircase: 4
+                passagewayBetweenArenaAndRoyalChapel: 5
+                arena: 6
+                topOfElevatorShaft: 7
+                spiralStaircases: 8
+                valhallaKnightRoom: 9
+                fountainRoom: 10
+                fountainRoomBackground: 11
+                bloodCloakRoom: 12
+                bottomOfElevatorShaft: 13
+                leftSideArmory: 14
+                rightSideArmory: 15
+                loadingRoomToRoyalChapel: 16
+                loadingRoomToOlroxsQuarters: 17
+                saveRoomA: 18
+                saveRoomB: 19
         rooms:
             arena: 5
             bladeMasterRoom: 2
@@ -1500,6 +2034,49 @@ stages:
             topOfRightSpiralStaircase: 3
             valhallaKnightRoom: 8
     reverseEntrance:
+        layers:
+            layerDefinitions:
+                afterDrawbridge: 1
+                dropUnderPortcullis: 3
+                dropUnderPortcullisBackground: 4
+                zombieHallway: 5
+                holyMailRoom: 7
+                holyMailRoomBackground: 8
+                atticStaircase: 9
+                atticStaircaseBackground: 10
+                atticHallway: 11
+                atticHallwayBackground: 12
+                atticEntrance: 13
+                atticEntranceBackground: 14
+                mermanRoom: 15
+                mermanRoomBackground: 16
+                jewelSwordRoom: 17
+                jewelSwordRoomBackground: 18
+                wargHallway: 19
+                shortcutToUndergroundCaverns: 21
+                shortcutToUndergroundCavernsBackground: 22
+                meetingRoomWithDeath: 23
+                stairwellAfterDeath: 25
+                stairwellAfterDeathBackground: 26
+                gargoyleRoom: 27
+                heartMaxUpRoom: 29
+                heartMaxUpRoomBackground: 30
+                cubeOfZoeRoom: 31
+                cubeOfZoeRoomBackground: 32
+                shortcutToWarpRooms: 33
+                shortcutToWarpRoomsBackground: 34
+                lifeMaxUpRoom: 35
+                lifeMaxUpRoomBackground: 36
+                forestCutscene: 37
+                unknownRoom19: 39
+                unknownRoom20: 40
+                loadingRoomToMarbleGallery: 41
+                loadingRoomToWarpRooms: 42
+                loadingRoomToAlchemyLaboratory: 43
+                loadingRoomToUndergroundCaverns: 44
+                saveRoomA: 45
+                saveRoomB: 46
+                saveRoomC: 47
         rooms:
             afterDrawbridge: 0
             atticEntrance: 6
@@ -1534,6 +2111,21 @@ stages:
             wargHallway: 9
             zombieHallway: 2
     reverseKeep:
+        layers:
+            layerDefinitions:
+                upperAttic: 1
+                lowerAttic: 2
+                keepArea: 3
+                ghostCardRoom: 4
+                bend: 5
+                falchionRoom: 6
+                lionTorchPlatform: 7
+                dualPlatforms: 8
+                tyrfingRoom: 9
+                saveRoomA: 10
+                loadingRoomToClockTower: 11
+                loadingRoomToWarpRooms: 12
+                loadingRoomToRoyalChapel: 13
         rooms:
             bend: 4
             dualPlatforms: 7
@@ -1552,6 +2144,27 @@ stages:
             tyrfingRoom: 8
             upperAttic: 0
     reverseOuterWall:
+        layers:
+            layerDefinitions:
+                loadingRoomToWarpRooms: 1
+                topOfOuterWall: 2
+                exitToClockTower: 3
+                telescopeRoom: 4
+                lowerMedusaRoom: 5
+                jewelKnucklesRoom: 6
+                secretPlatformRoom: 7
+                exitToMarbleGallery: 8
+                garnetVaseRoom: 9
+                blueAxeKnightRoom: 10
+                garlicRoom: 11
+                doppelgangerRoom: 12
+                gladiusRoom: 13
+                elevatorShaftRoom: 14
+                saveRoomA: 15
+                loadingRoomToClockTower: 16
+                loadingRoomToLongLibrary: 17
+                saveRoomB: 18
+                loadingRoomToMarbleGallery: 19
         rooms:
             blueAxeKnightRoom: 9
             doppelgangerRoom: 11
@@ -1577,6 +2190,18 @@ stages:
             telescopeRoom: 3
             topOfOuterWall: 1
     reverseWarpRooms:
+        layers:
+            layerDefinitions:
+                warpRoomToCastleKeep: 1
+                warpRoomToOlroxsQuarters: 2
+                warpRoomToOuterWall: 3
+                warpRoomToCastleEntrance: 4
+                warpRoomToAbandonedMine: 5
+                loadingRoomToAbandonedMine: 6
+                loadingRoomToCastleEntrance: 7
+                loadingRoomToOlroxsQuarters: 8
+                loadingRoomToOuterWall: 9
+                loadingRoomToCastleKeep: 10
         constants:
             warpCoordinates:
                 castleEntrance: 0
@@ -1664,6 +2289,70 @@ stages:
             walkwayLeftOfHippogryph: 3
             walkwayRightOfHippogryph: 5
     undergroundCaverns:
+        layers:
+            layerDefinitions:
+                longDrop: 1
+                hiddenCrystalEntrance: 3
+                hiddenCrystalEntranceBackground: 4
+                crystalBend: 5
+                crystalBendBackground: 6
+                tallStairwell: 7
+                plaqueRoomWithLifeMaxUp: 9
+                smallStairwell: 10
+                smallStairwellBackground: 11
+                claymoreStairwell: 12
+                claymoreStairwellBackground: 13
+                mealTicketsAndMoonstoneRoom: 14
+                mealTicketsAndMoonstoneRoomBackground: 15
+                plaqueRoomWithBreakableWall: 16
+                roomId09: 17
+                roomId10: 18
+                roomId10Background: 19
+                roomId11: 20
+                roomId12: 21
+                roomId12Background: 22
+                holySymbolRoom: 23
+                holySymbolRoomBackground: 24
+                pentagramRoom: 25
+                pentagramRoomBackground: 26
+                dKBridge: 27
+                dKBridgeBackground: 28
+                exitToAbandonedMine: 29
+                exitToAbandonedMineBackground: 30
+                dKButton: 31
+                dKButtonBackground: 32
+                roomId18: 33
+                roomId18Background: 34
+                roomId19: 35
+                roomId19Background: 36
+                exitToCastleEntrance: 37
+                exitToCastleEntranceBackground: 38
+                mermanStatueRoom: 39
+                mermanStatueRoomBackground: 40
+                iceFloeRoom: 41
+                iceFloeRoomBackground: 42
+                rightFerrymanRoute: 43
+                rightFerrymanRouteBackground: 44
+                crystalCloakRoom: 45
+                crystalCloakRoomBackground: 46
+                leftFerrymanRoute: 47
+                leftFerrymanRouteBackground: 48
+                waterfall: 49
+                waterfallBackground: 50
+                scyllaRoom: 51
+                scyllaRoomBackground: 52
+                scyllaWyrmRoom: 53
+                scyllaWyrmRoomBackground: 54
+                risingWaterRoom: 55
+                risingWaterRoomBackground: 56
+                bandannaRoom: 57
+                loadingRoomToCastleEntrance: 58
+                loadingRoomToMarbleGallery: 59
+                loadingRoomToAbandonedMine: 60
+                saveRoomA: 61
+                saveRoomB: 62
+                saveRoomC: 63
+                falseSaveRoom: 64
         rooms:
             bandannaRoom: 30
             claymoreStairwell: 6
