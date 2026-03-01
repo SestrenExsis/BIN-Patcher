@@ -279,7 +279,7 @@ if __name__ == '__main__':
                                 'method': 'elementCount',
                                 'elementCount': data['uniqueItemDrops'][stage_name][1],
                             },
-                            'type': 'u16',
+                            'type': 'item-drop-id',
                         }
                     },
                 }

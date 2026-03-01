@@ -7,7 +7,8 @@ import {
     GameData,
     getSizeOfType,
     toHex,
-    toVal
+    toVal,
+    valueAliases,
 } from './common.js'
 
 // TODO(sestren) structures:
@@ -96,6 +97,23 @@ export class PPF {
             case 'int16':
             case 's16':
                 this.buffer.writeInt16LE(data, 0)
+                byteCount = 2
+                break
+            case 'item-drop-id':
+                let aliasFound = false
+                Object.entries(valueAliases.itemDropIds)
+                .filter(([itemDropName, itemDropId]) => {
+                    return data == itemDropName
+                })
+                .forEach(([itemDropName, itemDropId]) => {
+                    aliasFound = true
+                    value = itemDropId
+                })
+                if (!aliasFound) {
+                    value = parseInt(data.substring('unknownId'.length), 10)
+                    console.log('Alias not found for', data)
+                }
+                this.buffer.writeUInt16LE(value, 0)
                 byteCount = 2
                 break
             case 'uint16':
