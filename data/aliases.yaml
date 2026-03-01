@@ -398,6 +398,21 @@ secretMapTileReveals:
     undergroundCavernsBreakableWall: 13
 stages:
     abandonedMine:
+        constants:
+            uniqueItemDrops:
+                powerOfSireInPeanutsRoom: 0
+                karmaCoinInKarmaCoinRoom: 1
+                unusedItemDrop: 2
+                turkeyInSnakeColumn: 3
+                ringOfAresInSnakeColumn: 4
+                combatKnifeInKarmaCoinRoom: 5
+                shiitake1InLowerStairwell: 6
+                shiitake2InLowerStairwell: 7
+                barleyTeaInPeanutsRoom: 8
+                peanuts1InPeanutsRoom: 9
+                peanuts2InPeanutsRoom: 10
+                peanuts3InPeanutsRoom: 11
+                peanuts4InPeanutsRoom: 12
         entities:
             horizontalRows:
                 bend: 1
