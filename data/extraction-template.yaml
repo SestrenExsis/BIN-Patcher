@@ -680,10 +680,10 @@ teleporters:
                     type: u16
                 sourceStageId:
                     offset: 6
-                    type: u16
+                    type: stage-id
                 targetStageId:
                     offset: 8
-                    type: u16
+                    type: stage-id
 textures:
     warpRooms:
         metadata:

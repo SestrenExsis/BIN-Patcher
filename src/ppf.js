@@ -8,8 +8,9 @@ import {
     getSizeOfType,
     toHex,
     toVal,
-    valueAliases,
 } from './common.js'
+
+import aliases from '../build/aliases.json' with { type: 'json' }
 
 // TODO(sestren) structures:
 //     tilemap:
@@ -83,6 +84,7 @@ export class PPF {
         }
         let byteCount = 0
         let value
+        let aliasFound
         switch (type) {
             case 'int8':
             case 's8':
@@ -100,14 +102,64 @@ export class PPF {
                 byteCount = 2
                 break
             case 'item-drop-id':
-                let aliasFound = false
-                Object.entries(valueAliases.itemDropIds)
-                .filter(([itemDropName, itemDropId]) => {
-                    return data == itemDropName
+                if (typeof data === 'number') {
+                    this.buffer.writeUInt16LE(data, 0)
+                }
+                else {
+                    aliasFound = false
+                    Object.entries(aliases._values.itemDropIds)
+                    .filter(([itemDropName, itemDropId]) => {
+                        return data == itemDropName
+                    })
+                    .forEach(([itemDropName, itemDropId]) => {
+                        aliasFound = true
+                        value = itemDropId
+                    })
+                    if (!aliasFound) {
+                        value = parseInt(data.substring('unknownId'.length), 10)
+                        console.log('Alias not found for', data)
+                    }
+                    this.buffer.writeUInt16LE(value, 0)
+                    byteCount = 2
+                }
+                break
+            case 'room-offset':
+                if (typeof data === 'number') {
+                    this.buffer.writeUInt16LE(data, 0)
+                }
+                else {
+                    const stageAndRoomName = data.split('.')
+                    aliasFound = false
+                    Object.entries(aliases.stages)
+                    .filter(([stageName, stageAliases]) => {
+                        return stageAndRoomName[0] == stageName
+                    })
+                    .forEach(([stageName, stageAliases]) => {
+                        Object.entries(stageAliases?.rooms)
+                        .filter(([roomName, roomId]) => {
+                            return stageAndRoomName[1] == roomName
+                        })
+                        .forEach(([roomName, roomId]) => {
+                            aliasFound = true
+                            value = 8 * roomId
+                        })
+                    })
+                    if (!aliasFound) {
+                        console.log('Alias not found for', data)
+                    }
+                    this.buffer.writeUInt16LE(value, 0)
+                    byteCount = 2
+                }
+                break
+            case 'stage-id':
+                aliasFound = false
+                Object.entries(aliases._values.stageIds)
+                .filter(([stageName, stageId]) => {
+                    return data == stageName
                 })
-                .forEach(([itemDropName, itemDropId]) => {
+                .forEach(([stageName, stageId]) => {
                     aliasFound = true
-                    value = itemDropId
+                    value = stageId
                 })
                 if (!aliasFound) {
                     value = parseInt(data.substring('unknownId'.length), 10)
@@ -192,7 +244,7 @@ export function parsePatchNode(ppf, patchNode) {
                     if (targetData[propertyName] == null) {
                         return
                     }
-                    ppf.write(toVal(targetMeta.address) + toVal(propertyInfo.offset), propertyInfo.type, targetData[propertyName], false)
+                    ppf.write(toVal(targetMeta.address) + toVal(propertyInfo.offset), propertyInfo.type, targetData[propertyName])
                 })
                 break
             case 'object-array':
@@ -205,13 +257,13 @@ export function parsePatchNode(ppf, patchNode) {
                         if (targetData[i][propertyName] == null) {
                             return
                         }
-                        ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size + toVal(propertyInfo.offset), propertyInfo.type, targetData[i][propertyName], false)
+                        ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size + toVal(propertyInfo.offset), propertyInfo.type, targetData[i][propertyName])
                     })
                 }
                 break
             case 'value':
                 if (targetData !== null) {
-                    ppf.write(toVal(targetMeta.address), targetMeta.element.type, targetData, false)
+                    ppf.write(toVal(targetMeta.address), targetMeta.element.type, targetData)
                 }
                 break
             case 'value-array':
@@ -228,7 +280,7 @@ export function parsePatchNode(ppf, patchNode) {
                     if (targetData[i] == '.'.repeat(targetData[i].length)) {
                         continue
                     }
-                    ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size, targetMeta.element.type, targetData[i], false)
+                    ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size, targetMeta.element.type, targetData[i])
                 }
                 break
             case 'indexed-bitmap':
@@ -240,16 +292,16 @@ export function parsePatchNode(ppf, patchNode) {
                         if (targetBytes == '..') {
                             continue
                         }
-                        ppf.write(toVal(address), 'u8', parseInt(targetBytes, 16), false)
+                        ppf.write(toVal(address), 'u8', parseInt(targetBytes, 16))
                     }
                 }
                 break
             case 'binary-string-array':
                 if (targetData != null) {
-                    ppf.write(toVal(targetMeta.address) + 0, 'u8', targetData.left, false)
-                    ppf.write(toVal(targetMeta.address) + 1, 'u8', targetData.top, false)
-                    ppf.write(toVal(targetMeta.address) + 2, 'u8', targetData.bytesPerRow, false)
-                    ppf.write(toVal(targetMeta.address) + 3, 'u8', targetData.rows, false)
+                    ppf.write(toVal(targetMeta.address) + 0, 'u8', targetData.left)
+                    ppf.write(toVal(targetMeta.address) + 1, 'u8', targetData.top)
+                    ppf.write(toVal(targetMeta.address) + 2, 'u8', targetData.bytesPerRow)
+                    ppf.write(toVal(targetMeta.address) + 3, 'u8', targetData.rows)
                     for (let row = 0; row < targetData.rows; row++) {
                         for (let col8 = 0; col8 < targetData.bytesPerRow; col8++) {
                             const address = toVal(targetMeta.address) + 4 + row * targetData.bytesPerRow + col8
@@ -259,10 +311,10 @@ export function parsePatchNode(ppf, patchNode) {
                             for (let i = 7; i >= 0; i--) {
                                 targetBytes += (targetData.grid.at(row).charAt(8 * col8 + i) == ' ') ? '0' : '1'
                             }
-                            ppf.write(toVal(address), 'u8', parseInt(targetBytes, 2), false)
+                            ppf.write(toVal(address), 'u8', parseInt(targetBytes, 2))
                         }
                     }
-                    ppf.write(toVal(targetMeta.address) + 4 + targetData.rows * targetData.bytesPerRow, 'u8', 0xFF, false)
+                    ppf.write(toVal(targetMeta.address) + 4 + targetData.rows * targetData.bytesPerRow, 'u8', 0xFF)
                 }
                 break
             case 'tilemap':
@@ -274,7 +326,7 @@ export function parsePatchNode(ppf, patchNode) {
                         if (targetBytes == '....') {
                             continue
                         }
-                        ppf.write(toVal(address), 'u16', parseInt(targetBytes, 16), false)
+                        ppf.write(toVal(address), 'u16', parseInt(targetBytes, 16))
                     }
                 }
                 break

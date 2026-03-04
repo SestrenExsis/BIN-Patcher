@@ -169,7 +169,7 @@ const argv = yargs(process.argv.slice(2))
             console.log(argv)
         }
     })
-    .command({ // WIP: patch
+    .command({ // patch
         command: 'patch',
         describe: 'Apply a changes file to a patch file',
         builder: (yargs) => {
