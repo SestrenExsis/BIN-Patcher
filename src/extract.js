@@ -96,6 +96,9 @@ function extractArray(bin, elementInfo, baseOffset) {
             case 'object-array':
                 element = extractObject(bin, elementInfo, offset)
                 element._elementIndex = data.length
+                if (element?.layoutRect?.hasOwnProperty('flags')) {
+                    element._layoutRectFlags = element.layoutRect.flags
+                }
                 data.push(element)
                 offset += toVal(elementInfo.size)
                 if (elementInfo.hasOwnProperty('postProcessing')) {
@@ -272,7 +275,7 @@ export function parseExtractionNode(bin, extractionNode, baseOffset) {
     return result
 }
 
-export function aliasNodes(sourceData, aliasesData) {
+export function aliasIndexedNodes(sourceData, aliasesData) {
     let result = {}
     Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
         if (aliasesData !== null && aliasesData.hasOwnProperty(nodeName)) {
@@ -308,7 +311,7 @@ export function aliasNodes(sourceData, aliasesData) {
                 result[nodeName] = nodeInfo
             }
             else {
-                result[nodeName] = aliasNodes(nodeInfo, aliasNode)
+                result[nodeName] = aliasIndexedNodes(nodeInfo, aliasNode)
             }
         }
         else {
@@ -318,17 +321,46 @@ export function aliasNodes(sourceData, aliasesData) {
     return result
 }
 
-export function dropNodes(sourceData, nodeNameToDrop) {
+export function aliasNodeKeys(sourceData, aliasesData) {
     let result = {}
     Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
-        if (nodeName == nodeNameToDrop) {
+        let nodeKey = nodeName
+        if (aliasesData !== null && typeof aliasesData === 'object') {
+            let leafNodeFound = false
+            if (nodeInfo.hasOwnProperty("data")) {
+                leafNodeFound = true
+            }
+            Object.entries(aliasesData).forEach(([aliasName, aliasKey]) => {
+                if (typeof aliasKey === 'string' && aliasKey == nodeName) {
+                    leafNodeFound = true
+                    nodeKey = aliasName
+                }
+            })
+            if (leafNodeFound) {
+                result[nodeKey] = nodeInfo
+            }
+            else {
+                result[nodeKey] = aliasNodeKeys(nodeInfo, aliasesData[nodeKey])
+            }
+        }
+        else {
+            result[nodeKey] = nodeInfo
+        }
+    })
+    return result
+}
+
+export function dropNodes(sourceData, nodeNamesToDrop) {
+    let result = {}
+    Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
+        if (nodeNamesToDrop.includes(nodeName)) {
             // Drop the node
         }
-        else if (['metadata', 'data'].includes(nodeName)) {
+        else if (['metadata', 'data', 'aliases'].includes(nodeName)) {
             result[nodeName] = nodeInfo
         }
         else {
-            result[nodeName] = dropNodes(nodeInfo, nodeNameToDrop)
+            result[nodeName] = dropNodes(nodeInfo, nodeNamesToDrop)
         }
     })
     return result
@@ -346,7 +378,7 @@ export function maskNode(nodeInfo, nodeStructure) {
             break
         case 'object':
             Object.keys(nodeInfo).forEach((propertyName) => {
-                if (propertyName.at(0) != '_') {
+                if (propertyName.at(0) !== '_') {
                     nodeInfo[propertyName] = null
                 }
             })
@@ -354,7 +386,7 @@ export function maskNode(nodeInfo, nodeStructure) {
         case 'object-array':
             for (let index = 0; index < nodeInfo.length; index++) {
                 Object.keys(nodeInfo[index]).forEach((propertyName) => {
-                    if (propertyName.at(0) != '_') {
+                    if (propertyName.at(0) !== '_') {
                         nodeInfo[index][propertyName] = null
                     }
                 })

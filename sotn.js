@@ -3,7 +3,8 @@ import fs from 'fs'
 import crypto from 'crypto'
 import { Address, GameData, toHex, toVal } from './src/common.js'
 import {
-    aliasNodes,
+    aliasIndexedNodes,
+    aliasNodeKeys,
     dropNodes,
     maskNodes,
     parseExtractionNode,
@@ -94,10 +95,10 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .option('drop', {
+            .option('drops', {
                 alias: 'd',
-                describe: 'Name to match for dropping nodes',
-                type: 'string',
+                describe: 'Names to match for dropping nodes',
+                type: 'array',
             })
             .option('mask', {
                 alias: 'm',
@@ -126,18 +127,19 @@ const argv = yargs(process.argv.slice(2))
         handler: (argv) => {
             let sourceData = JSON.parse(fs.readFileSync(argv.source, 'utf8'))
             let targetData = sourceData
-            if (argv.drop != null) {
-                targetData = dropNodes(targetData, argv.drop)
-            }
             if (argv.mask != null) {
                 targetData = maskNodes(targetData, argv.mask)
+            }
+            if (argv.drops != null) {
+                targetData = dropNodes(targetData, argv.drops)
             }
             if (argv.promote != null) {
                 targetData = promoteNodes(targetData, argv.promote)
             }
             if (argv.aliases != null) {
                 let aliasesData = JSON.parse(fs.readFileSync(argv.aliases, 'utf8'))
-                targetData = aliasNodes(targetData, aliasesData)
+                targetData = aliasIndexedNodes(targetData, aliasesData)
+                targetData = aliasNodeKeys(targetData, aliasesData)
             }
             fs.writeFileSync(argv.target, JSON.stringify(targetData, null, 4));
         }
@@ -167,7 +169,7 @@ const argv = yargs(process.argv.slice(2))
             console.log(argv)
         }
     })
-    .command({ // WIP: patch
+    .command({ // patch
         command: 'patch',
         describe: 'Apply a changes file to a patch file',
         builder: (yargs) => {
@@ -200,12 +202,6 @@ const argv = yargs(process.argv.slice(2))
         describe: 'Generate a PPF file, given an extraction file and a patch file',
         builder: (yargs) => {
             return yargs
-            .option('extraction', {
-                alias: 'e',
-                describe: 'JSON file describing the extraction data',
-                type: 'string',
-                normalize: true,
-            })
             .option('patch', {
                 alias: 'p',
                 describe: 'JSON file describing the patch data',
@@ -218,12 +214,11 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
-            .demandOption(['extraction', 'patch', 'target'])
+            .demandOption(['patch', 'target'])
         },
         handler: (argv) => {
-            let extractionData = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
-            const ppfData = toPPF(patchData, extractionData)
+            const ppfData = toPPF(patchData)
             fs.writeFileSync(argv.target, ppfData);
         }
     })

@@ -24,33 +24,52 @@
 //   evaluationOrder: ...
 //   evaluations: ...
 
-export function parsePropertyPath(propertyPath, patchInfo) {
-    let parentNode = null
-    let node = patchInfo
-    let propertyName = null
-    for (const pathSegment of propertyPath.split('.')) {
-        console.log(pathSegment)
-        propertyName = pathSegment
-        if (node.hasOwnProperty(propertyName)) {
-            parentNode = node
-            node = node[propertyName]
+export function getCanonicalPath(nonNormalPath, startingNode) {
+    let canonicalPath = []
+    let currentNode = startingNode
+    for (let pathToken of nonNormalPath.split('.')) {
+        const assignmentInd = pathToken.at(-1) === '='
+        if (assignmentInd) {
+            pathToken = pathToken.slice(0, -1)
         }
-        else if (node.hasOwnProperty('aliases') && node.aliases.hasOwnProperty(propertyName)) {
-            const elementIndex = node.aliases[propertyName]
-            parentNode = node
-            node = node.data[elementIndex]
+        const segmentsToPush = []
+        if (currentNode?.hasOwnProperty(pathToken)) {
+            currentNode = currentNode[pathToken]
+            segmentsToPush.push(pathToken)
+        }
+        else if (currentNode?.hasOwnProperty('aliases') && currentNode?.aliases.hasOwnProperty(pathToken)) {
+            const elementIndex = currentNode.aliases[pathToken]
+            currentNode = currentNode.data[elementIndex]
+            segmentsToPush.push('data')
+            segmentsToPush.push(elementIndex)
         }
         else {
-            console.log(propertyPath, pathSegment)
-            console.log(node)
-            throw new Error('Property not found:', propertyPath)
+            currentNode = null
+            segmentsToPush.push(pathToken)
+        }
+        canonicalPath = canonicalPath.concat(segmentsToPush)
+        if (assignmentInd) {
+            canonicalPath.push('=')
         }
     }
-    const result = {
-        parentNode: parentNode,
-        node: node,
-        propertyName: propertyName,
+    const result = canonicalPath
+    return result
+}
+
+export function traverseCanonicalPath(canonicalPath, startingNode, createMissingNodes=false) {
+    let currentNode = startingNode
+    for (const pathToken of canonicalPath) {
+        if (typeof currentNode === 'object' && (!currentNode.hasOwnProperty(pathToken) || currentNode[pathToken] === null)) {
+            if (createMissingNodes) {
+                currentNode[pathToken] = {}
+            }
+            else {
+                return null
+            }
+        }
+        currentNode = currentNode[pathToken]
     }
+    const result = currentNode
     return result
 }
 
@@ -59,43 +78,64 @@ export function applyChange(patchInfo, changeInfo) {
         case 'merge':
             applyMerge(patchInfo, changeInfo.merge)
             break
-        case 'extend':
-            // TODO(sestren): Implement extend (goes to _writes?)
-            break
         case 'evaluate':
-            for (const evaluateKey of changeInfo.evaluate.evaluationOrder) {
-                console.log(evaluateKey)
-                const evaluateInfo = changeInfo.evaluate.evaluations[evaluateKey]
+            Object.entries(changeInfo.evaluate).forEach(([evaluateName, evaluateInfo]) => {
                 applyEvaluate(patchInfo, evaluateInfo)
-            }
+            })
             break
     }
 }
 
 export function applyMerge(patchInfo, mergeInfo) {
-    // TODO(sestren): Implement simple merge
-    Object.entries(mergeInfo).forEach(([propertyPath, nodeInfo]) => {
-        const parsedPath = parsePropertyPath(propertyPath, nodeInfo)
-        console.log(Object.keys(parsedPath.node))
-        console.log('')
-        applyMerge(nodeInfo, parsedPath.node)
+    Object.entries(mergeInfo).forEach(([propertyPath, mergeNode]) => {
+        const canonicalPath = getCanonicalPath(propertyPath, patchInfo)
+        if (canonicalPath.at(-1) === '=') {
+            const assignmentInd = canonicalPath.pop()
+            const propertyName = canonicalPath.pop()
+            const patchNode = traverseCanonicalPath(canonicalPath, patchInfo, true)
+            patchNode[propertyName] = mergeNode
+        }
+        else {
+            const patchNode = traverseCanonicalPath(canonicalPath, patchInfo, true)
+            applyMerge(patchNode, mergeNode)
+        }
     })
 }
 
 export function applyEvaluate(patchInfo, evaluateInfo) {
     let currentValue;
+    let canonicalPath;
+    let parentPropertyName;
+    let propertyName;
+    let patchNode;
+    let validInd = true;
     for (const actionInfo of evaluateInfo) {
-        console.log(actionInfo)
+        if (!validInd) {
+            break
+        }
         switch (actionInfo.action) {
             case 'get':
                 // TODO(sestren): Implement getting address
-                // TODO(sestren): Implement getting constant
-                currentValue = parsePropertyPath(actionInfo.property, patchInfo).node
+                if (actionInfo.type == 'property') {
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    if (patchNode === null || patchNode[propertyName] === null) {
+                        validInd = false
+                        continue
+                    }
+                    currentValue = patchNode[propertyName]
+                }
+                else {
+                    currentValue = actionInfo.constant
+                }
                 break
             case 'set':
                 if (actionInfo.type == 'property') {
-                    const parsedPath = parsePropertyPath(actionInfo.property, patchInfo)
-                    parsedPath.parentNode[parsedPath.propertyName] = currentValue
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo, true)
+                    patchNode[propertyName] = currentValue
                 }
                 else if (actionInfo.type == 'address') {
                     if (!patchInfo.hasOwnProperty('_writes')) {
@@ -113,7 +153,10 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 break
             case 'add':
                 if (actionInfo.type == 'property') {
-                    currentValue += parsePropertyPath(actionInfo.property, patchInfo).node
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    currentValue += patchNode[propertyName]
                 }
                 else {
                     currentValue += actionInfo.constant
@@ -121,7 +164,10 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 break
             case 'subtract':
                 if (actionInfo.type == 'property') {
-                    currentValue -= parsePropertyPath(actionInfo.property, patchInfo).node
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    currentValue -= patchNode[propertyName]
                 }
                 else {
                     currentValue -= actionInfo.constant
@@ -129,13 +175,16 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 break
             case 'multiply':
                 if (actionInfo.type == 'property') {
-                    currentValue *= parsePropertyPath(actionInfo.property, patchInfo).node
+                    canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
+                    propertyName = canonicalPath.pop()
+                    patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    currentValue *= patchNode[propertyName]
                 }
                 else {
                     currentValue *= actionInfo.constant
                 }
                 break
             }
-        console.log(currentValue)
+        // console.log('currentValue:', currentValue)
     }
 }

@@ -1,3 +1,4 @@
+import aliases from '../build/aliases.json' with { type: 'json' }
 
 export class Address {
     constructor(addressType, address, offset=0) {
@@ -115,6 +116,8 @@ export class GameData {
             case 's16':
                 value = bytes.readInt16LE(0)
                 break
+            case 'item-drop-id':
+            case 'stage-id':
             case 'uint16':
             case 'u16':
             case 'rgba32':
@@ -142,6 +145,26 @@ export class GameData {
         }
         let result = value
         switch (type) {
+            case 'item-drop-id':
+                result = 'unknownId' + value
+                Object.entries(aliases._values.itemDropIds)
+                .filter(([itemDropName, itemDropId]) => {
+                    return value == itemDropId
+                })
+                .forEach(([itemDropName, itemDropId]) => {
+                    result = itemDropName
+                })
+                break
+            case 'stage-id':
+                result = 'unknownId' + value
+                Object.entries(aliases._values.stageIds)
+                .filter(([stageName, stageId]) => {
+                    return value == stageId
+                })
+                .forEach(([stageName, stageId]) => {
+                    result = stageName
+                })
+                break
             case 'rgba32':
                 const red = value % 32
                 value = Math.floor(value / 32)
@@ -191,6 +214,8 @@ export function getSizeOfType(type) {
         case 'u8':
             byteCount = 1
             break
+        case 'item-drop-id':
+        case 'stage-id':
         case 'int16':
         case 'uint16':
         case 's16':
