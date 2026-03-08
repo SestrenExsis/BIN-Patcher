@@ -149,6 +149,70 @@ data = {
         'royalChapel': (0x000EC0, 16),
         'undergroundCaverns': (0x001928, 37),
     },
+    'music': {
+        'alchemyLaboratory': {
+            'boss': 0x034280,
+            'afterSlograAndGaibon': 0x034350,
+            'afterSlograAndGaibon2': 0x0343CC,
+        },
+        'bossDoppelganger10': {
+            'boss': 0x036560,
+        },
+        'bossGranfaloon': {
+            'boss': 0x021AB8,
+            'boss2': 0x021AEC,
+            'stage': 0x0224E4,
+        },
+        'bossHippogryph': {
+            'boss': 0x024500,
+        },
+        'bossMedusa': {
+            'boss': 0x012C40,
+            'boss2': 0x012CDC,
+        },
+        'bossMinotaurAndWerewolf': {
+            'boss': 0x024588,
+            'stage': 0x026EA8,
+        },
+        'bossOlrox': {
+            'boss': 0x02D47C,
+            'boss2': 0x02D4D8,
+            'boss3': 0x02D4F8,
+            'boss4': 0x02D56C,
+            'stage': 0x038714,
+        },
+        'bossScylla': {
+            'boss': 0x0264B0,
+            'boss2': 0x0264F4,
+            'boss3': 0x026690,
+            'stage': 0x0265FC,
+        },
+        'bossSuccubus': {
+            'boss': 0x0125BC,
+        },
+        'castleEntrance': {
+            'afterCastleAwakes': 0x0381C8,
+            'afterMeetingDeath': 0x04027C,
+        },
+        'clockTower': {
+            'bossKarasuman': 0x02A658,
+            'afterKarasuman': 0x02A718,
+            'afterKarasuman2': 0x02A790,
+        },
+        'longLibrary': {
+            'boss': 0x03B700,
+            'stage': 0x03B7BC,
+            'stage2': 0x03B828,
+        },
+        'reverseCastleCenter': {
+            'boss': 0x01AD4C,
+        },
+        'reverseClockTower': {
+            'boss': 0x02CA08,
+            'stage': 0x02CAAC,
+            'stage2': 0x02CB24,
+        },
+    },
 }
 
 
@@ -670,4 +734,31 @@ if __name__ == '__main__':
                                 'paddingAmount': 12,
                             },
                         ]
+        for stage_name in data['music']:
+            # STAGE_NAME
+            if stage_name not in source['stages']:
+                source['stages'][stage_name] = {}
+            context = source['stages'][stage_name]
+            # STAGE_NAME.constants
+            if 'constants' not in context:
+                context['constants'] = {}
+            context = context['constants']
+            # STAGE_NAME.constants.music
+            if 'music' not in context:
+                context['music'] = {}
+            context = context['music']
+            # STAGE_NAME.constants.music.EVENT_NAME
+            for (event_name, offset) in data['music'][stage_name].items():
+                context[event_name] = {
+                    'metadata': {
+                        'address': {
+                            'value': offset,
+                            'method': 'relative',
+                        },
+                        'element': {
+                            'structure': 'value',
+                            'type': 'music-id',
+                        },
+                    },
+                }
         json.dump(source, target_file, indent='    ', sort_keys=True)

@@ -117,6 +117,7 @@ export class GameData {
                 value = bytes.readInt16LE(0)
                 break
             case 'item-drop-id':
+            case 'music-id':
             case 'stage-id':
             case 'uint16':
             case 'u16':
@@ -153,6 +154,16 @@ export class GameData {
                 })
                 .forEach(([itemDropName, itemDropId]) => {
                     result = itemDropName
+                })
+                break
+            case 'music-id':
+                result = 'unknownId' + value
+                Object.entries(aliases._values.musicIds)
+                .filter(([musicName, musicId]) => {
+                    return value == musicId
+                })
+                .forEach(([musicName, musicId]) => {
+                    result = musicName
                 })
                 break
             case 'stage-id':
@@ -215,6 +226,7 @@ export function getSizeOfType(type) {
             byteCount = 1
             break
         case 'item-drop-id':
+        case 'music-id':
         case 'stage-id':
         case 'int16':
         case 'uint16':

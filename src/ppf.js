@@ -198,6 +198,23 @@ export class PPF {
                 this.buffer.writeUInt32LE(value, 0)
                 byteCount = 4
                 break
+            case 'music-id':
+                aliasFound = false
+                Object.entries(aliases._values.musicIds)
+                .filter(([musicName, musicId]) => {
+                    return data == musicName
+                })
+                .forEach(([musicName, musicId]) => {
+                    aliasFound = true
+                    value = musicId
+                })
+                if (!aliasFound) {
+                    value = parseInt(data.substring('unknownId'.length), 10)
+                    console.log('Alias not found for', data)
+                }
+                this.buffer.writeUInt16LE(value, 0)
+                byteCount = 2
+                break
             case 'zone-offset':
                 if (data == 'NULL') {
                     value = 0x00000000

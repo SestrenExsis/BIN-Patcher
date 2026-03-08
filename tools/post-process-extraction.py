@@ -11,23 +11,25 @@ if __name__ == '__main__':
     ):
         aliases = json.load(aliases_file)
         extraction = json.load(extraction_file)
-        extraction['_aliases'] = {
-            'roomId': {},
-            'roomOffset': {},
-        }
+        roomIds = {}
+        roomOffsets = {}
         for (stage_name, stage_info) in aliases['stages'].items():
-            extraction['_aliases']['roomId'][stage_name] = {}
-            extraction['_aliases']['roomOffset'][stage_name] = {}
+            roomIds[stage_name] = {}
+            roomOffsets[stage_name] = {}
             for (room_name, room_id) in stage_info['rooms'].items():
-                extraction['_aliases']['roomId'][stage_name][room_name] = room_id
-                extraction['_aliases']['roomOffset'][stage_name][room_name] = 8 * room_id
+                roomIds[stage_name][room_name] = room_id
+                roomOffsets[stage_name][room_name] = 8 * room_id
+        # extraction['_aliases'] = {
+        #     'roomId': roomIds,
+        #     'roomOffset': roomOffsets,
+        # }
         teleporters = extraction['teleporters']
         teleporters['metadata']['element']['properties']['roomOffset']['type'] = 'room-offset'
         for i in range(len(teleporters['data'])):
             teleporter = teleporters['data'][i]
             stage_name = teleporter['targetStageId']
             print(stage_name)
-            for (room_name, room_offset) in extraction['_aliases']['roomOffset'].get(stage_name, {}).items():
+            for (room_name, room_offset) in roomOffsets.get(stage_name, {}).items():
                 if room_offset == teleporter['roomOffset']:
                     teleporter['roomOffset'] = f'{stage_name}.{room_name}'
         json.dump(extraction, processed_extraction_file, indent='    ', sort_keys=True)
