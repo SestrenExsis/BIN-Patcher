@@ -380,6 +380,38 @@ familiarEvents:
         longLibraryShopSword: 45
         royalChapelConfessionalBoothSword: 46
         catacombsDarkRoomSword: 47
+overlays:
+    abandonedMine: 5
+    alchemyLaboratory: 12
+    bossAkmodanII: 55
+    bossCerberus: 22
+    bossDoppelganger10: 26
+    bossGranfaloon: 29
+    bossGalamoth: 54
+    bossHippogryph: 25
+    bossMinotaurAndWerewolf: 28
+    bossRichter: 24
+    bossScylla: 27
+    bossSuccubus: 18
+    castleCenter: 8
+    castleEntrance: 65
+    castleEntranceRevisited: 7
+    castleKeep: 11
+    catacombs: 3
+    clockTower: 13
+    colosseum: 10
+    cutsceneMeetingMariaInClockRoom: 23
+    debug: 64
+    floatingCatacombs: 35
+    longLibrary: 2
+    marbleGallery: 0
+    olroxsQuarters: 4
+    outerWall: 1
+    reverseCastleCenter: 40
+    reverseKeep: 43
+    royalChapel: 6
+    undergroundCaverns: 9
+    warpRooms: 14
 secretMapTileReveals:
     anteroomStaircase: 11
     demonSwitch: 2
@@ -2752,6 +2784,43 @@ _values:
         itemZircon: 360
         itemZweiHander: 231
         itemSubweaponAxe: 15
+    musicIds:
+        noAudio: 767
+        lostPainting: 769
+        curseZone: 771
+        requiemForTheGods: 773
+        rainbowCemetary: 775
+        woodCarvingPartita: 777
+        crystalTeardrops: 779
+        marbleGallery: 781
+        draculasCastle: 783
+        theTragicPrince: 785
+        towerOfMist: 787
+        doorOfHolySpirits: 789
+        danceOfPales: 791
+        abandonedPit: 793
+        heavenlyDoorway: 795
+        festivalOfServants: 797
+        danceOfIllusions: 799
+        prologue: 801
+        wanderingGhosts: 803
+        theDoorToTheAbyss: 805
+        metamorphosis: 807
+        metamorphosisII: 808
+        metamorphosisIII: 809
+        howlingWind: 810
+        danceOfGold: 814
+        enchantedBanquet: 816
+        prayer: 818
+        deathBallad: 820
+        bloodRelations: 822
+        finalToccata: 824
+        blackBanquet: 826
+        iAmTheWind: 828
+        silence: 829
+        landOfBenediction: 830
+        nocturne: 831
+        moonlightNocturne: 832
     stageIds:
         abandonedMine: 5
         alchemyLaboratory: 12

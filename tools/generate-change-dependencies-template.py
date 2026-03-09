@@ -2778,24 +2778,6 @@ if __name__ == '__main__':
                         transformation_name = transformation[-1]['property']
                         print(transformation_name)
                         dependencies['rooms.layerDefinitions'][transformation_name] = transformation
-                    for (source_property_name, target_property_name) in (
-                        ('_layoutRectFlags', 'flags'),
-                    ):
-                        transformation = [
-                            {
-                                'action': 'get',
-                                'type': 'property',
-                                'property': f'stages.{stage_name}.layers.layerDefinitions.{room_name}.{source_property_name}',
-                            },
-                            {
-                                'action': 'set',
-                                'type': 'property',
-                                'property': f'stages.{stage_name}.layers.layerDefinitions.{layer_name}.layoutRect.{target_property_name}',
-                            },
-                        ]
-                        transformation_name = transformation[-1]['property']
-                        print(transformation_name)
-                        dependencies['rooms.layerDefinitions'][transformation_name] = transformation
         # secondaryRooms.leftsAndTops
         for (stage_name, (associated_stage_name, reverse_ind)) in data['associatedStages'].items():
             if stage_name not in data['rooms'] or associated_stage_name not in data['rooms']:

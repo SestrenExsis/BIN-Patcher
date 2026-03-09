@@ -1,0 +1,61 @@
+{
+    "authors": [
+        "Sestren"
+    ],
+    "description": [
+        "Reassign which songs go with which stages"
+    ],
+    "changes": [
+        {
+            "changeType": "merge",
+            "merge": {
+                "overlays.abandonedMine.musicId=": "abandonedPit",
+                "overlays.alchemyLaboratory.musicId=": "wanderingGhosts",
+                "overlays.bossAkmodanII.musicId=": "noAudio",
+                "overlays.bossCerberus.musicId=": "noAudio",
+                "overlays.bossDoppelganger10.musicId=": "noAudio",
+                "overlays.bossGalamoth.musicId=": "noAudio",
+                "overlays.bossGranfaloon.musicId=": "noAudio",
+                "overlays.bossHippogryph.musicId=": "noAudio",
+                "overlays.bossMinotaurAndWerewolf.musicId=": "noAudio",
+                "overlays.bossRichter.musicId=": "noAudio",
+                "overlays.bossScylla.musicId=": "noAudio",
+                "overlays.bossSuccubus.musicId=": "noAudio",
+                "overlays.castleCenter.musicId=": "theDoorToTheAbyss",
+                "overlays.castleEntrance.musicId=": "draculasCastle",
+                "overlays.castleKeep.musicId=": "heavenlyDoorway",
+                "overlays.catacombs.musicId=": "rainbowCemetary",
+                "overlays.clockTower.musicId=": "theTragicPrince",
+                "overlays.colosseum.musicId=": "wanderingGhosts",
+                "overlays.cutsceneMeetingMariaInClockRoom.musicId=": "noAudio",
+                "overlays.debug.musicId=": "unknownId843",
+                "overlays.floatingCatacombs.musicId=": "curseZone",
+                "overlays.longLibrary.musicId=": "woodCarvingPartita",
+                "overlays.marbleGallery.musicId=": "marbleGallery",
+                "overlays.olroxsQuarters.musicId=": "danceOfPales",
+                "overlays.outerWall.musicId=": "towerOfMist",
+                "overlays.reverseCastleCenter.musicId=": "theDoorToTheAbyss",
+                "overlays.reverseKeep.musicId=": "heavenlyDoorway",
+                "overlays.royalChapel.musicId=": "requiemForTheGods",
+                "overlays.undergroundCaverns.musicId=": "crystalTeardrops",
+                "overlays.warpRooms.musicId=": "noAudio",
+                "overlays.castleEntranceRevisited.musicId=": "wanderingGhosts",
+                "stages.bossCerberus.constants.music.boss.data=": "towerOfMist",
+                "stages.bossCerberus.constants.music.stage.data=": "wanderingGhosts",
+                "stages.bossDoppelganger10.constants.music.boss.data=": "wanderingGhosts",
+                "stages.bossDoppelganger10.constants.stage.stage.data=": "iAmTheWind",
+                "stages.bossMedusa.constants.music.boss.data=": "woodCarvingPartita",
+                "stages.bossMedusa.constants.music.stage.data=": "iAmTheWind",
+                "stages.bossMedusa.constants.music.stage2.data=": "wanderingGhosts",
+                "stages.castleEntrance.constants.music.afterCastleAwakes.data=": "iAmTheWind",
+                "stages.castleEntrance.constants.music.afterMeetingDeath.data=": "wanderingGhosts",
+                "stages.alchemyLaboratory.constants.music.boss.data=": "woodCarvingPartita",
+                "stages.alchemyLaboratory.constants.music.afterSlograAndGaibon.data=": "iAmTheWind",
+                "stages.alchemyLaboratory.constants.music.afterSlograAndGaibon2.data=": "wanderingGhosts",
+                "stages.clockTower.constants.music.bossKarasuman.data=": "woodCarvingPartita",
+                "stages.clockTower.constants.music.afterKarasuman.data=": "iAmTheWind",
+                "stages.clockTower.constants.music.afterKarasuman2.data=": "wanderingGhosts"
+            }
+        }
+    ]
+}

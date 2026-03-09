@@ -149,6 +149,106 @@ data = {
         'royalChapel': (0x000EC0, 16),
         'undergroundCaverns': (0x001928, 37),
     },
+    'music': {
+        'alchemyLaboratory': {
+            'boss': 0x034280,
+            'afterSlograAndGaibon': 0x034350,
+            'afterSlograAndGaibon2': 0x0343CC,
+        },
+        'bossAkmodanII': {
+            'boss': 0x013F30,
+        },
+        'bossBeelzebub': {
+            'boss': 0x014E20,
+            'boss2': 0x014E40,
+            'stage': 0x014E98,
+            'stage2': 0x014F28,
+        },
+        'bossCerberus': {
+            'boss': 0x016008,
+            'stage': 0x016160,
+        },
+        'bossCreature': {
+            'boss': 0x018894,
+            'stage': 0x0188F4,
+            'stage2': 0x018990,
+        },
+        'bossDeath': {
+            'boss': 0x01F5FC,
+            'stage': 0x01F748,
+        },
+        'bossDoppelganger10': {
+            'boss': 0x036560,
+            'stage': 0x034EF8,
+        },
+        'bossDoppelganger40': {
+            'boss': 0x0352A8,
+        },
+        'bossGalamoth': {
+            'boss': 0x019648,
+            'stage': 0x0196A8,
+            'stage2': 0x019744,
+        },
+        'bossGranfaloon': {
+            'boss': 0x021AB8,
+            'boss2': 0x021AEC,
+            'stage': 0x0224E4,
+        },
+        'bossHippogryph': {
+            'boss': 0x024500,
+        },
+        'bossMedusa': {
+            'boss': 0x012BE0,
+            'stage': 0x012C40,
+            'stage2': 0x012CDC,
+        },
+        'bossMinotaurAndWerewolf': {
+            'boss': 0x024588,
+            'stage': 0x026EA8,
+        },
+        'bossOlrox': {
+            'boss': 0x02D47C,
+            'boss2': 0x02D4D8,
+            'boss3': 0x02D4F8,
+            'boss4': 0x02D56C,
+            'stage': 0x038714,
+        },
+        'bossScylla': {
+            'boss': 0x0264B0,
+            'boss2': 0x0264F4,
+            'boss3': 0x026690,
+            'stage': 0x0265FC,
+        },
+        'bossSuccubus': {
+            'boss': 0x0125BC,
+        },
+        'bossTrio': {
+            'boss': 0x0145CC,
+            'boss2': 0x014674,
+        },
+        'castleEntrance': {
+            'afterCastleAwakes': 0x0381C8,
+            'afterMeetingDeath': 0x04027C,
+        },
+        'clockTower': {
+            'bossKarasuman': 0x02A658,
+            'afterKarasuman': 0x02A718,
+            'afterKarasuman2': 0x02A790,
+        },
+        'longLibrary': {
+            'boss': 0x03B700,
+            'stage': 0x03B7BC,
+            'stage2': 0x03B828,
+        },
+        'reverseCastleCenter': {
+            'boss': 0x01AD4C,
+        },
+        'reverseClockTower': {
+            'boss': 0x02CA08,
+            'stage': 0x02CAAC,
+            'stage2': 0x02CB24,
+        },
+    },
 }
 
 
@@ -462,6 +562,10 @@ if __name__ == '__main__':
                                         'offset': '0x08',
                                         'type': 'layout-rect',
                                     },
+                                    '_layoutRect': {
+                                        'offset': '0x08',
+                                        'type': 'u32',
+                                    },
                                     'zPriority': {
                                         'offset': '0x0C',
                                         'type': 'u16',
@@ -670,4 +774,31 @@ if __name__ == '__main__':
                                 'paddingAmount': 12,
                             },
                         ]
+        for stage_name in data['music']:
+            # STAGE_NAME
+            if stage_name not in source['stages']:
+                source['stages'][stage_name] = {}
+            context = source['stages'][stage_name]
+            # STAGE_NAME.constants
+            if 'constants' not in context:
+                context['constants'] = {}
+            context = context['constants']
+            # STAGE_NAME.constants.music
+            if 'music' not in context:
+                context['music'] = {}
+            context = context['music']
+            # STAGE_NAME.constants.music.EVENT_NAME
+            for (event_name, offset) in data['music'][stage_name].items():
+                context[event_name] = {
+                    'metadata': {
+                        'address': {
+                            'value': offset,
+                            'method': 'relative',
+                        },
+                        'element': {
+                            'structure': 'value',
+                            'type': 'music-id',
+                        },
+                    },
+                }
         json.dump(source, target_file, indent='    ', sort_keys=True)
