@@ -286,6 +286,16 @@ const argv = yargs(process.argv.slice(2))
                 describe: 'Number of bytes in GAMEDATA to search',
                 type: 'number',
             })
+            .option('aligned', {
+                alias: 'a',
+                describe: 'Whether to align on 4-byte boundaries',
+                type: 'boolean',
+            })
+            .option('context', {
+                alias: 'c',
+                describe: 'How many bytes of context to display after every match',
+                type: 'number',
+            })
             .demandOption(['bin', 'hex'])
         },
         handler: (argv) => {
@@ -298,7 +308,8 @@ const argv = yargs(process.argv.slice(2))
             console.log('Digest of disc image', digest.toString('hex'))
             const bin = new GameData(buffer, toVal(argv.start))
             const bytes = argv.hex.split(' ').map((hexString) => { return Number.parseInt(hexString, 16)})
-            for (let offset = 0; offset < argv.length; offset++) {
+            const stepSize = (argv.aligned) ? 4 : 1
+            for (let offset = 0; offset < argv.length; offset += stepSize) {
                 bin.set(argv.start + offset)
                 let matchInd = true
                 for (let matchCount = 0; matchCount < bytes.length; matchCount++) {
@@ -310,7 +321,11 @@ const argv = yargs(process.argv.slice(2))
                 }
                 if (matchInd) {
                     const address = new Address('GAMEDATA', argv.start, offset)
-                    console.log('game:', toHex(address.gameDataAddress, 8), 'disc:', toHex(address.toDiscAddress(), 8))
+                    const contextBytes = []
+                    for (let contextIndex = 0; contextIndex < argv.context; contextIndex++) {
+                        contextBytes.push(toHex(bin.read('u8'), 2))
+                    }
+                    console.log('game:', toHex(address.gameDataAddress, 8), 'disc:', toHex(address.toDiscAddress(), 8), contextBytes)
                 }
             }
         }

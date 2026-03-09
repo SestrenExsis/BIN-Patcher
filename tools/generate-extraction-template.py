@@ -155,8 +155,39 @@ data = {
             'afterSlograAndGaibon': 0x034350,
             'afterSlograAndGaibon2': 0x0343CC,
         },
+        'bossAkmodanII': {
+            'boss': 0x013F30,
+        },
+        'bossBeelzebub': {
+            'boss': 0x014E20,
+            'boss2': 0x014E40,
+            'stage': 0x014E98,
+            'stage2': 0x014F28,
+        },
+        'bossCerberus': {
+            'boss': 0x016008,
+            'stage': 0x016160,
+        },
+        'bossCreature': {
+            'boss': 0x018894,
+            'stage': 0x0188F4,
+            'stage2': 0x018990,
+        },
+        'bossDeath': {
+            'boss': 0x01F5FC,
+            'stage': 0x01F748,
+        },
         'bossDoppelganger10': {
             'boss': 0x036560,
+            'stage': 0x034EF8,
+        },
+        'bossDoppelganger40': {
+            'boss': 0x0352A8,
+        },
+        'bossGalamoth': {
+            'boss': 0x019648,
+            'stage': 0x0196A8,
+            'stage2': 0x019744,
         },
         'bossGranfaloon': {
             'boss': 0x021AB8,
@@ -167,8 +198,9 @@ data = {
             'boss': 0x024500,
         },
         'bossMedusa': {
-            'boss': 0x012C40,
-            'boss2': 0x012CDC,
+            'boss': 0x012BE0,
+            'stage': 0x012C40,
+            'stage2': 0x012CDC,
         },
         'bossMinotaurAndWerewolf': {
             'boss': 0x024588,
@@ -189,6 +221,10 @@ data = {
         },
         'bossSuccubus': {
             'boss': 0x0125BC,
+        },
+        'bossTrio': {
+            'boss': 0x0145CC,
+            'boss2': 0x014674,
         },
         'castleEntrance': {
             'afterCastleAwakes': 0x0381C8,
