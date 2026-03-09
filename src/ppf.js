@@ -22,6 +22,7 @@ export class PPF {
     constructor(buffer, cursorOffset=0) {
         this.writes = {}
         this.buffer = Buffer.alloc(2048)
+        this.scratch = Buffer.alloc(32)
     }
 
     bytes(description="Default description") {
@@ -195,7 +196,9 @@ export class PPF {
             case 'layout-rect':
                 // NOTE(sestren): Using a weird workaround for shifting flags left 24 bits to avoid overflow issues
                 value = 2 * (data.flags << 23) + (data.bottom << 18) + (data.right << 12) + (data.top << 6) + data.left
-                this.buffer.writeUInt32LE(value, 0)
+                this.scratch.writeUInt32LE(value, 0)
+                const writeLength = (data.flags !== null) ? 4 : 3
+                this.scratch.copy(this.buffer, 0, 0, writeLength)
                 byteCount = 4
                 break
             case 'music-id':

@@ -96,9 +96,6 @@ function extractArray(bin, elementInfo, baseOffset) {
             case 'object-array':
                 element = extractObject(bin, elementInfo, offset)
                 element._elementIndex = data.length
-                if (element?.layoutRect?.hasOwnProperty('flags')) {
-                    element._layoutRectFlags = element.layoutRect.flags
-                }
                 data.push(element)
                 offset += toVal(elementInfo.size)
                 if (elementInfo.hasOwnProperty('postProcessing')) {

@@ -562,6 +562,10 @@ if __name__ == '__main__':
                                         'offset': '0x08',
                                         'type': 'layout-rect',
                                     },
+                                    '_layoutRect': {
+                                        'offset': '0x08',
+                                        'type': 'u32',
+                                    },
                                     'zPriority': {
                                         'offset': '0x0C',
                                         'type': 'u16',
