@@ -197,9 +197,8 @@ export class PPF {
                 // NOTE(sestren): Using a weird workaround for shifting flags left 24 bits to avoid overflow issues
                 value = 2 * (data.flags << 23) + (data.bottom << 18) + (data.right << 12) + (data.top << 6) + data.left
                 this.scratch.writeUInt32LE(value, 0)
-                const writeLength = (data.flags !== null) ? 4 : 3
-                this.scratch.copy(this.buffer, 0, 0, writeLength)
-                byteCount = 4
+                byteCount = (data.hasOwnProperty('flags')) ? 4 : 3
+                this.scratch.copy(this.buffer, 0, 0, byteCount)
                 break
             case 'music-id':
                 aliasFound = false
