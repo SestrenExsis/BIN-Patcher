@@ -508,6 +508,21 @@ stages:
             loadingRoom: '0x00f360'
             saveRoomA: '0x00f560'
     alchemyLaboratory:
+        entities:
+            horizontal:
+                glassVatAInGlassVats: 132
+                glassVatBInGlassVats: 133
+                glassVatCInGlassVats: 134
+                glassVatDInGlassVats: 135
+                glassVatEInGlassVats: 136
+                breakableFloorInTallZigZagRoom: 33
+            vertical:
+                glassVatAInGlassVats: 132
+                glassVatBInGlassVats: 133
+                glassVatCInGlassVats: 134
+                glassVatDInGlassVats: 135
+                glassVatEInGlassVats: 136
+                breakableFloorInTallZigZagRoom: 37
         layers:
             layerDefinitions:
                 batCardRoom: 1
@@ -1693,6 +1708,11 @@ stages:
             tallStainedGlassWindows: 1
             threePaths: 16
     necromancyLaboratory:
+        entities:
+            horizontal:
+                breakableFloorInTallZigZagRoom: 48
+            vertical:
+                breakableFloorInTallZigZagRoom: 43
         layers:
             layerDefinitions:
                 batCardRoom: 1
@@ -1757,6 +1777,41 @@ stages:
             tallSpittleboneRoom: 11
             tallZigZagRoom: 14
             tetrominoRoom: 19
+        tilemaps:
+            batCardRoom: '0x01450c'
+            exitToRoyalChapel: '0x01470c'
+            blueDoorHallway: '0x01490c'
+            bloodyZombieHallway: '0x014d0c'
+            cannonRoom: '0x01550c'
+            clothCapeRoom: '0x01570c'
+            sunglassesRoom: '0x01590c'
+            glassVats: '0x015b0c'
+            '0x015f0c': '0x015f0c'
+            skillOfWolfRoom: '0x01610c'
+            heartMaxUpRoom: '0x01630c'
+            entryway: '0x01650c'
+            '0x016b0c': '0x016b0c'
+            tallSpittleboneRoom: '0x016d0c'
+            emptyZigZagRoom: '0x01770c'
+            shortZigZagRoom: '0x017b0c'
+            tallZigZagRoom: '0x017f0c'
+            secretLifeMaxUpRoom: '0x01850c'
+            slograAndGaibonRoom: '0x01890c'
+            boxPuzzleRoom: '0x01990c'
+            '0x01a10c': '0x01a10c'
+            redSkeletonLiftRoom: '0x01a30c'
+            '0x01af0c': '0x01af0c'
+            tetrominoRoom: '0x01b10c'
+            exitToMarbleGallery: '0x01bd0c'
+            corridorToElevator: '0x01c90c'
+            elevatorShaft: '0x01cd0c'
+            '0x01db0c': '0x01db0c'
+            saveRoomA: '0x01dd0c'
+            saveRoomB: '0x01df0c'
+            saveRoomC: '0x01e10c'
+            loadingRoomToMarbleGallery: '0x01e30c'
+            loadingRoomToRoyalChapel: '0x01e30c'
+            loadingRoomToCastleEntrance: '0x01e30c'
     olroxsQuarters:
         layers:
             layerDefinitions:
