@@ -137,7 +137,7 @@ const argv = yargs(process.argv.slice(2))
                     return;
                 }
                 console.log(`    ${stageName}:`)
-                console.log('        rooms:')
+                console.log('        tilemaps:')
                 const tilemaps = {}
                 stageInfo.layers.layerDefinitions.data.map((element, index) => {
                     const rows = 1 + element.layoutRect.bottom - element.layoutRect.top
