@@ -987,8 +987,10 @@ stages:
         entities:
             horizontal:
                 relicPowerOfWolf: 111
+                enemyBatInMermanRoom1: 132
             vertical:
                 relicPowerOfWolf: 100
+                enemyBatInMermanRoom1: 126
         layers:
             layerDefinitions:
                 afterDrawbridge: 1
@@ -1063,8 +1065,10 @@ stages:
         entities:
             horizontal:
                 relicPowerOfWolf: 105
+                enemyBatInMermanRoom1: 126
             vertical:
                 relicPowerOfWolf: 96
+                enemyBatInMermanRoom1: 119
         layers:
             layerDefinitions:
                 afterDrawbridge: 1
@@ -1141,6 +1145,50 @@ stages:
             unknownRoom20: 20
             wargHallway: 9
             zombieHallway: 2
+        tilemaps:
+            afterDrawbridge: '0x018838'
+            '0x019438': '0x019438'
+            dropUnderPortcullis: '0x019638'
+            dropUnderPortcullisBackground: '0x019a38'
+            zombieHallway: '0x019e38'
+            '0x01ac38': '0x01ac38'
+            holyMailRoom: '0x01ae38'
+            holyMailRoomBackground: '0x01b038'
+            atticStaircase: '0x01b238'
+            atticStaircaseBackground: '0x01b638'
+            atticHallway: '0x01ba38'
+            atticHallwayBackground: '0x01c238'
+            atticEntrance: '0x01ca38'
+            atticEntranceBackground: '0x01cc38'
+            mermanRoom: '0x01ce38'
+            mermanRoomBackground: '0x01da38'
+            jewelSwordRoom: '0x01e638'
+            jewelSwordRoomBackground: '0x01e838'
+            wargHallway: '0x01ea38'
+            '0x01f638': '0x01f638'
+            shortcutToUndergroundCaverns: '0x01f838'
+            shortcutToUndergroundCavernsBackground: '0x01fa38'
+            meetingRoomWithDeath: '0x01fc38'
+            '0x020038': '0x020038'
+            stairwellAfterDeath: '0x020238'
+            stairwellAfterDeathBackground: '0x020838'
+            gargoyleRoom: '0x020e38'
+            '0x021038': '0x021038'
+            heartMaxUpRoom: '0x021238'
+            heartMaxUpRoomBackground: '0x021438'
+            cubeOfZoeRoom: '0x021638'
+            cubeOfZoeRoomBackground: '0x022238'
+            shortcutToWarpRooms: '0x022e38'
+            shortcutToWarpRoomsBackground: '0x023038'
+            lifeMaxUpRoom: '0x023238'
+            lifeMaxUpRoomBackground: '0x023438'
+            forestCutscene: '0x023638'
+            '0x025a38': '0x025a38'
+            unknownRoom19: '0x025c38'
+            unknownRoom20: '0x025e38'
+            loadingRoom: '0x026038'
+            saveRoomWithLeftPassage: '0x026238'
+            saveRoomWithRightPassage: '0x026438'
     castleKeep:
         layers:
             layerDefinitions:
@@ -1874,6 +1922,38 @@ stages:
             skelerangRoom: 0
             swordCardRoom: 14
             tallShaft: 6
+        tilemaps:
+            skelerangRoom: '0x014e28'
+            skelerangRoomBackground: '0x015428'
+            bottomOfStairwell: '0x015a28'
+            bottomOfStairwellBackground: '0x015c28'
+            grandStaircase: '0x015e28'
+            grandStaircaseBackground: '0x016a28'
+            secretOnyxRoom: '0x017628'
+            secretOnyxRoomBackground: '0x017c28'
+            hammerAndBladeRoom: '0x018228'
+            hammerAndBladeRoomBackground: '0x018a28'
+            emptyRoom: '0x019228'
+            emptyRoomBackground: '0x019428'
+            tallShaft: '0x019628'
+            tallShaftBackground: '0x01a228'
+            prison: '0x01ae28'
+            prisonBackground: '0x01ba28'
+            openCourtyard: '0x01c628'
+            '0x01f628': '0x01f628'
+            emptyCells: '0x01f828'
+            emptyCellsBackground: '0x01fc28'
+            garnetRoom: '0x020028'
+            garnetRoomBackground: '0x020228'
+            narrowHallwayToOlrox: '0x020428'
+            olroxsRoom: '0x020c28'
+            echoOfBatRoom: '0x021428'
+            echoOfBatRoomBackground: '0x021a28'
+            swordCardRoom: '0x022028'
+            catwalkCrypt: '0x022428'
+            catwalkCryptBackground: '0x023228'
+            saveRoomA: '0x024028'
+            loadingRoom: '0x024228'
     outerWall:
         layers:
             layerDefinitions:
