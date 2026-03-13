@@ -1441,6 +1441,15 @@ stages:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     deathWingsLair:
+        entities:
+            horizontal:
+                breakableVaseInTallShaft1: 125
+                breakableVaseInTallShaft2: 126
+                breakableVaseInTallShaft3: 127
+            vertical:
+                breakableVaseInTallShaft1: 125
+                breakableVaseInTallShaft2: 126
+                breakableVaseInTallShaft3: 127
         layers:
             layerDefinitions:
                 skelerangRoom: 1
@@ -1502,6 +1511,38 @@ stages:
             skelerangRoom: 0
             swordCardRoom: 14
             tallShaft: 6
+        tilemaps:
+            skelerangRoom: '0x013aec'
+            skelerangRoomBackground: '0x0140ec'
+            bottomOfStairwell: '0x0146ec'
+            bottomOfStairwellBackground: '0x0148ec'
+            grandStaircase: '0x014aec'
+            grandStaircaseBackground: '0x0156ec'
+            secretOnyxRoom: '0x0162ec'
+            secretOnyxRoomBackground: '0x0168ec'
+            hammerAndBladeRoom: '0x016eec'
+            hammerAndBladeRoomBackground: '0x0176ec'
+            emptyRoom: '0x017eec'
+            emptyRoomBackground: '0x0180ec'
+            tallShaft: '0x0182ec'
+            tallShaftBackground: '0x018eec'
+            prison: '0x019aec'
+            prisonBackground: '0x01a6ec'
+            openCourtyard: '0x01b2ec'
+            '0x01e2ec': '0x01e2ec'
+            emptyCells: '0x01e4ec'
+            emptyCellsBackground: '0x01e8ec'
+            garnetRoom: '0x01ecec'
+            garnetRoomBackground: '0x01eeec'
+            narrowHallwayToOlrox: '0x01f0ec'
+            olroxsRoom: '0x01f8ec'
+            echoOfBatRoom: '0x0200ec'
+            echoOfBatRoomBackground: '0x0206ec'
+            swordCardRoom: '0x020cec'
+            catwalkCrypt: '0x0210ec'
+            catwalkCryptBackground: '0x021eec'
+            saveRoomA: '0x022cec'
+            loadingRoom: '0x022eec'
     floatingCatacombs:
         layers:
             layerDefinitions:
@@ -1861,6 +1902,15 @@ stages:
             loadingRoomToRoyalChapel: '0x01e30c'
             loadingRoomToCastleEntrance: '0x01e30c'
     olroxsQuarters:
+        entities:
+            horizontal:
+                breakableVaseInTallShaft1: 140
+                breakableVaseInTallShaft2: 141
+                breakableVaseInTallShaft3: 142
+            vertical:
+                breakableVaseInTallShaft1: 142
+                breakableVaseInTallShaft2: 141
+                breakableVaseInTallShaft3: 140
         layers:
             layerDefinitions:
                 skelerangRoom: 1

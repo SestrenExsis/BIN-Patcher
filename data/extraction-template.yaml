@@ -504,7 +504,7 @@ stages:
                             method: elementCount
                             elementCount: 32
                         type: u16
-    orloxsQuarters:
+    olroxsQuarters:
         constants:
             breakableCeilingTiles:
                 metadata:
