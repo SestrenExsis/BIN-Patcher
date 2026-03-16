@@ -1666,6 +1666,22 @@ stages:
             shop: 4
             spellbookArea: 9
             threeLayerRoom: 8
+        tilemaps:
+            lesserDemonArea: '0x00b118'
+            secretBookcaseRoom: '0x00d918'
+            holyRodRoom: '0x00db18'
+            dhuronAndFleaArmorRoom: '0x00dd18'
+            shop: '0x00e118'
+            outsideShop: '0x00e518'
+            fleaManRoom: '0x00e918'
+            faerieCardRoom: '0x00ed18'
+            threeLayerRoom: '0x00ef18'
+            spellbookArea: '0x00f518'
+            dhuronAndFleaManRoom: '0x011f18'
+            footOfStaircase: '0x012318'
+            exitToOuterWall: '0x012518'
+            loadingRoomToOuterWall: '0x012b18'
+            saveRoomA: '0x012d18'
     longLibrary:
         layers:
             layerDefinitions:
@@ -1701,6 +1717,22 @@ stages:
             shop: 4
             spellbookArea: 9
             threeLayerRoom: 8
+        tilemaps:
+            lesserDemonArea: '0x016470'
+            secretBookcaseRoom: '0x018c70'
+            holyRodRoom: '0x018e70'
+            dhuronAndFleaArmorRoom: '0x019070'
+            shop: '0x019470'
+            outsideShop: '0x019870'
+            fleaManRoom: '0x019c70'
+            faerieCardRoom: '0x01a070'
+            threeLayerRoom: '0x01a270'
+            spellbookArea: '0x01a870'
+            dhuronAndFleaManRoom: '0x01d270'
+            footOfStaircase: '0x01d670'
+            exitToOuterWall: '0x01d870'
+            loadingRoomToOuterWall: '0x01de70'
+            saveRoomA: '0x01e070'
     marbleGallery:
         layers:
             layerDefinitions:
