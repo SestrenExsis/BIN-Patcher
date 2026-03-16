@@ -1311,6 +1311,11 @@ stages:
             spikeBreakerRoom: 27
             walkArmorRoom: 8
     cave:
+        entities:
+            horizontal:
+                demonSwitch: 49
+            vertical:
+                demonSwitch: 74
         layers:
             layerDefinitions:
                 wolfsHeadColumn: 1

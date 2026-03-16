@@ -1,0 +1,151 @@
+{
+    "authors": [
+        "Sestren"
+    ],
+    "description": [
+        "Normalize Abandoned Mine for map rando"
+    ],
+    "changes": [
+        {
+            "changeType": "merge",
+            "merge": {
+                "familiarEvents": {
+                    "bat.caveDemonSwitchDemon.cameraY=": 767,
+                    "bat.caveDemonSwitchNoseDevil.cameraY=": 767,
+                    "demon.caveDemonSwitchDemon.cameraY=": 767,
+                    "demon.caveDemonSwitchNoseDevil.cameraY=": 767,
+                    "faerie.caveDemonSwitchDemon.cameraY=": 767,
+                    "faerie.caveDemonSwitchNoseDevil.cameraY=": 767,
+                    "ghost.caveDemonSwitchDemon.cameraY=": 767,
+                    "ghost.caveDemonSwitchNoseDevil.cameraY=": 767,
+                    "noseDevil.caveDemonSwitchDemon.cameraY=": 767,
+                    "noseDevil.caveDemonSwitchNoseDevil.cameraY=": 767,
+                    "sword.caveDemonSwitchDemon.cameraY=": 767,
+                    "sword.caveDemonSwitchNoseDevil.cameraY=": 767,
+                    "yousei.caveDemonSwitchDemon.cameraY=": 767,
+                    "yousei.caveDemonSwitchNoseDevil.cameraY=": 767
+                },
+                "stages.abandonedMine": {
+                    "constants": {
+                        "breakableWallTiles.data=": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null
+                        ],
+                        "demonSwitchWallTiles.data=": [
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            447,
+                            447,
+                            447,
+                            447,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null
+                        ]
+                    }
+                },
+                "stages.cave": {
+                    "constants": {
+                        "breakableWallTiles.data=": [
+                            0,
+                            0,
+                            0,
+                            0,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null
+                        ],
+                        "demonSwitchWallTiles.data=": [
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            447,
+                            447,
+                            447,
+                            447,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null
+                        ]
+                    },
+                    "entities": {
+                        "horizontal": {
+                            "demonSwitch.y=": 972
+                        },
+                        "vertical": {
+                            "demonSwitch.y=": 972
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
