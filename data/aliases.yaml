@@ -452,6 +452,10 @@ stages:
             verticalRows:
                 bend: 1
                 cerberusRoom: 6
+            typeIds:
+                redDoor: 5
+                relic: 11
+                item: 12
         layers:
             layerDefinitions:
                 bend: 13
@@ -508,6 +512,21 @@ stages:
             loadingRoom: '0x00f360'
             saveRoomA: '0x00f560'
     alchemyLaboratory:
+        entities:
+            horizontal:
+                glassVatAInGlassVats: 132
+                glassVatBInGlassVats: 133
+                glassVatCInGlassVats: 134
+                glassVatDInGlassVats: 135
+                glassVatEInGlassVats: 136
+                breakableFloorInTallZigZagRoom: 33
+            vertical:
+                glassVatAInGlassVats: 132
+                glassVatBInGlassVats: 133
+                glassVatCInGlassVats: 134
+                glassVatDInGlassVats: 135
+                glassVatEInGlassVats: 136
+                breakableFloorInTallZigZagRoom: 37
         layers:
             layerDefinitions:
                 batCardRoom: 1
@@ -670,30 +689,30 @@ stages:
             walkwayRightOfHippogryph: 5
         tilemaps:
             silverRingRoom: '0x00a680'
-            silverRingRoom 0x00aa80: '0x00aa80'
+            silverRingRoomBackground: '0x00aa80'
             spikeHallway: '0x00ae80'
-            spikeHallway 0x00b880: '0x00b880'
+            spikeHallwayBackground: '0x00b880'
             walkwayBetweenTowers: '0x00c280'
-            walkwayBetweenTowers 0x00cc80: '0x00cc80'
+            walkwayBetweenTowersBackground: '0x00cc80'
             walkwayLeftOfHippogryph: '0x00d680'
-            walkwayLeftOfHippogryph 0x00dc80: '0x00dc80'
+            walkwayLeftOfHippogryphBackground: '0x00dc80'
             hippogryphRoom: '0x00e280'
-            hippogryphRoom 0x00e680: '0x00e680'
+            hippogryphRoomBackground: '0x00e680'
             walkwayRightOfHippogryph: '0x00ea80'
-            walkwayRightOfHippogryph 0x00f080: '0x00f080'
+            walkwayRightOfHippogryphBackground: '0x00f080'
             pushingStatueShortcut: '0x00f680'
-            pushingStatueShortcut 0x00f880: '0x00f880'
+            pushingStatueShortcutBackground: '0x00f880'
             confessionalBooth: '0x00fa80'
-            confessionalBooth 0x00fc80: '0x00fc80'
+            confessionalBoothBackground: '0x00fc80'
             gogglesRoom: '0x00fe80'
-            gogglesRoom 0x010480: '0x010480'
+            gogglesRoomBackground: '0x010480'
             nave: '0x010a80'
             emptyRoom: '0x011280'
-            emptyRoom 0x011480: '0x011480'
+            emptyRoomBackground: '0x011480'
             chapelStaircase: '0x011680'
             '0x018680': '0x018680'
             statueLedge: '0x01ae80'
-            statueLedge 0x01b080: '0x01b080'
+            statueLedgeBackground: '0x01b080'
             leftTower: '0x01b280'
             '0x020280': '0x020280'
             middleTower: '0x020e80'
@@ -702,6 +721,11 @@ stages:
             saveRoomA: '0x025280'
             loadingRoom: '0x022e80'
     blackMarbleGallery:
+        entities:
+            horizontal:
+                rightTrapdoorInSlingerStaircase: 263
+            vertical:
+                rightTrapdoorInSlingerStaircase: 258
         layers:
             layerDefinitions:
                 sShapedHallways: 1
@@ -796,6 +820,56 @@ stages:
             stopwatchRoom: 7
             tallStainedGlassWindows: 1
             threePaths: 16
+        tilemaps:
+            sShapedHallways: '0x011900'
+            sShapedHallwaysBackground: '0x013d00'
+            tallStainedGlassWindows: '0x016100'
+            tallStainedGlassWindowsBackground: '0x016700'
+            spiritOrbRoom: '0x016d00'
+            spiritOrbRoomBackground: '0x018100'
+            stainedGlassCorner: '0x019500'
+            stainedGlassCornerBackground: '0x019700'
+            beneathDropoff: '0x019900'
+            beneathDropoffBackground: '0x019d00'
+            dropoff: '0x01a100'
+            dropoffBackground: '0x01a700'
+            entrance: '0x01ad00'
+            entranceBackground: '0x01b500'
+            stopwatchRoom: '0x01bd00'
+            stopwatchRoomBackground: '0x01c300'
+            longHallway: '0x01c900'
+            '0x01e700': '0x01e700'
+            clockRoom: '0x01f700'
+            clockRoomBackground: '0x01f900'
+            leftOfClockRoom: '0x01fb00'
+            leftOfClockRoomBackground: '0x020100'
+            emptyRoom: '0x020700'
+            emptyRoomBackground: '0x020900'
+            blueDoorRoom: '0x020b00'
+            blueDoorRoomBackground: '0x020f00'
+            pathwayAfterLeftStatue: '0x021300'
+            pathwayAfterRightStatue: '0x021500'
+            ouijaTableStairway: '0x021700'
+            ouijaTableStairwayBackground: '0x022300'
+            threePaths: '0x022f00'
+            threePathsBackground: '0x023300'
+            stairwellToUndergroundCaverns: '0x023700'
+            stairwellToUndergroundCavernsBackground: '0x023b00'
+            slingerStaircase: '0x023f00'
+            slingerStaircaseBackground: '0x024b00'
+            rightOfClockRoom: '0x025700'
+            rightOfClockRoomBackground: '0x025d00'
+            gravityBootsRoom: '0x026300'
+            elevatorRoom: '0x026d00'
+            powerUpRoom: '0x026f00'
+            beneathLeftTrapdoor: '0x027100'
+            beneathLeftTrapdoorBackground: '0x027300'
+            beneathRightTrapdoor: '0x027500'
+            beneathRightTrapdoorBackground: '0x027700'
+            alucartRoom: '0x027900'
+            loadingRoom: '0x027b00'
+            saveRoomA: '0x027d00'
+            saveRoomB: '0x027f00'
     bossAkmodanII:
         layers:
             layerDefinitions:
@@ -972,8 +1046,10 @@ stages:
         entities:
             horizontal:
                 relicPowerOfWolf: 111
+                enemyBatInMermanRoom1: 132
             vertical:
                 relicPowerOfWolf: 100
+                enemyBatInMermanRoom1: 126
         layers:
             layerDefinitions:
                 afterDrawbridge: 1
@@ -1048,8 +1124,10 @@ stages:
         entities:
             horizontal:
                 relicPowerOfWolf: 105
+                enemyBatInMermanRoom1: 126
             vertical:
                 relicPowerOfWolf: 96
+                enemyBatInMermanRoom1: 119
         layers:
             layerDefinitions:
                 afterDrawbridge: 1
@@ -1126,6 +1204,50 @@ stages:
             unknownRoom20: 20
             wargHallway: 9
             zombieHallway: 2
+        tilemaps:
+            afterDrawbridge: '0x018838'
+            '0x019438': '0x019438'
+            dropUnderPortcullis: '0x019638'
+            dropUnderPortcullisBackground: '0x019a38'
+            zombieHallway: '0x019e38'
+            '0x01ac38': '0x01ac38'
+            holyMailRoom: '0x01ae38'
+            holyMailRoomBackground: '0x01b038'
+            atticStaircase: '0x01b238'
+            atticStaircaseBackground: '0x01b638'
+            atticHallway: '0x01ba38'
+            atticHallwayBackground: '0x01c238'
+            atticEntrance: '0x01ca38'
+            atticEntranceBackground: '0x01cc38'
+            mermanRoom: '0x01ce38'
+            mermanRoomBackground: '0x01da38'
+            jewelSwordRoom: '0x01e638'
+            jewelSwordRoomBackground: '0x01e838'
+            wargHallway: '0x01ea38'
+            '0x01f638': '0x01f638'
+            shortcutToUndergroundCaverns: '0x01f838'
+            shortcutToUndergroundCavernsBackground: '0x01fa38'
+            meetingRoomWithDeath: '0x01fc38'
+            '0x020038': '0x020038'
+            stairwellAfterDeath: '0x020238'
+            stairwellAfterDeathBackground: '0x020838'
+            gargoyleRoom: '0x020e38'
+            '0x021038': '0x021038'
+            heartMaxUpRoom: '0x021238'
+            heartMaxUpRoomBackground: '0x021438'
+            cubeOfZoeRoom: '0x021638'
+            cubeOfZoeRoomBackground: '0x022238'
+            shortcutToWarpRooms: '0x022e38'
+            shortcutToWarpRoomsBackground: '0x023038'
+            lifeMaxUpRoom: '0x023238'
+            lifeMaxUpRoomBackground: '0x023438'
+            forestCutscene: '0x023638'
+            '0x025a38': '0x025a38'
+            unknownRoom19: '0x025c38'
+            unknownRoom20: '0x025e38'
+            loadingRoom: '0x026038'
+            saveRoomWithLeftPassage: '0x026238'
+            saveRoomWithRightPassage: '0x026438'
     castleKeep:
         layers:
             layerDefinitions:
@@ -1248,6 +1370,11 @@ stages:
             spikeBreakerRoom: 27
             walkArmorRoom: 8
     cave:
+        entities:
+            horizontal:
+                demonSwitch: 49
+            vertical:
+                demonSwitch: 74
         layers:
             layerDefinitions:
                 wolfsHeadColumn: 1
@@ -1378,6 +1505,15 @@ stages:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     deathWingsLair:
+        entities:
+            horizontal:
+                breakableVaseInTallShaft1: 125
+                breakableVaseInTallShaft2: 126
+                breakableVaseInTallShaft3: 127
+            vertical:
+                breakableVaseInTallShaft1: 125
+                breakableVaseInTallShaft2: 126
+                breakableVaseInTallShaft3: 127
         layers:
             layerDefinitions:
                 skelerangRoom: 1
@@ -1439,6 +1575,38 @@ stages:
             skelerangRoom: 0
             swordCardRoom: 14
             tallShaft: 6
+        tilemaps:
+            skelerangRoom: '0x013aec'
+            skelerangRoomBackground: '0x0140ec'
+            bottomOfStairwell: '0x0146ec'
+            bottomOfStairwellBackground: '0x0148ec'
+            grandStaircase: '0x014aec'
+            grandStaircaseBackground: '0x0156ec'
+            secretOnyxRoom: '0x0162ec'
+            secretOnyxRoomBackground: '0x0168ec'
+            hammerAndBladeRoom: '0x016eec'
+            hammerAndBladeRoomBackground: '0x0176ec'
+            emptyRoom: '0x017eec'
+            emptyRoomBackground: '0x0180ec'
+            tallShaft: '0x0182ec'
+            tallShaftBackground: '0x018eec'
+            prison: '0x019aec'
+            prisonBackground: '0x01a6ec'
+            openCourtyard: '0x01b2ec'
+            '0x01e2ec': '0x01e2ec'
+            emptyCells: '0x01e4ec'
+            emptyCellsBackground: '0x01e8ec'
+            garnetRoom: '0x01ecec'
+            garnetRoomBackground: '0x01eeec'
+            narrowHallwayToOlrox: '0x01f0ec'
+            olroxsRoom: '0x01f8ec'
+            echoOfBatRoom: '0x0200ec'
+            echoOfBatRoomBackground: '0x0206ec'
+            swordCardRoom: '0x020cec'
+            catwalkCrypt: '0x0210ec'
+            catwalkCryptBackground: '0x021eec'
+            saveRoomA: '0x022cec'
+            loadingRoom: '0x022eec'
     floatingCatacombs:
         layers:
             layerDefinitions:
@@ -1562,6 +1730,22 @@ stages:
             shop: 4
             spellbookArea: 9
             threeLayerRoom: 8
+        tilemaps:
+            lesserDemonArea: '0x00b118'
+            secretBookcaseRoom: '0x00d918'
+            holyRodRoom: '0x00db18'
+            dhuronAndFleaArmorRoom: '0x00dd18'
+            shop: '0x00e118'
+            outsideShop: '0x00e518'
+            fleaManRoom: '0x00e918'
+            faerieCardRoom: '0x00ed18'
+            threeLayerRoom: '0x00ef18'
+            spellbookArea: '0x00f518'
+            dhuronAndFleaManRoom: '0x011f18'
+            footOfStaircase: '0x012318'
+            exitToOuterWall: '0x012518'
+            loadingRoomToOuterWall: '0x012b18'
+            saveRoomA: '0x012d18'
     longLibrary:
         layers:
             layerDefinitions:
@@ -1597,7 +1781,32 @@ stages:
             shop: 4
             spellbookArea: 9
             threeLayerRoom: 8
+        tilemaps:
+            lesserDemonArea: '0x016470'
+            secretBookcaseRoom: '0x018c70'
+            holyRodRoom: '0x018e70'
+            dhuronAndFleaArmorRoom: '0x019070'
+            shop: '0x019470'
+            outsideShop: '0x019870'
+            fleaManRoom: '0x019c70'
+            faerieCardRoom: '0x01a070'
+            threeLayerRoom: '0x01a270'
+            spellbookArea: '0x01a870'
+            dhuronAndFleaManRoom: '0x01d270'
+            footOfStaircase: '0x01d670'
+            exitToOuterWall: '0x01d870'
+            loadingRoomToOuterWall: '0x01de70'
+            saveRoomA: '0x01e070'
     marbleGallery:
+        entities:
+            horizontal:
+                rightTrapdoorInSlingerStaircase: 318
+                topRightCandleInSlingerStaircase: 319
+                rightTrapdoorInBeneathRightTrapdoor: 360
+            vertical:
+                rightTrapdoorInSlingerStaircase: 319
+                topRightCandleInSlingerStaircase: 309
+                rightTrapdoor: 359
         layers:
             layerDefinitions:
                 sShapedHallways: 1
@@ -1692,7 +1901,62 @@ stages:
             stopwatchRoom: 7
             tallStainedGlassWindows: 1
             threePaths: 16
+        tilemaps:
+            sShapedHallways: '0x01791c'
+            sShapedHallwaysBackground: '0x019d1c'
+            tallStainedGlassWindows: '0x01c11c'
+            tallStainedGlassWindowsBackground: '0x01c71c'
+            spiritOrbRoom: '0x01cd1c'
+            spiritOrbRoomBackground: '0x01e11c'
+            stainedGlassCorner: '0x01f51c'
+            stainedGlassCornerBackground: '0x01f71c'
+            beneathDropoff: '0x01f91c'
+            beneathDropoffBackground: '0x01fd1c'
+            dropoff: '0x02011c'
+            dropoffBackground: '0x02071c'
+            entrance: '0x020d1c'
+            entranceBackground: '0x02151c'
+            stopwatchRoom: '0x021d1c'
+            stopwatchRoomBackground: '0x02231c'
+            longHallway: '0x02291c'
+            '0x02471c': '0x02471c'
+            clockRoom: '0x02571c'
+            clockRoomBackground: '0x02591c'
+            leftOfClockRoom: '0x025b1c'
+            leftOfClockRoomBackground: '0x02611c'
+            emptyRoom: '0x02671c'
+            emptyRoomBackground: '0x02691c'
+            blueDoorRoom: '0x026b1c'
+            blueDoorRoomBackground: '0x026f1c'
+            pathwayAfterLeftStatue: '0x02731c'
+            pathwayAfterRightStatue: '0x02751c'
+            ouijaTableStairway: '0x02771c'
+            ouijaTableStairwayBackground: '0x02831c'
+            threePaths: '0x028f1c'
+            threePathsBackground: '0x02931c'
+            stairwellToUndergroundCaverns: '0x02971c'
+            stairwellToUndergroundCavernsBackground: '0x029b1c'
+            slingerStaircase: '0x029f1c'
+            slingerStaircaseBackground: '0x02ab1c'
+            rightOfClockRoom: '0x02b71c'
+            rightOfClockRoomBackground: '0x02bd1c'
+            gravityBootsRoom: '0x02c31c'
+            elevatorRoom: '0x02cd1c'
+            powerUpRoom: '0x02cf1c'
+            beneathLeftTrapdoor: '0x02d11c'
+            beneathLeftTrapdoorBackground: '0x02d31c'
+            beneathRightTrapdoor: '0x02d51c'
+            beneathRightTrapdoorBackground: '0x02d71c'
+            alucartRoom: '0x02d91c'
+            loadingRoom: '0x02db1c'
+            saveRoomA: '0x02dd1c'
+            saveRoomB: '0x02df1c'
     necromancyLaboratory:
+        entities:
+            horizontal:
+                breakableFloorInTallZigZagRoom: 48
+            vertical:
+                breakableFloorInTallZigZagRoom: 43
         layers:
             layerDefinitions:
                 batCardRoom: 1
@@ -1757,7 +2021,51 @@ stages:
             tallSpittleboneRoom: 11
             tallZigZagRoom: 14
             tetrominoRoom: 19
+        tilemaps:
+            batCardRoom: '0x01450c'
+            exitToRoyalChapel: '0x01470c'
+            blueDoorHallway: '0x01490c'
+            bloodyZombieHallway: '0x014d0c'
+            cannonRoom: '0x01550c'
+            clothCapeRoom: '0x01570c'
+            sunglassesRoom: '0x01590c'
+            glassVats: '0x015b0c'
+            '0x015f0c': '0x015f0c'
+            skillOfWolfRoom: '0x01610c'
+            heartMaxUpRoom: '0x01630c'
+            entryway: '0x01650c'
+            '0x016b0c': '0x016b0c'
+            tallSpittleboneRoom: '0x016d0c'
+            emptyZigZagRoom: '0x01770c'
+            shortZigZagRoom: '0x017b0c'
+            tallZigZagRoom: '0x017f0c'
+            secretLifeMaxUpRoom: '0x01850c'
+            slograAndGaibonRoom: '0x01890c'
+            boxPuzzleRoom: '0x01990c'
+            '0x01a10c': '0x01a10c'
+            redSkeletonLiftRoom: '0x01a30c'
+            '0x01af0c': '0x01af0c'
+            tetrominoRoom: '0x01b10c'
+            exitToMarbleGallery: '0x01bd0c'
+            corridorToElevator: '0x01c90c'
+            elevatorShaft: '0x01cd0c'
+            '0x01db0c': '0x01db0c'
+            saveRoomA: '0x01dd0c'
+            saveRoomB: '0x01df0c'
+            saveRoomC: '0x01e10c'
+            loadingRoomToMarbleGallery: '0x01e30c'
+            loadingRoomToRoyalChapel: '0x01e30c'
+            loadingRoomToCastleEntrance: '0x01e30c'
     olroxsQuarters:
+        entities:
+            horizontal:
+                breakableVaseInTallShaft1: 140
+                breakableVaseInTallShaft2: 141
+                breakableVaseInTallShaft3: 142
+            vertical:
+                breakableVaseInTallShaft1: 142
+                breakableVaseInTallShaft2: 141
+                breakableVaseInTallShaft3: 140
         layers:
             layerDefinitions:
                 skelerangRoom: 1
@@ -1819,6 +2127,38 @@ stages:
             skelerangRoom: 0
             swordCardRoom: 14
             tallShaft: 6
+        tilemaps:
+            skelerangRoom: '0x014e28'
+            skelerangRoomBackground: '0x015428'
+            bottomOfStairwell: '0x015a28'
+            bottomOfStairwellBackground: '0x015c28'
+            grandStaircase: '0x015e28'
+            grandStaircaseBackground: '0x016a28'
+            secretOnyxRoom: '0x017628'
+            secretOnyxRoomBackground: '0x017c28'
+            hammerAndBladeRoom: '0x018228'
+            hammerAndBladeRoomBackground: '0x018a28'
+            emptyRoom: '0x019228'
+            emptyRoomBackground: '0x019428'
+            tallShaft: '0x019628'
+            tallShaftBackground: '0x01a228'
+            prison: '0x01ae28'
+            prisonBackground: '0x01ba28'
+            openCourtyard: '0x01c628'
+            '0x01f628': '0x01f628'
+            emptyCells: '0x01f828'
+            emptyCellsBackground: '0x01fc28'
+            garnetRoom: '0x020028'
+            garnetRoomBackground: '0x020228'
+            narrowHallwayToOlrox: '0x020428'
+            olroxsRoom: '0x020c28'
+            echoOfBatRoom: '0x021428'
+            echoOfBatRoomBackground: '0x021a28'
+            swordCardRoom: '0x022028'
+            catwalkCrypt: '0x022428'
+            catwalkCryptBackground: '0x023228'
+            saveRoomA: '0x024028'
+            loadingRoom: '0x024228'
     outerWall:
         layers:
             layerDefinitions:
@@ -1891,6 +2231,11 @@ stages:
             triggerTeleporterToMarbleGallery: 4
             unknownRoomId02: 2
     reverseCaverns:
+        entities:
+            horizontal:
+                breakableFloorInHiddenCrystalEntrance: 74
+            vertical:
+                breakableFloorInHiddenCrystalEntrance: 69
         layers:
             layerDefinitions:
                 longDrop: 1
@@ -1998,6 +2343,69 @@ stages:
             smallStairwell: 5
             tallStairwell: 3
             waterfall: 26
+        tilemaps:
+            longDrop: '0x011c24'
+            '0x013224': '0x013224'
+            hiddenCrystalEntrance: '0x013424'
+            hiddenCrystalEntranceBackground: '0x013a24'
+            crystalBend: '0x014024'
+            crystalBendBackground: '0x014424'
+            tallStairwell: '0x014824'
+            '0x015a24': '0x015a24'
+            plaqueRoomWithLifeMaxUp: '0x015c24'
+            smallStairwell: '0x015e24'
+            smallStairwellBackground: '0x016224'
+            claymoreStairwell: '0x016624'
+            claymoreStairwellBackground: '0x016e24'
+            mealTicketsAndMoonstoneRoom: '0x017624'
+            mealTicketsAndMoonstoneRoomBackground: '0x017a24'
+            plaqueRoomWithBreakableWall: '0x017e24'
+            roomId09: '0x018024'
+            roomId10: '0x018424'
+            roomId10Background: '0x018624'
+            roomId11: '0x018824'
+            roomId12: '0x018e24'
+            roomId12Background: '0x019224'
+            holySymbolRoom: '0x019624'
+            holySymbolRoomBackground: '0x019824'
+            pentagramRoom: '0x019a24'
+            pentagramRoomBackground: '0x019c24'
+            dKBridge: '0x019e24'
+            dKBridgeBackground: '0x01a624'
+            exitToAbandonedMine: '0x01ae24'
+            exitToAbandonedMineBackground: '0x01b024'
+            dKButton: '0x01b224'
+            dKButtonBackground: '0x01b424'
+            roomId18: '0x01b624'
+            roomId18Background: '0x01b824'
+            roomId19: '0x01ba24'
+            roomId19Background: '0x01bc24'
+            exitToCastleEntrance: '0x01be24'
+            exitToCastleEntranceBackground: '0x01c224'
+            mermanStatueRoom: '0x01c624'
+            mermanStatueRoomBackground: '0x01c824'
+            iceFloeRoom: '0x01ca24'
+            iceFloeRoomBackground: '0x01ee24'
+            rightFerrymanRoute: '0x021224'
+            rightFerrymanRouteBackground: '0x024624'
+            crystalCloakRoom: '0x027a24'
+            crystalCloakRoomBackground: '0x027c24'
+            leftFerrymanRoute: '0x027e24'
+            leftFerrymanRouteBackground: '0x02b224'
+            waterfall: '0x02e624'
+            waterfallBackground: '0x02fe24'
+            scyllaRoom: '0x031624'
+            scyllaRoomBackground: '0x032024'
+            scyllaWyrmRoom: '0x032a24'
+            scyllaWyrmRoomBackground: '0x032c24'
+            risingWaterRoom: '0x032e24'
+            risingWaterRoomBackground: '0x033824'
+            bandannaRoom: '0x034224'
+            loadingRoom: '0x034424'
+            saveRoomA: '0x034624'
+            saveRoomB: '0x034824'
+            saveRoomC: '0x034a24'
+            falseSaveRoom: '0x034c24'
     reverseClockTower:
         layers:
             layerDefinitions:
@@ -2336,6 +2744,11 @@ stages:
             walkwayLeftOfHippogryph: 3
             walkwayRightOfHippogryph: 5
     undergroundCaverns:
+        entities:
+            horizontal:
+                breakableFloorInHiddenCrystalEntrance: 88
+            vertical:
+                breakableFloorInHiddenCrystalEntrance: 93
         layers:
             layerDefinitions:
                 longDrop: 1
@@ -2443,6 +2856,69 @@ stages:
             smallStairwell: 5
             tallStairwell: 3
             waterfall: 26
+        tilemaps:
+            longDrop: '0x00e454'
+            '0x00fa54': '0x00fa54'
+            hiddenCrystalEntrance: '0x00fc54'
+            hiddenCrystalEntranceBackground: '0x010254'
+            crystalBend: '0x010854'
+            crystalBendBackground: '0x010c54'
+            tallStairwell: '0x011054'
+            '0x012254': '0x012254'
+            plaqueRoomWithLifeMaxUp: '0x012454'
+            smallStairwell: '0x012654'
+            smallStairwellBackground: '0x012a54'
+            claymoreStairwell: '0x012e54'
+            claymoreStairwellBackground: '0x013654'
+            mealTicketsAndMoonstoneRoom: '0x013e54'
+            mealTicketsAndMoonstoneRoomBackground: '0x014254'
+            plaqueRoomWithBreakableWall: '0x014654'
+            roomId09: '0x014854'
+            roomId10: '0x014c54'
+            roomId10Background: '0x014e54'
+            roomId11: '0x015054'
+            roomId12: '0x015654'
+            roomId12Background: '0x015a54'
+            holySymbolRoom: '0x015e54'
+            holySymbolRoomBackground: '0x016054'
+            pentagramRoom: '0x016254'
+            pentagramRoomBackground: '0x016454'
+            dKBridge: '0x016654'
+            dKBridgeBackground: '0x016e54'
+            exitToAbandonedMine: '0x017654'
+            exitToAbandonedMineBackground: '0x017854'
+            dKButton: '0x017a54'
+            dKButtonBackground: '0x017c54'
+            roomId18: '0x017e54'
+            roomId18Background: '0x018054'
+            roomId19: '0x018254'
+            roomId19Background: '0x018454'
+            exitToCastleEntrance: '0x018654'
+            exitToCastleEntranceBackground: '0x018a54'
+            mermanStatueRoom: '0x018e54'
+            mermanStatueRoomBackground: '0x019054'
+            iceFloeRoom: '0x019254'
+            iceFloeRoomBackground: '0x01b654'
+            rightFerrymanRoute: '0x01da54'
+            rightFerrymanRouteBackground: '0x020e54'
+            crystalCloakRoom: '0x024254'
+            crystalCloakRoomBackground: '0x024454'
+            leftFerrymanRoute: '0x024654'
+            leftFerrymanRouteBackground: '0x027a54'
+            waterfall: '0x02ae54'
+            waterfallBackground: '0x02c654'
+            scyllaRoom: '0x02de54'
+            scyllaRoomBackground: '0x02e854'
+            scyllaWyrmRoom: '0x02f254'
+            scyllaWyrmRoomBackground: '0x02f454'
+            risingWaterRoom: '0x02f654'
+            risingWaterRoomBackground: '0x030054'
+            bandannaRoom: '0x030a54'
+            loadingRoom: '0x030c54'
+            saveRoomA: '0x030e54'
+            saveRoomB: '0x031054'
+            saveRoomC: '0x031254'
+            falseSaveRoom: '0x031454'
     warpRooms:
         constants:
             warpCoordinates:

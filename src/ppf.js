@@ -197,9 +197,8 @@ export class PPF {
                 // NOTE(sestren): Using a weird workaround for shifting flags left 24 bits to avoid overflow issues
                 value = 2 * (data.flags << 23) + (data.bottom << 18) + (data.right << 12) + (data.top << 6) + data.left
                 this.scratch.writeUInt32LE(value, 0)
-                const writeLength = (data.flags !== null) ? 4 : 3
-                this.scratch.copy(this.buffer, 0, 0, writeLength)
-                byteCount = 4
+                byteCount = (data.hasOwnProperty('flags')) ? 4 : 3
+                this.scratch.copy(this.buffer, 0, 0, byteCount)
                 break
             case 'music-id':
                 aliasFound = false
@@ -269,6 +268,20 @@ export function parsePatchNode(ppf, patchNode) {
                 break
             case 'object-array':
                 for (let i = 0; i < targetData.length; i++) {
+                    // Some object arrays in SOTN contain what appears to be garbage data that needs to be skipped
+                    let paddingAmount = 0
+                    if (targetMeta.element.hasOwnProperty('postProcessing')) {
+                        targetMeta.element.postProcessing
+                        .filter((processInfo) => {
+                            return (
+                                processInfo.process == 'paddingAfterElement' &&
+                                i >= processInfo.whenArrayLength
+                            )
+                        })
+                        .forEach((processInfo) => {
+                            paddingAmount += processInfo.paddingAmount
+                        })
+                    }
                     Object.entries(targetMeta.element.properties)
                     .filter(([propertyName, propertyInfo]) => (
                         targetData[i].hasOwnProperty(propertyName)
@@ -277,7 +290,11 @@ export function parsePatchNode(ppf, patchNode) {
                         if (targetData[i][propertyName] == null) {
                             return
                         }
-                        ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size + toVal(propertyInfo.offset), propertyInfo.type, targetData[i][propertyName])
+                        ppf.write(
+                            toVal(targetMeta.address) + i * targetMeta.element.size + toVal(propertyInfo.offset) + paddingAmount,
+                            propertyInfo.type,
+                            targetData[i][propertyName]
+                        )
                     })
                 }
                 break

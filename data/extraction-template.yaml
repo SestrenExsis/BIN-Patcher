@@ -228,7 +228,7 @@ stages:
                             method: elementCount
                             elementCount: 24
                         type: u16
-            snakeColumnWallTiles:
+            breakableWallTiles:
                 metadata:
                     address:
                         value: 0x0008CC
@@ -313,7 +313,7 @@ stages:
                             method: elementCount
                             elementCount: 24
                         type: u16
-            snakeColumnWallTiles:
+            breakableWallTiles:
                 metadata:
                     address:
                         value: 0x00081C
@@ -326,7 +326,18 @@ stages:
                         type: u16
     clockTower:
         constants:
-            breakableWallTiles:
+            breakableWallTilesInLeftGearRoom:
+                metadata:
+                    address:
+                        value: 0x001038
+                        method: relative
+                    element:
+                        structure: value-array
+                        constraint:
+                            method: elementCount
+                            elementCount: 32
+                        type: u16
+            breakableWallTilesInPendulumRoom:
                 metadata:
                     address:
                         value: 0x000FF8
@@ -365,17 +376,6 @@ stages:
                                 method: elementCount
                                 elementCount: 4
                             type: u16
-            secretWallTiles:
-                metadata:
-                    address:
-                        value: 0x001038
-                        method: relative
-                    element:
-                        structure: value-array
-                        constraint:
-                            method: elementCount
-                            elementCount: 32
-                        type: u16
     deathWingsLair:
         constants:
             breakableCeilingTiles:
@@ -504,7 +504,7 @@ stages:
                             method: elementCount
                             elementCount: 32
                         type: u16
-    orloxsQuarters:
+    olroxsQuarters:
         constants:
             breakableCeilingTiles:
                 metadata:
@@ -567,7 +567,18 @@ stages:
                                 type: s16
     reverseClockTower:
         constants:
-            breakableWallTiles:
+            breakableWallTilesInLeftGearRoom:
+                metadata:
+                    address:
+                        value: 0x000FC8
+                        method: relative
+                    element:
+                        structure: value-array
+                        constraint:
+                            method: elementCount
+                            elementCount: 32
+                        type: u16
+            breakableWallTilesInPendulumRoom:
                 metadata:
                     address:
                         value: 0x000F88
@@ -606,17 +617,6 @@ stages:
                                 method: elementCount
                                 elementCount: 4
                             type: u16
-            secretWallTiles:
-                metadata:
-                    address:
-                        value: 0x000FC8
-                        method: relative
-                    element:
-                        structure: value-array
-                        constraint:
-                            method: elementCount
-                            elementCount: 32
-                        type: u16
     reverseWarpRooms:
         constants:
             warpCoordinates:

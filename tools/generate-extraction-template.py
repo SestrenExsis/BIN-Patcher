@@ -11,7 +11,7 @@ data = {
         'demon': 0x03990890,
         'sword': 0x039AF9E4,
         'yousei': 0x039D1D38,
-        'noseDemon': 0x039F2664,
+        'noseDevil': 0x039F2664,
     },
     'stages': {
         'abandonedMine': 0x03CDF800,

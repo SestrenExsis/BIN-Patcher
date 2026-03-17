@@ -1,0 +1,40 @@
+
+{
+    "authors": [
+        "Mottzilla"
+    ],
+    "description": [
+        "Prevent softlocks after defeating Scylla"
+    ],
+    "changes": [
+        {
+            "changeType": "merge",
+            "merge": {
+                "stages.bossScylla": {
+                    "functions.unknown=": {
+                        "0x0552794C": {
+                            "data": "0x304200FE",
+                            "metadata": {
+                                "address": "0x0552794C",
+                                "element": {
+                                    "structure": "value",
+                                    "type": "u32"
+                                }
+                            }
+                        },
+                        "0x0552A514": {
+                            "data": "0x00CE",
+                            "metadata": {
+                                "address": "0x0552A514",
+                                "element": {
+                                    "structure": "value",
+                                    "type": "u16"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

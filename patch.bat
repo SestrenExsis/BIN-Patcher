@@ -5,8 +5,20 @@ node sotn patch -p "build/current-patch.json" -c "patches/clock-hands-display-mi
 node sotn patch -p "build/current-patch.json" -c "patches/customize-map-colors.json"
 node sotn patch -p "build/current-patch.json" -c "patches/customize-music.json"
 node sotn patch -p "build/current-patch.json" -c "patches/enable-debug-mode.json"
-node sotn patch -p "build/current-patch.json" -c "patches/normalize-alchemy-laboratory-passages.json"
+node sotn patch -p "build/current-patch.json" -c "patches/fix-boss-scylla.json"
+node sotn patch -p "build/current-patch.json" -c "patches/normalize-abandoned-mine.json"
+node sotn patch -p "build/current-patch.json" -c "patches/normalize-alchemy-laboratory.json"
+node sotn patch -p "build/current-patch.json" -c "patches/normalize-castle-entrance.json"
+node sotn patch -p "build/current-patch.json" -c "patches/normalize-clock-tower.json"
+node sotn patch -p "build/current-patch.json" -c "patches/normalize-long-library.json"
+node sotn patch -p "build/current-patch.json" -c "patches/normalize-marble-gallery.json"
+node sotn patch -p "build/current-patch.json" -c "patches/normalize-olroxs-quarters.json"
+node sotn patch -p "build/current-patch.json" -c "patches/normalize-underground-caverns.json"
+node sotn patch -p "build/current-patch.json" -c "patches/simplify-gear-puzzle.json"
 
-@REM node sotn patch -p "build/current-patch.json" -c "build/change-dependencies.json"
+@REM node sotn patch -p "build/current-patch.json" -c "patches/DenseBeret0699.json"
+@REM node sotn patch -p "build/current-patch.json" -c "patches/debug.json"
+
+node sotn patch -p "build/current-patch.json" -c "build/change-dependencies.json"
 
 node sotn ppf   -p "build/current-patch.json" -t "build/current-patch.ppf"

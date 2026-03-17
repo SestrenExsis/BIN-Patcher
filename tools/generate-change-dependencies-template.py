@@ -2856,7 +2856,7 @@ if __name__ == '__main__':
             'demon',
             'faerie',
             'ghost',
-            'noseDemon',
+            'noseDevil',
             'sword',
             'yousei',
         ):

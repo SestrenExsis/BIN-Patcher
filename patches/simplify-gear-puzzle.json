@@ -1,0 +1,27 @@
+{
+    "authors": [
+        "Sestren"
+    ],
+    "description": [
+        "Reduce strikes needed to solve the gear puzzle"
+    ],
+    "changes": [
+        {
+            "changeType": "merge",
+            "merge": {
+                "stage.clockTower.gearPuzzle.targetRotations=": [
+                    256,
+                    256,
+                    256,
+                    256
+                ],
+                "stage.reverseClockTower.gearPuzzle.targetRotations=": [
+                    256,
+                    256,
+                    256,
+                    256
+                ]
+            }
+        }
+    ]
+}
