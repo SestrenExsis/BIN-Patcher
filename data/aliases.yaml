@@ -452,6 +452,10 @@ stages:
             verticalRows:
                 bend: 1
                 cerberusRoom: 6
+            typeIds:
+                redDoor: 5
+                relic: 11
+                item: 12
         layers:
             layerDefinitions:
                 bend: 13
@@ -717,6 +721,11 @@ stages:
             saveRoomA: '0x025280'
             loadingRoom: '0x022e80'
     blackMarbleGallery:
+        entities:
+            horizontal:
+                rightTrapdoorInSlingerStaircase: 263
+            vertical:
+                rightTrapdoorInSlingerStaircase: 258
         layers:
             layerDefinitions:
                 sShapedHallways: 1
@@ -811,6 +820,56 @@ stages:
             stopwatchRoom: 7
             tallStainedGlassWindows: 1
             threePaths: 16
+        tilemaps:
+            sShapedHallways: '0x011900'
+            sShapedHallwaysBackground: '0x013d00'
+            tallStainedGlassWindows: '0x016100'
+            tallStainedGlassWindowsBackground: '0x016700'
+            spiritOrbRoom: '0x016d00'
+            spiritOrbRoomBackground: '0x018100'
+            stainedGlassCorner: '0x019500'
+            stainedGlassCornerBackground: '0x019700'
+            beneathDropoff: '0x019900'
+            beneathDropoffBackground: '0x019d00'
+            dropoff: '0x01a100'
+            dropoffBackground: '0x01a700'
+            entrance: '0x01ad00'
+            entranceBackground: '0x01b500'
+            stopwatchRoom: '0x01bd00'
+            stopwatchRoomBackground: '0x01c300'
+            longHallway: '0x01c900'
+            '0x01e700': '0x01e700'
+            clockRoom: '0x01f700'
+            clockRoomBackground: '0x01f900'
+            leftOfClockRoom: '0x01fb00'
+            leftOfClockRoomBackground: '0x020100'
+            emptyRoom: '0x020700'
+            emptyRoomBackground: '0x020900'
+            blueDoorRoom: '0x020b00'
+            blueDoorRoomBackground: '0x020f00'
+            pathwayAfterLeftStatue: '0x021300'
+            pathwayAfterRightStatue: '0x021500'
+            ouijaTableStairway: '0x021700'
+            ouijaTableStairwayBackground: '0x022300'
+            threePaths: '0x022f00'
+            threePathsBackground: '0x023300'
+            stairwellToUndergroundCaverns: '0x023700'
+            stairwellToUndergroundCavernsBackground: '0x023b00'
+            slingerStaircase: '0x023f00'
+            slingerStaircaseBackground: '0x024b00'
+            rightOfClockRoom: '0x025700'
+            rightOfClockRoomBackground: '0x025d00'
+            gravityBootsRoom: '0x026300'
+            elevatorRoom: '0x026d00'
+            powerUpRoom: '0x026f00'
+            beneathLeftTrapdoor: '0x027100'
+            beneathLeftTrapdoorBackground: '0x027300'
+            beneathRightTrapdoor: '0x027500'
+            beneathRightTrapdoorBackground: '0x027700'
+            alucartRoom: '0x027900'
+            loadingRoom: '0x027b00'
+            saveRoomA: '0x027d00'
+            saveRoomB: '0x027f00'
     bossAkmodanII:
         layers:
             layerDefinitions:
@@ -1739,6 +1798,15 @@ stages:
             loadingRoomToOuterWall: '0x01de70'
             saveRoomA: '0x01e070'
     marbleGallery:
+        entities:
+            horizontal:
+                rightTrapdoorInSlingerStaircase: 318
+                topRightCandleInSlingerStaircase: 319
+                rightTrapdoorInBeneathRightTrapdoor: 360
+            vertical:
+                rightTrapdoorInSlingerStaircase: 319
+                topRightCandleInSlingerStaircase: 309
+                rightTrapdoor: 359
         layers:
             layerDefinitions:
                 sShapedHallways: 1
@@ -1833,6 +1901,56 @@ stages:
             stopwatchRoom: 7
             tallStainedGlassWindows: 1
             threePaths: 16
+        tilemaps:
+            sShapedHallways: '0x01791c'
+            sShapedHallwaysBackground: '0x019d1c'
+            tallStainedGlassWindows: '0x01c11c'
+            tallStainedGlassWindowsBackground: '0x01c71c'
+            spiritOrbRoom: '0x01cd1c'
+            spiritOrbRoomBackground: '0x01e11c'
+            stainedGlassCorner: '0x01f51c'
+            stainedGlassCornerBackground: '0x01f71c'
+            beneathDropoff: '0x01f91c'
+            beneathDropoffBackground: '0x01fd1c'
+            dropoff: '0x02011c'
+            dropoffBackground: '0x02071c'
+            entrance: '0x020d1c'
+            entranceBackground: '0x02151c'
+            stopwatchRoom: '0x021d1c'
+            stopwatchRoomBackground: '0x02231c'
+            longHallway: '0x02291c'
+            '0x02471c': '0x02471c'
+            clockRoom: '0x02571c'
+            clockRoomBackground: '0x02591c'
+            leftOfClockRoom: '0x025b1c'
+            leftOfClockRoomBackground: '0x02611c'
+            emptyRoom: '0x02671c'
+            emptyRoomBackground: '0x02691c'
+            blueDoorRoom: '0x026b1c'
+            blueDoorRoomBackground: '0x026f1c'
+            pathwayAfterLeftStatue: '0x02731c'
+            pathwayAfterRightStatue: '0x02751c'
+            ouijaTableStairway: '0x02771c'
+            ouijaTableStairwayBackground: '0x02831c'
+            threePaths: '0x028f1c'
+            threePathsBackground: '0x02931c'
+            stairwellToUndergroundCaverns: '0x02971c'
+            stairwellToUndergroundCavernsBackground: '0x029b1c'
+            slingerStaircase: '0x029f1c'
+            slingerStaircaseBackground: '0x02ab1c'
+            rightOfClockRoom: '0x02b71c'
+            rightOfClockRoomBackground: '0x02bd1c'
+            gravityBootsRoom: '0x02c31c'
+            elevatorRoom: '0x02cd1c'
+            powerUpRoom: '0x02cf1c'
+            beneathLeftTrapdoor: '0x02d11c'
+            beneathLeftTrapdoorBackground: '0x02d31c'
+            beneathRightTrapdoor: '0x02d51c'
+            beneathRightTrapdoorBackground: '0x02d71c'
+            alucartRoom: '0x02d91c'
+            loadingRoom: '0x02db1c'
+            saveRoomA: '0x02dd1c'
+            saveRoomB: '0x02df1c'
     necromancyLaboratory:
         entities:
             horizontal:
