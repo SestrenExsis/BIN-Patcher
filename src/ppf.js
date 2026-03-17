@@ -268,6 +268,20 @@ export function parsePatchNode(ppf, patchNode) {
                 break
             case 'object-array':
                 for (let i = 0; i < targetData.length; i++) {
+                    // Some object arrays in SOTN contain what appears to be garbage data that needs to be skipped
+                    let paddingAmount = 0
+                    if (targetMeta.element.hasOwnProperty('postProcessing')) {
+                        targetMeta.element.postProcessing
+                        .filter((processInfo) => {
+                            return (
+                                processInfo.process == 'paddingAfterElement' &&
+                                i >= processInfo.whenArrayLength
+                            )
+                        })
+                        .forEach((processInfo) => {
+                            paddingAmount += processInfo.paddingAmount
+                        })
+                    }
                     Object.entries(targetMeta.element.properties)
                     .filter(([propertyName, propertyInfo]) => (
                         targetData[i].hasOwnProperty(propertyName)
@@ -276,7 +290,11 @@ export function parsePatchNode(ppf, patchNode) {
                         if (targetData[i][propertyName] == null) {
                             return
                         }
-                        ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size + toVal(propertyInfo.offset), propertyInfo.type, targetData[i][propertyName])
+                        ppf.write(
+                            toVal(targetMeta.address) + i * targetMeta.element.size + toVal(propertyInfo.offset) + paddingAmount,
+                            propertyInfo.type,
+                            targetData[i][propertyName]
+                        )
                     })
                 }
                 break
