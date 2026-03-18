@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import yaml
@@ -253,15 +254,24 @@ data = {
 
 
 if __name__ == '__main__':
+    '''
+    Usage
+    python generate-extraction-template.py TEMPLATE EXTRACTION --previous PREVIOUS
+    '''
+    parser = argparse.ArgumentParser()
+    parser.add_argument('template', help='Input a filepath for the template YAML', type=str)
+    parser.add_argument('extraction', help='Input a filepath for the target extraction JSON', type=str)
+    parser.add_argument('--previous', help='Input an optional filepath for the previous extraction JSON', type=str)
+    args = parser.parse_args()
     prev_extraction = {}
-    if os.path.isfile(os.path.join('build', 'extraction.json')):
+    if args.previous is not None:
         with (
-            open(os.path.join('build', 'extraction.json'), 'r') as prev_extraction_file,
+            open(os.path.normpath(args.previous)) as prev_extraction_file,
         ):
             prev_extraction = json.load(prev_extraction_file)
     with (
-        open(os.path.join('data', 'extraction-template.yaml')) as source_file,
-        open(os.path.join('build', 'extraction-template.json'), 'w') as target_file,
+        open(os.path.normpath(args.template)) as source_file,
+        open(os.path.normpath(args.extraction), 'w') as target_file,
     ):
         source = yaml.safe_load(source_file)
         source['familiarEvents'] = {}
