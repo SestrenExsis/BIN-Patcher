@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import yaml
@@ -2708,9 +2709,17 @@ ordered_dependency_names = [
 ]
 
 if __name__ == '__main__':
+    '''
+    Usage
+    python generate-change-dependencies-template.py TEMPLATE TARGET
+    '''
+    parser = argparse.ArgumentParser()
+    parser.add_argument('template', help='Input a filepath for the template YAML', type=str)
+    parser.add_argument('target', help='Input a filepath for the target change dependencies JSON', type=str)
+    args = parser.parse_args()
     with (
-        open(os.path.join('data', 'change-dependencies-template.yaml')) as source_file,
-        open(os.path.join('build', 'change-dependencies.json'), 'w') as target_file,
+        open(os.path.normpath(args.template)) as source_file,
+        open(os.path.normpath(args.target), 'w') as target_file,
     ):
         dependencies = {}
         template = yaml.safe_load(source_file)
