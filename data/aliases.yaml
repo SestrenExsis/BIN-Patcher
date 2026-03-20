@@ -2998,7 +2998,7 @@ teleporters:
     fromRoyalChapelToCastleKeep: 36
     fromRoyalChapelToColosseum: 34
     fromRoyalChapelToOlroxsQuarters: 33
-    fromBossSuccubsToUndergroundCaverns: 60
+    fromBossSuccubusToUndergroundCaverns: 60
     fromUndergroundCavernsToAbandonedMine: 50
     fromUndergroundCavernsToBossSuccubus: 51
     fromUndergroundCavernsToCastleEntrance: 48
