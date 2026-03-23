@@ -345,6 +345,23 @@ stages:
                         type: u16
     castleEntrance:
         constants:
+            boneScimitarDrops:
+                copper:
+                    metadata:
+                        address:
+                            value: 0x056100
+                            method: relative
+                        element:
+                            structure: value
+                            type: s16
+                green:
+                    metadata:
+                        address:
+                            value: 0x0560FC
+                            method: relative
+                        element:
+                            structure: value
+                            type: s16
             secretWallTiles:
                 metadata:
                     address:
