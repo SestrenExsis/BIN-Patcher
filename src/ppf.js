@@ -118,7 +118,7 @@ export class PPF {
                     })
                     if (!aliasFound) {
                         value = parseInt(data.substring('unknownId'.length), 10)
-                        console.log('Alias not found for', data)
+                        console.log('Alias not found for', data, 'of type', type)
                     }
                     this.buffer.writeUInt16LE(value, 0)
                     byteCount = 2
@@ -146,7 +146,7 @@ export class PPF {
                         })
                     })
                     if (!aliasFound) {
-                        console.log('Alias not found for', data)
+                        console.log('Alias not found for', data, 'of type', type)
                     }
                     this.buffer.writeUInt16LE(value, 0)
                     byteCount = 2
@@ -164,7 +164,7 @@ export class PPF {
                 })
                 if (!aliasFound) {
                     value = parseInt(data.substring('unknownId'.length), 10)
-                    console.log('Alias not found for', data)
+                    console.log('Alias not found for', data, 'of type', type)
                 }
                 this.buffer.writeUInt16LE(value, 0)
                 byteCount = 2
@@ -212,7 +212,7 @@ export class PPF {
                 })
                 if (!aliasFound) {
                     value = parseInt(data.substring('unknownId'.length), 10)
-                    console.log('Alias not found for', data)
+                    console.log('Alias not found for', data, 'of type', type)
                 }
                 this.buffer.writeUInt16LE(value, 0)
                 byteCount = 2
