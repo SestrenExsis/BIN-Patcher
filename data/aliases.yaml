@@ -3952,6 +3952,37 @@ _values:
         landOfBenediction: 830
         nocturne: 831
         moonlightNocturne: 832
+    relicIds:
+        relicSoulOfBat: 0
+        relicFireOfBat: 1
+        relicEchoOfBat: 2
+        relicForceOfEcho: 3
+        reliSoulOfWolf: 4
+        relicPowerOfWolf: 5
+        relicSkillOfWolf: 6
+        relicFormOfMist: 7
+        relicPowerOfMist: 8
+        relicGasCloud: 9
+        relicCubeOfZoe: 10
+        relicSpiritOrb: 11
+        relicGravityBoots: 12
+        relicLeapStone: 13
+        relicHolySymbol: 14
+        relicFaerieScroll: 15
+        relicJewelOfOpen: 16
+        relicMermanStatue: 17
+        relicBatCard: 18
+        relicGhostCard: 19
+        relicFaerieCard: 20
+        relicDemonCard: 21
+        relicSwordCard: 22
+        relicSpriteCard: 23
+        relicNosedevilCard: 24
+        relicHeartOfVlad: 25
+        relicToothOfVlad: 26
+        relicRibOfVlad: 27
+        relicRingOfVlad: 28
+        relicEyeOfVlad: 29
     stageIds:
         abandonedMine: 5
         alchemyLaboratory: 12
