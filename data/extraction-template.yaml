@@ -713,6 +713,14 @@ stages:
                             method: elementCount
                             elementCount: 2
                         type: u16
+            shopMenuCheck:
+                metadata:
+                    address:
+                        value: 0x032B08
+                        method: relative
+                    element:
+                        structure: value
+                        type: u8
             shopSellables:
                 metadata:
                     address:
