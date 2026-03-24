@@ -183,6 +183,197 @@ specialSaveRooms:
             element:
                 structure: value
                 type: u16
+startingEquipment:
+    alucardSword:
+        '0x000F5000':
+            metadata:
+                address:
+                    value: 0x000F5000
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59A8':
+            metadata:
+                address:
+                    value: 0x000F59A8
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92D4':
+            metadata:
+                address:
+                    value: 0x041A92D4
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    alucardShield:
+        '0x000F5060':
+            metadata:
+                address:
+                    value: 0x000F5060
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59B4':
+            metadata:
+                address:
+                    value: 0x000F59B4
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92D6':
+            metadata:
+                address:
+                    value: 0x041A92D6
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    dragonHelm:
+        '0x000F50C0':
+            metadata:
+                address:
+                    value: 0x000F50C0
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59C0':
+            metadata:
+                address:
+                    value: 0x000F59C0
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92DA':
+            metadata:
+                address:
+                    value: 0x041A92DA
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    alucardMail:
+        '0x000F50FC':
+            metadata:
+                address:
+                    value: 0x000F50FC
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59CC':
+            metadata:
+                address:
+                    value: 0x000F59CC
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92D8':
+            metadata:
+                address:
+                    value: 0x041A92D8
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    twilightCloak:
+        '0x000F5138':
+            metadata:
+                address:
+                    value: 0x000F5138
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59D8':
+            metadata:
+                address:
+                    value: 0x000F59D8
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92DC':
+            metadata:
+                address:
+                    value: 0x041A92DC
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    necklaceOfJ:
+        '0x000F517C':
+            metadata:
+                address:
+                    value: 0x000F517C
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59E4':
+            metadata:
+                address:
+                    value: 0x000F59E4
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92DE':
+            metadata:
+                address:
+                    value: 0x041A92DE
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    potion:
+        metadata:
+            address:
+                value: 0x000F55C0
+                method: absolute
+            element:
+                structure: value
+                type: s16
+    heartRefresh:
+        metadata:
+            address:
+                value: 0x000F56AC
+                method: absolute
+            element:
+                structure: value
+                type: s16
+    neutronBomb:
+        metadata:
+            address:
+                value: 0x000F5708
+                method: absolute
+            element:
+                structure: value
+                type: s16
+    lapisLazuli:
+        metadata:
+            address:
+                value: 0x000F5A70
+                method: absolute
+            element:
+                structure: value
+                type: s16
+    axeLordArmor:
+        metadata:
+            address:
+                value: 0x000F5B08
+                method: absolute
+            element:
+                structure: value
+                type: s16
 messages:
     prologueCredits:
         metadata:
