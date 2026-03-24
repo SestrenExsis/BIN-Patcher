@@ -334,6 +334,7 @@ startingEquipment:
                 element:
                     structure: value
                     type: s16
+startingRewards:
     potion:
         metadata:
             address:
