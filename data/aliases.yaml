@@ -1164,43 +1164,43 @@ stages:
     bossScylla:
         constants:
             uniqueItemDrops:
-                dropItemHeartMaxUp1: 0
-                dropItemLifeMaxUp1: 1
-                dropItemCrystalCloak: 2
+                dropHeartMaxUp1: 0
+                dropLifeMaxUp1: 1
+                dropCrystalCloak: 2
                 dropUnusedItem1: 3
-                dropItemAntivenom: 4
-                dropItemLifeMaxUp2: 5
-                dropItemLifeMaxUp3: 6
-                dropItemHeraldShield: 7
+                dropAntivenom: 4
+                dropLifeMaxUp2: 5
+                dropLifeMaxUp3: 6
+                dropHeraldShield: 7
                 dropUnusedItem2: 8
-                dropItemZircon: 9
-                dropItemGoldRing: 10
-                dropItemBandanna: 11
-                dropItemShiitake1: 12
-                dropItemClaymore: 13
-                dropItemMealTicket1: 14
-                dropItemMealTicket2: 15
-                dropItemMealTicket3: 16
-                dropItemMealTicket4: 17
-                dropItemMoonstone: 18
-                dropItemScimitar: 19
-                dropItemResistIce: 20
-                dropItemPotRoast: 21
-                dropItemOnyx: 22
-                dropItemKnuckleDuster: 23
-                dropItemLifeMaxUp4: 24
-                dropItemElixir: 25
-                dropItemToadstool1: 26
-                dropItemShiitake2: 27
-                dropItemLifeMaxUp5: 28
-                dropItemHeartMaxUp2: 29
-                dropItemPentagram: 30
-                dropItemSecretBoots: 31
-                dropItemShiitake3: 32
-                dropItemToadstool2: 33
-                dropItemMonsterVial1: 34
-                dropItemShiitake4: 35
-                dropItemNunchaku: 36
+                dropZircon: 9
+                dropGoldRing: 10
+                dropBandanna: 11
+                dropShiitake1: 12
+                dropClaymore: 13
+                dropMealTicket1: 14
+                dropMealTicket2: 15
+                dropMealTicket3: 16
+                dropMealTicket4: 17
+                dropMoonstone: 18
+                dropScimitar: 19
+                dropResistIce: 20
+                dropPotRoast: 21
+                dropOnyx: 22
+                dropKnuckleDuster: 23
+                dropLifeMaxUp4: 24
+                dropElixir: 25
+                dropToadstool1: 26
+                dropShiitake2: 27
+                dropLifeMaxUp5: 28
+                dropHeartMaxUp2: 29
+                dropPentagram: 30
+                dropSecretBoots: 31
+                dropShiitake3: 32
+                dropToadstool2: 33
+                dropMonsterVial1: 34
+                dropShiitake4: 35
+                dropNunchaku: 36
         layers:
             layerDefinitions:
                 scyllaRoom: 0
@@ -3358,43 +3358,43 @@ stages:
     undergroundCaverns:
         constants:
             uniqueItemDrops:
-                dropItemHeartMaxUp1: 0
-                dropItemLifeMaxUp1: 1
-                dropItemCrystalCloak: 2
+                dropHeartMaxUp1: 0
+                dropLifeMaxUp1: 1
+                dropCrystalCloak: 2
                 dropUnusedItem1: 3
-                dropItemAntivenom: 4
-                dropItemLifeMaxUp2: 5
-                dropItemLifeMaxUp3: 6
-                dropItemHeraldShield: 7
+                dropAntivenom: 4
+                dropLifeMaxUp2: 5
+                dropLifeMaxUp3: 6
+                dropHeraldShield: 7
                 dropUnusedItem2: 8
-                dropItemZircon: 9
-                dropItemGoldRing: 10
-                dropItemBandanna: 11
-                dropItemShiitake1: 12
-                dropItemClaymore: 13
-                dropItemMealTicket1: 14
-                dropItemMealTicket2: 15
-                dropItemMealTicket3: 16
-                dropItemMealTicket4: 17
-                dropItemMoonstone: 18
-                dropItemScimitar: 19
-                dropItemResistIce: 20
-                dropItemPotRoast: 21
-                dropItemOnyx: 22
-                dropItemKnuckleDuster: 23
-                dropItemLifeMaxUp4: 24
-                dropItemElixir: 25
-                dropItemToadstool1: 26
-                dropItemShiitake2: 27
-                dropItemLifeMaxUp5: 28
-                dropItemHeartMaxUp2: 29
-                dropItemPentagram: 30
-                dropItemSecretBoots: 31
-                dropItemShiitake3: 32
-                dropItemToadstool2: 33
-                dropItemMonsterVial1: 34
-                dropItemShiitake4: 35
-                dropItemNunchaku: 36
+                dropZircon: 9
+                dropGoldRing: 10
+                dropBandanna: 11
+                dropShiitake1: 12
+                dropClaymore: 13
+                dropMealTicket1: 14
+                dropMealTicket2: 15
+                dropMealTicket3: 16
+                dropMealTicket4: 17
+                dropMoonstone: 18
+                dropScimitar: 19
+                dropResistIce: 20
+                dropPotRoast: 21
+                dropOnyx: 22
+                dropKnuckleDuster: 23
+                dropLifeMaxUp4: 24
+                dropElixir: 25
+                dropToadstool1: 26
+                dropShiitake2: 27
+                dropLifeMaxUp5: 28
+                dropHeartMaxUp2: 29
+                dropPentagram: 30
+                dropSecretBoots: 31
+                dropShiitake3: 32
+                dropToadstool2: 33
+                dropMonsterVial1: 34
+                dropShiitake4: 35
+                dropNunchaku: 36
         entities:
             horizontal:
                 breakableFloorInHiddenCrystalEntrance: 88
