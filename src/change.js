@@ -116,7 +116,7 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
         switch (actionInfo.action) {
             case 'get':
                 // TODO(sestren): Implement getting address
-                if (actionInfo.type == 'property') {
+                if (actionInfo.type === 'property') {
                     canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
                     propertyName = canonicalPath.pop()
                     patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
@@ -131,13 +131,13 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 }
                 break
             case 'set':
-                if (actionInfo.type == 'property') {
+                if (actionInfo.type === 'property') {
                     canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
                     propertyName = canonicalPath.pop()
                     patchNode = traverseCanonicalPath(canonicalPath, patchInfo, true)
                     patchNode[propertyName] = currentValue
                 }
-                else if (actionInfo.type == 'address') {
+                else if (actionInfo.type === 'address') {
                     if (!patchInfo.hasOwnProperty('_writes')) {
                         patchInfo['_writes'] = {}
                     }
@@ -152,7 +152,7 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 }
                 break
             case 'add':
-                if (actionInfo.type == 'property') {
+                if (actionInfo.type === 'property') {
                     canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
                     propertyName = canonicalPath.pop()
                     patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
@@ -163,7 +163,7 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 }
                 break
             case 'subtract':
-                if (actionInfo.type == 'property') {
+                if (actionInfo.type === 'property') {
                     canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
                     propertyName = canonicalPath.pop()
                     patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
@@ -174,7 +174,7 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                 }
                 break
             case 'multiply':
-                if (actionInfo.type == 'property') {
+                if (actionInfo.type === 'property') {
                     canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
                     propertyName = canonicalPath.pop()
                     patchNode = traverseCanonicalPath(canonicalPath, patchInfo)

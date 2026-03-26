@@ -80,7 +80,7 @@ export class PPF {
     }
 
     write(address, type, data) {
-        if (data == null) {
+        if (data === null) {
             return
         }
         let byteCount = 0
@@ -110,7 +110,7 @@ export class PPF {
                     aliasFound = false
                     Object.entries(aliases._values.itemDropIds)
                     .filter(([itemDropName, itemDropId]) => {
-                        return data == itemDropName
+                        return data === itemDropName
                     })
                     .forEach(([itemDropName, itemDropId]) => {
                         aliasFound = true
@@ -133,12 +133,12 @@ export class PPF {
                     aliasFound = false
                     Object.entries(aliases.stages)
                     .filter(([stageName, stageAliases]) => {
-                        return stageAndRoomName[0] == stageName
+                        return stageAndRoomName[0] === stageName
                     })
                     .forEach(([stageName, stageAliases]) => {
                         Object.entries(stageAliases?.rooms)
                         .filter(([roomName, roomId]) => {
-                            return stageAndRoomName[1] == roomName
+                            return stageAndRoomName[1] === roomName
                         })
                         .forEach(([roomName, roomId]) => {
                             aliasFound = true
@@ -156,7 +156,7 @@ export class PPF {
                 aliasFound = false
                 Object.entries(aliases._values.stageIds)
                 .filter(([stageName, stageId]) => {
-                    return data == stageName
+                    return data === stageName
                 })
                 .forEach(([stageName, stageId]) => {
                     aliasFound = true
@@ -204,7 +204,7 @@ export class PPF {
                 aliasFound = false
                 Object.entries(aliases._values.musicIds)
                 .filter(([musicName, musicId]) => {
-                    return data == musicName
+                    return data === musicName
                 })
                 .forEach(([musicName, musicId]) => {
                     aliasFound = true
@@ -218,7 +218,7 @@ export class PPF {
                 byteCount = 2
                 break
             case 'zone-offset':
-                if (data == 'NULL') {
+                if (data === 'NULL') {
                     value = 0x00000000
                 }
                 else {
@@ -260,7 +260,7 @@ export function parsePatchNode(ppf, patchNode) {
                     targetData.hasOwnProperty(propertyName)
                 ))
                 .forEach(([propertyName, propertyInfo]) => {
-                    if (targetData[propertyName] == null) {
+                    if (targetData[propertyName] === null) {
                         return
                     }
                     ppf.write(toVal(targetMeta.address) + toVal(propertyInfo.offset), propertyInfo.type, targetData[propertyName])
@@ -274,7 +274,7 @@ export function parsePatchNode(ppf, patchNode) {
                         targetMeta.element.postProcessing
                         .filter((processInfo) => {
                             return (
-                                processInfo.process == 'paddingAfterElement' &&
+                                processInfo.process === 'paddingAfterElement' &&
                                 i >= processInfo.whenArrayLength
                             )
                         })
@@ -287,10 +287,10 @@ export function parsePatchNode(ppf, patchNode) {
                         targetData[i].hasOwnProperty(propertyName)
                     ))
                     .forEach(([propertyName, propertyInfo]) => {
-                        if (targetData[i][propertyName] == null) {
+                        if (targetData[i][propertyName] === null) {
                             return
                         }
-                        if (propertyName.at(0) == '_') {
+                        if (propertyName.at(0) === '_') {
                             return
                         }
                         ppf.write(
@@ -311,13 +311,14 @@ export function parsePatchNode(ppf, patchNode) {
                     targetMeta.element.size = getSizeOfType(targetMeta.element.type)
                 }
                 for (let i = 0; i < targetData.length; i++) {
-                    if (targetData[i] == null) {
+                    if (targetData[i] === null) {
                         continue
                     }
-                    if (targetData[i] == ' '.repeat(targetData[i].length)) {
+                    if (targetData[i] === ' '.repeat(targetData[i].length)) {
+                        console.log(targetData[i], '[' + ' '.repeat(targetData[i].length) + ']')
                         continue
                     }
-                    if (targetData[i] == '.'.repeat(targetData[i].length)) {
+                    if (targetData[i] === '.'.repeat(targetData[i].length)) {
                         continue
                     }
                     ppf.write(toVal(targetMeta.address) + i * targetMeta.element.size, targetMeta.element.type, targetData[i])
@@ -329,7 +330,7 @@ export function parsePatchNode(ppf, patchNode) {
                         const address = toVal(targetMeta.address) + row * targetMeta.element.bytesPerRow + col2
                         // NOTE(sestren): Color index data is stored 2 colors per byte, in reverse order
                         let targetBytes = targetData.at(row).charAt(2 * col2 + 1) + targetData.at(row).charAt(2 * col2 + 0)
-                        if (targetBytes == '..') {
+                        if (targetBytes === '..') {
                             continue
                         }
                         ppf.write(toVal(address), 'u8', parseInt(targetBytes, 16))
@@ -349,7 +350,7 @@ export function parsePatchNode(ppf, patchNode) {
                             let targetBytes = 0
                             // NOTE(sestren): Process the bits in reverse order
                             for (let i = 7; i >= 0; i--) {
-                                targetBytes += (targetData.grid.at(row).charAt(8 * col8 + i) == ' ') ? '0' : '1'
+                                targetBytes += (targetData.grid.at(row).charAt(8 * col8 + i) === ' ') ? '0' : '1'
                             }
                             ppf.write(toVal(address), 'u8', parseInt(targetBytes, 2))
                         }
@@ -363,7 +364,7 @@ export function parsePatchNode(ppf, patchNode) {
                     for (let col = 0; col < targetMeta.element.columns; col++) {
                         const address = toVal(targetMeta.address) + row * bytesPerRow + 2 * col
                         const targetBytes = targetData.at(row).substring(5 * col, 5 * col + 4)
-                        if (targetBytes == '....') {
+                        if (targetBytes === '....') {
                             continue
                         }
                         ppf.write(toVal(address), 'u16', parseInt(targetBytes, 16))

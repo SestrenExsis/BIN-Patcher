@@ -2968,7 +2968,7 @@ if __name__ == '__main__':
                 {
                     'action': 'set',
                     'type': 'address',
-                    'name': '.'.join((stage_name, room_name, edge, special_id)),
+                    'name': '.'.join(('liveMapRepaints', stage_name, room_name, special_id, edge)),
                     'address': address,
                     'element': {
                         'structure': 'value',

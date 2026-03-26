@@ -68,10 +68,10 @@ const argv = yargs(process.argv.slice(2))
                     Object.entries(stageInfo.layers.layerDefinitions.aliases).forEach(([layerName, layerIndex]) => {
                         const layerInfo = stageInfo.layers.layerDefinitions.data[layerIndex]
                         if (
-                            (layerInfo.layoutRect.left == roomInfo.left) &&
-                            (layerInfo.layoutRect.top == roomInfo.top) &&
-                            (layerInfo.layoutRect.right == roomInfo.right) &&
-                            (layerInfo.layoutRect.bottom == roomInfo.bottom)
+                            (layerInfo.layoutRect.left === roomInfo.left) &&
+                            (layerInfo.layoutRect.top === roomInfo.top) &&
+                            (layerInfo.layoutRect.right === roomInfo.right) &&
+                            (layerInfo.layoutRect.bottom === roomInfo.bottom)
                         ) {
                             console.log(`                '${layerName}',`)
                         }
@@ -94,10 +94,10 @@ const argv = yargs(process.argv.slice(2))
                 //     Object.values(stageInfo.rooms.data).filter((roomInfo) => {
                 //         return (
                 //             roomInfo.hasOwnProperty('_alias') &&
-                //             roomInfo.left == layerDefinition.layoutRect.left &&
-                //             roomInfo.top == layerDefinition.layoutRect.top &&
-                //             roomInfo.right == layerDefinition.layoutRect.right &&
-                //             roomInfo.bottom == layerDefinition.layoutRect.bottom
+                //             roomInfo.left === layerDefinition.layoutRect.left &&
+                //             roomInfo.top === layerDefinition.layoutRect.top &&
+                //             roomInfo.right === layerDefinition.layoutRect.right &&
+                //             roomInfo.bottom === layerDefinition.layoutRect.bottom
                 //         )
                 //     }).map((roomInfo) => {
                 //         roomAlias = roomInfo._alias
@@ -145,17 +145,17 @@ const argv = yargs(process.argv.slice(2))
                     let matchingRoomId = '-'
                     Object.entries(legacyData['Stages'][argv.name]['Rooms']).forEach(([roomId, roomInfo]) => {
                         if (
-                            (roomInfo['Top']['Value'] == element.layoutRect.top) &&
-                            (roomInfo['Left']['Value'] == element.layoutRect.left) &&
-                            ((1 + roomInfo['Bottom']['Value'] - roomInfo['Top']['Value']) == rows) &&
-                            ((1 + roomInfo['Right']['Value'] - roomInfo['Left']['Value']) == cols)
+                            (roomInfo['Top']['Value'] === element.layoutRect.top) &&
+                            (roomInfo['Left']['Value'] === element.layoutRect.left) &&
+                            ((1 + roomInfo['Bottom']['Value'] - roomInfo['Top']['Value']) === rows) &&
+                            ((1 + roomInfo['Right']['Value'] - roomInfo['Left']['Value']) === cols)
                         ) {
                             matchingRoomId = roomId
                         }
                     })
                     let matchingAlias = null
                     Object.entries(aliasData[argv.name]).forEach(([roomAlias, roomId]) => {
-                        if (roomId == matchingRoomId) {
+                        if (roomId === matchingRoomId) {
                             matchingAlias = roomAlias
                         }
                     })
@@ -232,10 +232,10 @@ const argv = yargs(process.argv.slice(2))
                     Object.values(stageInfo.rooms.data).filter((roomInfo) => {
                         return (
                             roomInfo.hasOwnProperty('_alias') &&
-                            roomInfo.left == layerDefinition.layoutRect.left &&
-                            roomInfo.top == layerDefinition.layoutRect.top &&
-                            roomInfo.right == layerDefinition.layoutRect.right &&
-                            roomInfo.bottom == layerDefinition.layoutRect.bottom
+                            roomInfo.left === layerDefinition.layoutRect.left &&
+                            roomInfo.top === layerDefinition.layoutRect.top &&
+                            roomInfo.right === layerDefinition.layoutRect.right &&
+                            roomInfo.bottom === layerDefinition.layoutRect.bottom
                         )
                     }).map((roomInfo) => {
                         roomAlias = roomInfo._alias
