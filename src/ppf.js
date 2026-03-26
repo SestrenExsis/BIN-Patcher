@@ -290,6 +290,9 @@ export function parsePatchNode(ppf, patchNode) {
                         if (targetData[i][propertyName] == null) {
                             return
                         }
+                        if (propertyName.at(0) == '_') {
+                            return
+                        }
                         ppf.write(
                             toVal(targetMeta.address) + i * targetMeta.element.size + toVal(propertyInfo.offset) + paddingAmount,
                             propertyInfo.type,

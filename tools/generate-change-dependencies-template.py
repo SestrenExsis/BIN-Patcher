@@ -2705,7 +2705,38 @@ ordered_dependency_names = [
     'secretMapTileReveals',
     'bossTeleporters',
     'familiarEvents',
+    'liveMapRepaints',
     'miscellaneous',
+]
+
+live_map_repaints = [
+    # (address, source_stage_name, source_room_name, offset, edge, special_id)
+    # Underground Caverns
+    (0x000E7248 + 0x00, 'undergroundCaverns', 'leftFerrymanRoute', 5, 'left', 'a'),
+    (0x000E7248 + 0x08, 'undergroundCaverns', 'leftFerrymanRoute', 1, 'top', 'a'),
+    (0x000E7248 + 0x0C, 'undergroundCaverns', 'leftFerrymanRoute', 7, 'left', 'b'),
+    (0x000E7248 + 0x14, 'undergroundCaverns', 'leftFerrymanRoute', 1, 'top', 'b'),
+    (0x000E7248 + 0x18, 'undergroundCaverns', 'rightFerrymanRoute', 3, 'left', 'a'),
+    (0x000E7248 + 0x20, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'a'),
+    (0x000E7248 + 0x24, 'undergroundCaverns', 'rightFerrymanRoute', 4, 'left', 'b'),
+    (0x000E7248 + 0x2C, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'b'),
+    (0x000E7248 + 0x30, 'undergroundCaverns', 'rightFerrymanRoute', 5, 'left', 'c'),
+    (0x000E7248 + 0x38, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'c'),
+    (0x000E7248 + 0x3C, 'undergroundCaverns', 'rightFerrymanRoute', 8, 'left', 'd'),
+    (0x000E7248 + 0x44, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'd'),
+    # Reverse Caverns
+    (0x000E7248 + 0x50, 'undergroundCaverns', 'leftFerrymanRoute', 5, 'left', 'a'),
+    (0x000E7248 + 0x54, 'undergroundCaverns', 'leftFerrymanRoute', 1, 'top', 'a'),
+    (0x000E7248 + 0x60, 'undergroundCaverns', 'leftFerrymanRoute', 7, 'left', 'b'),
+    (0x000E7248 + 0x64, 'undergroundCaverns', 'leftFerrymanRoute', 1, 'top', 'b'),
+    (0x000E7248 + 0x70, 'undergroundCaverns', 'rightFerrymanRoute', 3, 'left', 'a'),
+    (0x000E7248 + 0x74, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'a'),
+    (0x000E7248 + 0x80, 'undergroundCaverns', 'rightFerrymanRoute', 4, 'left', 'b'),
+    (0x000E7248 + 0x84, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'b'),
+    (0x000E7248 + 0x90, 'undergroundCaverns', 'rightFerrymanRoute', 5, 'left', 'c'),
+    (0x000E7248 + 0x94, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'c'),
+    (0x000E7248 + 0xA0, 'undergroundCaverns', 'rightFerrymanRoute', 8, 'left', 'd'),
+    (0x000E7248 + 0xA4, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'd'),
 ]
 
 if __name__ == '__main__':
@@ -2921,6 +2952,34 @@ if __name__ == '__main__':
                     transformation_name = transformation[-1]['property']
                     print(transformation_name)
                     dependencies['bossRooms.leftsAndTops'][transformation_name] = transformation
+        # liveMapRepaints
+        for (address, stage_name, room_name, offset, edge, special_id) in live_map_repaints:
+            transformation = [
+                {
+                    'action': 'get',
+                    'type': 'property',
+                    'property': f'stages.{stage_name}.rooms.{room_name}.{edge}',
+                },
+                {
+                    'action': 'add',
+                    'type': 'constant',
+                    'constant': offset,
+                },
+                {
+                    'action': 'set',
+                    'type': 'address',
+                    'name': '.'.join((stage_name, room_name, edge, special_id)),
+                    'address': address,
+                    'element': {
+                        'structure': 'value',
+                        'type': 'u8',
+                    },
+                },
+            ]
+            transformation_name = transformation[-1]['name']
+            print(transformation_name)
+            dependency_name = 'liveMapRepaints'
+            dependencies[dependency_name][transformation_name] = transformation
         # Generate output file
         target = {
             'authors': [
