@@ -5,7 +5,7 @@ bossTeleporters:
     bossGranfaloonRight: 4
     bossMinotaurAndWerewolfLeft: 5
     bossMinotaurAndWerewolfRight: 6
-    bossScyllaLeft: 7
+    bossScylla: 7
     bossDoppelgangerLeft: 8
     bossDoppelgangerRight: 9
     bossHippogryphLeft: 10
