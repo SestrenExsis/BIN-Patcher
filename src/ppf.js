@@ -315,7 +315,6 @@ export function parsePatchNode(ppf, patchNode) {
                         continue
                     }
                     if (targetData[i] === ' '.repeat(targetData[i].length)) {
-                        console.log(targetData[i], '[' + ' '.repeat(targetData[i].length) + ']')
                         continue
                     }
                     if (targetData[i] === '.'.repeat(targetData[i].length)) {
