@@ -1,80 +1,160 @@
 ---
 miscellaneous:
     castleTeleporters:
-      - action: get
-        type: property
-        property: stages.castleKeep.rooms.keepArea.left
-      - action: multiply
-        type: constant
-        constant: -256
-      - action: add
-        type: constant
-        constant: -320
-      - action: set
-        type: address
-        name: castleTeleporters.left.0x000FFCE4
-        address: 0x000FFCE4
-        element:
-          structure: value
-          type: s16
-      - action: set
-        type: address
-        name: castleTeleporters.left.0x0010B48C
-        address: 0x0010B48C
-        element:
-          structure: value
-          type: s16
-      - action: set
-        type: address
-        name: castleTeleporters.left.0x0010B4D0
-        address: 0x0010B4D0
-        element:
-          structure: value
-          type: s16
-      - action: set
-        type: address
-        name: castleTeleporters.left.0x03285D0C
-        address: 0x03285D0C
-        element:
-          structure: value
-          type: s16
-      - action: set
-        type: address
-        name: castleTeleporters.left.0x0328ABBC
-        address: 0x0328ABBC
-        element:
-          structure: value
-          type: s16
-      - action: set
-        type: address
-        name: castleTeleporters.left.0x0328AC00
-        address: 0x0328AC00
-        element:
-          structure: value
-          type: s16
-      - action: get
-        type: property
-        property: stages.castleKeep.rooms.keepArea.top
-      - action: multiply
-        type: constant
-        constant: -256
-      - action: add
-        type: constant
-        constant: -847
-      - action: set
-        type: address
-        name: castleTeleporters.top.0x000FFD18
-        address: 0x000FFD18
-        element:
-          structure: value
-          type: s16
-      - action: set
-        type: address
-        name: castleTeleporters.top.0x03285D40
-        address: 0x03285D40
-        element:
-          structure: value
-          type: s16
+        fromFirstCastle:
+            left:
+              - action: get
+                type: property
+                property: stages.castleKeep.rooms.keepArea.left
+              - action: multiply
+                type: constant
+                constant: -256
+              - action: add
+                type: constant
+                constant: -320
+              - action: set
+                type: address
+                name: castleTeleporters.fromFirstCastle.left.0x000FFCE4
+                address: 0x000FFCE4
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromFirstCastle.left.0x0010B48C
+                address: 0x0010B48C
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromFirstCastle.left.0x0010B4D0
+                address: 0x0010B4D0
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromFirstCastle.left.0x03285D0C
+                address: 0x03285D0C
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromFirstCastle.left.0x0328ABBC
+                address: 0x0328ABBC
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromFirstCastle.left.0x0328AC00
+                address: 0x0328AC00
+                element:
+                  structure: value
+                  type: s16
+            top:
+              - action: get
+                type: property
+                property: stages.castleKeep.rooms.keepArea.top
+              - action: multiply
+                type: constant
+                constant: -256
+              - action: add
+                type: constant
+                constant: -847
+              - action: set
+                type: address
+                name: castleTeleporters.fromFirstCastle.top.0x000FFD18
+                address: 0x000FFD18
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromFirstCastle.top.0x03285D40
+                address: 0x03285D40
+                element:
+                  structure: value
+                  type: s16
+        fromReverseCastle:
+            left:
+              - action: get
+                type: property
+                property: stages.reverseKeep.rooms.keepArea.left
+              - action: multiply
+                type: constant
+                constant: -256
+              - action: add
+                type: constant
+                constant: -1728
+              - action: set
+                type: address
+                name: castleTeleporters.fromReverseCastle.left.0x000FFD68
+                address: 0x000FFD68
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromReverseCastle.left.0x03285D90
+                address: 0x03285D90
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromReverseCastle.left.0x0010B530
+                address: 0x0010B530
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromReverseCastle.left.0x0010B574
+                address: 0x0010B574
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromReverseCastle.left.0x0328AC60
+                address: 0x0328AC60
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromReverseCastle.left.0x0328ACA4
+                address: 0x0328ACA4
+                element:
+                  structure: value
+                  type: s16
+            top:
+              - action: get
+                type: property
+                property: stages.reverseKeep.rooms.keepArea.top
+              - action: multiply
+                type: constant
+                constant: -256
+              - action: add
+                type: constant
+                constant: -1351
+              - action: set
+                type: address
+                name: castleTeleporters.fromReverseCastle.top.0x000FFD9C
+                address: 0x000FFD9C
+                element:
+                  structure: value
+                  type: s16
+              - action: set
+                type: address
+                name: castleTeleporters.fromReverseCastle.top.0x03285DD0
+                address: 0x03285DD0
+                element:
+                  structure: value
+                  type: s16
     castleEntranceDrawbridgeCutscene:
       - action: get
         type: property
