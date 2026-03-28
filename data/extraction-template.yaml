@@ -971,6 +971,19 @@ stages:
                             panAmount:
                                 offset: 6
                                 type: s16
+            spawnGoldRing:
+                '0x0429FA78':
+                    metadata:
+                        address: 0x0429FA78
+                        element:
+                            structure: value
+                            type: s16
+                '0x0429FA8C':
+                    metadata:
+                        address: 0x0429FA8C
+                        element:
+                            structure: value
+                            type: s16
     warpRooms:
         constants:
             warpCoordinates:

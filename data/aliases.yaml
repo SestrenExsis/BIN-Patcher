@@ -1510,8 +1510,9 @@ stages:
                 dropLifeMaxUp2: 14
                 dropHeartMaxUp1: 15
                 dropHeartMaxUp2: 16
-                dropUnusedItem: 17
+                dropUnusedItem1: 17
                 dropHeartMaxUp3: 18
+                dropUnusedItem2: 19
         entities:
             horizontal:
                 relicPowerOfMist: 14
@@ -1788,7 +1789,7 @@ stages:
             uniqueItemDrops:
                 dropHeartMaxUp: 0
                 dropShieldRod: 1
-                dropMoonRod: 2
+                dropUnusedItem: 2
                 dropBloodCloak: 3
                 dropKnightShield: 4
                 dropLibraryCard: 5
@@ -2147,10 +2148,10 @@ stages:
     longLibrary:
         constants:
             uniqueItemDrops:
-                dropAnkhOfLife: 0
+                unusedItemDrop1: 0
                 dropStoneMask: 1
                 dropHolyRod: 2
-                dropKnightShield: 3
+                unusedItemDrop2: 3
                 dropBronzeCuirass: 4
                 dropTakemitsu: 5
                 dropOnyx: 6
@@ -2158,6 +2159,7 @@ stages:
                 dropPotion: 8
                 dropAntivenom: 9
                 dropTopazCirclet: 10
+                unusedItemDrop3: 11
         entities:
             horizontal:
                 relicFaerieScroll: 80
@@ -2511,9 +2513,9 @@ stages:
     olroxsQuarters:
         constants:
             uniqueItemDrops:
-                dropLifeMaxUp: 0
+                unusedItemDrop1: 0
                 dropHeartMaxUp: 1
-                dropPentagram: 2
+                unusedItemDrop2: 2
                 dropGoddessShield: 3
                 dropBroadsword: 4
                 dropOnyx: 5
@@ -2640,6 +2642,7 @@ stages:
                 dropGladius: 4
                 dropLifeMaxUp: 5
                 dropZircon: 6
+                unusedItemDrop: 7
         entities:
             horizontal:
                 relicSoulOfWolf: 177
@@ -3293,6 +3296,11 @@ stages:
                 dropZircon: 13
                 dropCutlass: 14
                 dropPotion: 15
+        entities:
+            horizontal:
+                itemSilverRing: 15
+            vertical:
+                itemSilverRing: 18
         layers:
             layerDefinitions:
                 silverRingRoom: 1
