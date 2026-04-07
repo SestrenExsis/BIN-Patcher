@@ -158,6 +158,8 @@ data = {
         },
         'bossAkmodanII': {
             'boss': 0x013F30,
+            'stage': 0x013F90,
+            'stage2': 0x01402C,
         },
         'bossBeelzebub': {
             'boss': 0x014E20,
@@ -204,8 +206,8 @@ data = {
             'stage2': 0x012CDC,
         },
         'bossMinotaurAndWerewolf': {
-            'boss': 0x024588,
-            'stage': 0x026EA8,
+            'boss': 0x026EA8,
+            'stage': 0x024588,
         },
         'bossOlrox': {
             'boss': 0x02D47C,
@@ -215,26 +217,27 @@ data = {
             'stage': 0x038714,
         },
         'bossScylla': {
-            'boss': 0x0264B0,
-            'boss2': 0x0264F4,
-            'boss3': 0x026690,
-            'stage': 0x0265FC,
+            'boss': 0x0265FC,
+            'stage': 0x0264B0,
+            'stage2': 0x0264F4,
+            'stage3': 0x026690,
         },
         'bossSuccubus': {
             'boss': 0x0125BC,
         },
         'bossTrio': {
-            'boss': 0x0145CC,
-            'boss2': 0x014674,
+            'boss': 0x0144F0,
+            'stage': 0x0145CC,
+            'stage2': 0x014674,
         },
         'castleEntrance': {
             'afterCastleAwakes': 0x0381C8,
             'afterMeetingDeath': 0x04027C,
         },
         'clockTower': {
-            'bossKarasuman': 0x02A658,
-            'afterKarasuman': 0x02A718,
-            'afterKarasuman2': 0x02A790,
+            'boss': 0x02A658,
+            'stage': 0x02A718,
+            'stage2': 0x02A790,
         },
         'longLibrary': {
             'boss': 0x03B700,

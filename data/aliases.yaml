@@ -502,16 +502,27 @@ familiarEvents:
 overlays:
     abandonedMine: 5
     alchemyLaboratory: 12
+    antiChapel: 38
+    blackMarbleGallery: 32
     bossAkmodanII: 55
+    bossBeelzebub: 61
     bossCerberus: 22
+    bossCreature: 58
+    bossDeath: 60
     bossDoppelganger10: 26
-    bossGranfaloon: 29
+    bossDoppelganger40: 57
+    bossDracula: 56
     bossGalamoth: 54
+    bossGranfaloon: 29
     bossHippogryph: 25
+    bossMedusa: 59
     bossMinotaurAndWerewolf: 28
+    bossOlrox: 30
     bossRichter: 24
     bossScylla: 27
     bossSuccubus: 18
+    bossTrio: 62
+    cave: 37
     castleCenter: 8
     castleEntrance: 65
     castleEntranceRevisited: 7
@@ -520,14 +531,24 @@ overlays:
     clockTower: 13
     colosseum: 10
     cutsceneMeetingMariaInClockRoom: 23
+    deathWingsLair: 36
     debug: 64
+    forbiddenLibrary: 34
     floatingCatacombs: 35
     longLibrary: 2
     marbleGallery: 0
+    necromancyLaboratory: 44
     olroxsQuarters: 4
     outerWall: 1
+    prologue: 31
     reverseCastleCenter: 40
     reverseKeep: 43
+    reverseCastleEntrance: 39
+    reverseCaverns: 41
+    reverseClockTower: 45
+    reverseColosseum: 42
+    reverseOuterWall: 33
+    reverseWarpRooms: 46
     royalChapel: 6
     undergroundCaverns: 9
     warpRooms: 14

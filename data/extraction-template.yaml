@@ -400,6 +400,14 @@ messages:
             element:
                 structure: value
                 type: string
+ambienceInForestCutscene:
+    metadata:
+        address:
+            value: 0x000E83D0
+            method: absolute
+        element:
+            structure: value
+            type: music-id
 overlays:
     metadata:
         address:
