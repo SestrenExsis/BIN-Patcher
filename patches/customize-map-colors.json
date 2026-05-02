@@ -1,6 +1,7 @@
 {
     "authors": [
-        "Sestren"
+        "Sestren",
+        "Wecoc"
     ],
     "description": [
         "Use custom colors on the map"
@@ -16,9 +17,9 @@
                     "#101810FF",
                     "#F80000FF",
                     "#F88000FF",
-                    "#B78C4DFF",
-                    "#FF1A57FF",
-                    "#E600B8FF",
+                    "#F8BA26FF",
+                    "#FD5580FF",
+                    "#C000C0FF",
                     "#008099FF",
                     "#B64FFFFF",
                     "#00B300FF",
@@ -34,9 +35,9 @@
                     "#101810FF",
                     "#F80000FF",
                     "#F88000FF",
-                    "#B78C4DFF",
-                    "#FF1A57FF",
-                    "#E600B8FF",
+                    "#F8BA26FF",
+                    "#FD5580FF",
+                    "#C000C0FF",
                     "#008099FF",
                     "#B64FFFFF",
                     "#00B300FF",
