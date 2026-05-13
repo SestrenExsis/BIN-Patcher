@@ -980,15 +980,19 @@ stages:
                                 offset: 6
                                 type: s16
             spawnGoldRing:
-                '0x0429FA78':
+                entityTypeID:
                     metadata:
-                        address: 0x0429FA78
+                        address:
+                            value: 0x048278
+                            method: relative
                         element:
                             structure: value
                             type: s16
-                '0x0429FA8C':
+                params:
                     metadata:
-                        address: 0x0429FA8C
+                        address:
+                            value: 0x04828C
+                            method: relative
                         element:
                             structure: value
                             type: s16
