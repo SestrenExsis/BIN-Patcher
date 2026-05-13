@@ -587,9 +587,9 @@ stages:
                 dropPeanuts4: 12
         entities:
             horizontal:
-                relicDemonCard: 23
+                locationDemonCard: 23
             vertical:
-                relicDemonCard: 25
+                locationDemonCard: 25
             horizontalRows:
                 bend: 1
                 cerberusRoom: 6
@@ -674,6 +674,8 @@ stages:
                 dropPotion: 10
         entities:
             horizontal:
+                locationBatCard: 52
+                locationBatCardDuplicate: 59
                 glassVatAInGlassVats: 132
                 glassVatBInGlassVats: 133
                 glassVatCInGlassVats: 134
@@ -681,6 +683,8 @@ stages:
                 glassVatEInGlassVats: 136
                 breakableFloorInTallZigZagRoom: 33
             vertical:
+                locationBatCard: 52
+                locationBatCardDuplicate: 63
                 glassVatAInGlassVats: 132
                 glassVatBInGlassVats: 133
                 glassVatCInGlassVats: 134
@@ -807,9 +811,9 @@ stages:
                 dropHeartMaxUp2: 17
         entities:
             horizontal:
-                relicHeartOfVlad: 18
+                locationHeartOfVlad: 18
             vertical:
-                relicHeartOfVlad: 20
+                locationHeartOfVlad: 20
         layers:
             layerDefinitions:
                 silverRingRoom: 1
@@ -1295,12 +1299,12 @@ stages:
                 dropJewelSword: 9
         entities:
             horizontal:
-                relicCubeOfZoe: 87
-                relicPowerOfWolf: 111
+                locationCubeOfZoe: 87
+                locationPowerOfWolf: 111
                 enemyBatInMermanRoom1: 132
             vertical:
-                relicCubeOfZoe: 87
-                relicPowerOfWolf: 100
+                locationCubeOfZoe: 87
+                locationPowerOfWolf: 100
                 enemyBatInMermanRoom1: 126
         layers:
             layerDefinitions:
@@ -1387,12 +1391,12 @@ stages:
                 dropJewelSword: 9
         entities:
             horizontal:
-                relicCubeOfZoe: 85
-                relicPowerOfWolf: 105
+                locationCubeOfZoe: 85
+                locationPowerOfWolf: 105
                 enemyBatInMermanRoom1: 126
             vertical:
-                relicCubeOfZoe: 85
-                relicPowerOfWolf: 96
+                locationCubeOfZoe: 85
+                locationPowerOfWolf: 96
                 enemyBatInMermanRoom1: 119
         layers:
             layerDefinitions:
@@ -1539,13 +1543,13 @@ stages:
                 dropUnusedItem2: 19
         entities:
             horizontal:
-                relicPowerOfMist: 14
-                relicLeapStone: 15
-                relicGhostCard: 136
+                locationPowerOfMist: 14
+                locationLeapStone: 15
+                locationGhostCard: 136
             vertical:
-                relicPowerOfMist: 34
-                relicLeapStone: 53
-                relicGhostCard: 136
+                locationPowerOfMist: 34
+                locationLeapStone: 53
+                locationGhostCard: 136
         layers:
             layerDefinitions:
                 upperAttic: 1
@@ -1604,9 +1608,9 @@ stages:
                 dropMonsterVial34: 20
         entities:
             horizontal:
-                itemSpikeBreaker: 212
+                locationSpikeBreaker: 212
             vertical:
-                itemSpikeBreaker: 215
+                locationSpikeBreaker: 215
         layers:
             layerDefinitions:
                 roomId00: 1
@@ -1707,10 +1711,10 @@ stages:
                 dropShiitake2: 7
         entities:
             horizontal:
-                relicEyeOfVlad: 3
+                locationEyeOfVlad: 3
                 demonSwitch: 49
             vertical:
-                relicEyeOfVlad: 3
+                locationEyeOfVlad: 3
                 demonSwitch: 74
         layers:
             layerDefinitions:
@@ -1767,9 +1771,9 @@ stages:
                 dropHeartMaxUp: 11
         entities:
             horizontal:
-                relicFireOfBat: 117
+                locationFireOfBat: 117
             vertical:
-                relicFireOfBat: 117
+                locationFireOfBat: 117
         layers:
             layerDefinitions:
                 karasumansRoom: 1
@@ -1821,9 +1825,9 @@ stages:
                 dropHolySword: 7
         entities:
             horizontal:
-                relicFormOfMist: 33
+                locationFormOfMist: 33
             vertical:
-                relicFormOfMist: 32
+                locationFormOfMist: 32
         layers:
             layerDefinitions:
                 holySwordRoom: 1
@@ -1895,12 +1899,12 @@ stages:
                 breakableVaseInTallShaft1: 125
                 breakableVaseInTallShaft2: 126
                 breakableVaseInTallShaft3: 127
-                relicRibOfVlad: 140
+                locationRibOfVlad: 140
             vertical:
                 breakableVaseInTallShaft1: 125
                 breakableVaseInTallShaft2: 126
                 breakableVaseInTallShaft3: 127
-                relicRibOfVlad: 140
+                locationRibOfVlad: 140
         layers:
             layerDefinitions:
                 skelerangRoom: 1
@@ -2017,9 +2021,9 @@ stages:
                 dropRubyCirclet: 17
         entities:
             horizontal:
-                relicGasCloud: 3
+                locationGasCloud: 3
             vertical:
-                relicGasCloud: 3
+                locationGasCloud: 3
         layers:
             layerDefinitions:
                 roomId00: 1
@@ -2188,13 +2192,13 @@ stages:
                 unusedItemDrop3: 11
         entities:
             horizontal:
-                relicFaerieScroll: 80
-                relicFaerieCard: 90
-                relicSoulOfBat: 159
+                locationFaerieScroll: 80
+                locationFaerieCard: 90
+                locationSoulOfBat: 159
             vertical:
-                relicFaerieScroll: 49
-                relicFaerieCard: 90
-                relicSoulOfBat: 163
+                locationFaerieScroll: 49
+                locationFaerieCard: 90
+                locationSoulOfBat: 163
         layers:
             layerDefinitions:
                 lesserDemonArea: 1
@@ -2264,14 +2268,14 @@ stages:
                 dropStrengthPotion: 13
         entities:
             horizontal:
-                relicGravityBoots: 11
-                relicSpiritOrb: 191
+                locationGravityBoots: 11
+                locationSpiritOrb: 191
                 rightTrapdoorInSlingerStaircase: 318
                 topRightCandleInSlingerStaircase: 319
                 rightTrapdoorInBeneathRightTrapdoor: 360
             vertical:
-                relicGravityBoots: 8
-                relicSpiritOrb: 212
+                locationGravityBoots: 8
+                locationSpiritOrb: 212
                 rightTrapdoorInSlingerStaircase: 319
                 topRightCandleInSlingerStaircase: 309
                 rightTrapdoor: 359
@@ -2554,14 +2558,14 @@ stages:
                 dropGarnet: 12
         entities:
             horizontal:
-                relicSwordCard: 3
-                relicEchoOfBat: 51
+                locationSwordCard: 3
+                locationEchoOfBat: 51
                 breakableVaseInTallShaft1: 140
                 breakableVaseInTallShaft2: 141
                 breakableVaseInTallShaft3: 142
             vertical:
-                relicSwordCard: 3
-                relicEchoOfBat: 51
+                locationSwordCard: 3
+                locationEchoOfBat: 51
                 breakableVaseInTallShaft1: 142
                 breakableVaseInTallShaft2: 141
                 breakableVaseInTallShaft3: 140
@@ -2671,9 +2675,9 @@ stages:
                 unusedItemDrop: 7
         entities:
             horizontal:
-                relicSoulOfWolf: 177
+                locationSoulOfWolf: 177
             vertical:
-                relicSoulOfWolf: 159
+                locationSoulOfWolf: 159
         layers:
             layerDefinitions:
                 loadingRoomToWarpRooms: 1
@@ -2776,10 +2780,10 @@ stages:
                 dropOsafuneKatana: 26
         entities:
             horizontal:
-                relicForceOfEcho: 250
+                locationForceOfEcho: 250
                 breakableFloorInHiddenCrystalEntrance: 74
             vertical:
-                relicForceOfEcho: 253
+                locationForceOfEcho: 253
                 breakableFloorInHiddenCrystalEntrance: 69
         layers:
             layerDefinitions:
@@ -3219,9 +3223,9 @@ stages:
                 dropGarnet: 7
         entities:
             horizontal:
-                relicToothOfVlad: 99
+                locationToothOfVlad: 99
             vertical:
-                relicToothOfVlad: 99
+                locationToothOfVlad: 99
         layers:
             layerDefinitions:
                 loadingRoomToWarpRooms: 1
@@ -3324,9 +3328,9 @@ stages:
                 dropPotion: 15
         entities:
             horizontal:
-                itemSilverRing: 15
+                locationSilverRing: 15
             vertical:
-                itemSilverRing: 18
+                locationSilverRing: 18
         layers:
             layerDefinitions:
                 silverRingRoom: 1
@@ -3432,12 +3436,12 @@ stages:
         entities:
             horizontal:
                 breakableFloorInHiddenCrystalEntrance: 88
-                relicHolySymbol: 317
-                relicMermanStatue: 352
+                locationHolySymbol: 317
+                locationMermanStatue: 352
             vertical:
                 breakableFloorInHiddenCrystalEntrance: 93
-                relicHolySymbol: 318
-                relicMermanStatue: 355
+                locationHolySymbol: 318
+                locationMermanStatue: 355
         layers:
             layerDefinitions:
                 longDrop: 1
