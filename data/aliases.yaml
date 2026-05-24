@@ -1739,8 +1739,8 @@ stages:
             cerberusRoom: 2
             demonSwitch: 3
             demonCard: 11
-            triggerTeleporterToCatacombs: 18
-            triggerTeleporterToUndergroundCaverns: 16
+            triggerTeleporterToCatacombs: 16
+            triggerTeleporterToUndergroundCaverns: 18
             triggerTeleporterToWarpRooms: 17
             fourWayIntersection: 7
             karmaCoinRoom: 9
