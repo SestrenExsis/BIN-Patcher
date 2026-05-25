@@ -281,3 +281,63 @@ miscellaneous:
           - action: set
             type: property
             property: stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToCastleEntrance.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.castleEntrance.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToCastleEntrance.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.castleEntrance.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToAbandonedMine.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.abandonedMine.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToAbandonedMine.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.abandonedMine.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToOuterWall.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.outerWall.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToOuterWall.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.outerWall.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToCastleKeep.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.castleKeep.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToCastleKeep.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.castleKeep.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToOlroxsQuarters.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.olroxsQuarters.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToOlroxsQuarters.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.olroxsQuarters.roomY
