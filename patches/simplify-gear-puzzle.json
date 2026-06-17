@@ -9,13 +9,13 @@
         {
             "changeType": "merge",
             "merge": {
-                "stages.clockTower.gearPuzzle.targetRotations=": [
+                "stages.clockTower.constants.gearPuzzle.targetRotations.data=": [
                     256,
                     256,
                     256,
                     256
                 ],
-                "stages.reverseClockTower.gearPuzzle.targetRotations=": [
+                "stages.reverseClockTower.constants.gearPuzzle.targetRotations.data=": [
                     256,
                     256,
                     256,
