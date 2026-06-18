@@ -155,7 +155,7 @@ const argv = yargs(process.argv.slice(2))
                     })
                     let matchingAlias = null
                     Object.entries(aliasData[argv.name]).forEach(([roomAlias, roomId]) => {
-                        if (roomId === matchingRoomId) {
+                        if (roomId == matchingRoomId) { // Strings and integers representing the same value should match
                             matchingAlias = roomAlias
                         }
                     })
