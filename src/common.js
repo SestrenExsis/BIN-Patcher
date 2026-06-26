@@ -1,6 +1,12 @@
 import aliases from '../build/aliases.json' with { type: 'json' }
 
 export class Address {
+
+    static sectorHeaderSize = 24
+    static sectorDataSize = 2048
+    static sectorErrorCorrectionDataSize = 280
+    static sectorSize = Address.sectorHeaderSize + Address.sectorDataSize + Address.sectorErrorCorrectionDataSize
+
     constructor(addressType, address, offset=0) {
         switch (addressType) {
             case 'DISC':
@@ -9,6 +15,19 @@ export class Address {
             default:
                 this.gameDataAddress = toVal(address) + toVal(offset)
                 break
+        }
+    }
+
+    valueOf() {
+        return {
+            gameData: {
+                hex: toHex(this.gameDataAddress),
+                value: this.gameDataAddress,
+            },
+            disc: {
+                hex: toHex(this.toDiscAddress()),
+                value: this.toDiscAddress(),
+            },
         }
     }
 
@@ -23,11 +42,6 @@ export class Address {
     toGameDataAddress(offset=0) {
         return this.gameDataAddress + toVal(offset)
     }
-
-    static sectorHeaderSize = 24
-    static sectorDataSize = 2048
-    static sectorErrorCorrectionDataSize = 280
-    static sectorSize = Address.sectorHeaderSize + Address.sectorDataSize + Address.sectorErrorCorrectionDataSize
 
     static getGamedataAddress(discAddress) {
         const addressValue = toVal(discAddress)
