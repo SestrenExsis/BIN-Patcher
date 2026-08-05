@@ -11,18 +11,18 @@
             "changeType": "merge",
             "merge": {
                 "stages.castleEntrance": {
-                    "entities.horizontal.relicPowerOfWolf": {
+                    "entities.horizontal.locationPowerOfWolf": {
                         "entityRoomIndex=": 18
                     },
-                    "entities.vertical.relicPowerOfWolf": {
+                    "entities.vertical.locationPowerOfWolf": {
                         "entityRoomIndex=": 18
                     }
                 },
                 "stages.castleEntranceRevisited": {
-                    "entities.horizontal.relicPowerOfWolf": {
+                    "entities.horizontal.locationPowerOfWolf": {
                         "entityRoomIndex=": 18
                     },
-                    "entities.vertical.relicPowerOfWolf": {
+                    "entities.vertical.locationPowerOfWolf": {
                         "entityRoomIndex=": 18
                     }
                 }
