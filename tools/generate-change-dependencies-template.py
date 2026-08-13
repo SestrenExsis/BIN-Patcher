@@ -2710,33 +2710,20 @@ ordered_dependency_names = [
 ]
 
 live_map_repaints = [
-    # (address, source_stage_name, source_room_name, offset, edge, special_id)
-    # Underground Caverns
-    (0x000E7248 + 0x00, 'undergroundCaverns', 'leftFerrymanRoute', 5, 'left', 'a'),
-    (0x000E7248 + 0x08, 'undergroundCaverns', 'leftFerrymanRoute', 1, 'top', 'a'),
-    (0x000E7248 + 0x0C, 'undergroundCaverns', 'leftFerrymanRoute', 7, 'left', 'b'),
-    (0x000E7248 + 0x14, 'undergroundCaverns', 'leftFerrymanRoute', 1, 'top', 'b'),
-    (0x000E7248 + 0x18, 'undergroundCaverns', 'rightFerrymanRoute', 3, 'left', 'a'),
-    (0x000E7248 + 0x20, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'a'),
-    (0x000E7248 + 0x24, 'undergroundCaverns', 'rightFerrymanRoute', 4, 'left', 'b'),
-    (0x000E7248 + 0x2C, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'b'),
-    (0x000E7248 + 0x30, 'undergroundCaverns', 'rightFerrymanRoute', 5, 'left', 'c'),
-    (0x000E7248 + 0x38, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'c'),
-    (0x000E7248 + 0x3C, 'undergroundCaverns', 'rightFerrymanRoute', 8, 'left', 'd'),
-    (0x000E7248 + 0x44, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'd'),
-    # Reverse Caverns
-    (0x000E7248 + 0x50, 'undergroundCaverns', 'leftFerrymanRoute', 5, 'left', 'a'),
-    (0x000E7248 + 0x54, 'undergroundCaverns', 'leftFerrymanRoute', 1, 'top', 'a'),
-    (0x000E7248 + 0x60, 'undergroundCaverns', 'leftFerrymanRoute', 7, 'left', 'b'),
-    (0x000E7248 + 0x64, 'undergroundCaverns', 'leftFerrymanRoute', 1, 'top', 'b'),
-    (0x000E7248 + 0x70, 'undergroundCaverns', 'rightFerrymanRoute', 3, 'left', 'a'),
-    (0x000E7248 + 0x74, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'a'),
-    (0x000E7248 + 0x80, 'undergroundCaverns', 'rightFerrymanRoute', 4, 'left', 'b'),
-    (0x000E7248 + 0x84, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'b'),
-    (0x000E7248 + 0x90, 'undergroundCaverns', 'rightFerrymanRoute', 5, 'left', 'c'),
-    (0x000E7248 + 0x94, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'c'),
-    (0x000E7248 + 0xA0, 'undergroundCaverns', 'rightFerrymanRoute', 8, 'left', 'd'),
-    (0x000E7248 + 0xA4, 'undergroundCaverns', 'rightFerrymanRoute', 1, 'top', 'd'),
+    # (special_id, address_a, address_b, offset, room_name, edge)
+    # Underground Caverns and Reverse Caverns
+    ('a', 0x000E7248 + 0x00, 0x000E7248 + 0x50, 5, 'leftFerrymanRoute', 'left'),
+    ('a', 0x000E7248 + 0x08, 0x000E7248 + 0x54, 1, 'leftFerrymanRoute', 'top'),
+    ('b', 0x000E7248 + 0x0C, 0x000E7248 + 0x60, 7, 'leftFerrymanRoute', 'left'),
+    ('b', 0x000E7248 + 0x14, 0x000E7248 + 0x64, 1, 'leftFerrymanRoute', 'top'),
+    ('c', 0x000E7248 + 0x18, 0x000E7248 + 0x70, 3, 'rightFerrymanRoute', 'left'),
+    ('c', 0x000E7248 + 0x20, 0x000E7248 + 0x74, 1, 'rightFerrymanRoute', 'top'),
+    ('d', 0x000E7248 + 0x24, 0x000E7248 + 0x80, 4, 'rightFerrymanRoute', 'left'),
+    ('d', 0x000E7248 + 0x2C, 0x000E7248 + 0x84, 1, 'rightFerrymanRoute', 'top'),
+    ('e', 0x000E7248 + 0x30, 0x000E7248 + 0x90, 5, 'rightFerrymanRoute', 'left'),
+    ('e', 0x000E7248 + 0x38, 0x000E7248 + 0x94, 1, 'rightFerrymanRoute', 'top'),
+    ('f', 0x000E7248 + 0x3C, 0x000E7248 + 0xA0, 8, 'rightFerrymanRoute', 'left'),
+    ('f', 0x000E7248 + 0x44, 0x000E7248 + 0xA4, 1, 'rightFerrymanRoute', 'top'),
 ]
 
 if __name__ == '__main__':
@@ -2953,33 +2940,37 @@ if __name__ == '__main__':
                     print(transformation_name)
                     dependencies['bossRooms.leftsAndTops'][transformation_name] = transformation
         # liveMapRepaints
-        for (address, stage_name, room_name, offset, edge, special_id) in live_map_repaints:
-            transformation = [
-                {
-                    'action': 'get',
-                    'type': 'property',
-                    'property': f'stages.{stage_name}.rooms.{room_name}.{edge}',
-                },
-                {
-                    'action': 'add',
-                    'type': 'constant',
-                    'constant': offset,
-                },
-                {
-                    'action': 'set',
-                    'type': 'address',
-                    'name': '.'.join(('liveMapRepaints', stage_name, room_name, special_id, edge)),
-                    'address': address,
-                    'element': {
-                        'structure': 'value',
-                        'type': 'u8',
+        for (special_id, address_a, address_b, offset, room_name, edge) in live_map_repaints:
+            for (castle_name, address) in (
+                ('firstCastle', address_a),
+                ('reverseCastle', address_b),
+            ):
+                transformation = [
+                    {
+                        'action': 'get',
+                        'type': 'property',
+                        'property': f'stages.undergroundCaverns.rooms.{room_name}.{edge}',
                     },
-                },
-            ]
-            transformation_name = transformation[-1]['name']
-            print(transformation_name)
-            dependency_name = 'liveMapRepaints'
-            dependencies[dependency_name][transformation_name] = transformation
+                    {
+                        'action': 'add',
+                        'type': 'constant',
+                        'constant': offset,
+                    },
+                    {
+                        'action': 'set',
+                        'type': 'address',
+                        'name': '.'.join(('liveMapRepaints', castle_name, special_id, edge)),
+                        'address': address,
+                        'element': {
+                            'structure': 'value',
+                            'type': 'u8',
+                        },
+                    },
+                ]
+                transformation_name = transformation[-1]['name']
+                print(transformation_name)
+                dependency_name = 'liveMapRepaints'
+                dependencies[dependency_name][transformation_name] = transformation
         # Generate output file
         target = {
             'authors': [
