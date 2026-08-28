@@ -15,7 +15,7 @@ node sotn patch -p "build/current-patch.json" -c "patches/normalize-olroxs-quart
 node sotn patch -p "build/current-patch.json" -c "patches/normalize-underground-caverns.json"
 node sotn patch -p "build/current-patch.json" -c "patches/simplify-gear-puzzle.json"
 
-@REM node sotn patch -p "build/current-patch.json" -c "patches/DenseBeret0699.json"
+# node sotn patch -p "build/current-patch.json" -c "patches/DenseBeret0699.json"
 
 node sotn patch -p "build/current-patch.json" -c "build/change-dependencies.json"
 

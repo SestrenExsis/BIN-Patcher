@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import yaml
@@ -2704,13 +2705,39 @@ ordered_dependency_names = [
     'secretMapTileReveals',
     'bossTeleporters',
     'familiarEvents',
+    'liveMapRepaints',
     'miscellaneous',
 ]
 
+live_map_repaints = [
+    # (special_id, address_a, address_b, offset, room_name, edge)
+    # Underground Caverns and Reverse Caverns
+    ('a', 0x000E7248 + 0x00, 0x000E7248 + 0x50, 5, 'leftFerrymanRoute', 'left'),
+    ('a', 0x000E7248 + 0x08, 0x000E7248 + 0x54, 1, 'leftFerrymanRoute', 'top'),
+    ('b', 0x000E7248 + 0x0C, 0x000E7248 + 0x60, 7, 'leftFerrymanRoute', 'left'),
+    ('b', 0x000E7248 + 0x14, 0x000E7248 + 0x64, 1, 'leftFerrymanRoute', 'top'),
+    ('c', 0x000E7248 + 0x18, 0x000E7248 + 0x70, 3, 'rightFerrymanRoute', 'left'),
+    ('c', 0x000E7248 + 0x20, 0x000E7248 + 0x74, 1, 'rightFerrymanRoute', 'top'),
+    ('d', 0x000E7248 + 0x24, 0x000E7248 + 0x80, 4, 'rightFerrymanRoute', 'left'),
+    ('d', 0x000E7248 + 0x2C, 0x000E7248 + 0x84, 1, 'rightFerrymanRoute', 'top'),
+    ('e', 0x000E7248 + 0x30, 0x000E7248 + 0x90, 5, 'rightFerrymanRoute', 'left'),
+    ('e', 0x000E7248 + 0x38, 0x000E7248 + 0x94, 1, 'rightFerrymanRoute', 'top'),
+    ('f', 0x000E7248 + 0x3C, 0x000E7248 + 0xA0, 8, 'rightFerrymanRoute', 'left'),
+    ('f', 0x000E7248 + 0x44, 0x000E7248 + 0xA4, 1, 'rightFerrymanRoute', 'top'),
+]
+
 if __name__ == '__main__':
+    '''
+    Usage
+    python generate-change-dependencies-template.py TEMPLATE TARGET
+    '''
+    parser = argparse.ArgumentParser()
+    parser.add_argument('template', help='Input a filepath for the template YAML', type=str)
+    parser.add_argument('target', help='Input a filepath for the target change dependencies JSON', type=str)
+    args = parser.parse_args()
     with (
-        open(os.path.join('data', 'change-dependencies-template.yaml')) as source_file,
-        open(os.path.join('build', 'change-dependencies.json'), 'w') as target_file,
+        open(os.path.normpath(args.template)) as source_file,
+        open(os.path.normpath(args.target), 'w') as target_file,
     ):
         dependencies = {}
         template = yaml.safe_load(source_file)
@@ -2912,6 +2939,38 @@ if __name__ == '__main__':
                     transformation_name = transformation[-1]['property']
                     print(transformation_name)
                     dependencies['bossRooms.leftsAndTops'][transformation_name] = transformation
+        # liveMapRepaints
+        for (special_id, address_a, address_b, offset, room_name, edge) in live_map_repaints:
+            for (castle_name, address) in (
+                ('firstCastle', address_a),
+                ('reverseCastle', address_b),
+            ):
+                transformation = [
+                    {
+                        'action': 'get',
+                        'type': 'property',
+                        'property': f'stages.undergroundCaverns.rooms.{room_name}.{edge}',
+                    },
+                    {
+                        'action': 'add',
+                        'type': 'constant',
+                        'constant': offset,
+                    },
+                    {
+                        'action': 'set',
+                        'type': 'address',
+                        'name': '.'.join(('liveMapRepaints', castle_name, special_id, edge)),
+                        'address': address,
+                        'element': {
+                            'structure': 'value',
+                            'type': 'u8',
+                        },
+                    },
+                ]
+                transformation_name = transformation[-1]['name']
+                print(transformation_name)
+                dependency_name = 'liveMapRepaints'
+                dependencies[dependency_name][transformation_name] = transformation
         # Generate output file
         target = {
             'authors': [

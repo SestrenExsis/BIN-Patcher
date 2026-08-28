@@ -80,7 +80,7 @@ function extractObject(bin, elementInfo, baseOffset) {
 function extractArray(bin, elementInfo, baseOffset) {
     const data = []
     let offset = toVal(baseOffset)
-    if (elementInfo.structure == 'value-array') {
+    if (elementInfo.structure === 'value-array') {
         elementInfo.size = getSizeOfType(elementInfo.type)
     }
     let validInd = true
@@ -102,7 +102,7 @@ function extractArray(bin, elementInfo, baseOffset) {
                     elementInfo.postProcessing.forEach((processInfo) => {
                         switch (processInfo.process) {
                             case 'paddingAfterElement':
-                                if (processInfo.whenArrayLength == data.length) {
+                                if (processInfo.whenArrayLength === data.length) {
                                     offset += processInfo.paddingAmount
                                 }
                                 break
@@ -143,7 +143,7 @@ function extractArray(bin, elementInfo, baseOffset) {
                 break
             case 'sentinelValues':
                 const sentinelValue = elementInfo.constraint.sentinelValues[sentinelId]
-                if (bin.read(sentinelValue.type, false) == toVal(sentinelValue.value)) {
+                if (bin.read(sentinelValue.type, false) === toVal(sentinelValue.value)) {
                     sentinelId++
                 }
                 else {
@@ -227,7 +227,7 @@ function extractCastleMapReveals(bin, elementInfo, baseOffset) {
             castleMapReveal.grid.push(rowData)
         }
         data.push(castleMapReveal)
-        if (bin.read('uint8', false) == 0xFF) {
+        if (bin.read('uint8', false) === 0xFF) {
             const bytePadding = 4 - elementInfo.footprint % 4
             elementInfo.footprint += bytePadding
             break
@@ -328,7 +328,7 @@ export function aliasNodeKeys(sourceData, aliasesData) {
                 leafNodeFound = true
             }
             Object.entries(aliasesData).forEach(([aliasName, aliasKey]) => {
-                if (typeof aliasKey === 'string' && aliasKey == nodeName) {
+                if (typeof aliasKey === 'string' && aliasKey === nodeName) {
                     leafNodeFound = true
                     nodeKey = aliasName
                 }
@@ -414,7 +414,7 @@ export function maskNode(nodeInfo, nodeStructure) {
 export function maskNodes(sourceData, nodeNameToMask) {
     let result = {}
     Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
-        if (nodeName == nodeNameToMask) {
+        if (nodeName === nodeNameToMask) {
             const nodeStructure = sourceData.metadata.element.structure
             result[nodeName] = maskNode(nodeInfo, nodeStructure)
         }
@@ -431,7 +431,7 @@ export function maskNodes(sourceData, nodeNameToMask) {
 export function promoteNodes(sourceData, nodeNameToPromote) {
     let result = {}
     Object.entries(sourceData).forEach(([nodeName, nodeInfo]) => {
-        if (nodeName == nodeNameToPromote) {
+        if (nodeName === nodeNameToPromote) {
             result = nodeInfo
         }
         else if (['metadata', 'data'].includes(nodeName)) {

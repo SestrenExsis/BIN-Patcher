@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import yaml
@@ -127,7 +128,7 @@ data = {
         'bossScylla': (0x00108C, 37),
         'castleEntrance': (0x001C8C, 10),
         'castleEntranceRevisited': (0x001618, 10),
-        'castleKeep': (0x000D10, 19),
+        'castleKeep': (0x000D10, 20),
         'catacombs': (0x00174C, 21),
         'cave': (0x0007CC, 8),
         'clockTower': (0x00111C, 12),
@@ -135,11 +136,11 @@ data = {
         'deathWingsLair': (0x000D40, 12),
         'floatingCatacombs': (0x0013C8, 18),
         'forbiddenLibrary': (0x000BC8, 9),
-        'longLibrary': (0x001A90, 11),
+        'longLibrary': (0x001A90, 12),
         'marbleGallery': (0x001100, 14),
         'necromancyLaboratory': (0x000CC8, 10),
         'olroxsQuarters': (0x000FEC, 13),
-        'outerWall': (0x001A2C, 7),
+        'outerWall': (0x001A2C, 8),
         'reverseCaverns': (0x001620, 27),
         'reverseClockTower': (0x000EC8, 12),
         'reverseColosseum': (0x000A3C, 8),
@@ -157,6 +158,8 @@ data = {
         },
         'bossAkmodanII': {
             'boss': 0x013F30,
+            'stage': 0x013F90,
+            'stage2': 0x01402C,
         },
         'bossBeelzebub': {
             'boss': 0x014E20,
@@ -203,8 +206,8 @@ data = {
             'stage2': 0x012CDC,
         },
         'bossMinotaurAndWerewolf': {
-            'boss': 0x024588,
-            'stage': 0x026EA8,
+            'boss': 0x026EA8,
+            'stage': 0x024588,
         },
         'bossOlrox': {
             'boss': 0x02D47C,
@@ -214,26 +217,27 @@ data = {
             'stage': 0x038714,
         },
         'bossScylla': {
-            'boss': 0x0264B0,
-            'boss2': 0x0264F4,
-            'boss3': 0x026690,
-            'stage': 0x0265FC,
+            'boss': 0x0265FC,
+            'stage': 0x0264B0,
+            'stage2': 0x0264F4,
+            'stage3': 0x026690,
         },
         'bossSuccubus': {
             'boss': 0x0125BC,
         },
         'bossTrio': {
-            'boss': 0x0145CC,
-            'boss2': 0x014674,
+            'boss': 0x0144F0,
+            'stage': 0x0145CC,
+            'stage2': 0x014674,
         },
         'castleEntrance': {
             'afterCastleAwakes': 0x0381C8,
             'afterMeetingDeath': 0x04027C,
         },
         'clockTower': {
-            'bossKarasuman': 0x02A658,
-            'afterKarasuman': 0x02A718,
-            'afterKarasuman2': 0x02A790,
+            'boss': 0x02A658,
+            'stage': 0x02A718,
+            'stage2': 0x02A790,
         },
         'longLibrary': {
             'boss': 0x03B700,
@@ -253,15 +257,24 @@ data = {
 
 
 if __name__ == '__main__':
+    '''
+    Usage
+    python generate-extraction-template.py TEMPLATE EXTRACTION --previous PREVIOUS
+    '''
+    parser = argparse.ArgumentParser()
+    parser.add_argument('template', help='Input a filepath for the template YAML', type=str)
+    parser.add_argument('extraction', help='Input a filepath for the target extraction JSON', type=str)
+    parser.add_argument('--previous', help='Input an optional filepath for the previous extraction JSON', type=str)
+    args = parser.parse_args()
     prev_extraction = {}
-    if os.path.isfile(os.path.join('build', 'extraction.json')):
+    if args.previous is not None:
         with (
-            open(os.path.join('build', 'extraction.json'), 'r') as prev_extraction_file,
+            open(os.path.normpath(args.previous)) as prev_extraction_file,
         ):
             prev_extraction = json.load(prev_extraction_file)
     with (
-        open(os.path.join('data', 'extraction-template.yaml')) as source_file,
-        open(os.path.join('build', 'extraction-template.json'), 'w') as target_file,
+        open(os.path.normpath(args.template)) as source_file,
+        open(os.path.normpath(args.extraction), 'w') as target_file,
     ):
         source = yaml.safe_load(source_file)
         source['familiarEvents'] = {}

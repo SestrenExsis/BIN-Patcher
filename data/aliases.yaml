@@ -5,9 +5,9 @@ bossTeleporters:
     bossGranfaloonRight: 4
     bossMinotaurAndWerewolfLeft: 5
     bossMinotaurAndWerewolfRight: 6
-    bossScyllaLeft: 7
-    bossDoppelgangerLeft: 8
-    bossDoppelgangerRight: 9
+    bossScylla: 7
+    bossDoppelganger10Left: 8
+    bossDoppelganger10Right: 9
     bossHippogryphLeft: 10
     bossHippogryphRight: 11
     bossRichter: 12
@@ -43,6 +43,125 @@ castleMapColorPalettes:
         warpRoomFills: 5
         revealedBorders: 13
         exploredBorders: 14
+enemyDefinitions:
+    archer: 305
+    armorLord: 34
+    axeKnightA: 246
+    axeKnightB: 6
+    azaghal: 224
+    bat: 64
+    bitterfly: 182
+    blackCrow: 115
+    blackPanther: 37
+    blade: 190
+    bladeMaster: 122
+    bladeSoldier: 124
+    bloodyZombie: 13
+    blueRaven: 114
+    blueVenusWeed: 392
+    blueVenusWeedFinalForm: 393
+    bombKnight: 165
+    boneArcher: 108
+    boneArk: 45
+    boneArk2: 46
+    boneHalberd: 118
+    boneMusket: 102
+    bonePillar: 183
+    boneScimitarBlue: 105
+    caveTroll: 153
+    cloakedKnight: 271
+    cornerGuard: 180
+    corpseweed: 158
+    corpseweed2: 159
+    ctulhu: 233
+    darkOctopus: 38
+    dhuron: 146
+    diplocephalus: 16
+    discusLord: 77
+    dodoBird: 104
+    ectoplasm: 88
+    fireDemon: 79
+    fireWarg: 148
+    fishhead: 277
+    flailGuard: 68
+    fleaArmor: 41
+    fleaMan: 40
+    fleaRider: 48
+    flyingZombie: 14
+    flyingZombie2: 15
+    frog: 107
+    frozenHalf: 217
+    frozenShade: 99
+    ghost: 156
+    ghostDancer: 216
+    gorgon: 31
+    graveKeeper: 111
+    gremlin: 225
+    guardian: 396
+    gurkha: 188
+    hammer: 186
+    harpy: 239
+    hellfireBeast: 71
+    huntingGirl: 227
+    imp: 284
+    jackOBones: 116
+    karasuman: 280
+    killerFish: 350
+    lesserDemon: 23
+    lion: 262
+    lossoth: 131
+    magicTome: 251
+    malachi: 236
+    marionette: 49
+    medusaHead: 303
+    medusaHeadGolden: 304
+    mermanTypeA: 27
+    mermanTypeB: 29
+    minotaur: 386
+    novaSkeleton: 126
+    orobourous: 141
+    ouijaTable: 193
+    owlKnight: 20
+    paranthropus: 211
+    phantomSkull: 67
+    plateLord: 97
+    poltergeist: 130
+    puppetSword: 137
+    rockKnight: 167
+    salemWitch: 221
+    salome: 229
+    scarecrow: 322
+    schmoo: 323
+    shield: 140
+    skelerang: 11
+    skeleton: 75
+    skeletonApe: 83
+    skull: 121
+    skullLord: 261
+    slinger: 178
+    sniperOfGoth: 195
+    spear: 139
+    spearGuard: 93
+    spectralSwordTypeA: 129
+    spectralSwordTypeA2: 136
+    spectralSwordTypeB: 138
+    spellbook: 247
+    spikedBall: 185
+    stoneRose: 85
+    swordLord: 9
+    thornweed: 157
+    tinMan: 264
+    toad: 106
+    tombstone: 113
+    valhallaKnight: 133
+    vandalSword: 228
+    venusWeed: 161
+    venusWeedFinalForm: 162
+    wereskeleton: 61
+    werewolf: 389
+    wingedGuard: 128
+    yorick: 120
+    zombie: 110
 familiarEvents:
     bat:
         catacombsDarkRoomBat: 1
@@ -383,16 +502,27 @@ familiarEvents:
 overlays:
     abandonedMine: 5
     alchemyLaboratory: 12
+    antiChapel: 38
+    blackMarbleGallery: 32
     bossAkmodanII: 55
+    bossBeelzebub: 61
     bossCerberus: 22
+    bossCreature: 58
+    bossDeath: 60
     bossDoppelganger10: 26
-    bossGranfaloon: 29
+    bossDoppelganger40: 57
+    bossDracula: 56
     bossGalamoth: 54
+    bossGranfaloon: 29
     bossHippogryph: 25
+    bossMedusa: 59
     bossMinotaurAndWerewolf: 28
+    bossOlrox: 30
     bossRichter: 24
     bossScylla: 27
     bossSuccubus: 18
+    bossTrio: 62
+    cave: 37
     castleCenter: 8
     castleEntrance: 65
     castleEntranceRevisited: 7
@@ -401,14 +531,24 @@ overlays:
     clockTower: 13
     colosseum: 10
     cutsceneMeetingMariaInClockRoom: 23
+    deathWingsLair: 36
     debug: 64
+    forbiddenLibrary: 34
     floatingCatacombs: 35
     longLibrary: 2
     marbleGallery: 0
+    necromancyLaboratory: 44
     olroxsQuarters: 4
     outerWall: 1
+    prologue: 31
     reverseCastleCenter: 40
     reverseKeep: 43
+    reverseCastleEntrance: 39
+    reverseCaverns: 41
+    reverseClockTower: 45
+    reverseColosseum: 42
+    reverseOuterWall: 33
+    reverseWarpRooms: 46
     royalChapel: 6
     undergroundCaverns: 9
     warpRooms: 14
@@ -432,20 +572,24 @@ stages:
     abandonedMine:
         constants:
             uniqueItemDrops:
-                powerOfSireInPeanutsRoom: 0
-                karmaCoinInKarmaCoinRoom: 1
-                unusedItemDrop: 2
-                turkeyInSnakeColumn: 3
-                ringOfAresInSnakeColumn: 4
-                combatKnifeInKarmaCoinRoom: 5
-                shiitake1InLowerStairwell: 6
-                shiitake2InLowerStairwell: 7
-                barleyTeaInPeanutsRoom: 8
-                peanuts1InPeanutsRoom: 9
-                peanuts2InPeanutsRoom: 10
-                peanuts3InPeanutsRoom: 11
-                peanuts4InPeanutsRoom: 12
+                dropPowerOfSire: 0
+                dropKarmaCoin: 1
+                dropUnusedItem: 2
+                dropTurkey: 3
+                dropRingOfAres: 4
+                dropCombatKnife: 5
+                dropShiitake1: 6
+                dropShiitake2: 7
+                dropBarleyTea: 8
+                dropPeanuts1: 9
+                dropPeanuts2: 10
+                dropPeanuts3: 11
+                dropPeanuts4: 12
         entities:
+            horizontal:
+                locationDemonCard: 23
+            vertical:
+                locationDemonCard: 25
             horizontalRows:
                 bend: 1
                 cerberusRoom: 6
@@ -512,8 +656,26 @@ stages:
             loadingRoom: '0x00f360'
             saveRoomA: '0x00f560'
     alchemyLaboratory:
+        constants:
+            breakableContainerDrops:
+                batCard: 2
+                skillOfWolf: 3
+            uniqueItemDrops:
+                dropHideCuirass: 0
+                dropHeartMaxUp: 1
+                dropClothCape: 2
+                dropLifeMaxUp: 3
+                dropUnusedItem1: 4
+                dropUnusedItem2: 5
+                dropSunglasses: 6
+                dropResistThunder: 7
+                dropLeatherShield: 8
+                dropBasilard: 9
+                dropPotion: 10
         entities:
             horizontal:
+                locationBatCard: 52
+                locationBatCardDuplicate: 59
                 glassVatAInGlassVats: 132
                 glassVatBInGlassVats: 133
                 glassVatCInGlassVats: 134
@@ -521,6 +683,8 @@ stages:
                 glassVatEInGlassVats: 136
                 breakableFloorInTallZigZagRoom: 33
             vertical:
+                locationBatCard: 52
+                locationBatCardDuplicate: 63
                 glassVatAInGlassVats: 132
                 glassVatBInGlassVats: 133
                 glassVatCInGlassVats: 134
@@ -625,6 +789,31 @@ stages:
             saveRoomC: '0x02065c'
             loadingRoom: '0x02085c'
     antiChapel:
+        constants:
+            uniqueItemDrops:
+                dropUnused1: 0
+                dropUnused2: 1
+                dropFireBoomerang: 2
+                dropDiamond: 3
+                dropZircon: 4
+                dropHeartMaxUp1: 5
+                dropShuriken: 6
+                dropTNT: 7
+                dropBoomerang: 8
+                dropJavelin: 9
+                dropMannaPrism: 10
+                dropSmartPotion: 11
+                dropLifeMaxUp: 12
+                dropTalwar: 13
+                dropBwakaKnife: 14
+                dropMagicMissile: 15
+                dropTwilightCloak: 16
+                dropHeartMaxUp2: 17
+        entities:
+            horizontal:
+                locationHeartOfVlad: 18
+            vertical:
+                locationHeartOfVlad: 20
         layers:
             layerDefinitions:
                 silverRingRoom: 1
@@ -721,6 +910,20 @@ stages:
             saveRoomA: '0x025280'
             loadingRoom: '0x022e80'
     blackMarbleGallery:
+        constants:
+            uniqueItemDrops:
+                dropLibraryCard: 0
+                dropPotion: 1
+                dropAntivenom: 2
+                dropLifeMaxUp: 3
+                dropHeartMaxUp: 4
+                dropResistDark: 5
+                dropResistHoly: 6
+                dropResistThunder: 7
+                dropResistFire: 8
+                dropMealTicket: 9
+                dropIronBall: 10
+                dropHeartRefresh: 11
         entities:
             horizontal:
                 rightTrapdoorInSlingerStaircase: 263
@@ -987,6 +1190,45 @@ stages:
         rooms:
             throneRoom: 0
     bossScylla:
+        constants:
+            uniqueItemDrops:
+                dropHeartMaxUp1: 0
+                dropLifeMaxUp1: 1
+                dropCrystalCloak: 2
+                dropUnusedItem1: 3
+                dropAntivenom: 4
+                dropLifeMaxUp2: 5
+                dropLifeMaxUp3: 6
+                dropHeraldShield: 7
+                dropUnusedItem2: 8
+                dropZircon: 9
+                dropGoldRing: 10
+                dropBandanna: 11
+                dropShiitake1: 12
+                dropClaymore: 13
+                dropMealTicket1: 14
+                dropMealTicket2: 15
+                dropMealTicket3: 16
+                dropMealTicket4: 17
+                dropMoonstone: 18
+                dropScimitar: 19
+                dropResistIce: 20
+                dropPotRoast: 21
+                dropOnyx: 22
+                dropKnuckleDuster: 23
+                dropLifeMaxUp4: 24
+                dropElixir: 25
+                dropToadstool1: 26
+                dropShiitake2: 27
+                dropLifeMaxUp5: 28
+                dropHeartMaxUp2: 29
+                dropPentagram: 30
+                dropSecretBoots: 31
+                dropShiitake3: 32
+                dropToadstool2: 33
+                dropMonsterVial1: 34
+                dropShiitake4: 35
+                dropNunchaku: 36
         layers:
             layerDefinitions:
                 scyllaRoom: 0
@@ -1043,12 +1285,26 @@ stages:
             triggerTeleporterToMarbleGallery: 3
             unknownRoomId02: 2
     castleEntranceRevisited:
+        constants:
+            uniqueItemDrops:
+                dropHeartMaxUp1: 0
+                dropLifeMaxUp1: 1
+                dropLifeApple: 2
+                dropUnusedItem: 3
+                dropShieldPotion: 4
+                dropHolyMail: 5
+                dropLifeMaxUp2: 6
+                dropHeartMaxUp3: 7
+                dropLifeMaxUp3: 8
+                dropJewelSword: 9
         entities:
             horizontal:
-                relicPowerOfWolf: 111
+                locationCubeOfZoe: 87
+                locationPowerOfWolf: 111
                 enemyBatInMermanRoom1: 132
             vertical:
-                relicPowerOfWolf: 100
+                locationCubeOfZoe: 87
+                locationPowerOfWolf: 100
                 enemyBatInMermanRoom1: 126
         layers:
             layerDefinitions:
@@ -1120,13 +1376,71 @@ stages:
             stairwellAfterDeath: 12
             wargHallway: 9
             zombieHallway: 2
+        tilemaps:
+            afterDrawbridge: '0x0168f4'
+            '0x0174f4': '0x0174f4'
+            dropUnderPortcullis: '0x0176f4'
+            dropUnderPortcullisBackground: '0x017af4'
+            zombieHallway: '0x017ef4'
+            '0x018cf4': '0x018cf4'
+            holyMailRoom: '0x018ef4'
+            holyMailRoomBackground: '0x0190f4'
+            atticStaircase: '0x0192f4'
+            atticStaircaseBackground: '0x0196f4'
+            atticHallway: '0x019af4'
+            atticHallwayBackground: '0x01a2f4'
+            atticEntrance: '0x01aaf4'
+            atticEntranceBackground: '0x01acf4'
+            mermanRoom: '0x01aef4'
+            mermanRoomBackground: '0x01baf4'
+            jewelSwordRoom: '0x01c6f4'
+            jewelSwordRoomBackground: '0x01c8f4'
+            wargHallway: '0x01caf4'
+            '0x01d6f4': '0x01d6f4'
+            shortcutToUndergroundCaverns: '0x01d8f4'
+            shortcutToUndergroundCavernsBackground: '0x01daf4'
+            meetingRoomWithDeath: '0x01dcf4'
+            '0x01e0f4': '0x01e0f4'
+            stairwellAfterDeath: '0x01e2f4'
+            stairwellAfterDeathBackground: '0x01e8f4'
+            gargoyleRoom: '0x01eef4'
+            '0x01f0f4': '0x01f0f4'
+            heartMaxUpRoom: '0x01f2f4'
+            heartMaxUpRoomBackground: '0x01f4f4'
+            cubeOfZoeRoom: '0x01f6f4'
+            cubeOfZoeRoomBackground: '0x0202f4'
+            shortcutToWarpRooms: '0x020ef4'
+            shortcutToWarpRoomsBackground: '0x0210f4'
+            lifeMaxUpRoom: '0x0212f4'
+            lifeMaxUpRoomBackground: '0x0214f4'
+            loadingRoomToMarbleGallery: '0x0216f4'
+            loadingRoomToWarpRooms: '0x0216f4'
+            loadingRoomToAlchemyLaboratory: '0x0216f4'
+            loadingRoomToUndergroundCaverns: '0x0216f4'
+            saveRoomA: '0x0218f4'
+            saveRoomB: '0x021af4'
+            saveRoomC: '0x021af4'
     castleEntrance:
+        constants:
+            uniqueItemDrops:
+                dropHeartMaxUp1: 0
+                dropLifeMaxUp1: 1
+                dropLifeApple: 2
+                dropUnusedItem: 3
+                dropShieldPotion: 4
+                dropHolyMail: 5
+                dropLifeMaxUp2: 6
+                dropHeartMaxUp3: 7
+                dropLifeMaxUp3: 8
+                dropJewelSword: 9
         entities:
             horizontal:
-                relicPowerOfWolf: 105
+                locationCubeOfZoe: 85
+                locationPowerOfWolf: 105
                 enemyBatInMermanRoom1: 126
             vertical:
-                relicPowerOfWolf: 96
+                locationCubeOfZoe: 85
+                locationPowerOfWolf: 96
                 enemyBatInMermanRoom1: 119
         layers:
             layerDefinitions:
@@ -1249,6 +1563,37 @@ stages:
             saveRoomWithLeftPassage: '0x026238'
             saveRoomWithRightPassage: '0x026438'
     castleKeep:
+        constants:
+            uniqueItemDrops:
+                dropTurquoise: 0
+                dropTurkey1: 1
+                dropFireMail: 2
+                dropTyrfing: 3
+                dropSirloin: 4
+                dropTurkey2: 5
+                dropPotRoast: 6
+                dropFrankfurter: 7
+                dropResistStone: 8
+                dropResistDark: 9
+                dropResistHoly: 10
+                dropPlatinumMail: 11
+                dropFalchion: 12
+                dropLifeMaxUp1: 13
+                dropLifeMaxUp2: 14
+                dropHeartMaxUp1: 15
+                dropHeartMaxUp2: 16
+                dropUnusedItem1: 17
+                dropHeartMaxUp3: 18
+                dropUnusedItem2: 19
+        entities:
+            horizontal:
+                locationPowerOfMist: 14
+                locationLeapStone: 15
+                locationGhostCard: 136
+            vertical:
+                locationPowerOfMist: 34
+                locationLeapStone: 53
+                locationGhostCard: 136
         layers:
             layerDefinitions:
                 upperAttic: 1
@@ -1282,6 +1627,34 @@ stages:
             tyrfingRoom: 8
             upperAttic: 0
     catacombs:
+        constants:
+            uniqueItemDrops:
+                dropCatEyeCirclet: 0
+                dropIcebrand: 1
+                dropWalkArmor: 2
+                dropMormegil: 3
+                dropLibraryCard: 4
+                dropLifeMaxUp1: 5
+                dropHeartMaxUp1: 6
+                dropBallroomMask: 7
+                dropBloodstone: 8
+                dropLifeMaxUp2: 9
+                dropHeartMaxUp2: 10
+                dropCrossShuriken1: 11
+                dropCrossShuriken2: 12
+                dropKarmaCoin1: 13
+                dropKarmaCoin2: 14
+                dropPorkBun: 15
+                dropSpikeBreaker: 16
+                dropMonsterVial31: 17
+                dropMonsterVial32: 18
+                dropMonsterVial33: 19
+                dropMonsterVial34: 20
+        entities:
+            horizontal:
+                locationSpikeBreaker: 212
+            vertical:
+                locationSpikeBreaker: 215
         layers:
             layerDefinitions:
                 roomId00: 1
@@ -1370,10 +1743,22 @@ stages:
             spikeBreakerRoom: 27
             walkArmorRoom: 8
     cave:
+        constants:
+            uniqueItemDrops:
+                dropPowerOfSire1: 0
+                dropLifeApple: 1
+                dropAlucardSword: 2
+                dropGreenTea: 3
+                dropPowerOfSire2: 4
+                dropPotRoast: 5
+                dropShiitake1: 6
+                dropShiitake2: 7
         entities:
             horizontal:
+                locationEyeOfVlad: 3
                 demonSwitch: 49
             vertical:
+                locationEyeOfVlad: 3
                 demonSwitch: 74
         layers:
             layerDefinitions:
@@ -1398,8 +1783,8 @@ stages:
             cerberusRoom: 2
             demonSwitch: 3
             demonCard: 11
-            triggerTeleporterToCatacombs: 18
-            triggerTeleporterToUndergroundCaverns: 16
+            triggerTeleporterToCatacombs: 16
+            triggerTeleporterToUndergroundCaverns: 18
             triggerTeleporterToWarpRooms: 17
             fourWayIntersection: 7
             karmaCoinRoom: 9
@@ -1414,6 +1799,25 @@ stages:
             wellLitSkullRoom: 1
             wolfsHeadColumn: 0
     clockTower:
+        constants:
+            uniqueItemDrops:
+                dropMagicMissile: 0
+                dropPentagram: 1
+                dropStoneSword: 2
+                dropStarFlail: 3
+                dropGoldPlate: 4
+                dropSteelHelm: 5
+                dropHealingMail: 6
+                dropBekatowa: 7
+                dropShamanShield: 8
+                dropIceMail: 9
+                dropLifeMaxUp: 10
+                dropHeartMaxUp: 11
+        entities:
+            horizontal:
+                locationFireOfBat: 117
+            vertical:
+                locationFireOfBat: 117
         layers:
             layerDefinitions:
                 karasumansRoom: 1
@@ -1453,6 +1857,21 @@ stages:
             spire: 4
             stairwellToOuterWall: 11
     colosseum:
+        constants:
+            uniqueItemDrops:
+                dropHeartMaxUp: 0
+                dropShieldRod: 1
+                dropUnusedItem: 2
+                dropBloodCloak: 3
+                dropKnightShield: 4
+                dropLibraryCard: 5
+                dropGreenTea: 6
+                dropHolySword: 7
+        entities:
+            horizontal:
+                locationFormOfMist: 33
+            vertical:
+                locationFormOfMist: 32
         layers:
             layerDefinitions:
                 holySwordRoom: 1
@@ -1505,15 +1924,31 @@ stages:
             triggerTeleporterA: 1
             triggerTeleporterB: 2
     deathWingsLair:
+        constants:
+            uniqueItemDrops:
+                dropOpal: 0
+                dropSwordOfHador: 1
+                dropHighPotion: 2
+                dropShieldPotion: 3
+                dropLuckPotion: 4
+                dropMannaPrism: 5
+                dropAquamarine: 6
+                dropAlucardMail: 7
+                dropLifeMaxUp: 8
+                dropHeartRefresh: 9
+                dropShuriken: 10
+                dropHeartMaxUp: 11
         entities:
             horizontal:
                 breakableVaseInTallShaft1: 125
                 breakableVaseInTallShaft2: 126
                 breakableVaseInTallShaft3: 127
+                locationRibOfVlad: 140
             vertical:
                 breakableVaseInTallShaft1: 125
                 breakableVaseInTallShaft2: 126
                 breakableVaseInTallShaft3: 127
+                locationRibOfVlad: 140
         layers:
             layerDefinitions:
                 skelerangRoom: 1
@@ -1608,6 +2043,31 @@ stages:
             saveRoomA: '0x022cec'
             loadingRoom: '0x022eec'
     floatingCatacombs:
+        constants:
+            uniqueItemDrops:
+                dropMagicMissile: 0
+                dropBuffaloStar: 1
+                dropResistThunder: 2
+                dropResistFire: 3
+                dropKarmaCoin1: 4
+                dropKarmaCoin2: 5
+                dropRedBeanBun: 6
+                dropElixir: 7
+                dropLibraryCard: 8
+                dropLifeMaxUp1: 9
+                dropHeartMaxUp1: 10
+                dropShieldPotion: 11
+                dropAttackPotion: 12
+                dropNecklaceOfJ: 13
+                dropDiamond: 14
+                dropHeartMaxUp2: 15
+                dropLifeMaxUp2: 16
+                dropRubyCirclet: 17
+        entities:
+            horizontal:
+                locationGasCloud: 3
+            vertical:
+                locationGasCloud: 3
         layers:
             layerDefinitions:
                 roomId00: 1
@@ -1696,6 +2156,17 @@ stages:
             spikeBreakerRoom: 27
             walkArmorRoom: 8
     forbiddenLibrary:
+        constants:
+            uniqueItemDrops:
+                dropTurquoise: 0
+                dropOpal: 1
+                dropLibraryCard: 2
+                dropResistFire: 3
+                dropResistIce: 4
+                dropResistStone: 5
+                dropNeutronBomb: 6
+                dropBadelaire: 7
+                dropStaurolite: 8
         layers:
             layerDefinitions:
                 lesserDemonArea: 1
@@ -1747,6 +2218,31 @@ stages:
             loadingRoomToOuterWall: '0x012b18'
             saveRoomA: '0x012d18'
     longLibrary:
+        constants:
+            shopRelics:
+                jewelOfOpen: 0
+            uniqueItemDrops:
+                unusedItemDrop1: 0
+                dropStoneMask: 1
+                dropHolyRod: 2
+                unusedItemDrop2: 3
+                dropBronzeCuirass: 4
+                dropTakemitsu: 5
+                dropOnyx: 6
+                dropFrankfurter: 7
+                dropPotion: 8
+                dropAntivenom: 9
+                dropTopazCirclet: 10
+                unusedItemDrop3: 11
+        entities:
+            horizontal:
+                locationFaerieScroll: 80
+                locationFaerieCard: 90
+                locationSoulOfBat: 159
+            vertical:
+                locationFaerieScroll: 49
+                locationFaerieCard: 90
+                locationSoulOfBat: 163
         layers:
             layerDefinitions:
                 lesserDemonArea: 1
@@ -1798,12 +2294,32 @@ stages:
             loadingRoomToOuterWall: '0x01de70'
             saveRoomA: '0x01e070'
     marbleGallery:
+        constants:
+            uniqueItemDrops:
+                dropLifeMaxUp1: 0
+                dropAlucartShield: 1
+                dropHeartMaxUp1: 2
+                dropLifeApple: 3
+                dropHammer1: 4
+                dropPotion: 5
+                dropAlucartMail: 6
+                dropAlucartSword: 7
+                dropLifeMaxUp2: 8
+                dropHeartMaxUp2: 9
+                dropLibraryCard: 10
+                dropAttackPotion: 11
+                dropHammer2: 12
+                dropStrengthPotion: 13
         entities:
             horizontal:
+                locationGravityBoots: 11
+                locationSpiritOrb: 191
                 rightTrapdoorInSlingerStaircase: 318
                 topRightCandleInSlingerStaircase: 319
                 rightTrapdoorInBeneathRightTrapdoor: 360
             vertical:
+                locationGravityBoots: 8
+                locationSpiritOrb: 212
                 rightTrapdoorInSlingerStaircase: 319
                 topRightCandleInSlingerStaircase: 309
                 rightTrapdoor: 359
@@ -1952,6 +2468,18 @@ stages:
             saveRoomA: '0x02dd1c'
             saveRoomB: '0x02df1c'
     necromancyLaboratory:
+        constants:
+            uniqueItemDrops:
+                dropLifeMaxUp1: 0
+                dropHeartMaxUp: 1
+                dropLifeMaxUp2: 2
+                dropGoddessShield: 3
+                dropMannaPrism: 4
+                dropKatana: 5
+                dropHighPotion: 6
+                dropTurquoise: 7
+                dropRingOfArcana: 8
+                dropResistDark: 9
         entities:
             horizontal:
                 breakableFloorInTallZigZagRoom: 48
@@ -2057,12 +2585,31 @@ stages:
             loadingRoomToRoyalChapel: '0x01e30c'
             loadingRoomToCastleEntrance: '0x01e30c'
     olroxsQuarters:
+        constants:
+            uniqueItemDrops:
+                unusedItemDrop1: 0
+                dropHeartMaxUp: 1
+                unusedItemDrop2: 2
+                dropGoddessShield: 3
+                dropBroadsword: 4
+                dropOnyx: 5
+                dropCheese: 6
+                dropMannaPrism: 7
+                dropResistFire: 8
+                dropLuckPotion: 9
+                dropEstoc: 10
+                dropIronBall: 11
+                dropGarnet: 12
         entities:
             horizontal:
+                locationSwordCard: 3
+                locationEchoOfBat: 51
                 breakableVaseInTallShaft1: 140
                 breakableVaseInTallShaft2: 141
                 breakableVaseInTallShaft3: 142
             vertical:
+                locationSwordCard: 3
+                locationEchoOfBat: 51
                 breakableVaseInTallShaft1: 142
                 breakableVaseInTallShaft2: 141
                 breakableVaseInTallShaft3: 140
@@ -2160,6 +2707,21 @@ stages:
             saveRoomA: '0x024028'
             loadingRoom: '0x024228'
     outerWall:
+        constants:
+            uniqueItemDrops:
+                dropJewelKnuckles: 0
+                dropMirrorCuirass: 1
+                dropHeartMaxUp: 2
+                dropGarnet: 3
+                dropGladius: 4
+                dropLifeMaxUp: 5
+                dropZircon: 6
+                unusedItemDrop: 7
+        entities:
+            horizontal:
+                locationSoulOfWolf: 177
+            vertical:
+                locationSoulOfWolf: 159
         layers:
             layerDefinitions:
                 loadingRoomToWarpRooms: 1
@@ -2231,10 +2793,41 @@ stages:
             triggerTeleporterToMarbleGallery: 4
             unknownRoomId02: 2
     reverseCaverns:
+        constants:
+            uniqueItemDrops:
+                dropAlucardShield: 0
+                dropShiitake1: 1
+                dropToadstool: 2
+                dropShiitake2: 3
+                dropGarnet: 4
+                dropBatPentagram: 5
+                dropLifeMaxUp1: 6
+                dropHeartMaxUp1: 7
+                dropPotion: 8
+                dropShiitake3: 9
+                dropShiitake4: 10
+                dropOpal: 11
+                dropLifeMaxUp2: 12
+                dropDiamond: 13
+                dropZircon1: 14
+                dropHeartMaxUp2: 15
+                dropMealTicket1: 16
+                dropMealTicket2: 17
+                dropMealTicket3: 18
+                dropMealTicket4: 19
+                dropMealTicket5: 20
+                dropZircon2: 21
+                dropPotRoast: 22
+                dropDarkBlade: 23
+                dropMannaPrism: 24
+                dropElixir: 25
+                dropOsafuneKatana: 26
         entities:
             horizontal:
+                locationForceOfEcho: 250
                 breakableFloorInHiddenCrystalEntrance: 74
             vertical:
+                locationForceOfEcho: 253
                 breakableFloorInHiddenCrystalEntrance: 69
         layers:
             layerDefinitions:
@@ -2407,6 +3000,20 @@ stages:
             saveRoomC: '0x034a24'
             falseSaveRoom: '0x034c24'
     reverseClockTower:
+        constants:
+            uniqueItemDrops:
+                dropMagicMissile: 0
+                dropKarmaCoin: 1
+                dropStrengthPotion: 2
+                dropLuminus: 3
+                dropSmartPotion: 4
+                dropDragonHelm: 5
+                dropDiamond: 6
+                dropLifeApple: 7
+                dropSunstone: 8
+                dropLifeMaxUp: 9
+                dropHeartMaxUp: 10
+                dropMoonRod: 11
         layers:
             layerDefinitions:
                 karasumansRoom: 1
@@ -2446,6 +3053,16 @@ stages:
             spire: 4
             stairwellToOuterWall: 11
     reverseColosseum:
+        constants:
+            uniqueItemDrops:
+                dropFuryPlate: 0
+                dropZircon: 1
+                dropBuffaloStar: 2
+                dropGram: 3
+                dropAquamarine: 4
+                dropHeartMaxUp1: 5
+                dropLifeMaxUp: 6
+                dropHeartMaxUp2: 7
         layers:
             layerDefinitions:
                 holySwordRoom: 1
@@ -2489,6 +3106,18 @@ stages:
             topOfRightSpiralStaircase: 3
             valhallaKnightRoom: 8
     reverseEntrance:
+        constants:
+            uniqueItemDrops:
+                dropHammer: 0
+                dropAntivenom: 1
+                dropHighPotion: 2
+                dropHeartMaxUp: 3
+                dropZircon: 4
+                dropOpal: 5
+                dropBerylCirclet: 6
+                dropFireBoomerang: 7
+                dropLifeMaxUp: 8
+                dropTalisman: 9
         layers:
             layerDefinitions:
                 afterDrawbridge: 1
@@ -2566,6 +3195,33 @@ stages:
             wargHallway: 9
             zombieHallway: 2
     reverseKeep:
+        constants:
+            uniqueItemDrops:
+                dropSwordOfDawn: 0
+                dropIronBall: 1
+                dropZircon1: 2
+                dropZircon2: 3
+                dropBastardSword: 4
+                dropLifeMaxUp1: 5
+                dropHeartMaxUp1: 6
+                dropLifeMaxUp2: 7
+                dropHeartMaxUp2: 8
+                dropLifeMaxUp3: 9
+                dropHeartMaxUp3: 10
+                dropRoyalCloak: 11
+                dropLifeMaxUp4: 12
+                dropLifeMaxUp5: 13
+                dropLifeMaxUp6: 14
+                dropLifeMaxUp7: 15
+                dropLifeMaxUp8: 16
+                dropResistFire: 17
+                dropResistIce: 18
+                dropResistThunder: 19
+                dropResistStone: 20
+                dropHighPotion: 21
+                dropGarnet: 22
+                dropLightningMail: 23
+                dropLibraryCard: 24
         layers:
             layerDefinitions:
                 upperAttic: 1
@@ -2599,6 +3255,21 @@ stages:
             tyrfingRoom: 8
             upperAttic: 0
     reverseOuterWall:
+        constants:
+            uniqueItemDrops:
+                dropHeartMaxUp: 0
+                dropShotel: 1
+                dropHammer: 2
+                dropLifeMaxUp: 3
+                dropLuckPotion: 4
+                dropShieldPotion: 5
+                dropHighPotion: 6
+                dropGarnet: 7
+        entities:
+            horizontal:
+                locationToothOfVlad: 99
+            vertical:
+                locationToothOfVlad: 99
         layers:
             layerDefinitions:
                 loadingRoomToWarpRooms: 1
@@ -2681,6 +3352,29 @@ stages:
             warpRoomToOlroxsQuarters: 1
             warpRoomToOuterWall: 2
     royalChapel:
+        constants:
+            uniqueItemDrops:
+                dropAnkhOfLife: 0
+                dropMorningstar: 1
+                dropSilverRing: 2
+                dropAquamarine: 3
+                dropMysticPendant: 4
+                dropMagicMissile: 5
+                dropShuriken: 6
+                dropTNT: 7
+                dropBoomerang: 8
+                dropGoggles: 9
+                dropSilverPlate: 10
+                dropStrengthPotion: 11
+                dropLifeMaxUp: 12
+                dropZircon: 13
+                dropCutlass: 14
+                dropPotion: 15
+        entities:
+            horizontal:
+                locationSilverRing: 15
+            vertical:
+                locationSilverRing: 18
         layers:
             layerDefinitions:
                 silverRingRoom: 1
@@ -2744,11 +3438,54 @@ stages:
             walkwayLeftOfHippogryph: 3
             walkwayRightOfHippogryph: 5
     undergroundCaverns:
+        constants:
+            uniqueItemDrops:
+                dropHeartMaxUp1: 0
+                dropLifeMaxUp1: 1
+                dropCrystalCloak: 2
+                dropUnusedItem1: 3
+                dropAntivenom: 4
+                dropLifeMaxUp2: 5
+                dropLifeMaxUp3: 6
+                dropHeraldShield: 7
+                dropUnusedItem2: 8
+                dropZircon: 9
+                dropGoldRing: 10
+                dropBandanna: 11
+                dropShiitake1: 12
+                dropClaymore: 13
+                dropMealTicket1: 14
+                dropMealTicket2: 15
+                dropMealTicket3: 16
+                dropMealTicket4: 17
+                dropMoonstone: 18
+                dropScimitar: 19
+                dropResistIce: 20
+                dropPotRoast: 21
+                dropOnyx: 22
+                dropKnuckleDuster: 23
+                dropLifeMaxUp4: 24
+                dropElixir: 25
+                dropToadstool1: 26
+                dropShiitake2: 27
+                dropLifeMaxUp5: 28
+                dropHeartMaxUp2: 29
+                dropPentagram: 30
+                dropSecretBoots: 31
+                dropShiitake3: 32
+                dropToadstool2: 33
+                dropMonsterVial1: 34
+                dropShiitake4: 35
+                dropNunchaku: 36
         entities:
             horizontal:
                 breakableFloorInHiddenCrystalEntrance: 88
+                locationHolySymbol: 317
+                locationMermanStatue: 352
             vertical:
                 breakableFloorInHiddenCrystalEntrance: 93
+                locationHolySymbol: 318
+                locationMermanStatue: 355
         layers:
             layerDefinitions:
                 longDrop: 1
@@ -2998,7 +3735,7 @@ teleporters:
     fromRoyalChapelToCastleKeep: 36
     fromRoyalChapelToColosseum: 34
     fromRoyalChapelToOlroxsQuarters: 33
-    fromBossSuccubsToUndergroundCaverns: 60
+    fromBossSuccubusToUndergroundCaverns: 60
     fromUndergroundCavernsToAbandonedMine: 50
     fromUndergroundCavernsToBossSuccubus: 51
     fromUndergroundCavernsToCastleEntrance: 48
@@ -3290,13 +4027,44 @@ _values:
         prayer: 818
         deathBallad: 820
         bloodRelations: 822
-        finalToccata: 824
+        finaleToccata: 824
         blackBanquet: 826
         iAmTheWind: 828
         silence: 829
         landOfBenediction: 830
         nocturne: 831
         moonlightNocturne: 832
+    relicIds:
+        relicSoulOfBat: 0
+        relicFireOfBat: 1
+        relicEchoOfBat: 2
+        relicForceOfEcho: 3
+        relicSoulOfWolf: 4
+        relicPowerOfWolf: 5
+        relicSkillOfWolf: 6
+        relicFormOfMist: 7
+        relicPowerOfMist: 8
+        relicGasCloud: 9
+        relicCubeOfZoe: 10
+        relicSpiritOrb: 11
+        relicGravityBoots: 12
+        relicLeapStone: 13
+        relicHolySymbol: 14
+        relicFaerieScroll: 15
+        relicJewelOfOpen: 16
+        relicMermanStatue: 17
+        relicBatCard: 18
+        relicGhostCard: 19
+        relicFaerieCard: 20
+        relicDemonCard: 21
+        relicSwordCard: 22
+        relicSpriteCard: 23
+        relicNosedevilCard: 24
+        relicHeartOfVlad: 25
+        relicToothOfVlad: 26
+        relicRibOfVlad: 27
+        relicRingOfVlad: 28
+        relicEyeOfVlad: 29
     stageIds:
         abandonedMine: 5
         alchemyLaboratory: 12

@@ -65,6 +65,75 @@ castleMapColorPalettes:
                     method: elementCount
                     elementCount: 16
                 type: rgba32
+enemyDefinitions:
+    metadata:
+        address:
+            value: 0x0009E100
+            method: absolute
+        element:
+            structure: object-array
+            constraint:
+                method: elementCount
+                elementCount: 400
+            size: 40
+            properties:
+                nameOffset:
+                    offset: 0x00
+                    type: u32
+                hitPoints:
+                    offset: 0x04
+                    type: s16
+                attack:
+                    offset: 0x06
+                    type: s16
+                attackElement:
+                    offset: 0x08
+                    type: u16
+                defense:
+                    offset: 0x0A
+                    type: s16
+                hitboxState:
+                    offset: 0x0C
+                    type: u16
+                weaknesses:
+                    offset: 0x0E
+                    type: u16
+                strengths:
+                    offset: 0x10
+                    type: u16
+                immunities:
+                    offset: 0x12
+                    type: u16
+                absorbs:
+                    offset: 0x14
+                    type: u16
+                level:
+                    offset: 0x16
+                    type: u16
+                experience:
+                    offset: 0x18
+                    type: u16
+                rareItemId:
+                    offset: 0x1A
+                    type: item-drop-id
+                uncommonItemId:
+                    offset: 0x1C
+                    type: item-drop-id
+                rareItemDropRate:
+                    offset: 0x1E
+                    type: u16
+                uncommonItemDropRate:
+                    offset: 0x20
+                    type: u16
+                hitboxWidth:
+                    offset: 0x22
+                    type: u8
+                hitboxHeight:
+                    offset: 0x23
+                    type: u8
+                flags:
+                    offset: 0x24
+                    type: u32
 specialSaveRooms:
     falseSaveRoomX:
         metadata:
@@ -114,6 +183,198 @@ specialSaveRooms:
             element:
                 structure: value
                 type: u16
+startingEquipment:
+    alucardSword:
+        '0x000F5000':
+            metadata:
+                address:
+                    value: 0x000F5000
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59A8':
+            metadata:
+                address:
+                    value: 0x000F59A8
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92D4':
+            metadata:
+                address:
+                    value: 0x041A92D4
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    alucardShield:
+        '0x000F5060':
+            metadata:
+                address:
+                    value: 0x000F5060
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59B4':
+            metadata:
+                address:
+                    value: 0x000F59B4
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92D6':
+            metadata:
+                address:
+                    value: 0x041A92D6
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    dragonHelm:
+        '0x000F50C0':
+            metadata:
+                address:
+                    value: 0x000F50C0
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59C0':
+            metadata:
+                address:
+                    value: 0x000F59C0
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92DA':
+            metadata:
+                address:
+                    value: 0x041A92DA
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    alucardMail:
+        '0x000F50FC':
+            metadata:
+                address:
+                    value: 0x000F50FC
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59CC':
+            metadata:
+                address:
+                    value: 0x000F59CC
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92D8':
+            metadata:
+                address:
+                    value: 0x041A92D8
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    twilightCloak:
+        '0x000F5138':
+            metadata:
+                address:
+                    value: 0x000F5138
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59D8':
+            metadata:
+                address:
+                    value: 0x000F59D8
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92DC':
+            metadata:
+                address:
+                    value: 0x041A92DC
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+    necklaceOfJ:
+        '0x000F517C':
+            metadata:
+                address:
+                    value: 0x000F517C
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x000F59E4':
+            metadata:
+                address:
+                    value: 0x000F59E4
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+        '0x041A92DE':
+            metadata:
+                address:
+                    value: 0x041A92DE
+                    method: absolute
+                element:
+                    structure: value
+                    type: s16
+startingRewards:
+    potion:
+        metadata:
+            address:
+                value: 0x000F55C0
+                method: absolute
+            element:
+                structure: value
+                type: s16
+    heartRefresh:
+        metadata:
+            address:
+                value: 0x000F56AC
+                method: absolute
+            element:
+                structure: value
+                type: s16
+    neutronBomb:
+        metadata:
+            address:
+                value: 0x000F5708
+                method: absolute
+            element:
+                structure: value
+                type: s16
+    lapisLazuli:
+        metadata:
+            address:
+                value: 0x000F5A70
+                method: absolute
+            element:
+                structure: value
+                type: s16
+    axeLordArmor:
+        metadata:
+            address:
+                value: 0x000F5B08
+                method: absolute
+            element:
+                structure: value
+                type: s16
 messages:
     prologueCredits:
         metadata:
@@ -139,6 +400,14 @@ messages:
             element:
                 structure: value
                 type: string
+ambienceInForestCutscene:
+    metadata:
+        address:
+            value: 0x000E83D0
+            method: absolute
+        element:
+            structure: value
+            type: music-id
 overlays:
     metadata:
         address:
@@ -276,6 +545,23 @@ stages:
                         type: u16
     castleEntrance:
         constants:
+            boneScimitarDrops:
+                copper:
+                    metadata:
+                        address:
+                            value: 0x056100
+                            method: relative
+                        element:
+                            structure: value
+                            type: s16
+                green:
+                    metadata:
+                        address:
+                            value: 0x0560FC
+                            method: relative
+                        element:
+                            structure: value
+                            type: s16
             secretWallTiles:
                 metadata:
                     address:
@@ -435,6 +721,14 @@ stages:
                             method: elementCount
                             elementCount: 2
                         type: u16
+            shopMenuCheck:
+                metadata:
+                    address:
+                        value: 0x032B08
+                        method: relative
+                    element:
+                        structure: value
+                        type: u8
             shopSellables:
                 metadata:
                     address:
@@ -685,6 +979,23 @@ stages:
                             panAmount:
                                 offset: 6
                                 type: s16
+            spawnGoldRing:
+                entityTypeID:
+                    metadata:
+                        address:
+                            value: 0x048278
+                            method: relative
+                        element:
+                            structure: value
+                            type: s16
+                params:
+                    metadata:
+                        address:
+                            value: 0x04828C
+                            method: relative
+                        element:
+                            structure: value
+                            type: s16
     warpRooms:
         constants:
             warpCoordinates:

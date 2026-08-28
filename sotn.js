@@ -247,17 +247,7 @@ const argv = yargs(process.argv.slice(2))
         },
         handler: (argv) => {
             const address = new Address(argv.type, argv.address, argv.offset)
-            const conversions = {
-                gameData: {
-                    hex: toHex(address.gameDataAddress),
-                    value: address.gameDataAddress,
-                },
-                disc: {
-                    hex: toHex(address.toDiscAddress()),
-                    value: address.toDiscAddress(),
-                },
-            }
-            console.log(conversions)
+            console.log(address.valueOf())
         }
     })
     .command({ // search

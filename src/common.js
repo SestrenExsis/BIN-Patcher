@@ -1,6 +1,12 @@
 import aliases from '../build/aliases.json' with { type: 'json' }
 
 export class Address {
+
+    static sectorHeaderSize = 24
+    static sectorDataSize = 2048
+    static sectorErrorCorrectionDataSize = 280
+    static sectorSize = Address.sectorHeaderSize + Address.sectorDataSize + Address.sectorErrorCorrectionDataSize
+
     constructor(addressType, address, offset=0) {
         switch (addressType) {
             case 'DISC':
@@ -9,6 +15,19 @@ export class Address {
             default:
                 this.gameDataAddress = toVal(address) + toVal(offset)
                 break
+        }
+    }
+
+    valueOf() {
+        return {
+            gameData: {
+                hex: toHex(this.gameDataAddress),
+                value: this.gameDataAddress,
+            },
+            disc: {
+                hex: toHex(this.toDiscAddress()),
+                value: this.toDiscAddress(),
+            },
         }
     }
 
@@ -23,11 +42,6 @@ export class Address {
     toGameDataAddress(offset=0) {
         return this.gameDataAddress + toVal(offset)
     }
-
-    static sectorHeaderSize = 24
-    static sectorDataSize = 2048
-    static sectorErrorCorrectionDataSize = 280
-    static sectorSize = Address.sectorHeaderSize + Address.sectorDataSize + Address.sectorErrorCorrectionDataSize
 
     static getGamedataAddress(discAddress) {
         const addressValue = toVal(discAddress)
@@ -82,12 +96,12 @@ export class GameData {
         let byteCount = 0
         if (['string', 'shifted-string', 'text-crawl'].includes(type)) {
             // Strings are terminated with a sentinel value and have a 4-byte alignment
-            let sentinelValue = (type == 'shifted-string') ? 0xFF : 0x00
+            let sentinelValue = (type === 'shifted-string') ? 0xFF : 0x00
             while (true) {
                 const byteOffset = this.cursor.toDiscAddress(byteCount)
                 const byte = this.buffer.readUInt8(byteOffset)
                 byteCount += 1
-                if (byte == sentinelValue) {
+                if (byte === sentinelValue) {
                     break
                 }
             }
@@ -150,7 +164,7 @@ export class GameData {
                 result = 'unknownId' + value
                 Object.entries(aliases._values.itemDropIds)
                 .filter(([itemDropName, itemDropId]) => {
-                    return value == itemDropId
+                    return value === itemDropId
                 })
                 .forEach(([itemDropName, itemDropId]) => {
                     result = itemDropName
@@ -160,7 +174,7 @@ export class GameData {
                 result = 'unknownId' + value
                 Object.entries(aliases._values.musicIds)
                 .filter(([musicName, musicId]) => {
-                    return value == musicId
+                    return value === musicId
                 })
                 .forEach(([musicName, musicId]) => {
                     result = musicName
@@ -170,7 +184,7 @@ export class GameData {
                 result = 'unknownId' + value
                 Object.entries(aliases._values.stageIds)
                 .filter(([stageName, stageId]) => {
-                    return value == stageId
+                    return value === stageId
                 })
                 .forEach(([stageName, stageId]) => {
                     result = stageName
@@ -200,7 +214,7 @@ export class GameData {
                 }
                 break
             case 'zone-offset':
-                if (value == 0x00000000) {
+                if (value === 0x00000000) {
                     result = 'NULL'
                 }
                 else {
@@ -253,7 +267,7 @@ export function decodeString(bytes) {
     let string = ''
     bytes.forEach((byte) => {
         let char = ''
-        if (prefixByte == 0x81) {
+        if (prefixByte === 0x81) {
             switch (byte) {
                 case 0x44: char = '.'; break
                 case 0x48: char = '?'; break
@@ -263,7 +277,7 @@ export function decodeString(bytes) {
             }
             prefixByte = 0x00
         }
-        else if (prefixByte == 0x82) {
+        else if (prefixByte === 0x82) {
             switch (byte) {
                 case 0x4F: char = '0'; break
                 case 0x50: char = '1'; break
@@ -431,7 +445,7 @@ export function decodeTextCrawl(bytes) {
                         if (!'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 .,'.includes(char)) {
                             char = DEFAULT
                         }
-                        const kerning = (char == ' ') ? 1 : 2
+                        const kerning = (char === ' ') ? 1 : 2
                         text[text.length - 1] += char + ALIGN.repeat(kerning)
                         break
                 }
@@ -462,7 +476,7 @@ export function encodeTextCrawl(text, buffer, start=0) {
             lineSpacing++
         }
         let indentation = 0
-        while (line.charAt(indentation) == '_') {
+        while (line.charAt(indentation) === '_') {
             indentation++
         }
         if (lineIndex > 0) {
@@ -551,8 +565,8 @@ export function toHex(value, padding=8) {
 }
 
 export function toVal(value) {
-    if (typeof(value) == 'string') {
-        if (value.substring(0, 2) == '0b') {
+    if (typeof(value) === 'string') {
+        if (value.substring(0, 2) === '0b') {
             return parseInt(value, 2)
         }
         else {

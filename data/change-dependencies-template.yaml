@@ -1,6 +1,6 @@
 ---
 miscellaneous:
-    castleTeleporters:
+    castleTeleporters.fromFirstCastle.left:
       - action: get
         type: property
         property: stages.castleKeep.rooms.keepArea.left
@@ -12,46 +12,47 @@ miscellaneous:
         constant: -320
       - action: set
         type: address
-        name: castleTeleporters.left.0x000FFCE4
+        name: castleTeleporters.fromFirstCastle.left.0x000FFCE4
         address: 0x000FFCE4
         element:
           structure: value
           type: s16
       - action: set
         type: address
-        name: castleTeleporters.left.0x0010B48C
+        name: castleTeleporters.fromFirstCastle.left.0x0010B48C
         address: 0x0010B48C
         element:
           structure: value
           type: s16
       - action: set
         type: address
-        name: castleTeleporters.left.0x0010B4D0
+        name: castleTeleporters.fromFirstCastle.left.0x0010B4D0
         address: 0x0010B4D0
         element:
           structure: value
           type: s16
       - action: set
         type: address
-        name: castleTeleporters.left.0x03285D0C
+        name: castleTeleporters.fromFirstCastle.left.0x03285D0C
         address: 0x03285D0C
         element:
           structure: value
           type: s16
       - action: set
         type: address
-        name: castleTeleporters.left.0x0328ABBC
+        name: castleTeleporters.fromFirstCastle.left.0x0328ABBC
         address: 0x0328ABBC
         element:
           structure: value
           type: s16
       - action: set
         type: address
-        name: castleTeleporters.left.0x0328AC00
+        name: castleTeleporters.fromFirstCastle.left.0x0328AC00
         address: 0x0328AC00
         element:
           structure: value
           type: s16
+    castleTeleporters.fromFirstCastle.top:
       - action: get
         type: property
         property: stages.castleKeep.rooms.keepArea.top
@@ -63,15 +64,91 @@ miscellaneous:
         constant: -847
       - action: set
         type: address
-        name: castleTeleporters.top.0x000FFD18
+        name: castleTeleporters.fromFirstCastle.top.0x000FFD18
         address: 0x000FFD18
         element:
           structure: value
           type: s16
       - action: set
         type: address
-        name: castleTeleporters.top.0x03285D40
+        name: castleTeleporters.fromFirstCastle.top.0x03285D40
         address: 0x03285D40
+        element:
+          structure: value
+          type: s16
+    castleTeleporters.fromReverseCastle.left:
+      - action: get
+        type: property
+        property: stages.reverseKeep.rooms.keepArea.left
+      - action: multiply
+        type: constant
+        constant: -256
+      - action: add
+        type: constant
+        constant: -1728
+      - action: set
+        type: address
+        name: castleTeleporters.fromReverseCastle.left.0x000FFD68
+        address: 0x000FFD68
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.fromReverseCastle.left.0x03285D90
+        address: 0x03285D90
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.fromReverseCastle.left.0x0010B530
+        address: 0x0010B530
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.fromReverseCastle.left.0x0010B574
+        address: 0x0010B574
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.fromReverseCastle.left.0x0328AC60
+        address: 0x0328AC60
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.fromReverseCastle.left.0x0328ACA4
+        address: 0x0328ACA4
+        element:
+          structure: value
+          type: s16
+    castleTeleporters.fromReverseCastle.top:
+      - action: get
+        type: property
+        property: stages.reverseKeep.rooms.keepArea.top
+      - action: multiply
+        type: constant
+        constant: -256
+      - action: add
+        type: constant
+        constant: -1351
+      - action: set
+        type: address
+        name: castleTeleporters.fromReverseCastle.top.0x000FFD9C
+        address: 0x000FFD9C
+        element:
+          structure: value
+          type: s16
+      - action: set
+        type: address
+        name: castleTeleporters.fromReverseCastle.top.0x03285DD0
+        address: 0x03285DD0
         element:
           structure: value
           type: s16
@@ -204,3 +281,63 @@ miscellaneous:
           - action: set
             type: property
             property: stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToCastleEntrance.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.castleEntrance.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToCastleEntrance.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.castleEntrance.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToAbandonedMine.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.abandonedMine.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToAbandonedMine.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.abandonedMine.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToOuterWall.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.outerWall.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToOuterWall.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.outerWall.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToCastleKeep.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.castleKeep.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToCastleKeep.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.castleKeep.roomY
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToOlroxsQuarters.left
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.olroxsQuarters.roomX
+          - action: get
+            type: property
+            property: stages.reverseWarpRooms.rooms.warpRoomToOlroxsQuarters.top
+          - action: set
+            type: property
+            property: stages.reverseWarpRooms.constants.warpCoordinates.olroxsQuarters.roomY
