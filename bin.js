@@ -199,7 +199,7 @@ const argv = yargs(process.argv.slice(2))
     })
     .command({ // ppf
         command: 'ppf',
-        describe: 'Generate a PPF file, given an extraction file and a patch file',
+        describe: 'Generate a PPF file from a patch file',
         builder: (yargs) => {
             return yargs
             .option('patch', {

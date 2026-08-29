@@ -1,4 +1,4 @@
-import aliases from '../build/aliases.json' with { type: 'json' }
+import aliases from '../build/sotn-us/aliases.json' with { type: 'json' }
 
 export class Address {
 

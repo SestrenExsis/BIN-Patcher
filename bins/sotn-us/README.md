@@ -1,0 +1,1 @@
+This directory contains tools for extracting and patching the US release of Castlevania: Symphony of the Night (SLUS-00067).

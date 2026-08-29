@@ -1,7 +1,7 @@
 import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
-import { Address, GameData, toHex, toVal } from './src/common.js'
+import { Address, GameData, toHex, toVal } from '../../src/common.js'
 
 export class CutsceneInstruction {
     constructor(bin) {
@@ -225,10 +225,12 @@ const argv = yargs(process.argv.slice(2))
                     return;
                 }
                 console.log(`        '${stageName}': {`)
-                Object.entries(stageInfo.rooms.aliases).forEach(([roomName, roomIndex]) => {
+                Object.entries(stageInfo.rooms.aliases)
+                .forEach(([roomName, roomIndex]) => {
                     console.log(`            '${roomName}': [`)
                     const roomInfo = stageInfo.rooms.data[roomIndex]
-                    Object.entries(stageInfo.layers.layerDefinitions.aliases).forEach(([layerName, layerIndex]) => {
+                    Object.entries(stageInfo.layers.layerDefinitions.aliases)
+                    .forEach(([layerName, layerIndex]) => {
                         const layerInfo = stageInfo.layers.layerDefinitions.data[layerIndex]
                         if (
                             (layerInfo.layoutRect.left === roomInfo.left) &&

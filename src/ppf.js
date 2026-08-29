@@ -4,22 +4,15 @@ import {
     encodeShiftedString,
     encodeString,
     encodeTextCrawl,
-    GameData,
     getSizeOfType,
     toHex,
     toVal,
 } from './common.js'
 
-import aliases from '../build/aliases.json' with { type: 'json' }
-
-// TODO(sestren) structures:
-//     tilemap:
-//         - can specify a range of tiles
-//     indexed-bitmap:
-//         - can specify a square, sparse region, with some restrictions
+import aliases from '../build/sotn-us/aliases.json' with { type: 'json' }
 
 export class PPF {
-    constructor(buffer, cursorOffset=0) {
+    constructor() {
         this.writes = {}
         this.buffer = Buffer.alloc(2048)
         this.scratch = Buffer.alloc(32)
@@ -107,18 +100,9 @@ export class PPF {
                     this.buffer.writeUInt16LE(data, 0)
                 }
                 else {
-                    aliasFound = false
-                    Object.entries(aliases._values.itemDropIds)
-                    .filter(([itemDropName, itemDropId]) => {
-                        return data === itemDropName
-                    })
-                    .forEach(([itemDropName, itemDropId]) => {
-                        aliasFound = true
-                        value = itemDropId
-                    })
-                    if (!aliasFound) {
-                        value = parseInt(data.substring('unknownId'.length), 10)
-                        console.log('Alias not found for', data, 'of type', type)
+                    value = aliases._values.itemDropIds[data] ?? parseInt(data.substring('unknownId'.length), 10)
+                    if (!(data in aliases._values.itemDropIds)) {
+                        console.log(`Alias not found for [${data}] of type [${type}]`)
                     }
                     this.buffer.writeUInt16LE(value, 0)
                     byteCount = 2
@@ -194,7 +178,7 @@ export class PPF {
                 byteCount = 2
                 break
             case 'layout-rect':
-                // NOTE(sestren): Using a weird workaround for shifting flags left 24 bits to avoid overflow issues
+                // NOTE(sestren): This uses a weird workaround to avoid overflow issues when shifting `flags` left 24 bits
                 value = 2 * (data.flags << 23) + (data.bottom << 18) + (data.right << 12) + (data.top << 6) + data.left
                 this.scratch.writeUInt32LE(value, 0)
                 byteCount = (data.hasOwnProperty('flags')) ? 4 : 3
