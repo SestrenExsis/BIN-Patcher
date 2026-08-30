@@ -7,7 +7,7 @@
     "test": "test",
     "sotn:build": "bins/sotn-us/extract.sh",
     "postsotn:build": "bins/sotn-us/alter.sh",
-    "sotn:patch": "bins/sotn-us/patch.sh"
+    "sotn:example": "bins/sotn-us/patch.sh"
   },
   "author": "Sestren",
   "license": "MIT",

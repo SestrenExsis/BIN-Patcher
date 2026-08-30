@@ -1,5 +1,6 @@
 
 import {
+    ALIASED_TYPES,
     Address,
     encodeShiftedString,
     encodeString,
@@ -8,8 +9,6 @@ import {
     toHex,
     toVal,
 } from './common.js'
-
-import aliases from '../build/sotn-us/aliases.json' with { type: 'json' }
 
 export class PPF {
     constructor() {
@@ -77,149 +76,106 @@ export class PPF {
             return
         }
         let byteCount = 0
-        let value
-        let aliasFound
-        switch (type) {
-            case 'int8':
-            case 's8':
-                this.buffer.writeInt8(data, 0)
-                byteCount = 1
-                break
-            case 'uint8':
-            case 'u8':
-                this.buffer.writeUInt8(data, 0)
-                byteCount = 1
-                break
-            case 'int16':
-            case 's16':
-                this.buffer.writeInt16LE(data, 0)
-                byteCount = 2
-                break
-            case 'item-drop-id':
-                if (typeof data === 'number') {
-                    this.buffer.writeUInt16LE(data, 0)
-                }
-                else {
-                    value = aliases._values.itemDropIds[data] ?? parseInt(data.substring('unknownId'.length), 10)
-                    if (!(data in aliases._values.itemDropIds)) {
-                        console.log(`Alias not found for [${data}] of type [${type}]`)
-                    }
-                    this.buffer.writeUInt16LE(value, 0)
-                    byteCount = 2
-                }
-                break
-            case 'room-offset':
-                if (typeof data === 'number') {
-                    this.buffer.writeUInt16LE(data, 0)
-                }
-                else {
-                    const stageAndRoomName = data.split('.')
-                    aliasFound = false
-                    Object.entries(aliases.stages)
-                    .filter(([stageName, stageAliases]) => {
-                        return stageAndRoomName[0] === stageName
-                    })
-                    .forEach(([stageName, stageAliases]) => {
-                        Object.entries(stageAliases?.rooms)
-                        .filter(([roomName, roomId]) => {
-                            return stageAndRoomName[1] === roomName
-                        })
-                        .forEach(([roomName, roomId]) => {
-                            aliasFound = true
-                            value = 8 * roomId
-                        })
-                    })
-                    if (!aliasFound) {
-                        console.log('Alias not found for', data, 'of type', type)
-                    }
-                    this.buffer.writeUInt16LE(value, 0)
-                    byteCount = 2
-                }
-                break
-            case 'stage-id':
-                aliasFound = false
-                Object.entries(aliases._values.stageIds)
-                .filter(([stageName, stageId]) => {
-                    return data === stageName
-                })
-                .forEach(([stageName, stageId]) => {
-                    aliasFound = true
-                    value = stageId
-                })
-                if (!aliasFound) {
-                    value = parseInt(data.substring('unknownId'.length), 10)
-                    console.log('Alias not found for', data, 'of type', type)
-                }
-                this.buffer.writeUInt16LE(value, 0)
-                byteCount = 2
-                break
-            case 'uint16':
-            case 'u16':
+        if (type in ALIASED_TYPES) {
+            if (typeof data === 'number') {
+                // NOTE(sestren): All aliased types are assumed to be u16s for now
                 this.buffer.writeUInt16LE(data, 0)
                 byteCount = 2
-                break
-            case 'int32':
-            case 's32':
-                this.buffer.writeInt32LE(data, 0)
-                byteCount = 4
-                break
-            case 'uint32':
-            case 'u32':
-                this.buffer.writeUInt32LE(data, 0)
-                byteCount = 4
-                break
-            case 'rgba32':
-                let red = Math.floor(parseInt(data.substring(1, 3), 16) / 8)
-                let green = Math.floor(parseInt(data.substring(3, 5), 16) / 8)
-                let blue = Math.floor(parseInt(data.substring(5, 7), 16) / 8)
-                let alpha = Math.floor(parseInt(data.substring(7, 9), 16) / 128)
-                value = (alpha << 15) + (blue << 10) + (green << 5) + red
-                this.buffer.writeUInt16LE(value, 0)
-                byteCount = 2
-                break
-            case 'layout-rect':
-                // NOTE(sestren): This uses a weird workaround to avoid overflow issues when shifting `flags` left 24 bits
-                value = 2 * (data.flags << 23) + (data.bottom << 18) + (data.right << 12) + (data.top << 6) + data.left
-                this.scratch.writeUInt32LE(value, 0)
-                byteCount = (data.hasOwnProperty('flags')) ? 4 : 3
-                this.scratch.copy(this.buffer, 0, 0, byteCount)
-                break
-            case 'music-id':
-                aliasFound = false
-                Object.entries(aliases._values.musicIds)
-                .filter(([musicName, musicId]) => {
-                    return data === musicName
+            }
+            else if (type === 'room-id') {
+                let value
+                let aliasFound = false
+                Object.entries(ALIASED_TYPES[type].values)
+                .filter(([aliasKey, aliasValue]) => {
+                    return data === aliasKey
                 })
-                .forEach(([musicName, musicId]) => {
-                    aliasFound = true
-                    value = musicId
+                .forEach(([aliasKey, aliasValue]) => {
+                    result = aliasValue
                 })
                 if (!aliasFound) {
-                    value = parseInt(data.substring('unknownId'.length), 10)
                     console.log('Alias not found for', data, 'of type', type)
                 }
                 this.buffer.writeUInt16LE(value, 0)
                 byteCount = 2
-                break
-            case 'zone-offset':
-                if (data === 'NULL') {
-                    value = 0x00000000
+            }
+            else {
+                const value = ALIASED_TYPES[type].values[data] ?? parseInt(data.substring('unknownId'.length), 10)
+                if (!(data in ALIASED_TYPES[type].values)) {
+                    console.log(`Alias not found for [${data}] of type [${type}]`)
                 }
-                else {
-                    value = parseInt(data, 16) + 0x80180000
-                }
-                this.buffer.writeUInt32LE(value, 0)
-                byteCount = 4
-                break
-            case 'string':
-                byteCount = encodeString(data, this.buffer, 0)
-                break
-            case 'shifted-string':
-                byteCount = encodeShiftedString(data, this.buffer, 0)
-                break
-            case 'text-crawl':
-                byteCount = encodeTextCrawl(data, this.buffer, 0)
-                break
+                this.buffer.writeUInt16LE(value, 0)
+                byteCount = 2
+            }
+        }
+        else {
+            let value
+            switch (type) {
+                case 'int8':
+                case 's8':
+                    this.buffer.writeInt8(data, 0)
+                    byteCount = 1
+                    break
+                case 'uint8':
+                case 'u8':
+                    this.buffer.writeUInt8(data, 0)
+                    byteCount = 1
+                    break
+                case 'int16':
+                case 's16':
+                    this.buffer.writeInt16LE(data, 0)
+                    byteCount = 2
+                    break
+                case 'uint16':
+                case 'u16':
+                    this.buffer.writeUInt16LE(data, 0)
+                    byteCount = 2
+                    break
+                case 'int32':
+                case 's32':
+                    this.buffer.writeInt32LE(data, 0)
+                    byteCount = 4
+                    break
+                case 'uint32':
+                case 'u32':
+                    this.buffer.writeUInt32LE(data, 0)
+                    byteCount = 4
+                    break
+                case 'rgba32':
+                    let red = Math.floor(parseInt(data.substring(1, 3), 16) / 8)
+                    let green = Math.floor(parseInt(data.substring(3, 5), 16) / 8)
+                    let blue = Math.floor(parseInt(data.substring(5, 7), 16) / 8)
+                    let alpha = Math.floor(parseInt(data.substring(7, 9), 16) / 128)
+                    value = (alpha << 15) + (blue << 10) + (green << 5) + red
+                    this.buffer.writeUInt16LE(value, 0)
+                    byteCount = 2
+                    break
+                case 'layout-rect':
+                    // NOTE(sestren): This uses a weird workaround to avoid overflow issues when shifting `flags` left 24 bits
+                    value = 2 * (data.flags << 23) + (data.bottom << 18) + (data.right << 12) + (data.top << 6) + data.left
+                    this.scratch.writeUInt32LE(value, 0)
+                    byteCount = (data.hasOwnProperty('flags')) ? 4 : 3
+                    this.scratch.copy(this.buffer, 0, 0, byteCount)
+                    break
+                case 'zone-offset':
+                    if (data === 'NULL') {
+                        value = 0x00000000
+                    }
+                    else {
+                        value = parseInt(data, 16) + 0x80180000
+                    }
+                    this.buffer.writeUInt32LE(value, 0)
+                    byteCount = 4
+                    break
+                case 'string':
+                    byteCount = encodeString(data, this.buffer, 0)
+                    break
+                case 'shifted-string':
+                    byteCount = encodeShiftedString(data, this.buffer, 0)
+                    break
+                case 'text-crawl':
+                    byteCount = encodeTextCrawl(data, this.buffer, 0)
+                    break
+            }
         }
         for (let i = 0; i < byteCount; i++) {
             const addressKey = toHex(address + i)

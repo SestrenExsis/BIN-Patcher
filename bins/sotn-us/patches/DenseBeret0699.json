@@ -2121,7 +2121,7 @@
                     "abandonedMine": {
                         "constants": {
                             "uniqueItemDrops": {
-                                "barleyTeaInPeanutsRoom=": "itemLifeMaxUp",
+                                "barleyTeaInPeanutsRoom=": "upgradeLifeMax",
                                 "combatKnifeInKarmaCoinRoom=": "itemShiitake",
                                 "karmaCoinInKarmaCoinRoom=": "itemBekatowa",
                                 "peanuts1InPeanutsRoom=": "itemHolySword",
