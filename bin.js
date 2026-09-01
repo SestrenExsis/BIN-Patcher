@@ -214,11 +214,17 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
+            .option('description', {
+                alias: 'd',
+                describe: 'Description to place in the header of the PPF file (only the first 50 characters will be written)',
+                type: 'string',
+                default: 'BIN-Patcher',
+            })
             .demandOption(['patch', 'target'])
         },
         handler: (argv) => {
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
-            const ppfData = toPPF(patchData)
+            const ppfData = toPPF(patchData, argv.description)
             fs.writeFileSync(argv.target, ppfData);
         }
     })

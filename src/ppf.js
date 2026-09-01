@@ -17,7 +17,7 @@ export class PPF {
         this.scratch = Buffer.alloc(32)
     }
 
-    bytes(description="Default description") {
+    bytes(description) {
         const changes = {}
         Object.entries(this.writes)
         .sort()
@@ -36,7 +36,7 @@ export class PPF {
         cursor = ppfData.write('PPF30', cursor)
         cursor = ppfData.writeUInt8(2, cursor) // Encoding method = PPF3.0
         const descriptionBuffer = Buffer.alloc(50, 0x20) // All spaces
-        descriptionBuffer.write(description, 0)
+        descriptionBuffer.write(description.substring(0, 50), 0)
         cursor += descriptionBuffer.copy(ppfData, cursor, 0, 50)
         cursor = ppfData.writeUInt8(0, cursor) // Imagetype = BIN
         cursor = ppfData.writeUInt8(0, cursor) // Blockcheck = Disabled
@@ -324,9 +324,9 @@ export function parsePatchNode(ppf, patchNode) {
     }
 }
 
-export function toPPF(patchData) {
+export function toPPF(patchData, ppfDescription) {
     let ppf = new PPF()
     parsePatchNode(ppf, patchData)
-    const result = ppf.bytes()
+    const result = ppf.bytes(ppfDescription)
     return result
 }
