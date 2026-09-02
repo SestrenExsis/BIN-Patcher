@@ -2777,7 +2777,7 @@ if __name__ == '__main__':
                         },
                     ]
                     transformation_name = transformation[-1]['property']
-                    print(transformation_name)
+                    # print(transformation_name)
                     dependency_name = 'secondaryRooms.rightsAndBottoms' if stage_name in secondary_stages else 'primaryRooms.rightsAndBottoms'
                     dependencies[dependency_name][transformation_name] = transformation
         # rooms.layerDefinitions
@@ -2803,7 +2803,7 @@ if __name__ == '__main__':
                             },
                         ]
                         transformation_name = transformation[-1]['property']
-                        print(transformation_name)
+                        # print(transformation_name)
                         dependencies['rooms.layerDefinitions'][transformation_name] = transformation
         # secondaryRooms.leftsAndTops
         for (stage_name, (associated_stage_name, reverse_ind)) in data['associatedStages'].items():
@@ -2845,7 +2845,7 @@ if __name__ == '__main__':
                         'property': f'stages.{stage_name}.rooms.{room_name}.{source_property_name}',
                     })
                     transformation_name = transformation[-1]['property']
-                    print(transformation_name)
+                    # print(transformation_name)
                     dependencies['secondaryRooms.leftsAndTops'][transformation_name] = transformation
         # secretMapTileReveals, bossTeleporters
         for dependency_name in (
@@ -2875,7 +2875,7 @@ if __name__ == '__main__':
                         'property': f'{dependency_name}.{target_key}.{target_property_name}',
                     })
                     transformation_name = transformation[-1]['property']
-                    print(transformation_name)
+                    # print(transformation_name)
                     dependencies[dependency_name][transformation_name] = transformation
         # familiarEvents
         for familiar_key in (
@@ -2910,7 +2910,7 @@ if __name__ == '__main__':
                         'property': f'familiarEvents.{familiar_key}.{transformation_key}.{target_property_name}',
                     })
                     transformation_name = transformation[-1]['property']
-                    print(transformation_name)
+                    # print(transformation_name)
                     dependencies['familiarEvents'][transformation_name] = transformation
         # bossRooms
         for (target_stage_name, boss_room_info) in data['bossRooms'].items():
@@ -2937,7 +2937,7 @@ if __name__ == '__main__':
                         'property': f'stages.{target_stage_name}.rooms.{target_room_name}.{property_name}',
                     })
                     transformation_name = transformation[-1]['property']
-                    print(transformation_name)
+                    # print(transformation_name)
                     dependencies['bossRooms.leftsAndTops'][transformation_name] = transformation
         # liveMapRepaints
         for (special_id, address_a, address_b, offset, room_name, edge) in live_map_repaints:
@@ -2968,7 +2968,7 @@ if __name__ == '__main__':
                     },
                 ]
                 transformation_name = transformation[-1]['name']
-                print(transformation_name)
+                # print(transformation_name)
                 dependency_name = 'liveMapRepaints'
                 dependencies[dependency_name][transformation_name] = transformation
         # Generate output file
