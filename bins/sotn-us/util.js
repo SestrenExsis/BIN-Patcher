@@ -1,7 +1,13 @@
 import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
-import { Address, GameData, toHex, toVal } from '../../src/common.js'
+import {
+    ALIASED_TYPES,
+    Address,
+    GameData,
+    toHex,
+    toVal,
+} from '../../src/common.js'
 
 export class CutsceneInstruction {
     constructor(bin) {
@@ -506,6 +512,58 @@ const argv = yargs(process.argv.slice(2))
             console.log(JSON.stringify({
                 cutscenes: cutscenes,
             }, null, 4))
+        }
+    })
+    .command({ // teleporters
+        command: 'teleporters',
+        describe: 'XXX',
+        builder: (yargs) => {
+            return yargs
+            .option('extraction', {
+                alias: 'e',
+                describe: 'Path to the aliased extraction file',
+                type: 'string',
+                normalize: true,
+                default: './build/sotn-us/extraction.json',
+            })
+            .option('out', {
+                alias: 'o',
+                describe: 'Path to the output file to create',
+                type: 'string',
+                normalize: true,
+                default: './build/sotn-us/extraction-processed.json',
+            })
+        },
+        handler: (argv) => {
+            const extraction = JSON.parse(fs.readFileSync(argv.extraction, 'utf8'))
+            const processed = Object.assign({}, extraction)
+            processed.teleporters.metadata.element.properties.roomOffset.type = 'room-offset'
+            for (let index = 0; index < processed.teleporters.data.length; index++) {
+                const targetStageName = processed.teleporters.data.at(index).targetStageId
+                const teleporter = {}
+                Object.entries(processed.teleporters.data.at(index))
+                .forEach(([propertyKey, propertyValue]) => {
+                    if (propertyKey === 'roomOffset') {
+                        const roomOffsetValue = propertyValue / 8
+                        teleporter[propertyKey] = propertyValue
+                        Object.entries(ALIASED_TYPES['room-id'].values)
+                        .filter(([aliasKey, aliasValue]) => {
+                            return roomOffsetValue === aliasValue
+                        })
+                        .filter(([aliasKey, aliasValue]) => {
+                            return aliasKey.startsWith(targetStageName)
+                        })
+                        .forEach(([aliasKey, aliasValue]) => {
+                            teleporter[propertyKey] = aliasKey
+                        })
+                    }
+                    else {
+                        teleporter[propertyKey] = propertyValue
+                    }
+                })
+                processed.teleporters.data[index] = teleporter
+            }
+            fs.writeFileSync(argv.out, JSON.stringify(processed, null, 4))
         }
     })
     .demandCommand(1)

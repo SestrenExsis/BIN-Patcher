@@ -76,16 +76,16 @@ export class PPF {
             return
         }
         let byteCount = 0
-        if (type in ALIASED_TYPES) {
+        if (type in ALIASED_TYPES || type === 'room-offset') {
             if (typeof data === 'number') {
                 // NOTE(sestren): All aliased types are assumed to be u16s for now
                 this.buffer.writeUInt16LE(data, 0)
                 byteCount = 2
             }
-            else if (type === 'room-id') {
+            else if (['room-id', 'room-offset'].includes(type)) {
                 let value
                 let aliasFound = false
-                Object.entries(ALIASED_TYPES[type].values)
+                Object.entries(ALIASED_TYPES['room-id'].values)
                 .filter(([aliasKey, aliasValue]) => {
                     return data === aliasKey
                 })
@@ -94,6 +94,9 @@ export class PPF {
                 })
                 if (!aliasFound) {
                     console.log('Alias not found for', data, 'of type', type)
+                }
+                if (type === 'room-offset') {
+                    value *= 8
                 }
                 this.buffer.writeUInt16LE(value, 0)
                 byteCount = 2

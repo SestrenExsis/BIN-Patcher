@@ -363,7 +363,7 @@ export const ALIASED_TYPES = {
             relicToothOfVlad: 26,
         },
     },
-    'room-offset': {
+    'room-id': {
         type: 'u16',
         values: {
             'abandonedMine.bend': 10,
@@ -1343,6 +1343,8 @@ export class GameData {
                 break
             case 'item-drop-id':
             case 'music-id':
+            case 'room-id':
+            case 'room-offset':
             case 'stage-id':
             case 'uint16':
             case 'u16':
@@ -1370,7 +1372,11 @@ export class GameData {
                 break
         }
         let result = value
-        if (type in ALIASED_TYPES) {
+        if (['room-id', 'room-offset'].includes(type)) {
+            // NOTE(sestren): There is not enough information to uniquely identify an alias for roomIds, so the original u16 value is passed through
+            // NOTE(sestren): See the teleporters command in bins/sotn-us/util.js for how roomIds are replaced with aliases in a post-processing step
+        }
+        else if (type in ALIASED_TYPES) {
             result = 'unknownId' + value
             Object.entries(ALIASED_TYPES[type].values)
             .filter(([aliasKey, aliasValue]) => {
@@ -1434,6 +1440,8 @@ export function getSizeOfType(type) {
             break
         case 'item-drop-id':
         case 'music-id':
+        case 'room-id':
+        case 'room-offset':
         case 'stage-id':
         case 'int16':
         case 'uint16':

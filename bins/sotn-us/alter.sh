@@ -1,7 +1,7 @@
 python3 tools/yaml-to-json.py "bins/sotn-us/data/aliases.yaml" "build/sotn-us/aliases.json"
-python3 bins/sotn-us/post-process-extraction.py "build/sotn-us/extraction.json" "build/sotn-us/aliases.json" "build/sotn-us/extraction-processed.json"
 python3 bins/sotn-us/generate-change-dependencies-template.py "bins/sotn-us/data/change-dependencies-template.yaml" "build/sotn-us/change-dependencies.json"
 
+node bins/sotn-us/util teleporters -e "build/sotn-us/extraction.json" -o "build/sotn-us/extraction-processed.json"
 node bin alter -s "build/sotn-us/extraction-processed.json" -t "build/sotn-us/extraction-aliased.json" --aliases "build/sotn-us/aliases.json"
 node bin alter -s "build/sotn-us/extraction-aliased.json" -t "build/sotn-us/extraction-masked-aliased.json" --mask "data"
 
