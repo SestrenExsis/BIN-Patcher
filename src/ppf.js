@@ -90,7 +90,7 @@ export class PPF {
                     return data === aliasKey
                 })
                 .forEach(([aliasKey, aliasValue]) => {
-                    result = aliasValue
+                    value = aliasValue
                 })
                 if (!aliasFound) {
                     console.log('Alias not found for', data, 'of type', type)
