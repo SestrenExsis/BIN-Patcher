@@ -93,9 +93,9 @@ data = {
             'triggerTeleporterB': ('reverseOuterWall', 'doppelgangerRoom', 0, 2),
         },
         'bossHippogryph': {
-            'hippogryphRoom': ('outerWall', 'hippogryphRoom', 0, 0),
-            'triggerTeleporterA': ('outerWall', 'hippogryphRoom', 0, -1),
-            'triggerTeleporterB': ('outerWall', 'hippogryphRoom', 0, 2),
+            'hippogryphRoom': ('royalChapel', 'hippogryphRoom', 0, 0),
+            'triggerTeleporterA': ('royalChapel', 'hippogryphRoom', 0, -1),
+            'triggerTeleporterB': ('royalChapel', 'hippogryphRoom', 0, 2),
         },
         'bossScylla': {
             'scyllaWyrmRoom': ('undergroundCaverns', 'scyllaWyrmRoom', 0, 0),
@@ -103,7 +103,12 @@ data = {
             'risingWaterRoom': ('undergroundCaverns', 'scyllaWyrmRoom', 0, 1),
             'scyllaRoom': ('undergroundCaverns', 'scyllaWyrmRoom', -1, 1),
             'crystalCloakRoom': ('undergroundCaverns', 'scyllaWyrmRoom', -1, 0),
-        }
+        },
+        'cutsceneMeetingMariaInClockRoom': {
+            'clockRoom': ('marbleGallery', 'clockRoom', 0, 0),
+            'triggerTeleporterA': ('marbleGallery', 'clockRoom', 0, -1),
+            'triggerTeleporterB': ('marbleGallery', 'clockRoom', 0, 1),
+        },
     },
     'bossTeleporters': {
         'cutsceneMeetingMariaInClockRoom': ('marbleGallery', 'clockRoom', 0, 0),
