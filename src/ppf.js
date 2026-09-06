@@ -91,6 +91,7 @@ export class PPF {
                 })
                 .forEach(([aliasKey, aliasValue]) => {
                     value = aliasValue
+                    aliasFound = true
                 })
                 if (!aliasFound) {
                     console.log('Alias not found for', data, 'of type', type)
