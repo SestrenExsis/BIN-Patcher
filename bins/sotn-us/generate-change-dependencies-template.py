@@ -135,8 +135,8 @@ data = {
         'bossCreatureLeft': ('reverseOuterWall', 'doppelgangerRoom', 0, 0),
         'bossCreatureRight': ('reverseOuterWall', 'doppelgangerRoom', 0, 1),
         'bossDoppelganger40': ('reverseCaverns', 'scyllaWyrmRoom', 0, 0),
-        'bossAkmodanII': ('deathWingsLair', 'olroxsRoom', 1, 0),
-        'bossGalamoth': ('floatingCatacombs', 'granfaloonsLair', 1, 0),
+        'bossAkmodanIILeft': ('deathWingsLair', 'olroxsRoom', 1, 0),
+        'bossGalamothLeft': ('floatingCatacombs', 'granfaloonsLair', 1, 0),
     },
     'familiarEvents': {
         'abandonedMineDemonSwitchDemon': ('abandonedMine', 'demonSwitch', False),
