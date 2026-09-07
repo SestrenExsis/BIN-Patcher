@@ -12,18 +12,18 @@
                 "stages.clockTower.constants.gearPuzzle.rotationDuration.data=": 64,
                 "stages.clockTower.constants.gearPuzzle.rotationSpeed.data=": 64,
                 "stages.clockTower.constants.gearPuzzle.targetRotations.data=": [
-                    2048,
-                    2048,
-                    2048,
-                    2048
+                    1024,
+                    1024,
+                    1024,
+                    1024
                 ],
                 "stages.reverseClockTower.constants.gearPuzzle.rotationDuration.data=": 64,
                 "stages.reverseClockTower.constants.gearPuzzle.rotationSpeed.data=": 64,
                 "stages.reverseClockTower.constants.gearPuzzle.targetRotations.data=": [
-                    2048,
-                    2048,
-                    2048,
-                    2048
+                    1024,
+                    1024,
+                    1024,
+                    1024
                 ]
             }
         }
