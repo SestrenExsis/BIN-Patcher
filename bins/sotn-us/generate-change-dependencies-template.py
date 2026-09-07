@@ -2903,7 +2903,7 @@ if __name__ == '__main__':
                         'type': 'property',
                         'property': f'stages.{stage_name}.rooms.{room_name}.{source_property_name}',
                     })
-                    if inverted_ind:
+                    if inverted_ind and source_property_name == 'left':
                         transformation.append({
                             'action': 'multiply',
                             'type': 'constant',
