@@ -152,6 +152,20 @@ miscellaneous:
         element:
           structure: value
           type: s16
+    shopRelics:
+      - action: get
+        type: property
+        property: stages.longLibrary.constants.shopRelics.jewelOfOpen
+      - action: add
+        type: constant
+        constant: 100
+      - action: set
+        type: address
+        name: shopRelics.0x03E92308
+        address: 0x03E92308
+        element:
+          structure: value
+          type: u8
     castleEntranceDrawbridgeCutscene:
       - action: get
         type: property
