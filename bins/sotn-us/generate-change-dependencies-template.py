@@ -65,7 +65,7 @@ data = {
             'slograAndGaibonRoom': ('necromancyLaboratory', 'slograAndGaibonRoom', 0, 0),
             'triggerTeleporterA': ('necromancyLaboratory', 'slograAndGaibonRoom', 0, -1),
             'triggerTeleporterB': ('necromancyLaboratory', 'slograAndGaibonRoom', 1, -1),
-            'triggerTeleporterB': ('necromancyLaboratory', 'slograAndGaibonRoom', 1, 4),
+            'triggerTeleporterC': ('necromancyLaboratory', 'slograAndGaibonRoom', 1, 4),
         },
         'bossOlrox': {
             'olroxsRoom': ('olroxsQuarters', 'olroxsRoom', 0, 0),
