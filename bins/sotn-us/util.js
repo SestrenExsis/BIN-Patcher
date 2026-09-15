@@ -172,7 +172,731 @@ export class CutsceneInstruction {
     }
 }
 
+const BASE_DROP_RATES = {
+    abandonedMine: 0x000D6C,
+    alchemyLaboratory: 0x0018C0,
+    antiChapel: 0x0010E4,
+    blackMarbleGallery: 0x0013B4,
+    bossOlrox: 0x0017C4,
+    bossGranfaloon: 0x00138C,
+    bossMinotaurAndWerewolf: 0x001010,
+    bossScylla: 0x001444,
+    bossDoppelganger10: 0x0009FC,
+    bossHippogryph: 0x0010AC,
+    bossRichter: 0x000A34,
+    bossCerberus: 0x000C34,
+    bossTrio: 0x00117C,
+    bossBeelzebub: 0x000D3C,
+    bossDeath: 0x000F7C,
+    bossMedusa: 0x000A9C,
+    bossCreature: 0x000BA8,
+    bossDoppelganger40: 0x000A88,
+    bossShaftAndDracula: 0x000C90,
+    bossSuccubus: 0x000CC8,
+    bossAkmodanII: 0x000AF4,
+    bossGalamoth: 0x001B28,
+    castleCenter: 0x0B04,
+    castleEntrance: 0x200C,
+    castleEntranceRevisited: 0x1998,
+    castleKeep: 0x1194,
+    catacombs: 0x1AE4,
+    cave: 0x0C68,
+    clockTower: 0x1664,
+    colosseum: 0x1364,
+    cutsceneMeetingMariaInClockRoom: 0x0AB0,
+    deathWingsLair: 0x1294,
+    floatingCatacombs: 0x18B0,
+    forbiddenLibrary: 0x0F80,
+    longLibrary: 0x1FC8,
+    marbleGallery: 0x1488,
+    necromancyLaboratory: 0x110C,
+    olroxsQuarters: 0x1374,
+    outerWall: 0x1DA8,
+    prologue: 0x1934,
+    reverseCaverns: 0x1AF4,
+    reverseCastleCenter: 0x0DD8,
+    reverseClockTower: 0x1698,
+    reverseColosseum: 0x0E2C,
+    reverseEntrance: 0x1498,
+    reverseKeep: 0x0C7C,
+    reverseOuterWall: 0x1158,
+    reverseWarpRooms: 0x09DC,
+    royalChapel: 0x13BC,
+    undergroundCaverns: 0x1D40,
+    warpRooms: 0x09DC,
+}
+
+const FAMILIAR_EVENTS = {
+    // NOTE(sestren): Which familiars correspond to which overlays have not been fully verified and are educated guesses
+    bat: 0x0392A760,
+    ghost: 0x0394BDB0,
+    faerie: 0x0396FD2C,
+    demon: 0x03990890,
+    sword: 0x039AF9E4,
+    yousei: 0x039D1D38,
+    noseDevil: 0x039F2664,
+}
+
+const MUSIC = {
+    alchemyLaboratory: {
+        boss: 0x034280,
+        'afterSlograAndGaibon': 0x034350,
+        'afterSlograAndGaibon2': 0x0343CC,
+    },
+    bossAkmodanII: {
+        boss: 0x013F30,
+        stage: 0x013F90,
+        stage2: 0x01402C,
+    },
+    bossBeelzebub: {
+        boss: 0x014E20,
+        boss2: 0x014E40,
+        stage: 0x014E98,
+        stage2: 0x014F28,
+    },
+    bossCerberus: {
+        boss: 0x016008,
+        stage: 0x016160,
+    },
+    bossCreature: {
+        boss: 0x018894,
+        stage: 0x0188F4,
+        stage2: 0x018990,
+    },
+    bossDeath: {
+        boss: 0x01F5FC,
+        stage: 0x01F748,
+    },
+    bossDoppelganger10: {
+        boss: 0x036560,
+        stage: 0x034EF8,
+    },
+    bossDoppelganger40: {
+        boss: 0x0352A8,
+    },
+    bossGalamoth: {
+        boss: 0x019648,
+        stage: 0x0196A8,
+        stage2: 0x019744,
+    },
+    bossGranfaloon: {
+        boss: 0x021AB8,
+        boss2: 0x021AEC,
+        stage: 0x0224E4,
+    },
+    bossHippogryph: {
+        boss: 0x024500,
+    },
+    bossMedusa: {
+        boss: 0x012BE0,
+        stage: 0x012C40,
+        stage2: 0x012CDC,
+    },
+    bossMinotaurAndWerewolf: {
+        boss: 0x026EA8,
+        stage: 0x024588,
+    },
+    bossOlrox: {
+        boss: 0x02D47C,
+        boss2: 0x02D4D8,
+        boss3: 0x02D4F8,
+        boss4: 0x02D56C,
+        stage: 0x038714,
+    },
+    bossScylla: {
+        boss: 0x0265FC,
+        stage: 0x0264B0,
+        stage2: 0x0264F4,
+        stage3: 0x026690,
+    },
+    bossSuccubus: {
+        boss: 0x0125BC,
+    },
+    bossTrio: {
+        boss: 0x0144F0,
+        stage: 0x0145CC,
+        stage2: 0x014674,
+    },
+    castleEntrance: {
+        afterCastleAwakes: 0x0381C8,
+        afterMeetingDeath: 0x04027C,
+    },
+    clockTower: {
+        boss: 0x02A658,
+        stage: 0x02A718,
+        stage2: 0x02A790,
+    },
+    longLibrary: {
+        boss: 0x03B700,
+        stage: 0x03B7BC,
+        stage2: 0x03B828,
+    },
+    reverseCastleCenter: {
+        boss: 0x01AD4C,
+    },
+    reverseClockTower: {
+        boss: 0x02CA08,
+        stage: 0x02CAAC,
+        stage2: 0x02CB24,
+    },
+}
+
+const STAGES = {
+    abandonedMine: 0x03CDF800,
+    alchemyLaboratory: 0x049BE800,
+    antiChapel: 0x04416000,
+    blackMarbleGallery: 0x0453D800,
+    bossOlrox: 0x0534C800,
+    bossGranfaloon: 0x053F7000,
+    bossMinotaurAndWerewolf: 0x05473800,
+    bossScylla: 0x05507000,
+    bossDoppelganger10: 0x05593000,
+    bossHippogryph: 0x05638800,
+    bossRichter: 0x056C8800,
+    bossCerberus: 0x0596D000,
+    bossTrio: 0x05775000,
+    bossBeelzebub: 0x05870000,
+    bossDeath: 0x058ED800,
+    bossMedusa: 0x059E9800,
+    bossCreature: 0x05A65000,
+    bossDoppelganger40: 0x05AE3800,
+    bossShaftAndDracula: 0x05B93800,
+    bossSuccubus: 0x04F31000,
+    bossAkmodanII: 0x05C24000,
+    bossGalamoth: 0x05C9F800,
+    castleCenter: 0x03C65000,
+    castleEntrance: 0x041A7800,
+    castleEntranceRevisited: 0x0491A800,
+    castleKeep: 0x04AEF000,
+    catacombs: 0x03BB3000,
+    cave: 0x0439B800,
+    clockTower: 0x04A67000,
+    colosseum: 0x03B00000,
+    cutsceneMeetingMariaInClockRoom: 0x057F9800,
+    deathWingsLair: 0x04680800,
+    floatingCatacombs: 0x04307000,
+    forbiddenLibrary: 0x044B0000,
+    longLibrary: 0x03E5F800,
+    marbleGallery: 0x03F8B000,
+    necromancyLaboratory: 0x04D81000,
+    olroxsQuarters: 0x040FB000,
+    outerWall: 0x04047000,
+    prologue: 0x0487C800,
+    reverseCaverns: 0x047C3800,
+    reverseCastleCenter: 0x04B87800,
+    reverseClockTower: 0x04E22000,
+    reverseColosseum: 0x04C07800,
+    reverseEntrance: 0x0471E000,
+    reverseKeep: 0x04C84000,
+    reverseOuterWall: 0x045EE000,
+    reverseWarpRooms: 0x04EBE000,
+    royalChapel: 0x03D5A800,
+    undergroundCaverns: 0x04257800,
+    warpRooms: 0x04D12800,
+}
+
+const UNIQUE_ITEM_DROPS = {
+    abandonedMine: {
+        offset: 0x0009E4,
+        elementCount: 13,
+    },
+    alchemyLaboratory: {
+        offset: 0x0013B0,
+        elementCount: 11,
+    },
+    antiChapel: {
+        offset: 0x000D2C,
+        elementCount: 18,
+    },
+    blackMarbleGallery: {
+        offset: 0x000F8C,
+        elementCount: 12,
+    },
+    bossScylla: {
+        offset: 0x00108C,
+        elementCount: 37,
+    },
+    castleEntrance: {
+        offset: 0x001C8C,
+        elementCount: 10,
+    },
+    castleEntranceRevisited: {
+        offset: 0x001618,
+        elementCount: 10,
+    },
+    castleKeep: {
+        offset: 0x000D10,
+        elementCount: 20,
+    },
+    catacombs: {
+        offset: 0x00174C,
+        elementCount: 21,
+    },
+    cave: {
+        offset: 0x0007CC,
+        elementCount: 8,
+    },
+    clockTower: {
+        offset: 0x00111C,
+        elementCount: 12,
+    },
+    colosseum: {
+        offset: 0x000FE8,
+        elementCount: 8,
+    },
+    deathWingsLair: {
+        offset: 0x000D40,
+        elementCount: 12,
+    },
+    floatingCatacombs: {
+        offset: 0x0013C8,
+        elementCount: 18,
+    },
+    forbiddenLibrary: {
+        offset: 0x000BC8,
+        elementCount: 9,
+    },
+    longLibrary: {
+        offset: 0x001A90,
+        elementCount: 12,
+    },
+    marbleGallery: {
+        offset: 0x001100,
+        elementCount: 14,
+    },
+    necromancyLaboratory: {
+        offset: 0x000CC8,
+        elementCount: 10,
+    },
+    olroxsQuarters: {
+        offset: 0x000FEC,
+        elementCount: 13,
+    },
+    outerWall: {
+        offset: 0x001A2C,
+        elementCount: 8,
+    },
+    reverseCaverns: {
+        offset: 0x001620,
+        elementCount: 27,
+    },
+    reverseClockTower: {
+        offset: 0x000EC8,
+        elementCount: 12,
+    },
+    reverseColosseum: {
+        offset: 0x000A3C,
+        elementCount: 8,
+    },
+    reverseEntrance: {
+        offset: 0x000F10,
+        elementCount: 10,
+    },
+    reverseKeep: {
+        offset: 0x0007C8,
+        elementCount: 25,
+    },
+    reverseOuterWall: {
+        offset: 0x000AE4,
+        elementCount: 8,
+    },
+    royalChapel: {
+        offset: 0x000EC0,
+        elementCount: 16,
+    },
+    undergroundCaverns: {
+        offset: 0x001928,
+        elementCount: 37,
+    },
+}
+
 const argv = yargs(process.argv.slice(2))
+    .command({ // extract
+        command: 'extract',
+        describe: 'TODO(sestren): Describe command',
+        builder: (yargs) => {
+            return yargs
+            .option('template', {
+                alias: 't',
+                describe: 'JSON file ...',
+                type: 'string',
+                normalize: true,
+                default: './bins/sotn-us/data/extraction-template.json',
+            })
+            .option('out', {
+                alias: 'o',
+                describe: 'Path to the output file to create',
+                type: 'string',
+                normalize: true,
+                default: './build/sotn-us/extraction-processed.json',
+            })
+            .option('previous', {
+                alias: 'p',
+                describe: 'Path to a previously-generated extraction file (allows introspection into extracted stage data)',
+                type: 'string',
+                normalize: true,
+            })
+            .demandOption(['template', 'out'])
+        },
+        handler: (argv) => {
+            const source = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
+            const previous = (argv.previous) ? JSON.parse(fs.readFileSync(argv.previous, 'utf8')) : {}
+            // familiarEvents
+            source.familiarEvents = {}
+            Object.entries(FAMILIAR_EVENTS)
+            .forEach(([familiarName, familiarAddress]) => {
+                source.familiarEvents[familiarName] = {
+                    metadata: {
+                        address: {
+                            method: 'absolute',
+                            value: familiarAddress,
+                        },
+                    },
+                    element: {
+                        structure: 'object-array',
+                        size: 48,
+                        constraint: {
+                            method: 'elementCount',
+                            elementCount: 49,
+                        },
+                        properties: {
+                            '0x00': {
+                                offset: '0x00',
+                                type: 'u32',
+                            },
+                            '0x04': {
+                                offset: '0x04',
+                                type: 'u32',
+                            },
+                            servantId: {
+                                offset: '0x08',
+                                type: 's32',
+                            },
+                            roomX: {
+                                offset: '0x0C',
+                                type: 's32',
+                            },
+                            roomY: {
+                                offset: '0x10',
+                                type: 's32',
+                            },
+                            cameraX: {
+                                offset: '0x14',
+                                type: 's32',
+                            },
+                            cameraY: {
+                                offset: '0x18',
+                                type: 's32',
+                            },
+                            condition: {
+                                offset: '0x1C',
+                                type: 's32',
+                            },
+                            delay: {
+                                offset: '0x20',
+                                type: 's32',
+                            },
+                            entityId: {
+                                offset: '0x24',
+                                type: 's32',
+                            },
+                            params: {
+                                offset: '0x28',
+                                type: 's32',
+                            },
+                            '0x2C': {
+                                offset: '0x2C',
+                                type: 'u32',
+                            },
+                        },
+                    },
+                }
+            })
+            // stages.STAGE_NAME.constants.music.EVENT_NAME
+            Object.entries(MUSIC)
+            .forEach(([stageName, stageInfo]) => {
+                let context = source.stages
+                // stages.STAGE_NAME.constants.music.EVENT_NAME
+                if (!(stageName in context)) {
+                    context[stageName] = {}
+                }
+                context = context[stageName]
+                // stages.STAGE_NAME.constants.music.EVENT_NAME
+                if (!('constants' in context)) {
+                    context.constants = {}
+                }
+                context = context.constants
+                // stages.STAGE_NAME.constants.music.EVENT_NAME
+                if (!('music' in context)) {
+                    context.music = {}
+                }
+                context = context.music
+                // stages.STAGE_NAME.constants.music.EVENT_NAME
+                Object.entries(MUSIC[stageName])
+                .forEach(([eventName, offset]) => {
+                    context[eventName] = {
+                        metadata: {
+                            address: {
+                                value: offset,
+                                method: 'relative',
+                            },
+                            element: {
+                                structure: 'value',
+                                type: 'music-id',
+                            },
+                        },
+                    }
+                })
+            })
+            Object.entries(STAGES)
+            .forEach(([stageName, stageOffset]) => {
+                // stages.STAGE_NAME
+                if (!(stageName in source.stages)) {
+                    source.stages[stageName] = {}
+                }
+                // stages.STAGE_NAME.metadata
+                if (!('metadata' in source.stages[stageName])) {
+                    source.stages[stageName].metadata = {
+                        address: {
+                            value: STAGES[stageName],
+                            method: 'absolute',
+                        },
+                    }
+                }
+                // stages.STAGE_NAME.constants
+                if (!('constants' in source.stages[stageName])) {
+                    source.stages[stageName].constants = {}
+                }
+                // stages.STAGE_NAME.constants.baseDropRates
+                if (stageName in BASE_DROP_RATES) {
+                    source.stages[stageName].constants.baseDropRates = {
+                        metadata: {
+                            address: {
+                                value: BASE_DROP_RATES[stageName],
+                                method: 'relative',
+                            },
+                            element: {
+                                structure: 'value-array',
+                                constraint: {
+                                    method: 'elementCount',
+                                    elementCount: 4,
+                                },
+                                type: 'u8',
+                            }
+                        },
+                    }
+                }
+                // stages.STAGE_NAME.constants.uniqueItemDrops
+                if (stageName in UNIQUE_ITEM_DROPS) {
+                    source.stages[stageName].constants.uniqueItemDrops = {
+                        metadata: {
+                            address: {
+                                value: UNIQUE_ITEM_DROPS[stageName].offset,
+                                method: 'relative',
+                            },
+                            element: {
+                                structure: 'value-array',
+                                constraint: {
+                                    method: 'elementCount',
+                                    elementCount: UNIQUE_ITEM_DROPS[stageName].elementCount,
+                                },
+                                type: 'item-drop-id',
+                            }
+                        },
+                    }
+                }
+                // stages.STAGE_NAME.rooms
+                if (!('rooms' in source.stages[stageName])) {
+                    source.stages[stageName].rooms = {
+                        metadata: {
+                            address: {
+                                method: 'indirect',
+                                value: '0x000010',
+                                type: 'u32',
+                                base: '0x80180000',
+                            },
+                            element: {
+                                structure: 'object-array',
+                                size: 8,
+                                constraint: {
+                                    method: 'sentinelValues',
+                                    sentinelValues: [
+                                        {
+                                            value: '0x40',
+                                            type: 'u8',
+                                        },
+                                    ],
+                                },
+                                postProcessing: [
+                                    {
+                                        process: 'calculateDerivedValue',
+                                        propertyName: '_rows',
+                                        actions: [
+                                            {
+                                                action: 'get',
+                                                type: 'property',
+                                                property: 'bottom',
+                                            },
+                                            {
+                                                action: 'add',
+                                                type: 'constant',
+                                                constant: 1,
+                                            },
+                                            {
+                                                action: 'subtract',
+                                                type: 'property',
+                                                property: 'top',
+                                            }
+                                        ],
+                                    },
+                                    {
+                                        process: 'calculateDerivedValue',
+                                        propertyName: '_columns',
+                                        actions: [
+                                            {
+                                                action: 'get',
+                                                type: 'property',
+                                                property: 'right',
+                                            },
+                                            {
+                                                action: 'add',
+                                                type: 'constant',
+                                                constant: 1,
+                                            },
+                                            {
+                                                action: 'subtract',
+                                                type: 'property',
+                                                property: 'left',
+                                            }
+                                        ],
+                                    },
+                                ],
+                                properties: {
+                                    left: {
+                                        offset: '0x00',
+                                        type: 'u8',
+                                    },
+                                    top: {
+                                        offset: '0x01',
+                                        type: 'u8',
+                                    },
+                                    right: {
+                                        offset: '0x02',
+                                        type: 'u8',
+                                    },
+                                    bottom: {
+                                        offset: '0x03',
+                                        type: 'u8',
+                                    },
+                                    tileLayoutId: {
+                                        offset: '0x04',
+                                        type: 'u8',
+                                    },
+                                    tilesetId: {
+                                        offset: '0x05',
+                                        type: 's8',
+                                    },
+                                    objectGraphicsId: {
+                                        offset: '0x06',
+                                        type: 'u8',
+                                    },
+                                    objectLayoutId: {
+                                        offset: '0x07',
+                                        type: 'u8',
+                                    },
+                                },
+                            },
+                        }
+                    }
+                }
+                // stages.STAGE_NAME.layers
+                if (!('layers' in source.stages[stageName])) {
+                    source.stages[stageName].layers = {}
+                }
+                // stages.STAGE_NAME.entities
+                if (!('entities' in source.stages[stageName])) {
+                    source.stages[stageName].entities = {}
+                }
+                // stages.STAGE_NAME.entities.layoutOffsets
+                if (!('layoutOffsets' in source.stages[stageName].entities)) {
+                    source.stages[stageName].entities.layoutOffsets = {
+                        metadata: {
+                            address: {
+                                method: 'indirect',
+                                value: '0x00000C',
+                                type: 'u32',
+                                base: '0x80180000',
+                            },
+                            element: {
+                                structure: 'object',
+                                size: '0x2A',
+                                properties: {
+                                    horizontalEntities: {
+                                        offset: '0x1C',
+                                        type: 'u16',
+                                    },
+                                    verticalEntities: {
+                                        offset: '0x28',
+                                        type: 'u16',
+                                    },
+                                },
+                            },
+                        },
+                    }
+                }
+                const previousStageInfo = previous?.stages?.[stageName]
+                if (previousStageInfo) {
+                    // stages.STAGE_NAME.layers.roomDefinitions
+                    previousStageInfo.rooms.data
+                    .filter((room) => {
+                        return room.tilesetId !== -1
+                    })
+                    .forEach((room, roomIndex, rooms) => {
+                        source.stages[stageName].layers.roomDefinitions = {
+                            metadata: {
+                                address: {
+                                    method: 'indirect',
+                                    value: '0x000020',
+                                    type: 'u32',
+                                    base: '0x80180000',
+                                },
+                                element: {
+                                    structure: 'object-array',
+                                    size: 8,
+                                    constraint: {
+                                        method: 'elementCount',
+                                        elementCount: rooms.length,
+                                    },
+                                    properties: {
+                                        foreground: {
+                                            offset: '0x00',
+                                            type: 'zone-offset'
+                                        },
+                                        background: {
+                                            offset: '0x04',
+                                            type: 'zone-offset'
+                                        },
+                                    },
+                                },
+                            },
+                        }
+                    })
+                    // stages.STAGE_NAME.layers.layerDefinitions
+                    const roomDefinitions = previousStageInfo.layers.roomDefinitions
+                    if (roomDefinitions) {
+                        const minLayerDefinition = roomDefinitions.data.at(0).background
+                        const maxLayerDefinition = roomDefinitions.data.at(0).background
+                        console.log('minLayerDefinition:', minLayerDefinition)
+                        console.log('maxLayerDefinition:', maxLayerDefinition)
+                    }
+                    // stages.STAGE_NAME.tilemaps
+                    // stages.STAGE_NAME.entities.horizontalRows, stages.STAGE_NAME.entities.verticalRows
+                }
+            })
+            // ...
+            fs.writeFileSync(argv.out, JSON.stringify(source, null, 4))
+        }
+    })
     .command({ // alias
         command: 'alias',
         describe: 'Reformat room names for stage in alias file',

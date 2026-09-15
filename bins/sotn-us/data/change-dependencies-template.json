@@ -1,0 +1,570 @@
+{
+    "miscellaneous": {
+        "castleEntranceDrawbridgeCutscene": [
+            {
+                "action": "get",
+                "property": "stages.castleEntrance.rooms.unknownRoom20.left",
+                "type": "property"
+            },
+            {
+                "action": "add",
+                "constant": 1,
+                "type": "constant"
+            },
+            {
+                "action": "set",
+                "property": "stages.castleEntrance.layers.layerDefinitions.unknownRoom19.zPriority",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.castleEntrance.rooms.unknownRoom20.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.castleEntrance.layers.layerDefinitions.unknownRoom19.flags",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.castleEntrance.rooms.unknownRoom19.left",
+                "type": "property"
+            },
+            {
+                "action": "add",
+                "constant": -1,
+                "type": "constant"
+            },
+            {
+                "action": "set",
+                "property": "stages.castleEntrance.layers.layerDefinitions.unknownRoom20.zPriority",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.castleEntrance.rooms.unknownRoom19.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.castleEntrance.layers.layerDefinitions.unknownRoom20.flags",
+                "type": "property"
+            }
+        ],
+        "castleTeleporters.fromFirstCastle.left": [
+            {
+                "action": "get",
+                "property": "stages.castleKeep.rooms.keepArea.left",
+                "type": "property"
+            },
+            {
+                "action": "multiply",
+                "constant": -256,
+                "type": "constant"
+            },
+            {
+                "action": "add",
+                "constant": -320,
+                "type": "constant"
+            },
+            {
+                "action": "set",
+                "address": 1047780,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromFirstCastle.left.0x000FFCE4",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 1094796,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromFirstCastle.left.0x0010B48C",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 1094864,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromFirstCastle.left.0x0010B4D0",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 52976908,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromFirstCastle.left.0x03285D0C",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 52997052,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromFirstCastle.left.0x0328ABBC",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 52997120,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromFirstCastle.left.0x0328AC00",
+                "type": "address"
+            }
+        ],
+        "castleTeleporters.fromFirstCastle.top": [
+            {
+                "action": "get",
+                "property": "stages.castleKeep.rooms.keepArea.top",
+                "type": "property"
+            },
+            {
+                "action": "multiply",
+                "constant": -256,
+                "type": "constant"
+            },
+            {
+                "action": "add",
+                "constant": -847,
+                "type": "constant"
+            },
+            {
+                "action": "set",
+                "address": 1047832,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromFirstCastle.top.0x000FFD18",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 52976960,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromFirstCastle.top.0x03285D40",
+                "type": "address"
+            }
+        ],
+        "castleTeleporters.fromReverseCastle.left": [
+            {
+                "action": "get",
+                "property": "stages.reverseKeep.rooms.keepArea.left",
+                "type": "property"
+            },
+            {
+                "action": "multiply",
+                "constant": -256,
+                "type": "constant"
+            },
+            {
+                "action": "add",
+                "constant": -1728,
+                "type": "constant"
+            },
+            {
+                "action": "set",
+                "address": 1047912,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromReverseCastle.left.0x000FFD68",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 52977040,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromReverseCastle.left.0x03285D90",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 1094960,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromReverseCastle.left.0x0010B530",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 1095028,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromReverseCastle.left.0x0010B574",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 52997216,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromReverseCastle.left.0x0328AC60",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 52997284,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromReverseCastle.left.0x0328ACA4",
+                "type": "address"
+            }
+        ],
+        "castleTeleporters.fromReverseCastle.top": [
+            {
+                "action": "get",
+                "property": "stages.reverseKeep.rooms.keepArea.top",
+                "type": "property"
+            },
+            {
+                "action": "multiply",
+                "constant": -256,
+                "type": "constant"
+            },
+            {
+                "action": "add",
+                "constant": -1351,
+                "type": "constant"
+            },
+            {
+                "action": "set",
+                "address": 1047964,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromReverseCastle.top.0x000FFD9C",
+                "type": "address"
+            },
+            {
+                "action": "set",
+                "address": 52977104,
+                "element": {
+                    "structure": "value",
+                    "type": "s16"
+                },
+                "name": "castleTeleporters.fromReverseCastle.top.0x03285DD0",
+                "type": "address"
+            }
+        ],
+        "shopRelics": [
+            {
+                "action": "get",
+                "property": "stages.longLibrary.constants.shopRelics.jewelOfOpen",
+                "type": "property"
+            },
+            {
+                "action": "add",
+                "constant": 100,
+                "type": "constant"
+            },
+            {
+                "action": "set",
+                "address": 65610504,
+                "element": {
+                    "structure": "value",
+                    "type": "u8"
+                },
+                "name": "shopRelics.0x03E92308",
+                "type": "address"
+            }
+        ],
+        "specialSaveRooms": [
+            {
+                "action": "get",
+                "property": "stages.undergroundCaverns.rooms.falseSaveRoom.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "specialSaveRooms.falseSaveRoomX.data",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.undergroundCaverns.rooms.falseSaveRoom.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "specialSaveRooms.falseSaveRoomY.data",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseCaverns.rooms.falseSaveRoom.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "specialSaveRooms.reverseFalseSaveRoomX.data",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseCaverns.rooms.falseSaveRoom.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "specialSaveRooms.reverseFalseSaveRoomY.data",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.blackMarbleGallery.rooms.saveRoomA.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "specialSaveRooms.finalSaveRoomX.data",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.blackMarbleGallery.rooms.saveRoomA.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "specialSaveRooms.finalSaveRoomY.data",
+                "type": "property"
+            }
+        ],
+        "warpRoomCoordinates": [
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToCastleEntrance.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.castleEntrance.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToCastleEntrance.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.castleEntrance.roomY",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToAbandonedMine.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.abandonedMine.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToAbandonedMine.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.abandonedMine.roomY",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToOuterWall.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.outerWall.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToOuterWall.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.outerWall.roomY",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToCastleKeep.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.castleKeep.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToCastleKeep.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.castleKeep.roomY",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToOlroxsQuarters.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.warpRooms.rooms.warpRoomToOlroxsQuarters.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.warpRooms.constants.warpCoordinates.olroxsQuarters.roomY",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToCastleEntrance.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.castleEntrance.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToCastleEntrance.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.castleEntrance.roomY",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToAbandonedMine.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.abandonedMine.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToAbandonedMine.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.abandonedMine.roomY",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToOuterWall.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.outerWall.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToOuterWall.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.outerWall.roomY",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToCastleKeep.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.castleKeep.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToCastleKeep.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.castleKeep.roomY",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToOlroxsQuarters.left",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.olroxsQuarters.roomX",
+                "type": "property"
+            },
+            {
+                "action": "get",
+                "property": "stages.reverseWarpRooms.rooms.warpRoomToOlroxsQuarters.top",
+                "type": "property"
+            },
+            {
+                "action": "set",
+                "property": "stages.reverseWarpRooms.constants.warpCoordinates.olroxsQuarters.roomY",
+                "type": "property"
+            }
+        ]
+    }
+}

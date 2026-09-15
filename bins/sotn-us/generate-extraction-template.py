@@ -255,7 +255,6 @@ data = {
     },
 }
 
-
 if __name__ == '__main__':
     '''
     Usage
@@ -276,7 +275,7 @@ if __name__ == '__main__':
         open(os.path.normpath(args.template)) as source_file,
         open(os.path.normpath(args.extraction), 'w') as target_file,
     ):
-        source = yaml.safe_load(source_file)
+        source = json.load(source_file)
         source['familiarEvents'] = {}
         for familiar_name in data['familiarEvents']:
             source['familiarEvents'][familiar_name] = {
