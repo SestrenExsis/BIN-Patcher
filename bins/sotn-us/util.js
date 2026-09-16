@@ -551,62 +551,62 @@ const argv = yargs(process.argv.slice(2))
                             method: 'absolute',
                             value: familiarAddress,
                         },
-                    },
-                    element: {
-                        structure: 'object-array',
-                        size: 48,
-                        constraint: {
-                            method: 'elementCount',
-                            elementCount: 49,
-                        },
-                        properties: {
-                            '0x00': {
-                                offset: '0x00',
-                                type: 'u32',
+                        element: {
+                            structure: 'object-array',
+                            size: 48,
+                            constraint: {
+                                method: 'elementCount',
+                                elementCount: 49,
                             },
-                            '0x04': {
-                                offset: '0x04',
-                                type: 'u32',
-                            },
-                            servantId: {
-                                offset: '0x08',
-                                type: 's32',
-                            },
-                            roomX: {
-                                offset: '0x0C',
-                                type: 's32',
-                            },
-                            roomY: {
-                                offset: '0x10',
-                                type: 's32',
-                            },
-                            cameraX: {
-                                offset: '0x14',
-                                type: 's32',
-                            },
-                            cameraY: {
-                                offset: '0x18',
-                                type: 's32',
-                            },
-                            condition: {
-                                offset: '0x1C',
-                                type: 's32',
-                            },
-                            delay: {
-                                offset: '0x20',
-                                type: 's32',
-                            },
-                            entityId: {
-                                offset: '0x24',
-                                type: 's32',
-                            },
-                            params: {
-                                offset: '0x28',
-                                type: 's32',
-                            },
-                            '0x2C': {
-                                offset: '0x2C',
-                                type: 'u32',
+                            properties: {
+                                '0x00': {
+                                    offset: '0x00',
+                                    type: 'u32',
+                                },
+                                '0x04': {
+                                    offset: '0x04',
+                                    type: 'u32',
+                                },
+                                servantId: {
+                                    offset: '0x08',
+                                    type: 's32',
+                                },
+                                roomX: {
+                                    offset: '0x0C',
+                                    type: 's32',
+                                },
+                                roomY: {
+                                    offset: '0x10',
+                                    type: 's32',
+                                },
+                                cameraX: {
+                                    offset: '0x14',
+                                    type: 's32',
+                                },
+                                cameraY: {
+                                    offset: '0x18',
+                                    type: 's32',
+                                },
+                                condition: {
+                                    offset: '0x1C',
+                                    type: 's32',
+                                },
+                                delay: {
+                                    offset: '0x20',
+                                    type: 's32',
+                                },
+                                entityId: {
+                                    offset: '0x24',
+                                    type: 's32',
+                                },
+                                params: {
+                                    offset: '0x28',
+                                    type: 's32',
+                                },
+                                '0x2C': {
+                                    offset: '0x2C',
+                                    type: 'u32',
+                                },
                             },
                         },
                     },
@@ -883,14 +883,208 @@ const argv = yargs(process.argv.slice(2))
                     })
                     // stages.STAGE_NAME.layers.layerDefinitions
                     const roomDefinitions = previousStageInfo.layers.roomDefinitions
-                    if (roomDefinitions) {
-                        const minLayerDefinition = roomDefinitions.data.at(0).background
-                        const maxLayerDefinition = roomDefinitions.data.at(0).background
-                        console.log('minLayerDefinition:', minLayerDefinition)
-                        console.log('maxLayerDefinition:', maxLayerDefinition)
+                    if (roomDefinitions?.data) {
+                        let minLayerDefinition = Number.MAX_SAFE_INTEGER
+                        let maxLayerDefinition = Number.MIN_SAFE_INTEGER
+                        roomDefinitions.data
+                        .forEach((roomDefinition) => {
+                            const bg = parseInt(roomDefinition.background, 16)
+                            const fg = parseInt(roomDefinition.foreground, 16)
+                            minLayerDefinition = Math.min(minLayerDefinition, bg, fg)
+                            maxLayerDefinition = Math.max(maxLayerDefinition, bg, fg)
+                        })
+                        if (minLayerDefinition > Number.MIN_SAFE_INTEGER && maxLayerDefinition < Number.MAX_SAFE_INTEGER) {
+                            source.stages[stageName].layers.layerDefinitions = {
+                                metadata: {
+                                    address: {
+                                        method: 'relative',
+                                        value: minLayerDefinition,
+                                    },
+                                    element: {
+                                        structure: 'object-array',
+                                        size: 16,
+                                        constraint: {
+                                            method: 'elementCount',
+                                            elementCount: 1 + Math.floor((maxLayerDefinition - minLayerDefinition) / 16),
+                                        },
+                                        properties: {
+                                            tilesOffset: {
+                                                offset: '0x00',
+                                                type: 'zone-offset',
+                                            },
+                                            defsOffset: {
+                                                offset: '0x04',
+                                                type: 'zone-offset',
+                                            },
+                                            layoutRect: {
+                                                offset: '0x08',
+                                                type: 'layout-rect',
+                                            },
+                                            _layoutRect: {
+                                                offset: '0x08',
+                                                type: 'u32',
+                                            },
+                                            zPriority: {
+                                                offset: '0x0C',
+                                                type: 'u16',
+                                            },
+                                            flags: {
+                                                offset: '0x0E',
+                                                type: 'u16',
+                                            },
+                                        },
+                                    },
+                                },
+                            }
+                        }
                     }
                     // stages.STAGE_NAME.tilemaps
+                    const layerDefinitions = previousStageInfo.layers.layerDefinitions
+                    if (layerDefinitions?.data) {
+                        const tilemaps = {}
+                        layerDefinitions.data
+                        .filter((layerDefinition) => {
+                            return layerDefinition.tilesOffset && layerDefinition.tilesOffset !== 'NULL'
+                        })
+                        .forEach((layerDefinition) => {
+                            const tilemapId = layerDefinition.tilesOffset
+                            const layoutRect = layerDefinition.layoutRect
+                            tilemaps[tilemapId] = {
+                                metadata: {
+                                    address: {
+                                        method: 'relative',
+                                        value: tilemapId,
+                                    },
+                                    element: {
+                                        structure: 'tilemap',
+                                        heightInScreens: 1 + (layoutRect.bottom - layoutRect.top),
+                                        widthInScreens: 1 + (layoutRect.right - layoutRect.left),
+                                    },
+                                },
+                            }
+                        })
+                        source.stages[stageName].tilemaps = tilemaps
+                    }
                     // stages.STAGE_NAME.entities.horizontalRows, stages.STAGE_NAME.entities.verticalRows
+                    const layoutOffsets = previousStageInfo.entities.layoutOffsets
+                    const horizontalOffset = layoutOffsets.data.horizontalEntities
+                    const verticalOffset = layoutOffsets.data.verticalEntities
+                    if (horizontalOffset && verticalOffset) {
+                        const entityRowCount = Math.floor((verticalOffset - horizontalOffset) / 4)
+                        source.stages[stageName].entities.horizontalRows = {
+                            metadata: {
+                                address: {
+                                    method: 'relative',
+                                    value: horizontalOffset,
+                                    type: 'u32',
+                                },
+                                element: {
+                                    structure: 'value-array',
+                                    constraint: {
+                                        method: 'elementCount',
+                                        elementCount: entityRowCount,
+                                    },
+                                    type: 'u32',
+                                }
+                            }
+                        }
+                        source.stages[stageName].entities.verticalRows = {
+                            metadata: {
+                                address: {
+                                    method: 'relative',
+                                    value: verticalOffset,
+                                    type: 'u32',
+                                },
+                                element: {
+                                    structure: 'value-array',
+                                    constraint: {
+                                        method: 'elementCount',
+                                        elementCount: entityRowCount,
+                                    },
+                                    type: 'u32',
+                                }
+                            }
+                        }
+                        const horizontalRows = previousStageInfo.entities.horizontalRows?.data
+                        const verticalRows = previousStageInfo.entities.verticalRows?.data
+                        if (horizontalRows && verticalRows) {
+                            const horizontalStart = Math.min(...horizontalRows)
+                            const verticalStart = Math.min(...verticalRows)
+                            const entityCount = Math.floor((verticalStart - horizontalStart) / 10)
+                            const entityTables = [
+                                {
+                                    propertyName: 'horizontal',
+                                    addressStart: horizontalStart,
+                                },
+                                {
+                                    propertyName: 'vertical',
+                                    addressStart: verticalStart,
+                                },
+                            ]
+                            entityTables
+                            .forEach((entityTable) => {
+                                source.stages[stageName].entities[entityTable.propertyName] = {
+                                    metadata: {
+                                        address: {
+                                            method: 'relative',
+                                            value: entityTable.addressStart - 0x80180000,
+                                            type: 'u32',
+                                        },
+                                        element: {
+                                            structure: 'object-array',
+                                            size: 10,
+                                            constraint: {
+                                                method: 'elementCount',
+                                                elementCount: entityCount,
+                                            },
+                                            properties: {
+                                                x: {
+                                                    offset: '0x00',
+                                                    type: 's16',
+                                                },
+                                                y: {
+                                                    offset: '0x02',
+                                                    type: 's16',
+                                                },
+                                                entityTypeId: {
+                                                    offset: '0x04',
+                                                    type: 'u16',
+                                                },
+                                                entityRoomIndex: {
+                                                    offset: '0x06',
+                                                    type: 'u16',
+                                                },
+                                                params: {
+                                                    offset: '0x08',
+                                                    type: 'u16',
+                                                },
+                                            },
+                                        },
+                                    },
+                                }
+                            })
+                            // After processing 70 elements in Marble Gallery's entity layout table, add 12 bytes of padding
+                            // - Marble Gallery has 12 bytes of what appear to be garbage data in the middle of the entity layout table
+                            // - In order to process the entity layout table as one contiguous piece of data, these bytes need to be ignored
+                            // [350:356] = (2B42, 8018, 2B7E, 8018, 2BB0, 8018)
+                            if (stageName === 'marbleGallery') {
+                                source.stages[stageName].entities.vertical.metadata.element.postProcessing = [
+                                    {
+                                        process: 'paddingAfterElement',
+                                        whenArrayLength: 70,
+                                        paddingAmount: 12,
+                                    },
+                                ]
+                                source.stages[stageName].entities.horizontal.metadata.element.postProcessing = [
+                                    {
+                                        process: 'paddingAfterElement',
+                                        whenArrayLength: 70,
+                                        paddingAmount: 12,
+                                    },
+                                ]
+                            }
+                        }
+                    }
                 }
             })
             // ...
