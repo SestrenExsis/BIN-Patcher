@@ -658,6 +658,244 @@ const BASE_DROP_RATES = {
 }
 
 const FAMILIAR_EVENTS = {
+    abandonedMineDemonSwitchDemon: {
+        stageName: 'abandonedMine',
+        roomName: 'demonSwitch',
+        inverted: false,
+    },
+    abandonedMineDemonSwitchNoseDevil: {
+        stageName: 'abandonedMine',
+        roomName: 'demonSwitch',
+        inverted: false,
+    },
+    alchemyLaboratoryBreakableFloorFaerie: {
+        stageName: 'alchemyLaboratory',
+        roomName: 'tallZigZagRoom',
+        inverted: false,
+    },
+    alchemyLaboratoryBreakableFloorYousei: {
+        stageName: 'alchemyLaboratory',
+        roomName: 'tallZigZagRoom',
+        inverted: false,
+    },
+    alchemyLaboratoryBreakableWallFaerie: {
+        stageName: 'alchemyLaboratory',
+        roomName: 'tallZigZagRoom',
+        inverted: false,
+    },
+    alchemyLaboratoryBreakableWallYousei: {
+        stageName: 'alchemyLaboratory',
+        roomName: 'tallZigZagRoom',
+        inverted: false,
+    },
+    catacombsDarkRoomBat: {
+        stageName: 'catacombs',
+        roomName: 'pitchBlackSpikeMaze',
+        inverted: false,
+    },
+    catacombsDarkRoomDemon: {
+        stageName: 'catacombs',
+        roomName: 'pitchBlackSpikeMaze',
+        inverted: false,
+    },
+    catacombsDarkRoomFaerie1: {
+        stageName: 'catacombs',
+        roomName: 'pitchBlackSpikeMaze',
+        inverted: false,
+    },
+    catacombsDarkRoomFaerie2: {
+        stageName: 'catacombs',
+        roomName: 'pitchBlackSpikeMaze',
+        inverted: false,
+    },
+    catacombsDarkRoomGhost: {
+        stageName: 'catacombs',
+        roomName: 'pitchBlackSpikeMaze',
+        inverted: false,
+    },
+    catacombsDarkRoomNoseDevil: {
+        stageName: 'catacombs',
+        roomName: 'pitchBlackSpikeMaze',
+        inverted: false,
+    },
+    catacombsDarkRoomSword: {
+        stageName: 'catacombs',
+        roomName: 'pitchBlackSpikeMaze',
+        inverted: false,
+    },
+    catacombsDarkRoomYousei1: {
+        stageName: 'catacombs',
+        roomName: 'pitchBlackSpikeMaze',
+        inverted: false,
+    },
+    catacombsDarkRoomYousei2: {
+        stageName: 'catacombs',
+        roomName: 'pitchBlackSpikeMaze',
+        inverted: false,
+    },
+    caveDemonSwitchDemon: {
+        stageName: 'cave',
+        roomName: 'demonSwitch',
+        inverted: true,
+    },
+    caveDemonSwitchNoseDevil: {
+        stageName: 'cave',
+        roomName: 'demonSwitch',
+        inverted: true,
+    },
+    clockTowerLeftBreakableWallFaerie: {
+        stageName: 'clockTower',
+        roomName: 'pendulumRoom',
+        inverted: false,
+    },
+    clockTowerLeftBreakableWallYousei: {
+        stageName: 'clockTower',
+        roomName: 'pendulumRoom',
+        inverted: false,
+    },
+    clockTowerRightBreakableWallFaerie: {
+        stageName: 'clockTower',
+        roomName: 'leftGearRoom',
+        inverted: false,
+    },
+    clockTowerRightBreakableWallYousei: {
+        stageName: 'clockTower',
+        roomName: 'leftGearRoom',
+        inverted: false,
+    },
+    colosseumMistGateYousei: {
+        stageName: 'colosseum',
+        roomName: 'topOfElevatorShaft',
+        inverted: false,
+    },
+    colosseumMistGateFaerie: {
+        stageName: 'colosseum',
+        roomName: 'topOfElevatorShaft',
+        inverted: false,
+    },
+    longLibraryMistGateFaerie: {
+        stageName: 'longLibrary',
+        roomName: 'lesserDemonArea',
+        inverted: false,
+    },
+    longLibraryMistGateYousei: {
+        stageName: 'longLibrary',
+        roomName: 'lesserDemonArea',
+        inverted: false,
+    },
+    longLibrarySecretBookcaseFaerie: {
+        stageName: 'longLibrary',
+        roomName: 'secretBookcaseRoom',
+        inverted: false,
+    },
+    longLibrarySecretBookcaseYousei: {
+        stageName: 'longLibrary',
+        roomName: 'secretBookcaseRoom',
+        inverted: false,
+    },
+    longLibraryShopDemon: {
+        stageName: 'longLibrary',
+        roomName: 'shop',
+        inverted: false,
+    },
+    longLibraryShopFaerie: {
+        stageName: 'longLibrary',
+        roomName: 'shop',
+        inverted: false,
+    },
+    longLibraryShopNoseDevil: {
+        stageName: 'longLibrary',
+        roomName: 'shop',
+        inverted: false,
+    },
+    longLibraryShopSword: {
+        stageName: 'longLibrary',
+        roomName: 'shop',
+        inverted: false,
+    },
+    longLibraryShopYousei: {
+        stageName: 'longLibrary',
+        roomName: 'shop',
+        inverted: false,
+    },
+    olroxsQuartersBreakableWallFaerie: {
+        stageName: 'olroxsQuarters',
+        roomName: 'grandStaircase',
+        inverted: false,
+    },
+    olroxsQuartersBreakableWallYousei: {
+        stageName: 'olroxsQuarters',
+        roomName: 'grandStaircase',
+        inverted: false,
+    },
+    outerWallMistGateYousei: {
+        stageName: 'outerWall',
+        roomName: 'lowerMedusaRoom',
+        inverted: false,
+    },
+    outerWallMistGateFaerie: {
+        stageName: 'outerWall',
+        roomName: 'lowerMedusaRoom',
+        inverted: false,
+    },
+    royalChapelConfessionalBoothDemon: {
+        stageName: 'royalChapel',
+        roomName: 'confessionalBooth',
+        inverted: false,
+    },
+    royalChapelConfessionalBoothFaerie: {
+        stageName: 'royalChapel',
+        roomName: 'confessionalBooth',
+        inverted: false,
+    },
+    royalChapelConfessionalBoothNoseDevil: {
+        stageName: 'royalChapel',
+        roomName: 'confessionalBooth',
+        inverted: false,
+    },
+    royalChapelConfessionalBoothSword: {
+        stageName: 'royalChapel',
+        roomName: 'confessionalBooth',
+        inverted: false,
+    },
+    royalChapelConfessionalBoothYousei: {
+        stageName: 'royalChapel',
+        roomName: 'confessionalBooth',
+        inverted: false,
+    },
+    royalChapelMistGateFaerie: {
+        stageName: 'royalChapel',
+        roomName: 'spikeHallway',
+        inverted: false,
+    },
+    royalChapelMistGateYousei: {
+        stageName: 'royalChapel',
+        roomName: 'spikeHallway',
+        inverted: false,
+    },
+    undergroundCavernsBreakableFloorFaerie: {
+        stageName: 'undergroundCaverns',
+        roomName: 'hiddenCrystalEntrance',
+        inverted: false,
+    },
+    undergroundCavernsBreakableFloorYousei: {
+        stageName: 'undergroundCaverns',
+        roomName: 'hiddenCrystalEntrance',
+        inverted: false,
+    },
+    undergroundCavernsBreakableWallFaerie: {
+        stageName: 'undergroundCaverns',
+        roomName: 'plaqueRoomWithBreakableWall',
+        inverted: false,
+    },
+    undergroundCavernsBreakableWallYousei: {
+        stageName: 'undergroundCaverns',
+        roomName: 'plaqueRoomWithBreakableWall',
+        inverted: false,
+    },
+}
+
+const FAMILIAR_OVERLAYS = {
     // NOTE(sestren): Which familiars correspond to which overlays have not been fully verified and are educated guesses
     bat: 0x0392A760,
     ghost: 0x0394BDB0,
@@ -3268,6 +3506,258 @@ const ROOMS = {
     },
 }
 
+const SECRET_MAP_TILE_REVEALS = {
+    anteroomStaircase: {
+        stageName: 'castleKeep',
+        roomName: 'keepArea',
+        top: 3,
+        left: 5,
+    },
+    demonSwitch: {
+        stageName: 'abandonedMine',
+        roomName: 'demonSwitch',
+        top: 0,
+        left: 0,
+    },
+    snakeColumn: {
+        stageName: 'abandonedMine',
+        roomName: 'snakeColumn',
+        top: 1,
+        left: 0,
+    },
+    alchemyLaboratoryBreakableFloor: {
+        stageName: 'alchemyLaboratory',
+        roomName: 'tallZigZagRoom',
+        top: 2,
+        left: 0,
+    },
+    alchemyLaboratoryBreakableWall: {
+        stageName: 'alchemyLaboratory',
+        roomName: 'tallZigZagRoom',
+        top: 2,
+        left: 0,
+    },
+    jewelSwordPassage: {
+        stageName: 'castleEntrance',
+        roomName: 'mermanRoom',
+        top: 1,
+        left: 0,
+    },
+    clockTowerSecretWall: {
+        stageName: 'clockTower',
+        roomName: 'leftGearRoom',
+        top: 0,
+        left: 0,
+    },
+    clockTowerBreakableWall: {
+        stageName: 'clockTower',
+        roomName: 'pendulumRoom',
+        top: 1,
+        left: 0,
+    },
+    colosseumBreakableCeiling: {
+        stageName: 'colosseum',
+        roomName: 'bladeMasterRoom',
+        top: 0,
+        left: 2,
+    },
+    colosseumUnknown: {
+        stageName: 'colosseum',
+        roomName: 'topOfElevatorShaft',
+        top: 0,
+        left: 0,
+    },
+    marbleGallerySecretFloor: {
+        stageName: 'marbleGallery',
+        roomName: 'clockRoom',
+        top: 0,
+        left: 0,
+    },
+    olroxsQuartersBreakableCeiling: {
+        stageName: 'olroxsQuarters',
+        roomName: 'catwalkCrypt',
+        top: 0,
+        left: 1,
+    },
+    olroxsQuartersBreakableWall: {
+        stageName: 'olroxsQuarters',
+        roomName: 'grandStaircase',
+        top: 1,
+        left: 2,
+    },
+    undergroundCavernsBreakableFloor: {
+        stageName: 'undergroundCaverns',
+        roomName: 'hiddenCrystalEntrance',
+        top: 1,
+        left: 2,
+    },
+    undergroundCavernsBreakableWall: {
+        stageName: 'undergroundCaverns',
+        roomName: 'plaqueRoomWithBreakableWall',
+        top: 0,
+        left: 0,
+    },
+}
+
+const BOSS_TELEPORTERS = {
+    cutsceneMeetingMariaInClockRoom: {
+        stageName: 'marbleGallery',
+        roomName: 'clockRoom',
+        top: 0,
+        left: 0,
+    },
+    bossOlroxRight: {
+        stageName: 'olroxsQuarters',
+        roomName: 'olroxsRoom',
+        top: 0,
+        left: 1,
+    },
+    bossGranfaloonRight: {
+        stageName: 'catacombs',
+        roomName: 'granfaloonsLair',
+        top: 0,
+        left: 1,
+    },
+    bossMinotaurAndWerewolfLeft: {
+        stageName: 'colosseum',
+        roomName: 'arena',
+        top: 0,
+        left: 0,
+    },
+    bossMinotaurAndWerewolfRight: {
+        stageName: 'colosseum',
+        roomName: 'arena',
+        top: 0,
+        left: 1,
+    },
+    bossScylla: {
+        stageName: 'undergroundCaverns',
+        roomName: 'scyllaWyrmRoom',
+        top: 0,
+        left: 0,
+    },
+    bossDoppelganger10Left: {
+        stageName: 'outerWall',
+        roomName: 'doppelgangerRoom',
+        top: 0,
+        left: 0,
+    },
+    bossDoppelganger10Right: {
+        stageName: 'outerWall',
+        roomName: 'doppelgangerRoom',
+        top: 0,
+        left: 1,
+    },
+    bossHippogryphLeft: {
+        stageName: 'royalChapel',
+        roomName: 'hippogryphRoom',
+        top: 0,
+        left: 0,
+    },
+    bossHippogryphRight: {
+        stageName: 'royalChapel',
+        roomName: 'hippogryphRoom',
+        top: 0,
+        left: 1,
+    },
+    bossRichter: {
+        stageName: 'castleKeep',
+        roomName: 'keepArea',
+        top: 3,
+        left: 3,
+    },
+    bossCerberusLeft: {
+        stageName: 'abandonedMine',
+        roomName: 'cerberusRoom',
+        top: 0,
+        left: 0,
+    },
+    bossCerberusRight: {
+        stageName: 'abandonedMine',
+        roomName: 'cerberusRoom',
+        top: 0,
+        left: 1,
+    },
+    bossTrioLeft: {
+        stageName: 'reverseColosseum',
+        roomName: 'arena',
+        top: 0,
+        left: 0,
+    },
+    bossTrioRight: {
+        stageName: 'reverseColosseum',
+        roomName: 'arena',
+        top: 0,
+        left: 1,
+    },
+    bossBeelzebubLeft: {
+        stageName: 'necromancyLaboratory',
+        roomName: 'slograAndGaibonRoom',
+        top: 0,
+        left: 0,
+    },
+    bossBeelzebubRight: {
+        stageName: 'necromancyLaboratory',
+        roomName: 'slograAndGaibonRoom',
+        top: 1,
+        left: 3,
+    },
+    bossDeathLeft: {
+        stageName: 'cave',
+        roomName: 'cerberusRoom',
+        top: 0,
+        left: 0,
+    },
+    bossDeathRight: {
+        stageName: 'cave',
+        roomName: 'cerberusRoom',
+        top: 0,
+        left: 1,
+    },
+    bossMedusaLeft: {
+        stageName: 'antiChapel',
+        roomName: 'hippogryphRoom',
+        top: 0,
+        left: 0,
+    },
+    bossMedusaRight: {
+        stageName: 'antiChapel',
+        roomName: 'hippogryphRoom',
+        top: 0,
+        left: 1,
+    },
+    bossCreatureLeft: {
+        stageName: 'reverseOuterWall',
+        roomName: 'doppelgangerRoom',
+        top: 0,
+        left: 0,
+    },
+    bossCreatureRight: {
+        stageName: 'reverseOuterWall',
+        roomName: 'doppelgangerRoom',
+        top: 0,
+        left: 1,
+    },
+    bossDoppelganger40: {
+        stageName: 'reverseCaverns',
+        roomName: 'scyllaWyrmRoom',
+        top: 0,
+        left: 0,
+    },
+    bossAkmodanIILeft: {
+        stageName: 'deathWingsLair',
+        roomName: 'olroxsRoom',
+        top: 1,
+        left: 0,
+    },
+    bossGalamothLeft: {
+        stageName: 'floatingCatacombs',
+        roomName: 'granfaloonsLair',
+        top: 1,
+        left: 0,
+    },
+}
+
 const STAGES = {
     abandonedMine: 0x03CDF800,
     alchemyLaboratory: 0x049BE800,
@@ -3470,7 +3960,7 @@ const argv = yargs(process.argv.slice(2))
             const previous = (argv.previous) ? JSON.parse(fs.readFileSync(argv.previous, 'utf8')) : {}
             // familiarEvents
             source.familiarEvents = {}
-            Object.entries(FAMILIAR_EVENTS)
+            Object.entries(FAMILIAR_OVERLAYS)
             .forEach(([familiarName, familiarAddress]) => {
                 source.familiarEvents[familiarName] = {
                     metadata: {
@@ -4203,7 +4693,102 @@ const argv = yargs(process.argv.slice(2))
                 })
             })
             // secretMapTileReveals, bossTeleporters
+            const dependencies = [
+                {
+                    dependencyName: 'secretMapTileReveals',
+                    dependencyInfo: SECRET_MAP_TILE_REVEALS,
+                },
+                {
+                    dependencyName: 'bossTeleporters',
+                    dependencyInfo: BOSS_TELEPORTERS,
+                },
+            ]
+            dependencies
+            .forEach((dependency) => {
+                Object.entries(dependency.dependencyInfo)
+                .forEach(([targetKey, targetInfo]) => {
+                    const properties = [
+                        {
+                            sourcePropertyName: 'top',
+                            sourceValue: targetInfo.top,
+                            targetPropertyName: 'roomY',
+                        },
+                        {
+                            sourcePropertyName: 'left',
+                            sourceValue: targetInfo.left,
+                            targetPropertyName: 'roomX',
+                        },
+                    ]
+                    properties
+                    .forEach((propertyInfo) => {
+                        const transformation = []
+                        transformation.push({
+                            action: 'get',
+                            type: 'property',
+                            property: `stages.${targetInfo.stageName}.rooms.${targetInfo.roomName}.${propertyInfo.sourcePropertyName}`,
+                        })
+                        if (propertyInfo.sourceValue !== 0) {
+                            transformation.push({
+                                action: 'add',
+                                type: 'constant',
+                                constant: propertyInfo.sourceValue,
+                            })
+                        }
+                        transformation.push({
+                            action: 'set',
+                            type: 'property',
+                            property: `${dependency.dependencyName}.${targetKey}.${propertyInfo.targetPropertyName}`,
+                        })
+                        // ...
+                        const transformationName = transformation.at(-1).property
+                        // console.log(transformationName)
+                        source[dependency.dependencyName][transformationName] = transformation
+                    })
+                })
+            })
             // familiarEvents
+            Object.keys(FAMILIAR_OVERLAYS)
+            .toSorted()
+            .forEach((familiarKey) => {
+                Object.entries(FAMILIAR_EVENTS)
+                .forEach(([transformationKey, eventInfo]) => {
+                    const properties = [
+                        {
+                            sourcePropertyName: 'top',
+                            targetPropertyName: 'roomY',
+                        },
+                        {
+                            sourcePropertyName: 'left',
+                            targetPropertyName: 'roomX',
+                        },
+                    ]
+                    properties
+                    .forEach((propertyInfo) => {
+                        const transformation = []
+                        transformation.push({
+                            action: 'get',
+                            type: 'property',
+                            property: `stages.${eventInfo.stageName}.rooms.${eventInfo.roomName}.${propertyInfo.sourcePropertyName}`,
+                        })
+                        if (eventInfo.inverted && propertyInfo.sourcePropertyName === 'left') {
+                            transformation.push({
+                                action: 'multiply',
+                                type: 'constant',
+                                constant: -1,
+                            })
+                        }
+                        transformation.push({
+                            action: 'set',
+                            type: 'property',
+                            property: `familiarEvents.${familiarKey}.${transformationKey}.${propertyInfo.targetPropertyName}`,
+                        })
+                        // ...
+                        const transformationName = transformation.at(-1).property
+                        // console.log(transformationName)
+                        source['familiarEvents'][transformationName] = transformation
+                    })
+                })
+            })
             // bossRooms
             // liveMapRepaints
             // ...
