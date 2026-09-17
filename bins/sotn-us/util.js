@@ -906,6 +906,105 @@ const FAMILIAR_OVERLAYS = {
     noseDevil: 0x039F2664,
 }
 
+const LIVE_MAP_REPAINTS = [
+    {
+        specialId: 'a',
+        addressA: 0x000E7248 + 0x00,
+        addressB: 0x000E7248 + 0x50,
+        offset: 5,
+        roomName: 'leftFerrymanRoute',
+        edge: 'left',
+    },
+    {
+        specialId: 'a',
+        addressA: 0x000E7248 + 0x08,
+        addressB: 0x000E7248 + 0x54,
+        offset: 1,
+        roomName: 'leftFerrymanRoute',
+        edge: 'top',
+    },
+    {
+        specialId: 'b',
+        addressA: 0x000E7248 + 0x0C,
+        addressB: 0x000E7248 + 0x60,
+        offset: 7,
+        roomName: 'leftFerrymanRoute',
+        edge: 'left',
+    },
+    {
+        specialId: 'b',
+        addressA: 0x000E7248 + 0x14,
+        addressB: 0x000E7248 + 0x64,
+        offset: 1,
+        roomName: 'leftFerrymanRoute',
+        edge: 'top',
+    },
+    {
+        specialId: 'c',
+        addressA: 0x000E7248 + 0x18,
+        addressB: 0x000E7248 + 0x70,
+        offset: 3,
+        roomName: 'rightFerrymanRoute',
+        edge: 'left',
+    },
+    {
+        specialId: 'c',
+        addressA: 0x000E7248 + 0x20,
+        addressB: 0x000E7248 + 0x74,
+        offset: 1,
+        roomName: 'rightFerrymanRoute',
+        edge: 'top',
+    },
+    {
+        specialId: 'd',
+        addressA: 0x000E7248 + 0x24,
+        addressB: 0x000E7248 + 0x80,
+        offset: 4,
+        roomName: 'rightFerrymanRoute',
+        edge: 'left',
+    },
+    {
+        specialId: 'd',
+        addressA: 0x000E7248 + 0x2C,
+        addressB: 0x000E7248 + 0x84,
+        offset: 1,
+        roomName: 'rightFerrymanRoute',
+        edge: 'top',
+    },
+    {
+        specialId: 'e',
+        addressA: 0x000E7248 + 0x30,
+        addressB: 0x000E7248 + 0x90,
+        offset: 5,
+        roomName: 'rightFerrymanRoute',
+        edge: 'left',
+    },
+    {
+        specialId: 'e',
+        addressA: 0x000E7248 + 0x38,
+        addressB: 0x000E7248 + 0x94,
+        offset: 1,
+        roomName: 'rightFerrymanRoute',
+        edge: 'top',
+    },
+    {
+        specialId: 'f',
+        addressA: 0x000E7248 + 0x3C,
+        addressB: 0x000E7248 + 0xA0,
+        offset: 8,
+        roomName: 'rightFerrymanRoute',
+        edge: 'left',
+    },
+    {
+        specialId: 'f',
+        addressA: 0x000E7248 + 0x44,
+        addressB: 0x000E7248 + 0xA4,
+        offset: 1,
+        roomName: 'rightFerrymanRoute',
+        edge: 'top',
+    },
+]
+
 const MUSIC = {
     alchemyLaboratory: {
         boss: 0x034280,
@@ -4678,7 +4777,7 @@ const argv = yargs(process.argv.slice(2))
                             transformation.push({
                                 action: 'get',
                                 type: 'property',
-                                property: `stages.${stageName}.rooms.${roomName}.${propertyInfo.sourcePropertyName}`,
+                                property: `stages.${stageInfo.associatedStageName}.rooms.${roomName}.${propertyInfo.sourcePropertyName}`,
                             })
                         }
                         transformation.push({
@@ -4790,30 +4889,89 @@ const argv = yargs(process.argv.slice(2))
                 })
             })
             // bossRooms
+            Object.entries(BOSS_ROOMS)
+            .forEach(([stageName, stageInfo]) => {
+                Object.entries(stageInfo)
+                .forEach(([roomName, roomInfo]) => {
+                    const properties = [
+                        {
+                            propertyName: 'top',
+                            offsetValue: roomInfo.offsetTop,
+                        },
+                        {
+                            propertyName: 'left',
+                            offsetValue: roomInfo.offsetLeft,
+                        },
+                    ]
+                    properties
+                    .forEach((propertyInfo) => {
+                        const transformation = []
+                        transformation.push({
+                            action: 'get',
+                            type: 'property',
+                            property: `stages.${roomInfo.sourceStageName}.rooms.${roomInfo.sourceRoomName}.${propertyInfo.propertyName}`,
+                        })
+                        if (propertyInfo.offsetValue !== 0) {
+                            transformation.push({
+                                action: 'add',
+                                type: 'constant',
+                                constant: propertyInfo.offsetValue,
+                            })
+                        }
+                        transformation.push({
+                            action: 'set',
+                            type: 'property',
+                            property: `stages.${stageName}.rooms.${roomName}.${propertyInfo.propertyName}`,
+                        })
+                        const transformationName = transformation.at(-1).property
+                        // console.log(transformationName)
+                        source['bossRooms.leftsAndTops'][transformationName] = transformation
+                    })
+                })
+            })
             // liveMapRepaints
+            LIVE_MAP_REPAINTS
+            .forEach((repaintInfo) => {
+                const properties = [
+                    {
+                        castleName: 'firstCastle',
+                        address: repaintInfo.addressA,
+                    },
+                    {
+                        castleName: 'reverseCastle',
+                        address: repaintInfo.addressB,
+                    },
+                ]
+                properties
+                .forEach((propertyInfo) => {
+                    const transformation = [
+                        {
+                            'action': 'get',
+                            'type': 'property',
+                            'property': `stages.undergroundCaverns.rooms.${repaintInfo.roomName}.${repaintInfo.edge}`,
+                        },
+                        {
+                            'action': 'add',
+                            'type': 'constant',
+                            'constant': repaintInfo.offset,
+                        },
+                        {
+                            'action': 'set',
+                            'type': 'address',
+                            'name': `liveMapRepaints.${propertyInfo.castleName}.${repaintInfo.specialId}.${repaintInfo.edge}`,
+                            'address': propertyInfo.address,
+                            'element': {
+                                'structure': 'value',
+                                'type': 'u8',
+                            },
+                        },
+                    ]
+                    const transformationName = transformation.at(-1).name
+                    // console.log(transformationName)
+                    source['liveMapRepaints'][transformationName] = transformation
+                })
+            })
             // ...
-            // BOSS_ROOMS = {
-            //     cutsceneMeetingMariaInClockRoom: {
-            //         clockRoom: {
-            //             sourceStageName: 'marbleGallery',
-            //             sourceRoomName: 'clockRoom',
-            //             offsetTop: 0,
-            //             offsetLeft: 0,
-            //         },
-            //         triggerTeleporterA: {
-            //             sourceStageName: 'marbleGallery',
-            //             sourceRoomName: 'clockRoom',
-            //             offsetTop: 0,
-            //             offsetLeft: -1,
-            //         },
-            //         triggerTeleporterB: {
-            //             sourceStageName: 'marbleGallery',
-            //             sourceRoomName: 'clockRoom',
-            //             offsetTop: 0,
-            //             offsetLeft: 1,
-            //         },
-            //     },
-            // }
             const target = {
                 authors: [
                     'Sestren',
