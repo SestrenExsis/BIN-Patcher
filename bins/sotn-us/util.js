@@ -172,6 +172,437 @@ export class CutsceneInstruction {
     }
 }
 
+const ORDERED_DEPENDENCY_NAMES = [
+    'primaryRooms.rightsAndBottoms',
+    'secondaryRooms.leftsAndTops',
+    'bossRooms.leftsAndTops',
+    'secondaryRooms.rightsAndBottoms',
+    'rooms.layerDefinitions',
+    'secretMapTileReveals',
+    'bossTeleporters',
+    'familiarEvents',
+    'liveMapRepaints',
+    'miscellaneous',
+]
+
+const ASSOCIATED_STAGES = {
+    antiChapel: {
+        associatedStageName: 'royalChapel',
+        reversed: true,
+    },
+    blackMarbleGallery: {
+        associatedStageName: 'marbleGallery',
+        reversed: true,
+    },
+    castleEntranceRevisited: {
+        associatedStageName: 'castleEntrance',
+        reversed: false,
+    },
+    cave: {
+        associatedStageName: 'abandonedMine',
+        reversed: true,
+    },
+    deathWingsLair: {
+        associatedStageName: 'olroxsQuarters',
+        reversed: true,
+    },
+    floatingCatacombs: {
+        associatedStageName: 'catacombs',
+        reversed: true,
+    },
+    forbiddenLibrary: {
+        associatedStageName: 'longLibrary',
+        reversed: true,
+    },
+    necromancyLaboratory: {
+        associatedStageName: 'alchemyLaboratory',
+        reversed: true,
+    },
+    reverseCastleCenter: {
+        associatedStageName: 'castleCenter',
+        reversed: true,
+    },
+    reverseCaverns: {
+        associatedStageName: 'undergroundCaverns',
+        reversed: true,
+    },
+    reverseClockTower: {
+        associatedStageName: 'clockTower',
+        reversed: true,
+    },
+    reverseColosseum: {
+        associatedStageName: 'colosseum',
+        reversed: true,
+    },
+    reverseEntrance: {
+        associatedStageName: 'castleEntrance',
+        reversed: true,
+    },
+    reverseKeep: {
+        associatedStageName: 'castleKeep',
+        reversed: true,
+    },
+    reverseOuterWall: {
+        associatedStageName: 'outerWall',
+        reversed: true,
+    },
+    reverseWarpRooms: {
+        associatedStageName: 'warpRooms',
+        reversed: true,
+    },
+}
+
+const BOSS_ROOMS = {
+    bossCerberus: {
+        cerberusRoom: {
+            sourceStageName: 'abandonedMine',
+            sourceRoomName: 'cerberusRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'abandonedMine',
+            sourceRoomName: 'cerberusRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'abandonedMine',
+            sourceRoomName: 'cerberusRoom',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+    },
+    bossMedusa: {
+        hippogryphRoom: {
+            sourceStageName: 'antiChapel',
+            sourceRoomName: 'hippogryphRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'antiChapel',
+            sourceRoomName: 'hippogryphRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'antiChapel',
+            sourceRoomName: 'hippogryphRoom',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+    },
+    bossRichter: {
+        throneRoom: {
+            sourceStageName: 'castleKeep',
+            sourceRoomName: 'keepArea',
+            offsetTop: 3,
+            offsetLeft: 3,
+        },
+    },
+    bossGranfaloon: {
+        granfaloonsLair: {
+            sourceStageName: 'catacombs',
+            sourceRoomName: 'granfaloonsLair',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'catacombs',
+            sourceRoomName: 'granfaloonsLair',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'catacombs',
+            sourceRoomName: 'granfaloonsLair',
+            offsetTop: 1,
+            offsetLeft: -1,
+        },
+    },
+    bossDeath: {
+        cerberusRoom: {
+            sourceStageName: 'cave',
+            sourceRoomName: 'cerberusRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'cave',
+            sourceRoomName: 'cerberusRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'cave',
+            sourceRoomName: 'cerberusRoom',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+    },
+    bossMinotaurAndWerewolf: {
+        arena: {
+            sourceStageName: 'colosseum',
+            sourceRoomName: 'arena',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'colosseum',
+            sourceRoomName: 'arena',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'colosseum',
+            sourceRoomName: 'arena',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+    },
+    bossAkmodanII: {
+        olroxsRoom: {
+            sourceStageName: 'deathWingsLair',
+            sourceRoomName: 'olroxsRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'deathWingsLair',
+            sourceRoomName: 'olroxsRoom',
+            offsetTop: 1,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'deathWingsLair',
+            sourceRoomName: 'olroxsRoom',
+            offsetTop: 1,
+            offsetLeft: 2,
+        },
+    },
+    bossGalamoth: {
+        granfaloonsLair: {
+            sourceStageName: 'floatingCatacombs',
+            sourceRoomName: 'granfaloonsLair',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'floatingCatacombs',
+            sourceRoomName: 'granfaloonsLair',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'floatingCatacombs',
+            sourceRoomName: 'granfaloonsLair',
+            offsetTop: 1,
+            offsetLeft: -1,
+        },
+    },
+    bossBeelzebub: {
+        slograAndGaibonRoom: {
+            sourceStageName: 'necromancyLaboratory',
+            sourceRoomName: 'slograAndGaibonRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'necromancyLaboratory',
+            sourceRoomName: 'slograAndGaibonRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'necromancyLaboratory',
+            sourceRoomName: 'slograAndGaibonRoom',
+            offsetTop: 1,
+            offsetLeft: -1,
+        },
+        triggerTeleporterC: {
+            sourceStageName: 'necromancyLaboratory',
+            sourceRoomName: 'slograAndGaibonRoom',
+            offsetTop: 1,
+            offsetLeft: 4,
+        },
+    },
+    bossOlrox: {
+        olroxsRoom: {
+            sourceStageName: 'olroxsQuarters',
+            sourceRoomName: 'olroxsRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'olroxsQuarters',
+            sourceRoomName: 'olroxsRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'olroxsQuarters',
+            sourceRoomName: 'olroxsRoom',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+    },
+    bossDoppelganger10: {
+        doppelgangerRoom: {
+            sourceStageName: 'outerWall',
+            sourceRoomName: 'doppelgangerRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'outerWall',
+            sourceRoomName: 'doppelgangerRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'outerWall',
+            sourceRoomName: 'doppelgangerRoom',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+    },
+    bossDoppelganger40: {
+        scyllaWyrmRoom: {
+            sourceStageName: 'reverseCaverns',
+            sourceRoomName: 'scyllaWyrmRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'reverseCaverns',
+            sourceRoomName: 'scyllaWyrmRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'reverseCaverns',
+            sourceRoomName: 'scyllaWyrmRoom',
+            offsetTop: 0,
+            offsetLeft: 1,
+        },
+    },
+    bossTrio: {
+        arena: {
+            sourceStageName: 'reverseColosseum',
+            sourceRoomName: 'arena',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'reverseColosseum',
+            sourceRoomName: 'arena',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'reverseColosseum',
+            sourceRoomName: 'arena',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+    },
+    bossCreature: {
+        doppelgangerRoom: {
+            sourceStageName: 'reverseOuterWall',
+            sourceRoomName: 'doppelgangerRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'reverseOuterWall',
+            sourceRoomName: 'doppelgangerRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'reverseOuterWall',
+            sourceRoomName: 'doppelgangerRoom',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+    },
+    bossHippogryph: {
+        hippogryphRoom: {
+            sourceStageName: 'royalChapel',
+            sourceRoomName: 'hippogryphRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'royalChapel',
+            sourceRoomName: 'hippogryphRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'royalChapel',
+            sourceRoomName: 'hippogryphRoom',
+            offsetTop: 0,
+            offsetLeft: 2,
+        },
+    },
+    bossScylla: {
+        scyllaWyrmRoom: {
+            sourceStageName: 'undergroundCaverns',
+            sourceRoomName: 'scyllaWyrmRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'undergroundCaverns',
+            sourceRoomName: 'scyllaWyrmRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        risingWaterRoom: {
+            sourceStageName: 'undergroundCaverns',
+            sourceRoomName: 'scyllaWyrmRoom',
+            offsetTop: 0,
+            offsetLeft: 1,
+        },
+        scyllaRoom: {
+            sourceStageName: 'undergroundCaverns',
+            sourceRoomName: 'scyllaWyrmRoom',
+            offsetTop: -1,
+            offsetLeft: 1,
+        },
+        crystalCloakRoom: {
+            sourceStageName: 'undergroundCaverns',
+            sourceRoomName: 'scyllaWyrmRoom',
+            offsetTop: -1,
+            offsetLeft: 0,
+        },
+    },
+    cutsceneMeetingMariaInClockRoom: {
+        clockRoom: {
+            sourceStageName: 'marbleGallery',
+            sourceRoomName: 'clockRoom',
+            offsetTop: 0,
+            offsetLeft: 0,
+        },
+        triggerTeleporterA: {
+            sourceStageName: 'marbleGallery',
+            sourceRoomName: 'clockRoom',
+            offsetTop: 0,
+            offsetLeft: -1,
+        },
+        triggerTeleporterB: {
+            sourceStageName: 'marbleGallery',
+            sourceRoomName: 'clockRoom',
+            offsetTop: 0,
+            offsetLeft: 1,
+        },
+    },
+}
+
+const SECONDARY_STAGES = Object.keys(ASSOCIATED_STAGES).concat(Object.keys(BOSS_ROOMS))
+
 const BASE_DROP_RATES = {
     abandonedMine: 0x000D6C,
     alchemyLaboratory: 0x0018C0,
@@ -240,7 +671,7 @@ const FAMILIAR_EVENTS = {
 const MUSIC = {
     alchemyLaboratory: {
         boss: 0x034280,
-        'afterSlograAndGaibon': 0x034350,
+        afterSlograAndGaibon: 0x034350,
         'afterSlograAndGaibon2': 0x0343CC,
     },
     bossAkmodanII: {
@@ -338,6 +769,2502 @@ const MUSIC = {
         boss: 0x02CA08,
         stage: 0x02CAAC,
         stage2: 0x02CB24,
+    },
+}
+
+const ROOMS = {
+    abandonedMine: {
+        bend: [
+            'bend',
+        ],
+        cerberusRoom: [
+            'cerberusRoom',
+        ],
+        demonCard: [
+            'demonCard',
+        ],
+        demonSwitch: [
+            'demonSwitch',
+        ],
+        fourWayIntersection: [
+            'fourWayIntersection',
+        ],
+        karmaCoinRoom: [
+            'karmaCoinRoom',
+        ],
+        loadingRoomToCatacombs: [
+            'loadingRoomToCatacombs',
+        ],
+        loadingRoomToUndergroundCaverns: [
+            'loadingRoomToUndergroundCaverns',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        lowerStairwell: [
+            'lowerStairwell',
+        ],
+        peanutsRoom: [
+            'peanutsRoom',
+        ],
+        saveRoom: [
+            'saveRoom',
+        ],
+        snakeColumn: [
+            'snakeColumn',
+        ],
+        triggerTeleporterToCatacombs: [],
+        triggerTeleporterToUndergroundCaverns: [],
+        triggerTeleporterToWarpRooms: [],
+        venusWeedRoom: [
+            'venusWeedRoom',
+        ],
+        wellLitSkullRoom: [
+            'wellLitSkullRoom',
+        ],
+        wolfsHeadColumn: [
+            'wolfsHeadColumn',
+        ],
+    },
+    alchemyLaboratory: {
+        batCardRoom: [
+            'batCardRoom',
+        ],
+        bloodyZombieHallway: [
+            'bloodyZombieHallway',
+        ],
+        blueDoorHallway: [
+            'blueDoorHallway',
+        ],
+        boxPuzzleRoom: [
+            'boxPuzzleRoom',
+        ],
+        cannonRoom: [
+            'cannonRoom',
+        ],
+        clothCapeRoom: [
+            'clothCapeRoom',
+        ],
+        corridorToElevator: [
+            'corridorToElevator',
+        ],
+        elevatorShaft: [
+            'elevatorShaft',
+        ],
+        emptyZigZagRoom: [
+            'emptyZigZagRoom',
+        ],
+        entryway: [
+            'entryway',
+        ],
+        exitToMarbleGallery: [
+            'exitToMarbleGallery',
+        ],
+        exitToRoyalChapel: [
+            'exitToRoyalChapel',
+        ],
+        glassVats: [
+            'glassVats',
+        ],
+        heartMaxUpRoom: [
+            'heartMaxUpRoom',
+        ],
+        loadingRoomToCastleEntrance: [
+            'loadingRoomToCastleEntrance',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        loadingRoomToRoyalChapel: [
+            'loadingRoomToRoyalChapel',
+        ],
+        redSkeletonLiftRoom: [
+            'redSkeletonLiftRoom',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        saveRoomC: [
+            'saveRoomC',
+        ],
+        secretLifeMaxUpRoom: [
+            'secretLifeMaxUpRoom',
+        ],
+        shortZigZagRoom: [
+            'shortZigZagRoom',
+        ],
+        skillOfWolfRoom: [
+            'skillOfWolfRoom',
+        ],
+        slograAndGaibonRoom: [
+            'slograAndGaibonRoom',
+        ],
+        sunglassesRoom: [
+            'sunglassesRoom',
+        ],
+        tallSpittleboneRoom: [
+            'tallSpittleboneRoom',
+        ],
+        tallZigZagRoom: [
+            'tallZigZagRoom',
+        ],
+        tetrominoRoom: [
+            'tetrominoRoom',
+        ],
+        triggerTeleporterToCastleEntrance: [],
+        triggerTeleporterToMarbleGallery: [],
+        triggerTeleporterToRoyalChapel: [],
+    },
+    antiChapel: {
+        chapelStaircase: [
+            'chapelStaircase',
+        ],
+        confessionalBooth: [
+            'confessionalBooth',
+            'confessionalBoothBackground',
+        ],
+        emptyRoom: [
+            'emptyRoom',
+            'emptyRoomBackground',
+        ],
+        gogglesRoom: [
+            'gogglesRoom',
+            'gogglesRoomBackground',
+        ],
+        hippogryphRoom: [
+            'hippogryphRoom',
+            'hippogryphRoomBackground',
+        ],
+        leftTower: [
+            'leftTower',
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            'loadingRoomToAlchemyLaboratory',
+        ],
+        loadingRoomToCastleKeep: [
+            'loadingRoomToCastleKeep',
+        ],
+        loadingRoomToColosseum: [
+            'loadingRoomToColosseum',
+        ],
+        loadingRoomToOlroxsQuarters: [
+            'loadingRoomToOlroxsQuarters',
+        ],
+        middleTower: [
+            'middleTower',
+        ],
+        nave: [
+            'nave',
+        ],
+        pushingStatueShortcut: [
+            'pushingStatueShortcut',
+            'pushingStatueShortcutBackground',
+        ],
+        rightTower: [
+            'rightTower',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        silverRingRoom: [
+            'silverRingRoom',
+            'silverRingRoomBackground',
+        ],
+        spikeHallway: [
+            'spikeHallway',
+            'spikeHallwayBackground',
+        ],
+        statueLedge: [
+            'statueLedge',
+            'statueLedgeBackground',
+        ],
+        triggerTeleporterToAlchemyLaboratory: [],
+        triggerTeleporterToCastleKeep: [],
+        triggerTeleporterToColosseum: [],
+        triggerTeleporterToOlroxsQuarters: [],
+        walkwayBetweenTowers: [
+            'walkwayBetweenTowers',
+            'walkwayBetweenTowersBackground',
+        ],
+        walkwayLeftOfHippogryph: [
+            'walkwayLeftOfHippogryph',
+            'walkwayLeftOfHippogryphBackground',
+        ],
+        walkwayRightOfHippogryph: [
+            'walkwayRightOfHippogryph',
+            'walkwayRightOfHippogryphBackground',
+        ],
+    },
+    blackMarbleGallery: {
+        alucartRoom: [
+            'alucartRoom',
+        ],
+        beneathDropoff: [
+            'beneathDropoff',
+            'beneathDropoffBackground',
+        ],
+        beneathLeftTrapdoor: [
+            'beneathLeftTrapdoor',
+            'beneathLeftTrapdoorBackground',
+        ],
+        beneathRightTrapdoor: [
+            'beneathRightTrapdoor',
+            'beneathRightTrapdoorBackground',
+        ],
+        blueDoorRoom: [
+            'blueDoorRoom',
+            'blueDoorRoomBackground',
+        ],
+        clockRoom: [
+            'clockRoom',
+            'clockRoomBackground',
+        ],
+        dropoff: [
+            'dropoff',
+            'dropoffBackground',
+        ],
+        elevatorRoom: [
+            'elevatorRoom',
+        ],
+        emptyRoom: [
+            'emptyRoom',
+            'emptyRoomBackground',
+        ],
+        entrance: [
+            'entrance',
+            'entranceBackground',
+        ],
+        gravityBootsRoom: [
+            'gravityBootsRoom',
+        ],
+        leftOfClockRoom: [
+            'leftOfClockRoom',
+            'leftOfClockRoomBackground',
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            'loadingRoomToAlchemyLaboratory',
+        ],
+        loadingRoomToCastleEntrance: [
+            'loadingRoomToCastleEntrance',
+        ],
+        loadingRoomToOlroxsQuarters: [
+            'loadingRoomToOlroxsQuarters',
+        ],
+        loadingRoomToOuterWall: [
+            'loadingRoomToOuterWall',
+        ],
+        loadingRoomToUndergroundCaverns: [
+            'loadingRoomToUndergroundCaverns',
+        ],
+        longHallway: [
+            'longHallway',
+        ],
+        ouijaTableStairway: [
+            'ouijaTableStairway',
+            'ouijaTableStairwayBackground',
+        ],
+        pathwayAfterLeftStatue: [
+            'pathwayAfterLeftStatue',
+        ],
+        pathwayAfterRightStatue: [
+            'pathwayAfterRightStatue',
+        ],
+        powerUpRoom: [
+            'powerUpRoom',
+        ],
+        rightOfClockRoom: [
+            'rightOfClockRoom',
+            'rightOfClockRoomBackground',
+        ],
+        sShapedHallways: [
+            'sShapedHallways',
+            'sShapedHallwaysBackground',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        slingerStaircase: [
+            'slingerStaircase',
+            'slingerStaircaseBackground',
+        ],
+        spiritOrbRoom: [
+            'spiritOrbRoom',
+            'spiritOrbRoomBackground',
+        ],
+        stainedGlassCorner: [
+            'stainedGlassCorner',
+            'stainedGlassCornerBackground',
+        ],
+        stairwellToUndergroundCaverns: [
+            'stairwellToUndergroundCaverns',
+            'stairwellToUndergroundCavernsBackground',
+        ],
+        stopwatchRoom: [
+            'stopwatchRoom',
+            'stopwatchRoomBackground',
+        ],
+        tallStainedGlassWindows: [
+            'tallStainedGlassWindows',
+            'tallStainedGlassWindowsBackground',
+        ],
+        threePaths: [
+            'threePaths',
+            'threePathsBackground',
+        ],
+        triggerTeleporterToAlchemyLaboratory: [],
+        triggerTeleporterToCastleCenter: [],
+        triggerTeleporterToCastleEntrance: [],
+        triggerTeleporterToOlroxsQuarters: [],
+        triggerTeleporterToOuterWall: [],
+        triggerTeleporterToUndergroundCaverns: [],
+    },
+    bossAkmodanII: {
+        olroxsRoom: [
+            'olroxsRoom',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    bossBeelzebub: {
+        slograAndGaibonRoom: [
+            'slograAndGaibonRoom',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+        triggerTeleporterC: [],
+    },
+    bossCerberus: {
+        cerberusRoom: [
+            'cerberusRoom',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    bossCreature: {
+        doppelgangerRoom: [
+            'doppelgangerRoom',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    bossDeath: {
+        cerberusRoom: [
+            'cerberusRoom',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    'bossDoppelganger10': {
+        doppelgangerRoom: [
+            'doppelgangerRoom',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    'bossDoppelganger40': {
+        scyllaWyrmRoom: [
+            'scyllaWyrmRoom',
+            'scyllaWyrmRoomBackground',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    bossGalamoth: {
+        granfaloonsLair: [
+            'granfaloonsLair',
+            'granfaloonsLairBackground',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    bossGranfaloon: {
+        granfaloonsLair: [
+            'granfaloonsLair',
+            'granfaloonsLairBackground',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    bossHippogryph: {
+        hippogryphRoom: [
+            'hippogryphRoom',
+            'hippogryphRoomBackground',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    bossMedusa: {
+        hippogryphRoom: [
+            'hippogryphRoom',
+            'hippogryphRoomBackground',
+        ],
+        triggerTeleporterA: [
+        ],
+        triggerTeleporterB: [
+        ],
+    },
+    bossMinotaurAndWerewolf: {
+        arena: [
+            'arena',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    bossOlrox: {
+        olroxsRoom: [
+            'olroxsRoom',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    bossRichter: {
+        throneRoom: [
+            'throneRoom',
+        ],
+    },
+    bossScylla: {
+        crystalCloakRoom: [
+            'crystalCloakRoom',
+            'crystalCloakRoomBackground',
+        ],
+        risingWaterRoom: [
+            'risingWaterRoom',
+            'risingWaterRoomBackground',
+        ],
+        scyllaRoom: [
+            'scyllaRoom',
+            'scyllaRoomBackground',
+        ],
+        scyllaWyrmRoom: [
+            'scyllaWyrmRoom',
+            'scyllaWyrmRoomBackground',
+        ],
+        triggerTeleporterA: [],
+    },
+    bossShaftAndDracula: {
+        centerCube: [
+            'centerCube',
+        ],
+        elevatorShaft: [
+            'elevatorShaft',
+        ],
+        triggerTeleporterA: [],
+        'unknownRoomId02': [
+            'unknownRoomId02',
+        ],
+    },
+    bossSuccubus: {
+        'unknownRoomId00': [
+            'unknownRoomId00',
+        ],
+        'unknownRoomId01': [
+            'unknownRoomId01',
+        ],
+    },
+    bossTrio: {
+        arena: [
+            'arena',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    castleCenter: {
+        centerCube: [
+            'centerCube',
+        ],
+        elevatorShaft: [
+            'elevatorShaft',
+        ],
+        'triggerTeleporterToBO6': [],
+        triggerTeleporterToMarbleGallery: [],
+        'unknownRoomId02': [
+            'unknownRoomId02',
+        ],
+    },
+    castleEntranceRevisited: {
+        afterDrawbridge: [
+            'afterDrawbridge',
+        ],
+        atticEntrance: [
+            'atticEntrance',
+            'atticEntranceBackground',
+        ],
+        atticHallway: [
+            'atticHallway',
+            'atticHallwayBackground',
+        ],
+        atticStaircase: [
+            'atticStaircase',
+            'atticStaircaseBackground',
+        ],
+        cubeOfZoeRoom: [
+            'cubeOfZoeRoom',
+            'cubeOfZoeRoomBackground',
+        ],
+        dropUnderPortcullis: [
+            'dropUnderPortcullis',
+            'dropUnderPortcullisBackground',
+        ],
+        gargoyleRoom: [
+            'gargoyleRoom',
+        ],
+        heartMaxUpRoom: [
+            'heartMaxUpRoom',
+            'heartMaxUpRoomBackground',
+        ],
+        holyMailRoom: [
+            'holyMailRoom',
+            'holyMailRoomBackground',
+        ],
+        jewelSwordRoom: [
+            'jewelSwordRoom',
+            'jewelSwordRoomBackground',
+        ],
+        lifeMaxUpRoom: [
+            'lifeMaxUpRoom',
+            'lifeMaxUpRoomBackground',
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            'loadingRoomToAlchemyLaboratory',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        loadingRoomToUndergroundCaverns: [
+            'loadingRoomToUndergroundCaverns',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        meetingRoomWithDeath: [
+            'meetingRoomWithDeath',
+        ],
+        mermanRoom: [
+            'mermanRoom',
+            'mermanRoomBackground',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        saveRoomC: [
+            'saveRoomC',
+        ],
+        shortcutToUndergroundCaverns: [
+            'shortcutToUndergroundCaverns',
+            'shortcutToUndergroundCavernsBackground',
+        ],
+        shortcutToWarpRooms: [
+            'shortcutToWarpRooms',
+            'shortcutToWarpRoomsBackground',
+        ],
+        stairwellAfterDeath: [
+            'stairwellAfterDeath',
+            'stairwellAfterDeathBackground',
+        ],
+        triggerTeleporterToAlchemyLaboratory: [],
+        triggerTeleporterToMarbleGallery: [],
+        triggerTeleporterToUndergroundCaverns: [],
+        triggerTeleporterToWarpRooms: [],
+        wargHallway: [
+            'wargHallway',
+        ],
+        zombieHallway: [
+            'zombieHallway',
+        ],
+    },
+    castleEntrance: {
+        afterDrawbridge: [
+            'afterDrawbridge',
+        ],
+        atticEntrance: [
+            'atticEntrance',
+            'atticEntranceBackground',
+        ],
+        atticHallway: [
+            'atticHallway',
+            'atticHallwayBackground',
+        ],
+        atticStaircase: [
+            'atticStaircase',
+            'atticStaircaseBackground',
+        ],
+        cubeOfZoeRoom: [
+            'cubeOfZoeRoom',
+            'cubeOfZoeRoomBackground',
+        ],
+        dropUnderPortcullis: [
+            'dropUnderPortcullis',
+            'dropUnderPortcullisBackground',
+        ],
+        forestCutscene: [
+            'forestCutscene',
+        ],
+        gargoyleRoom: [
+            'gargoyleRoom',
+        ],
+        heartMaxUpRoom: [
+            'heartMaxUpRoom',
+            'heartMaxUpRoomBackground',
+        ],
+        holyMailRoom: [
+            'holyMailRoom',
+            'holyMailRoomBackground',
+        ],
+        jewelSwordRoom: [
+            'jewelSwordRoom',
+            'jewelSwordRoomBackground',
+        ],
+        lifeMaxUpRoom: [
+            'lifeMaxUpRoom',
+            'lifeMaxUpRoomBackground',
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            'loadingRoomToAlchemyLaboratory',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        loadingRoomToUndergroundCaverns: [
+            'loadingRoomToUndergroundCaverns',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        meetingRoomWithDeath: [
+            'meetingRoomWithDeath',
+        ],
+        mermanRoom: [
+            'mermanRoom',
+            'mermanRoomBackground',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        saveRoomC: [
+            'saveRoomC',
+        ],
+        shortcutToUndergroundCaverns: [
+            'shortcutToUndergroundCaverns',
+            'shortcutToUndergroundCavernsBackground',
+        ],
+        shortcutToWarpRooms: [
+            'shortcutToWarpRooms',
+            'shortcutToWarpRoomsBackground',
+        ],
+        stairwellAfterDeath: [
+            'stairwellAfterDeath',
+            'stairwellAfterDeathBackground',
+        ],
+        triggerTeleporterToAlchemyLaboratory: [],
+        triggerTeleporterToMarbleGallery: [],
+        triggerTeleporterToUndergroundCaverns: [],
+        triggerTeleporterToWarpRooms: [],
+        'unknownRoom19': [
+            'unknownRoom19',
+        ],
+        'unknownRoom20': [
+            'unknownRoom20',
+        ],
+        wargHallway: [
+            'wargHallway',
+        ],
+        zombieHallway: [
+            'zombieHallway',
+        ],
+    },
+    castleKeep: {
+        bend: [
+            'bend',
+        ],
+        dualPlatforms: [
+            'dualPlatforms',
+        ],
+        falchionRoom: [
+            'falchionRoom',
+        ],
+        ghostCardRoom: [
+            'ghostCardRoom',
+        ],
+        keepArea: [
+            'keepArea',
+        ],
+        lionTorchPlatform: [
+            'lionTorchPlatform',
+        ],
+        loadingRoomToClockTower: [
+            'loadingRoomToClockTower',
+        ],
+        loadingRoomToRoyalChapel: [
+            'loadingRoomToRoyalChapel',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        lowerAttic: [
+            'lowerAttic',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        triggerTeleporterToClockTower: [],
+        triggerTeleporterToRoyalChapel: [],
+        triggerTeleporterToWarpRooms: [],
+        tyrfingRoom: [
+            'tyrfingRoom',
+        ],
+        upperAttic: [
+            'upperAttic',
+        ],
+    },
+    catacombs: {
+        ballroomMaskRoom: [
+            'ballroomMaskRoom',
+            'ballroomMaskRoomBackground',
+        ],
+        boneArkRoom: [
+            'boneArkRoom',
+            'boneArkRoomBackground',
+        ],
+        catEyeCircletRoom: [
+            'catEyeCircletRoom',
+            'catEyeCircletRoomBackground',
+        ],
+        exitToAbandonedMine: [
+            'exitToAbandonedMine',
+            'exitToAbandonedMineBackground',
+        ],
+        granfaloonsLair: [
+            'granfaloonsLair',
+            'granfaloonsLairBackground',
+        ],
+        hellfireBeastRoom: [
+            'hellfireBeastRoom',
+            'hellfireBeastRoomBackground',
+        ],
+        icebrandRoom: [
+            'icebrandRoom',
+            'icebrandRoomBackground',
+        ],
+        leftLavaPath: [
+            'leftLavaPath',
+        ],
+        loadingRoomToAbandonedMine: [
+            'loadingRoomToAbandonedMine',
+        ],
+        mormegilRoom: [
+            'mormegilRoom',
+            'mormegilRoomBackground',
+        ],
+        pitchBlackSpikeMaze: [
+            'pitchBlackSpikeMaze',
+            'pitchBlackSpikeMazeBackground',
+        ],
+        rightLavaPath: [
+            'rightLavaPath',
+            'rightLavaPathBackground',
+        ],
+        'roomId00': [
+            'roomId00',
+            'roomId00Background',
+        ],
+        'roomId02': [
+            'roomId02',
+            'roomId02Background',
+        ],
+        'roomId04': [
+            'roomId04',
+            'roomId04Background',
+        ],
+        'roomId05': [
+            'roomId05',
+            'roomId05Background',
+        ],
+        'roomId14': [
+            'roomId14',
+            'roomId14Background',
+        ],
+        'roomId19': [
+            'roomId19',
+            'roomId19Background',
+        ],
+        'roomId20': [
+            'roomId20',
+            'roomId20Background',
+        ],
+        'roomId21': [
+            'roomId21',
+            'roomId21Background',
+        ],
+        'roomId22': [
+            'roomId22',
+            'roomId22Background',
+        ],
+        'roomId23': [
+            'roomId23',
+            'roomId23Background',
+        ],
+        'roomId25': [
+            'roomId25',
+            'roomId25Background',
+        ],
+        'roomId26': [
+            'roomId26',
+            'roomId26Background',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        smallGremlinRoom: [
+            'smallGremlinRoom',
+            'smallGremlinRoomBackground',
+        ],
+        spikeBreakerRoom: [
+            'spikeBreakerRoom',
+            'spikeBreakerRoomBackground',
+        ],
+        triggerTeleporterToAbandonedMine: [],
+        walkArmorRoom: [
+            'walkArmorRoom',
+            'walkArmorRoomBackground',
+        ],
+    },
+    cave: {
+        bend: [
+            'bend',
+        ],
+        cerberusRoom: [
+            'cerberusRoom',
+        ],
+        demonCard: [
+            'demonCard',
+        ],
+        demonSwitch: [
+            'demonSwitch',
+        ],
+        fourWayIntersection: [
+            'fourWayIntersection',
+        ],
+        karmaCoinRoom: [
+            'karmaCoinRoom',
+        ],
+        loadingRoomToCatacombs: [
+            'loadingRoomToCatacombs',
+        ],
+        loadingRoomToUndergroundCaverns: [
+            'loadingRoomToUndergroundCaverns',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        lowerStairwell: [
+            'lowerStairwell',
+        ],
+        peanutsRoom: [
+            'peanutsRoom',
+        ],
+        saveRoom: [
+            'saveRoom',
+        ],
+        snakeColumn: [
+            'snakeColumn',
+        ],
+        triggerTeleporterToCatacombs: [],
+        triggerTeleporterToUndergroundCaverns: [],
+        triggerTeleporterToWarpRooms: [],
+        venusWeedRoom: [
+            'venusWeedRoom',
+        ],
+        wellLitSkullRoom: [
+            'wellLitSkullRoom',
+        ],
+        wolfsHeadColumn: [
+            'wolfsHeadColumn',
+        ],
+    },
+    clockTower: {
+        belfry: [
+            'belfry',
+        ],
+        exitToCourtyard: [
+            'exitToCourtyard',
+        ],
+        fireOfBatRoom: [
+            'fireOfBatRoom',
+            'fireOfBatRoomBackground',
+        ],
+        healingMailRoom: [
+            'healingMailRoom',
+            'healingMailRoomBackground',
+        ],
+        hiddenArmory: [
+            'hiddenArmory',
+        ],
+        karasumansRoom: [
+            'karasumansRoom',
+            'karasumansRoomBackground',
+        ],
+        leftGearRoom: [
+            'leftGearRoom',
+        ],
+        loadingRoomToCastleKeep: [
+            'loadingRoomToCastleKeep',
+        ],
+        loadingRoomToOuterWall: [
+            'loadingRoomToOuterWall',
+        ],
+        openCourtyard: [
+            'openCourtyard',
+        ],
+        pathToKarasuman: [
+            'pathToKarasuman',
+        ],
+        pendulumRoom: [
+            'pendulumRoom',
+        ],
+        rightGearRoom: [
+            'rightGearRoom',
+        ],
+        spire: [
+            'spire',
+        ],
+        stairwellToOuterWall: [
+            'stairwellToOuterWall',
+        ],
+        triggerTeleporterToCastleKeep: [],
+        triggerTeleporterToOuterWall: [],
+    },
+    colosseum: {
+        arena: [
+            'arena',
+        ],
+        bladeMasterRoom: [
+            'bladeMasterRoom',
+        ],
+        bloodCloakRoom: [
+            'bloodCloakRoom',
+        ],
+        bottomOfElevatorShaft: [
+            'bottomOfElevatorShaft',
+        ],
+        fountainRoom: [
+            'fountainRoom',
+            'fountainRoomBackground',
+        ],
+        holySwordRoom: [
+            'holySwordRoom',
+        ],
+        leftSideArmory: [
+            'leftSideArmory',
+        ],
+        loadingRoomToOlroxsQuarters: [
+            'loadingRoomToOlroxsQuarters',
+        ],
+        loadingRoomToRoyalChapel: [
+            'loadingRoomToRoyalChapel',
+        ],
+        passagewayBetweenArenaAndRoyalChapel: [
+            'passagewayBetweenArenaAndRoyalChapel',
+        ],
+        rightSideArmory: [
+            'rightSideArmory',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        spiralStaircases: [
+            'spiralStaircases',
+        ],
+        topOfElevatorShaft: [
+            'topOfElevatorShaft',
+        ],
+        topOfLeftSpiralStaircase: [
+            'topOfLeftSpiralStaircase',
+        ],
+        topOfRightSpiralStaircase: [
+            'topOfRightSpiralStaircase',
+        ],
+        triggerTeleporterToOlroxsQuarters: [],
+        triggerTeleporterToRoyalChapel: [],
+        valhallaKnightRoom: [
+            'valhallaKnightRoom',
+        ],
+    },
+    cutsceneMeetingMariaInClockRoom: {
+        clockRoom: [
+            'clockRoom',
+            'clockRoomBackground',
+        ],
+        triggerTeleporterA: [],
+        triggerTeleporterB: [],
+    },
+    deathWingsLair: {
+        bottomOfStairwell: [
+            'bottomOfStairwell',
+            'bottomOfStairwellBackground',
+        ],
+        catwalkCrypt: [
+            'catwalkCrypt',
+            'catwalkCryptBackground',
+        ],
+        echoOfBatRoom: [
+            'echoOfBatRoom',
+            'echoOfBatRoomBackground',
+        ],
+        emptyCells: [
+            'emptyCells',
+            'emptyCellsBackground',
+        ],
+        emptyRoom: [
+            'emptyRoom',
+            'emptyRoomBackground',
+        ],
+        garnetRoom: [
+            'garnetRoom',
+            'garnetRoomBackground',
+        ],
+        grandStaircase: [
+            'grandStaircase',
+            'grandStaircaseBackground',
+        ],
+        hammerAndBladeRoom: [
+            'hammerAndBladeRoom',
+            'hammerAndBladeRoomBackground',
+        ],
+        loadingRoomToColosseum: [
+            'loadingRoomToColosseum',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        loadingRoomToRoyalChapel: [
+            'loadingRoomToRoyalChapel',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        narrowHallwayToOlrox: [
+            'narrowHallwayToOlrox',
+        ],
+        olroxsRoom: [
+            'olroxsRoom',
+        ],
+        openCourtyard: [
+            'openCourtyard',
+        ],
+        prison: [
+            'prison',
+            'prisonBackground',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        secretOnyxRoom: [
+            'secretOnyxRoom',
+            'secretOnyxRoomBackground',
+        ],
+        skelerangRoom: [
+            'skelerangRoom',
+            'skelerangRoomBackground',
+        ],
+        swordCardRoom: [
+            'swordCardRoom',
+        ],
+        tallShaft: [
+            'tallShaft',
+            'tallShaftBackground',
+        ],
+        triggerTeleporterToColosseum: [],
+        triggerTeleporterToMarbleGallery: [],
+        triggerTeleporterToRoyalChapel: [],
+        triggerTeleporterToWarpRooms: [],
+    },
+    floatingCatacombs: {
+        ballroomMaskRoom: [
+            'ballroomMaskRoom',
+            'ballroomMaskRoomBackground',
+        ],
+        boneArkRoom: [
+            'boneArkRoom',
+            'boneArkRoomBackground',
+        ],
+        catEyeCircletRoom: [
+            'catEyeCircletRoom',
+            'catEyeCircletRoomBackground',
+        ],
+        exitToAbandonedMine: [
+            'exitToAbandonedMine',
+            'exitToAbandonedMineBackground',
+        ],
+        granfaloonsLair: [
+            'granfaloonsLair',
+            'granfaloonsLairBackground',
+        ],
+        hellfireBeastRoom: [
+            'hellfireBeastRoom',
+            'hellfireBeastRoomBackground',
+        ],
+        icebrandRoom: [
+            'icebrandRoom',
+            'icebrandRoomBackground',
+        ],
+        leftLavaPath: [
+            'leftLavaPath',
+        ],
+        loadingRoomToAbandonedMine: [
+            'loadingRoomToAbandonedMine',
+        ],
+        mormegilRoom: [
+            'mormegilRoom',
+            'mormegilRoomBackground',
+        ],
+        pitchBlackSpikeMaze: [
+            'pitchBlackSpikeMaze',
+            'pitchBlackSpikeMazeBackground',
+        ],
+        rightLavaPath: [
+            'rightLavaPath',
+            'rightLavaPathBackground',
+        ],
+        'roomId00': [
+            'roomId00',
+            'roomId00Background',
+        ],
+        'roomId02': [
+            'roomId02',
+            'roomId02Background',
+        ],
+        'roomId04': [
+            'roomId04',
+            'roomId04Background',
+        ],
+        'roomId05': [
+            'roomId05',
+            'roomId05Background',
+        ],
+        'roomId14': [
+            'roomId14',
+            'roomId14Background',
+        ],
+        'roomId19': [
+            'roomId19',
+            'roomId19Background',
+        ],
+        'roomId20': [
+            'roomId20',
+            'roomId20Background',
+        ],
+        'roomId21': [
+            'roomId21',
+            'roomId21Background',
+        ],
+        'roomId22': [
+            'roomId22',
+            'roomId22Background',
+        ],
+        'roomId23': [
+            'roomId23',
+            'roomId23Background',
+        ],
+        'roomId25': [
+            'roomId25',
+            'roomId25Background',
+        ],
+        'roomId26': [
+            'roomId26',
+            'roomId26Background',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        smallGremlinRoom: [
+            'smallGremlinRoom',
+            'smallGremlinRoomBackground',
+        ],
+        spikeBreakerRoom: [
+            'spikeBreakerRoom',
+            'spikeBreakerRoomBackground',
+        ],
+        triggerTeleporterToAbandonedMine: [],
+        walkArmorRoom: [
+            'walkArmorRoom',
+            'walkArmorRoomBackground',
+        ],
+    },
+    forbiddenLibrary: {
+        dhuronAndFleaArmorRoom: [
+            'dhuronAndFleaArmorRoom',
+        ],
+        dhuronAndFleaManRoom: [
+            'dhuronAndFleaManRoom',
+        ],
+        exitToOuterWall: [
+            'exitToOuterWall',
+        ],
+        faerieCardRoom: [
+            'faerieCardRoom',
+        ],
+        fleaManRoom: [
+            'fleaManRoom',
+        ],
+        footOfStaircase: [
+            'footOfStaircase',
+        ],
+        holyRodRoom: [
+            'holyRodRoom',
+        ],
+        lesserDemonArea: [
+            'lesserDemonArea',
+        ],
+        loadingRoomToOuterWall: [
+            'loadingRoomToOuterWall',
+        ],
+        outsideShop: [
+            'outsideShop',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        secretBookcaseRoom: [
+            'secretBookcaseRoom',
+        ],
+        shop: [
+            'shop',
+        ],
+        spellbookArea: [
+            'spellbookArea',
+        ],
+        threeLayerRoom: [
+            'threeLayerRoom',
+        ],
+        triggerTeleporterToOuterWall: [],
+    },
+    longLibrary: {
+        dhuronAndFleaArmorRoom: [
+            'dhuronAndFleaArmorRoom',
+        ],
+        dhuronAndFleaManRoom: [
+            'dhuronAndFleaManRoom',
+        ],
+        exitToOuterWall: [
+            'exitToOuterWall',
+        ],
+        faerieCardRoom: [
+            'faerieCardRoom',
+        ],
+        fleaManRoom: [
+            'fleaManRoom',
+        ],
+        footOfStaircase: [
+            'footOfStaircase',
+        ],
+        holyRodRoom: [
+            'holyRodRoom',
+        ],
+        lesserDemonArea: [
+            'lesserDemonArea',
+        ],
+        loadingRoomToOuterWall: [
+            'loadingRoomToOuterWall',
+        ],
+        outsideShop: [
+            'outsideShop',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        secretBookcaseRoom: [
+            'secretBookcaseRoom',
+        ],
+        shop: [
+            'shop',
+        ],
+        spellbookArea: [
+            'spellbookArea',
+        ],
+        threeLayerRoom: [
+            'threeLayerRoom',
+        ],
+        triggerTeleporterToOuterWall: [],
+    },
+    marbleGallery: {
+        alucartRoom: [
+            'alucartRoom',
+        ],
+        beneathDropoff: [
+            'beneathDropoff',
+            'beneathDropoffBackground',
+        ],
+        beneathLeftTrapdoor: [
+            'beneathLeftTrapdoor',
+            'beneathLeftTrapdoorBackground',
+        ],
+        beneathRightTrapdoor: [
+            'beneathRightTrapdoor',
+            'beneathRightTrapdoorBackground',
+        ],
+        blueDoorRoom: [
+            'blueDoorRoom',
+            'blueDoorRoomBackground',
+        ],
+        clockRoom: [
+            'clockRoom',
+            'clockRoomBackground',
+        ],
+        dropoff: [
+            'dropoff',
+            'dropoffBackground',
+        ],
+        elevatorRoom: [
+            'elevatorRoom',
+        ],
+        emptyRoom: [
+            'emptyRoom',
+            'emptyRoomBackground',
+        ],
+        entrance: [
+            'entrance',
+            'entranceBackground',
+        ],
+        gravityBootsRoom: [
+            'gravityBootsRoom',
+        ],
+        leftOfClockRoom: [
+            'leftOfClockRoom',
+            'leftOfClockRoomBackground',
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            'loadingRoomToAlchemyLaboratory',
+        ],
+        loadingRoomToCastleEntrance: [
+            'loadingRoomToCastleEntrance',
+        ],
+        loadingRoomToOlroxsQuarters: [
+            'loadingRoomToOlroxsQuarters',
+        ],
+        loadingRoomToOuterWall: [
+            'loadingRoomToOuterWall',
+        ],
+        loadingRoomToUndergroundCaverns: [
+            'loadingRoomToUndergroundCaverns',
+        ],
+        longHallway: [
+            'longHallway',
+        ],
+        ouijaTableStairway: [
+            'ouijaTableStairway',
+            'ouijaTableStairwayBackground',
+        ],
+        pathwayAfterLeftStatue: [
+            'pathwayAfterLeftStatue',
+        ],
+        pathwayAfterRightStatue: [
+            'pathwayAfterRightStatue',
+        ],
+        powerUpRoom: [
+            'powerUpRoom',
+        ],
+        rightOfClockRoom: [
+            'rightOfClockRoom',
+            'rightOfClockRoomBackground',
+        ],
+        sShapedHallways: [
+            'sShapedHallways',
+            'sShapedHallwaysBackground',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        slingerStaircase: [
+            'slingerStaircase',
+            'slingerStaircaseBackground',
+        ],
+        spiritOrbRoom: [
+            'spiritOrbRoom',
+            'spiritOrbRoomBackground',
+        ],
+        stainedGlassCorner: [
+            'stainedGlassCorner',
+            'stainedGlassCornerBackground',
+        ],
+        stairwellToUndergroundCaverns: [
+            'stairwellToUndergroundCaverns',
+            'stairwellToUndergroundCavernsBackground',
+        ],
+        stopwatchRoom: [
+            'stopwatchRoom',
+            'stopwatchRoomBackground',
+        ],
+        tallStainedGlassWindows: [
+            'tallStainedGlassWindows',
+            'tallStainedGlassWindowsBackground',
+        ],
+        threePaths: [
+            'threePaths',
+            'threePathsBackground',
+        ],
+        triggerTeleporterToAlchemyLaboratory: [],
+        triggerTeleporterToCastleCenter: [],
+        triggerTeleporterToCastleEntrance: [],
+        triggerTeleporterToOlroxsQuarters: [],
+        triggerTeleporterToOuterWall: [],
+        triggerTeleporterToUndergroundCaverns: [],
+    },
+    necromancyLaboratory: {
+        batCardRoom: [
+            'batCardRoom',
+        ],
+        bloodyZombieHallway: [
+            'bloodyZombieHallway',
+        ],
+        blueDoorHallway: [
+            'blueDoorHallway',
+        ],
+        boxPuzzleRoom: [
+            'boxPuzzleRoom',
+        ],
+        cannonRoom: [
+            'cannonRoom',
+        ],
+        clothCapeRoom: [
+            'clothCapeRoom',
+        ],
+        corridorToElevator: [
+            'corridorToElevator',
+        ],
+        elevatorShaft: [
+            'elevatorShaft',
+        ],
+        emptyZigZagRoom: [
+            'emptyZigZagRoom',
+        ],
+        entryway: [
+            'entryway',
+        ],
+        exitToMarbleGallery: [
+            'exitToMarbleGallery',
+        ],
+        exitToRoyalChapel: [
+            'exitToRoyalChapel',
+        ],
+        glassVats: [
+            'glassVats',
+        ],
+        heartMaxUpRoom: [
+            'heartMaxUpRoom',
+        ],
+        loadingRoomToCastleEntrance: [
+            'loadingRoomToCastleEntrance',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        loadingRoomToRoyalChapel: [
+            'loadingRoomToRoyalChapel',
+        ],
+        redSkeletonLiftRoom: [
+            'redSkeletonLiftRoom',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        saveRoomC: [
+            'saveRoomC',
+        ],
+        secretLifeMaxUpRoom: [
+            'secretLifeMaxUpRoom',
+        ],
+        shortZigZagRoom: [
+            'shortZigZagRoom',
+        ],
+        skillOfWolfRoom: [
+            'skillOfWolfRoom',
+        ],
+        slograAndGaibonRoom: [
+            'slograAndGaibonRoom',
+        ],
+        sunglassesRoom: [
+            'sunglassesRoom',
+        ],
+        tallSpittleboneRoom: [
+            'tallSpittleboneRoom',
+        ],
+        tallZigZagRoom: [
+            'tallZigZagRoom',
+        ],
+        tetrominoRoom: [
+            'tetrominoRoom',
+        ],
+        triggerTeleporterToCastleEntrance: [],
+        triggerTeleporterToMarbleGallery: [],
+        triggerTeleporterToRoyalChapel: [],
+    },
+    olroxsQuarters: {
+        bottomOfStairwell: [
+            'bottomOfStairwell',
+            'bottomOfStairwellBackground',
+        ],
+        catwalkCrypt: [
+            'catwalkCrypt',
+            'catwalkCryptBackground',
+        ],
+        echoOfBatRoom: [
+            'echoOfBatRoom',
+            'echoOfBatRoomBackground',
+        ],
+        emptyCells: [
+            'emptyCells',
+            'emptyCellsBackground',
+        ],
+        emptyRoom: [
+            'emptyRoom',
+            'emptyRoomBackground',
+        ],
+        garnetRoom: [
+            'garnetRoom',
+            'garnetRoomBackground',
+        ],
+        grandStaircase: [
+            'grandStaircase',
+            'grandStaircaseBackground',
+        ],
+        hammerAndBladeRoom: [
+            'hammerAndBladeRoom',
+            'hammerAndBladeRoomBackground',
+        ],
+        loadingRoomToColosseum: [
+            'loadingRoomToColosseum',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        loadingRoomToRoyalChapel: [
+            'loadingRoomToRoyalChapel',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        narrowHallwayToOlrox: [
+            'narrowHallwayToOlrox',
+        ],
+        olroxsRoom: [
+            'olroxsRoom',
+        ],
+        openCourtyard: [
+            'openCourtyard',
+        ],
+        prison: [
+            'prison',
+            'prisonBackground',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        secretOnyxRoom: [
+            'secretOnyxRoom',
+            'secretOnyxRoomBackground',
+        ],
+        skelerangRoom: [
+            'skelerangRoom',
+            'skelerangRoomBackground',
+        ],
+        swordCardRoom: [
+            'swordCardRoom',
+        ],
+        tallShaft: [
+            'tallShaft',
+            'tallShaftBackground',
+        ],
+        triggerTeleporterToColosseum: [],
+        triggerTeleporterToMarbleGallery: [],
+        triggerTeleporterToRoyalChapel: [],
+        triggerTeleporterToWarpRooms: [],
+    },
+    outerWall: {
+        blueAxeKnightRoom: [
+            'blueAxeKnightRoom',
+        ],
+        doppelgangerRoom: [
+            'doppelgangerRoom',
+        ],
+        elevatorShaftRoom: [
+            'elevatorShaftRoom',
+        ],
+        exitToClockTower: [
+            'exitToClockTower',
+        ],
+        exitToMarbleGallery: [
+            'exitToMarbleGallery',
+        ],
+        garlicRoom: [
+            'garlicRoom',
+        ],
+        garnetVaseRoom: [
+            'garnetVaseRoom',
+        ],
+        gladiusRoom: [
+            'gladiusRoom',
+        ],
+        jewelKnucklesRoom: [
+            'jewelKnucklesRoom',
+        ],
+        loadingRoomToClockTower: [
+            'loadingRoomToClockTower',
+        ],
+        loadingRoomToLongLibrary: [
+            'loadingRoomToLongLibrary',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        lowerMedusaRoom: [
+            'lowerMedusaRoom',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        secretPlatformRoom: [
+            'secretPlatformRoom',
+        ],
+        telescopeRoom: [
+            'telescopeRoom',
+        ],
+        topOfOuterWall: [
+            'topOfOuterWall',
+        ],
+        triggerTeleporterToClockTower: [],
+        triggerTeleporterToLongLibrary: [],
+        triggerTeleporterToMarbleGallery: [],
+        triggerTeleporterToWarpRooms: [],
+    },
+    prologue: {
+        lowerAttic: [
+            'lowerAttic',
+        ],
+        throneRoomArea: [
+            'throneRoomArea',
+            'throneRoomAreaBackground',
+        ],
+        'unknownRoomId02': [
+            'unknownRoomId02',
+        ],
+        upperAttic: [
+            'upperAttic',
+        ],
+    },
+    reverseCastleCenter: {
+        centerCube: [
+            'centerCube',
+        ],
+        elevatorShaft: [
+            'elevatorShaft',
+        ],
+        'triggerTeleporterToBO6': [],
+        triggerTeleporterToMarbleGallery: [],
+        'unknownRoomId02': [
+            'unknownRoomId02',
+        ],
+    },
+    reverseCaverns: {
+        bandannaRoom: [
+            'bandannaRoom',
+        ],
+        claymoreStairwell: [
+            'claymoreStairwell',
+            'claymoreStairwellBackground',
+        ],
+        crystalBend: [
+            'crystalBend',
+            'crystalBendBackground',
+        ],
+        crystalCloakRoom: [
+            'crystalCloakRoom',
+            'crystalCloakRoomBackground',
+        ],
+        dKBridge: [
+            'dKBridge',
+            'dKBridgeBackground',
+        ],
+        dKButton: [
+            'dKButton',
+            'dKButtonBackground',
+        ],
+        exitToAbandonedMine: [
+            'exitToAbandonedMine',
+            'exitToAbandonedMineBackground',
+        ],
+        exitToCastleEntrance: [
+            'exitToCastleEntrance',
+            'exitToCastleEntranceBackground',
+        ],
+        falseSaveRoom: [
+            'falseSaveRoom',
+        ],
+        hiddenCrystalEntrance: [
+            'hiddenCrystalEntrance',
+            'hiddenCrystalEntranceBackground',
+        ],
+        holySymbolRoom: [
+            'holySymbolRoom',
+            'holySymbolRoomBackground',
+        ],
+        iceFloeRoom: [
+            'iceFloeRoom',
+            'iceFloeRoomBackground',
+        ],
+        leftFerrymanRoute: [
+            'leftFerrymanRoute',
+            'leftFerrymanRouteBackground',
+        ],
+        loadingRoomToAbandonedMine: [
+            'loadingRoomToAbandonedMine',
+        ],
+        loadingRoomToCastleEntrance: [
+            'loadingRoomToCastleEntrance',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        longDrop: [
+            'longDrop',
+        ],
+        mealTicketsAndMoonstoneRoom: [
+            'mealTicketsAndMoonstoneRoom',
+            'mealTicketsAndMoonstoneRoomBackground',
+        ],
+        mermanStatueRoom: [
+            'mermanStatueRoom',
+            'mermanStatueRoomBackground',
+        ],
+        pentagramRoom: [
+            'pentagramRoom',
+            'pentagramRoomBackground',
+        ],
+        plaqueRoomWithBreakableWall: [
+            'plaqueRoomWithBreakableWall',
+        ],
+        plaqueRoomWithLifeMaxUp: [
+            'plaqueRoomWithLifeMaxUp',
+        ],
+        rightFerrymanRoute: [
+            'rightFerrymanRoute',
+            'rightFerrymanRouteBackground',
+        ],
+        risingWaterRoom: [
+            'risingWaterRoom',
+            'risingWaterRoomBackground',
+        ],
+        'roomId09': [
+            'roomId09',
+        ],
+        'roomId10': [
+            'roomId10',
+            'roomId10Background',
+        ],
+        'roomId11': [
+            'roomId11',
+        ],
+        'roomId12': [
+            'roomId12',
+            'roomId12Background',
+        ],
+        'roomId18': [
+            'roomId18',
+            'roomId18Background',
+        ],
+        'roomId19': [
+            'roomId19',
+            'roomId19Background',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        saveRoomC: [
+            'saveRoomC',
+        ],
+        scyllaRoom: [
+            'scyllaRoom',
+            'scyllaRoomBackground',
+        ],
+        scyllaWyrmRoom: [
+            'scyllaWyrmRoom',
+            'scyllaWyrmRoomBackground',
+        ],
+        smallStairwell: [
+            'smallStairwell',
+            'smallStairwellBackground',
+        ],
+        tallStairwell: [
+            'tallStairwell',
+        ],
+        triggerTeleporterToAbandonedMine: [],
+        triggerTeleporterToBossSuccubus: [],
+        triggerTeleporterToCastleEntrance: [],
+        triggerTeleporterToMarbleGallery: [],
+        waterfall: [
+            'waterfall',
+            'waterfallBackground',
+        ],
+    },
+    reverseClockTower: {
+        belfry: [
+            'belfry',
+        ],
+        exitToCourtyard: [
+            'exitToCourtyard',
+        ],
+        fireOfBatRoom: [
+            'fireOfBatRoom',
+            'fireOfBatRoomBackground',
+        ],
+        healingMailRoom: [
+            'healingMailRoom',
+            'healingMailRoomBackground',
+        ],
+        hiddenArmory: [
+            'hiddenArmory',
+        ],
+        karasumansRoom: [
+            'karasumansRoom',
+            'karasumansRoomBackground',
+        ],
+        leftGearRoom: [
+            'leftGearRoom',
+        ],
+        loadingRoomToCastleKeep: [
+            'loadingRoomToCastleKeep',
+        ],
+        loadingRoomToOuterWall: [
+            'loadingRoomToOuterWall',
+        ],
+        openCourtyard: [
+            'openCourtyard',
+        ],
+        pathToKarasuman: [
+            'pathToKarasuman',
+        ],
+        pendulumRoom: [
+            'pendulumRoom',
+        ],
+        rightGearRoom: [
+            'rightGearRoom',
+        ],
+        spire: [
+            'spire',
+        ],
+        stairwellToOuterWall: [
+            'stairwellToOuterWall',
+        ],
+        triggerTeleporterToCastleKeep: [],
+        triggerTeleporterToOuterWall: [],
+    },
+    reverseColosseum: {
+        arena: [
+            'arena',
+        ],
+        bladeMasterRoom: [
+            'bladeMasterRoom',
+        ],
+        bloodCloakRoom: [
+            'bloodCloakRoom',
+        ],
+        bottomOfElevatorShaft: [
+            'bottomOfElevatorShaft',
+        ],
+        fountainRoom: [
+            'fountainRoom',
+            'fountainRoomBackground',
+        ],
+        holySwordRoom: [
+            'holySwordRoom',
+        ],
+        leftSideArmory: [
+            'leftSideArmory',
+        ],
+        loadingRoomToOlroxsQuarters: [
+            'loadingRoomToOlroxsQuarters',
+        ],
+        loadingRoomToRoyalChapel: [
+            'loadingRoomToRoyalChapel',
+        ],
+        passagewayBetweenArenaAndRoyalChapel: [
+            'passagewayBetweenArenaAndRoyalChapel',
+        ],
+        rightSideArmory: [
+            'rightSideArmory',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        spiralStaircases: [
+            'spiralStaircases',
+        ],
+        topOfElevatorShaft: [
+            'topOfElevatorShaft',
+        ],
+        topOfLeftSpiralStaircase: [
+            'topOfLeftSpiralStaircase',
+        ],
+        topOfRightSpiralStaircase: [
+            'topOfRightSpiralStaircase',
+        ],
+        triggerTeleporterToOlroxsQuarters: [],
+        triggerTeleporterToRoyalChapel: [],
+        valhallaKnightRoom: [
+            'valhallaKnightRoom',
+        ],
+    },
+    reverseEntrance: {
+        afterDrawbridge: [
+            'afterDrawbridge',
+        ],
+        atticEntrance: [
+            'atticEntrance',
+            'atticEntranceBackground',
+        ],
+        atticHallway: [
+            'atticHallway',
+            'atticHallwayBackground',
+        ],
+        atticStaircase: [
+            'atticStaircase',
+            'atticStaircaseBackground',
+        ],
+        cubeOfZoeRoom: [
+            'cubeOfZoeRoom',
+            'cubeOfZoeRoomBackground',
+        ],
+        dropUnderPortcullis: [
+            'dropUnderPortcullis',
+            'dropUnderPortcullisBackground',
+        ],
+        forestCutscene: [
+            'forestCutscene',
+        ],
+        gargoyleRoom: [
+            'gargoyleRoom',
+        ],
+        heartMaxUpRoom: [
+            'heartMaxUpRoom',
+            'heartMaxUpRoomBackground',
+        ],
+        holyMailRoom: [
+            'holyMailRoom',
+            'holyMailRoomBackground',
+        ],
+        jewelSwordRoom: [
+            'jewelSwordRoom',
+            'jewelSwordRoomBackground',
+        ],
+        lifeMaxUpRoom: [
+            'lifeMaxUpRoom',
+            'lifeMaxUpRoomBackground',
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            'loadingRoomToAlchemyLaboratory',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        loadingRoomToUndergroundCaverns: [
+            'loadingRoomToUndergroundCaverns',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        meetingRoomWithDeath: [
+            'meetingRoomWithDeath',
+        ],
+        mermanRoom: [
+            'mermanRoom',
+            'mermanRoomBackground',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        saveRoomC: [
+            'saveRoomC',
+        ],
+        shortcutToUndergroundCaverns: [
+            'shortcutToUndergroundCaverns',
+            'shortcutToUndergroundCavernsBackground',
+        ],
+        shortcutToWarpRooms: [
+            'shortcutToWarpRooms',
+            'shortcutToWarpRoomsBackground',
+        ],
+        stairwellAfterDeath: [
+            'stairwellAfterDeath',
+            'stairwellAfterDeathBackground',
+        ],
+        triggerTeleporterToAlchemyLaboratory: [],
+        triggerTeleporterToMarbleGallery: [],
+        triggerTeleporterToUndergroundCaverns: [],
+        triggerTeleporterToWarpRooms: [],
+        'unknownRoom19': [
+            'unknownRoom19',
+        ],
+        'unknownRoom20': [
+            'unknownRoom20',
+        ],
+        wargHallway: [
+            'wargHallway',
+        ],
+        zombieHallway: [
+            'zombieHallway',
+        ],
+    },
+    reverseKeep: {
+        bend: [
+            'bend',
+        ],
+        dualPlatforms: [
+            'dualPlatforms',
+        ],
+        falchionRoom: [
+            'falchionRoom',
+        ],
+        ghostCardRoom: [
+            'ghostCardRoom',
+        ],
+        keepArea: [
+            'keepArea',
+        ],
+        lionTorchPlatform: [
+            'lionTorchPlatform',
+        ],
+        loadingRoomToClockTower: [
+            'loadingRoomToClockTower',
+        ],
+        loadingRoomToRoyalChapel: [
+            'loadingRoomToRoyalChapel',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        lowerAttic: [
+            'lowerAttic',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        triggerTeleporterToClockTower: [],
+        triggerTeleporterToRoyalChapel: [],
+        triggerTeleporterToWarpRooms: [],
+        tyrfingRoom: [
+            'tyrfingRoom',
+        ],
+        upperAttic: [
+            'upperAttic',
+        ],
+    },
+    reverseOuterWall: {
+        blueAxeKnightRoom: [
+            'blueAxeKnightRoom',
+        ],
+        doppelgangerRoom: [
+            'doppelgangerRoom',
+        ],
+        elevatorShaftRoom: [
+            'elevatorShaftRoom',
+        ],
+        exitToClockTower: [
+            'exitToClockTower',
+        ],
+        exitToMarbleGallery: [
+            'exitToMarbleGallery',
+        ],
+        garlicRoom: [
+            'garlicRoom',
+        ],
+        garnetVaseRoom: [
+            'garnetVaseRoom',
+        ],
+        gladiusRoom: [
+            'gladiusRoom',
+        ],
+        jewelKnucklesRoom: [
+            'jewelKnucklesRoom',
+        ],
+        loadingRoomToClockTower: [
+            'loadingRoomToClockTower',
+        ],
+        loadingRoomToLongLibrary: [
+            'loadingRoomToLongLibrary',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        loadingRoomToWarpRooms: [
+            'loadingRoomToWarpRooms',
+        ],
+        lowerMedusaRoom: [
+            'lowerMedusaRoom',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        secretPlatformRoom: [
+            'secretPlatformRoom',
+        ],
+        telescopeRoom: [
+            'telescopeRoom',
+        ],
+        topOfOuterWall: [
+            'topOfOuterWall',
+        ],
+        triggerTeleporterToClockTower: [],
+        triggerTeleporterToLongLibrary: [],
+        triggerTeleporterToMarbleGallery: [],
+        triggerTeleporterToWarpRooms: [],
+    },
+    reverseWarpRooms: {
+        loadingRoomToAbandonedMine: [
+            'loadingRoomToAbandonedMine',
+        ],
+        loadingRoomToCastleEntrance: [
+            'loadingRoomToCastleEntrance',
+        ],
+        loadingRoomToCastleKeep: [
+            'loadingRoomToCastleKeep',
+        ],
+        loadingRoomToOlroxsQuarters: [
+            'loadingRoomToOlroxsQuarters',
+        ],
+        loadingRoomToOuterWall: [
+            'loadingRoomToOuterWall',
+        ],
+        triggerTeleporterToAbandonedMine: [],
+        triggerTeleporterToCastleEntrance: [],
+        triggerTeleporterToCastleKeep: [],
+        triggerTeleporterToOlroxsQuarters: [],
+        triggerTeleporterToOuterWall: [],
+        warpRoomToAbandonedMine: [
+            'warpRoomToAbandonedMine',
+        ],
+        warpRoomToCastleEntrance: [
+            'warpRoomToCastleEntrance',
+        ],
+        warpRoomToCastleKeep: [
+            'warpRoomToCastleKeep',
+        ],
+        warpRoomToOlroxsQuarters: [
+            'warpRoomToOlroxsQuarters',
+        ],
+        warpRoomToOuterWall: [
+            'warpRoomToOuterWall',
+        ],
+    },
+    royalChapel: {
+        chapelStaircase: [
+            'chapelStaircase',
+        ],
+        confessionalBooth: [
+            'confessionalBooth',
+            'confessionalBoothBackground',
+        ],
+        emptyRoom: [
+            'emptyRoom',
+            'emptyRoomBackground',
+        ],
+        gogglesRoom: [
+            'gogglesRoom',
+            'gogglesRoomBackground',
+        ],
+        hippogryphRoom: [
+            'hippogryphRoom',
+            'hippogryphRoomBackground',
+        ],
+        leftTower: [
+            'leftTower',
+        ],
+        loadingRoomToAlchemyLaboratory: [
+            'loadingRoomToAlchemyLaboratory',
+        ],
+        loadingRoomToCastleKeep: [
+            'loadingRoomToCastleKeep',
+        ],
+        loadingRoomToColosseum: [
+            'loadingRoomToColosseum',
+        ],
+        loadingRoomToOlroxsQuarters: [
+            'loadingRoomToOlroxsQuarters',
+        ],
+        middleTower: [
+            'middleTower',
+        ],
+        nave: [
+            'nave',
+        ],
+        pushingStatueShortcut: [
+            'pushingStatueShortcut',
+            'pushingStatueShortcutBackground',
+        ],
+        rightTower: [
+            'rightTower',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        silverRingRoom: [
+            'silverRingRoom',
+            'silverRingRoomBackground',
+        ],
+        spikeHallway: [
+            'spikeHallway',
+            'spikeHallwayBackground',
+        ],
+        statueLedge: [
+            'statueLedge',
+            'statueLedgeBackground',
+        ],
+        triggerTeleporterToAlchemyLaboratory: [],
+        triggerTeleporterToCastleKeep: [],
+        triggerTeleporterToColosseum: [],
+        triggerTeleporterToOlroxsQuarters: [],
+        walkwayBetweenTowers: [
+            'walkwayBetweenTowers',
+            'walkwayBetweenTowersBackground',
+        ],
+        walkwayLeftOfHippogryph: [
+            'walkwayLeftOfHippogryph',
+            'walkwayLeftOfHippogryphBackground',
+        ],
+        walkwayRightOfHippogryph: [
+            'walkwayRightOfHippogryph',
+            'walkwayRightOfHippogryphBackground',
+        ],
+    },
+    undergroundCaverns: {
+        bandannaRoom: [
+            'bandannaRoom',
+        ],
+        claymoreStairwell: [
+            'claymoreStairwell',
+            'claymoreStairwellBackground',
+        ],
+        crystalBend: [
+            'crystalBend',
+            'crystalBendBackground',
+        ],
+        crystalCloakRoom: [
+            'crystalCloakRoom',
+            'crystalCloakRoomBackground',
+        ],
+        dKBridge: [
+            'dKBridge',
+            'dKBridgeBackground',
+        ],
+        dKButton: [
+            'dKButton',
+            'dKButtonBackground',
+        ],
+        exitToAbandonedMine: [
+            'exitToAbandonedMine',
+            'exitToAbandonedMineBackground',
+        ],
+        exitToCastleEntrance: [
+            'exitToCastleEntrance',
+            'exitToCastleEntranceBackground',
+        ],
+        falseSaveRoom: [
+            'falseSaveRoom',
+        ],
+        hiddenCrystalEntrance: [
+            'hiddenCrystalEntrance',
+            'hiddenCrystalEntranceBackground',
+        ],
+        holySymbolRoom: [
+            'holySymbolRoom',
+            'holySymbolRoomBackground',
+        ],
+        iceFloeRoom: [
+            'iceFloeRoom',
+            'iceFloeRoomBackground',
+        ],
+        leftFerrymanRoute: [
+            'leftFerrymanRoute',
+            'leftFerrymanRouteBackground',
+        ],
+        loadingRoomToAbandonedMine: [
+            'loadingRoomToAbandonedMine',
+        ],
+        loadingRoomToCastleEntrance: [
+            'loadingRoomToCastleEntrance',
+        ],
+        loadingRoomToMarbleGallery: [
+            'loadingRoomToMarbleGallery',
+        ],
+        longDrop: [
+            'longDrop',
+        ],
+        mealTicketsAndMoonstoneRoom: [
+            'mealTicketsAndMoonstoneRoom',
+            'mealTicketsAndMoonstoneRoomBackground',
+        ],
+        mermanStatueRoom: [
+            'mermanStatueRoom',
+            'mermanStatueRoomBackground',
+        ],
+        pentagramRoom: [
+            'pentagramRoom',
+            'pentagramRoomBackground',
+        ],
+        plaqueRoomWithBreakableWall: [
+            'plaqueRoomWithBreakableWall',
+        ],
+        plaqueRoomWithLifeMaxUp: [
+            'plaqueRoomWithLifeMaxUp',
+        ],
+        rightFerrymanRoute: [
+            'rightFerrymanRoute',
+            'rightFerrymanRouteBackground',
+        ],
+        risingWaterRoom: [
+            'risingWaterRoom',
+            'risingWaterRoomBackground',
+        ],
+        'roomId09': [
+            'roomId09',
+        ],
+        'roomId10': [
+            'roomId10',
+            'roomId10Background',
+        ],
+        'roomId11': [
+            'roomId11',
+        ],
+        'roomId12': [
+            'roomId12',
+            'roomId12Background',
+        ],
+        'roomId18': [
+            'roomId18',
+            'roomId18Background',
+        ],
+        'roomId19': [
+            'roomId19',
+            'roomId19Background',
+        ],
+        saveRoomA: [
+            'saveRoomA',
+        ],
+        saveRoomB: [
+            'saveRoomB',
+        ],
+        saveRoomC: [
+            'saveRoomC',
+        ],
+        scyllaRoom: [
+            'scyllaRoom',
+            'scyllaRoomBackground',
+        ],
+        scyllaWyrmRoom: [
+            'scyllaWyrmRoom',
+            'scyllaWyrmRoomBackground',
+        ],
+        smallStairwell: [
+            'smallStairwell',
+            'smallStairwellBackground',
+        ],
+        tallStairwell: [
+            'tallStairwell',
+        ],
+        triggerTeleporterToAbandonedMine: [],
+        triggerTeleporterToBossSuccubus: [],
+        triggerTeleporterToCastleEntrance: [],
+        triggerTeleporterToMarbleGallery: [],
+        waterfall: [
+            'waterfall',
+            'waterfallBackground',
+        ],
+    },
+    warpRooms: {
+        loadingRoomToAbandonedMine: [
+            'loadingRoomToAbandonedMine',
+        ],
+        loadingRoomToCastleEntrance: [
+            'loadingRoomToCastleEntrance',
+        ],
+        loadingRoomToCastleKeep: [
+            'loadingRoomToCastleKeep',
+        ],
+        loadingRoomToOlroxsQuarters: [
+            'loadingRoomToOlroxsQuarters',
+        ],
+        loadingRoomToOuterWall: [
+            'loadingRoomToOuterWall',
+        ],
+        triggerTeleporterToAbandonedMine: [],
+        triggerTeleporterToCastleEntrance: [],
+        triggerTeleporterToCastleKeep: [],
+        triggerTeleporterToOlroxsQuarters: [],
+        triggerTeleporterToOuterWall: [],
+        warpRoomToAbandonedMine: [
+            'warpRoomToAbandonedMine',
+        ],
+        warpRoomToCastleEntrance: [
+            'warpRoomToCastleEntrance',
+        ],
+        warpRoomToCastleKeep: [
+            'warpRoomToCastleKeep',
+        ],
+        warpRoomToOlroxsQuarters: [
+            'warpRoomToOlroxsQuarters',
+        ],
+        warpRoomToOuterWall: [
+            'warpRoomToOuterWall',
+        ],
     },
 }
 
@@ -513,12 +3440,12 @@ const UNIQUE_ITEM_DROPS = {
 const argv = yargs(process.argv.slice(2))
     .command({ // extract
         command: 'extract',
-        describe: 'TODO(sestren): Describe command',
+        describe: 'Generate an extraction template for SOTN',
         builder: (yargs) => {
             return yargs
             .option('template', {
                 alias: 't',
-                describe: 'JSON file ...',
+                describe: 'JSON file describing the initial layout of the extraction template',
                 type: 'string',
                 normalize: true,
                 default: './bins/sotn-us/data/extraction-template.json',
@@ -532,7 +3459,7 @@ const argv = yargs(process.argv.slice(2))
             })
             .option('previous', {
                 alias: 'p',
-                describe: 'Path to a previously-generated extraction file (allows introspection into extracted stage data)',
+                describe: 'Path to a previously-generated extraction file (allows introspection into extracted data)',
                 type: 'string',
                 normalize: true,
             })
@@ -1091,6 +4018,237 @@ const argv = yargs(process.argv.slice(2))
             fs.writeFileSync(argv.out, JSON.stringify(source, null, 4))
         }
     })
+    .command({ // dependencies
+        command: 'dependencies',
+        describe: 'Generate a change dependencies file for SOTN',
+        builder: (yargs) => {
+            return yargs
+            .option('template', {
+                alias: 't',
+                describe: 'JSON file describing the initial layout of the change dependencies template',
+                type: 'string',
+                normalize: true,
+                default: './bins/sotn-us/data/change-dependencies-template.json',
+            })
+            .option('out', {
+                alias: 'o',
+                describe: 'Path to the output file to create',
+                type: 'string',
+                normalize: true,
+                default: './build/sotn-us/change-dependencies.json',
+            })
+            .demandOption(['template', 'out'])
+        },
+        handler: (argv) => {
+            const source = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
+            // ...
+            ORDERED_DEPENDENCY_NAMES
+            .filter((dependencyName) => {
+                return !(dependencyName in source)
+            })
+            .forEach((dependencyName) => {
+                source[dependencyName] = {}
+            })
+            // primaryRooms.rightsAndBottoms
+            Object.entries(ROOMS)
+            .forEach(([stageName, stageInfo]) => {
+                Object.entries(stageInfo)
+                .forEach(([roomName, layerNames]) => {
+                    const properties = [
+                        {
+                            targetPropertyName: 'right',
+                            sourcePropertyName: 'left',
+                            dimensionName: '_columns',
+                        },
+                        {
+                            targetPropertyName: 'bottom',
+                            sourcePropertyName: 'top',
+                            dimensionName: '_rows',
+                        },
+                    ]
+                    properties
+                    .forEach((propertyInfo) => {
+                        const transformation = [
+                            {
+                                action: 'get',
+                                type: 'property',
+                                property: `stages.${stageName}.rooms.${roomName}.${propertyInfo.sourcePropertyName}`,
+                            },
+                            {
+                                action: 'add',
+                                type: 'property',
+                                property: `stages.${stageName}.rooms.${roomName}.${propertyInfo.dimensionName}`,
+                            },
+                            {
+                                action: 'subtract',
+                                type: 'constant',
+                                constant: 1,
+                            },
+                            {
+                                action: 'set',
+                                type: 'property',
+                                property: `stages.${stageName}.rooms.${roomName}.${propertyInfo.targetPropertyName}`,
+                            },
+                        ]
+                        const transformationName = transformation.at(-1).property
+                        // console.log(transformationName)
+                        const dependencyName = (SECONDARY_STAGES.includes(stageName)) ? 'secondaryRooms.rightsAndBottoms' : 'primaryRooms.rightsAndBottoms'
+                        source[dependencyName][transformationName] = transformation
+                    })
+                })
+            })
+            // rooms.layerDefinitions
+            Object.entries(ROOMS)
+            .forEach(([stageName, stageInfo]) => {
+                Object.entries(stageInfo)
+                .forEach(([roomName, layerNames]) => {
+                    layerNames
+                    .forEach((layerName) => {
+                        const properties = [
+                            {
+                                targetPropertyName: 'left',
+                                sourcePropertyName: 'left',
+                            },
+                            {
+                                targetPropertyName: 'top',
+                                sourcePropertyName: 'top',
+                            },
+                            {
+                                targetPropertyName: 'right',
+                                sourcePropertyName: 'right',
+                            },
+                            {
+                                targetPropertyName: 'bottom',
+                                sourcePropertyName: 'bottom',
+                            },
+                        ]
+                        properties
+                        .forEach((propertyInfo) => {
+                            const transformation = [
+                                {
+                                    'action': 'get',
+                                    'type': 'property',
+                                    'property': `stages.${stageName}.rooms.${roomName}.${propertyInfo.sourcePropertyName}`,
+                                },
+                                {
+                                    'action': 'set',
+                                    'type': 'property',
+                                    'property': `stages.${stageName}.layers.layerDefinitions.${layerName}.layoutRect.${propertyInfo.targetPropertyName}`,
+                                },
+                            ]
+                            const transformationName = transformation.at(-1).property
+                            // console.log(transformationName)
+                            source['rooms.layerDefinitions'][transformationName] = transformation
+                        })
+                    })
+                })
+            })
+            // secondaryRooms.leftsAndTops
+            Object.entries(ASSOCIATED_STAGES)
+            .filter(([stageName, stageInfo]) => {
+                return stageName in ROOMS && stageInfo.associatedStageName in ROOMS
+            })
+            .forEach(([stageName, stageInfo]) => {
+                Object.entries(ROOMS[stageName])
+                .filter(([roomName, layerNames]) => {
+                    return roomName in ROOMS[stageInfo.associatedStageName]
+                })
+                .forEach(([roomName, layerNames]) => {
+                    const properties = [
+                        {
+                            sourcePropertyName: 'left',
+                            dimensionName: '_columns',
+                        },
+                        {
+                            sourcePropertyName: 'top',
+                            dimensionName: '_rows',
+                        },
+                    ]
+                    properties
+                    .forEach((propertyInfo) => {
+                        const transformation = []
+                        if (stageInfo.reversed) {
+                            transformation.push({
+                                action: 'get',
+                                type: 'constant',
+                                constant: 64,
+                            })
+                            transformation.push({
+                                action: 'subtract',
+                                type: 'property',
+                                property: `stages.${stageInfo.associatedStageName}.rooms.${roomName}.${propertyInfo.sourcePropertyName}`,
+                            })
+                            transformation.push({
+                                action: 'subtract',
+                                type: 'property',
+                                property: `stages.${stageInfo.associatedStageName}.rooms.${roomName}.${propertyInfo.dimensionName}`,
+                            })
+                        }
+                        else {
+                            transformation.push({
+                                action: 'get',
+                                type: 'property',
+                                property: `stages.${stageName}.rooms.${roomName}.${propertyInfo.sourcePropertyName}`,
+                            })
+                        }
+                        transformation.push({
+                            action: 'set',
+                            type: 'property',
+                            property: `stages.${stageName}.rooms.${roomName}.${propertyInfo.sourcePropertyName}`,
+                        })
+                        const transformationName = transformation.at(-1).property
+                        // console.log(transformationName)
+                        source['secondaryRooms.leftsAndTops'][transformationName] = transformation
+                    })
+                })
+            })
+            // secretMapTileReveals, bossTeleporters
+            // familiarEvents
+            // bossRooms
+            // liveMapRepaints
+            // ...
+            // BOSS_ROOMS = {
+            //     cutsceneMeetingMariaInClockRoom: {
+            //         clockRoom: {
+            //             sourceStageName: 'marbleGallery',
+            //             sourceRoomName: 'clockRoom',
+            //             offsetTop: 0,
+            //             offsetLeft: 0,
+            //         },
+            //         triggerTeleporterA: {
+            //             sourceStageName: 'marbleGallery',
+            //             sourceRoomName: 'clockRoom',
+            //             offsetTop: 0,
+            //             offsetLeft: -1,
+            //         },
+            //         triggerTeleporterB: {
+            //             sourceStageName: 'marbleGallery',
+            //             sourceRoomName: 'clockRoom',
+            //             offsetTop: 0,
+            //             offsetLeft: 1,
+            //         },
+            //     },
+            // }
+            const target = {
+                authors: [
+                    'Sestren',
+                ],
+                description: [
+                    'Updates secondary values to be consistent with the primary values they are dependent on',
+                ],
+                changes: [],
+            }
+            ORDERED_DEPENDENCY_NAMES
+            .forEach((dependencyName) => {
+                target.changes.push({
+                    changeType: 'evaluate',
+                    description: dependencyName,
+                    evaluate: source[dependencyName],
+                })
+            })
+            fs.writeFileSync(argv.out, JSON.stringify(target, null, 4))
+        }
+    })
     .command({ // alias
         command: 'alias',
         describe: 'Reformat room names for stage in alias file',
@@ -1128,9 +4286,9 @@ const argv = yargs(process.argv.slice(2))
             })
         }
     })
-    .command({ // dependencies
-        command: 'dependencies',
-        describe: 'Construct change dependencies for template',
+    .command({ // stage
+        command: 'stage',
+        describe: 'Construct rooms data for a given stage for the change dependencies template',
         builder: (yargs) => {
             return yargs
             .option('property', {
@@ -1141,7 +4299,7 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['property'])
         },
         handler: (argv) => {
-            let extractionData = JSON.parse(fs.readFileSync('./build/extraction-aliased.json', 'utf8'))
+            let extractionData = JSON.parse(fs.readFileSync('./build/sotn-us/extraction-aliased.json', 'utf8'))
             console.log('    rooms:')
             Object.entries(extractionData.stages)
             .forEach(([stageName, stageInfo]) => {

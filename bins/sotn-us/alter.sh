@@ -1,4 +1,4 @@
-# python3 bins/sotn-us/generate-change-dependencies-template.py "bins/sotn-us/data/change-dependencies-template.yaml" "build/sotn-us/change-dependencies.json"
+node bins/sotn-us/util dependencies -t "bins/sotn-us/data/change-dependencies-template.json" -o "build/sotn-us/change-dependencies.json"
 
 node bins/sotn-us/util teleporters -e "build/sotn-us/extraction.json" -o "build/sotn-us/extraction-processed.json"
 node bin alter -s "build/sotn-us/extraction-processed.json" -t "build/sotn-us/extraction-aliased.json" --aliases "bins/sotn-us/data/aliases.json"
