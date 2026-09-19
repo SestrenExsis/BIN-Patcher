@@ -1,6 +1,16 @@
 
 import fs from 'fs'
 
+import {
+    ALIASED_TYPES,
+} from '../../src/common.js'
+
+import {
+    aliasIndexedNodes,
+    aliasNodeKeys,
+    parseExtractionNode,
+} from '../../src/extract.js'
+
 const ASSOCIATED_STAGES = {
     antiChapel: {
         associatedStageName: 'royalChapel',
@@ -4773,3 +4783,47 @@ export function getExtractionTemplate(template, previous={}) {
     })
     return result
 }
+
+export function processBinary(bin, rounds=4) {
+    const result = {
+        extraction: {},
+        template: JSON.parse(fs.readFileSync('./bins/sotn-us/data/extraction-template.json', 'utf8')),
+    }
+    for (let i = 0; i < rounds; i++) {
+        result.template = getExtractionTemplate(result.template, result.extraction)
+        result.extraction = parseExtractionNode(bin, result.template, 0)
+    }
+    // Process roomOffset values of teleporters
+    result.extraction.teleporters.metadata.element.properties.roomOffset.type = 'room-offset'
+    for (let index = 0; index < result.extraction.teleporters.data.length; index++) {
+        const targetStageName = result.extraction.teleporters.data.at(index).targetStageId
+        const teleporter = {}
+        Object.entries(result.extraction.teleporters.data.at(index))
+        .forEach(([propertyKey, propertyValue]) => {
+            if (propertyKey === 'roomOffset') {
+                const roomOffsetValue = propertyValue / 8
+                teleporter[propertyKey] = propertyValue
+                Object.entries(ALIASED_TYPES['room-id'].values)
+                .filter(([aliasKey, aliasValue]) => {
+                    return roomOffsetValue === aliasValue
+                })
+                .filter(([aliasKey, aliasValue]) => {
+                    return aliasKey.startsWith(targetStageName)
+                })
+                .forEach(([aliasKey, aliasValue]) => {
+                    teleporter[propertyKey] = aliasKey
+                })
+            }
+            else {
+                teleporter[propertyKey] = propertyValue
+            }
+        })
+        result.extraction.teleporters.data[index] = teleporter
+    }
+    // Add aliases to extraction
+    const aliases = JSON.parse(fs.readFileSync('./bins/sotn-us/data/aliases.json', 'utf8'))
+    result.extraction = aliasIndexedNodes(result.extraction, aliases)
+    result.extraction = aliasNodeKeys(result.extraction, aliases)
+    return result
+}
+

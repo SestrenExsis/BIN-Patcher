@@ -5,8 +5,7 @@
   "main": "bin.js",
   "scripts": {
     "test": "test",
-    "sotn:build": "bins/sotn-us/extract.sh",
-    "postsotn:build": "bins/sotn-us/alter.sh",
+    "sotn:build": "bins/sotn-us/build.sh",
     "sotn:example": "bins/sotn-us/patch.sh"
   },
   "author": "Sestren",
