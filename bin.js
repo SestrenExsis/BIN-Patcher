@@ -1,7 +1,12 @@
 import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
-import { Address, GameData, toHex, toVal } from './src/common.js'
+import {
+    Address,
+    GameData,
+    toHex,
+    toVal,
+} from './src/common.js'
 import {
     aliasIndexedNodes,
     aliasNodeKeys,
@@ -10,8 +15,12 @@ import {
     parseExtractionNode,
     promoteNodes,
 } from './src/extract.js'
-import { applyChange } from './src/change.js'
-import { toPPF } from './src/ppf.js'
+import {
+    applyChange,
+} from './src/change.js'
+import {
+    toPPF,
+} from './src/ppf.js'
 
 // An EXTRACTION file describes a structured template of modifiable or readable elements in the BINARY
 // An EXTRACTION file can be used to produce an unmodified (i.e., vanilla) PATCH file as a template for further modifications

@@ -1,9 +1,9 @@
 import {
-    getChangeDependencies,
     getDefaultChangeDependencies,
+    processBinary,
 } from './sotn-us.js'
 
 export {
-    getChangeDependencies,
     getDefaultChangeDependencies,
+    processBinary,
 }

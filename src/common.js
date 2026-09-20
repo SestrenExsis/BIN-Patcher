@@ -1709,7 +1709,7 @@ export function encodeTextCrawl(text, buffer, start=0) {
     return result
 }
 
-export const stageNames = {
+export const STAGE_NAMES = {
     abandonedMine: 'Abandoned Mine',
     alchemyLaboratory: 'Alchemy Laboratory',
     antiChapel: 'Anti-Chapel',

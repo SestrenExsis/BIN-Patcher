@@ -4,21 +4,15 @@ A tool for generating PPF files for modifying SOTN, given specially-formatted JS
 
 ## Installation
 
-This repository requires `Node`, `npm`, and `Python`.
+This repository requires `Node`, and `npm`.
 
-From the root of the repository, run the following command to download the required Python libraries:
-
-```
-pip install -r requirements.txt
-```
-
-Then, to generate the necessary build files, run the following command, supplying the path to your local BIN file as the argument.
+To generate the necessary build files, run the following command, supplying the path to your local BIN file as the argument.
 
 ```
 npm run sotn:build <PATH TO YOUR BIN FILE>
 ```
 
-Then, to generate an example PPF, run the following command.
+Then, to generate an example PPF, run the following command. The PPF will be found at `build/sotn-us/current-patch.ppf`.
 
 ```
 npm run sotn:example
@@ -36,17 +30,17 @@ Most of the knowledge present in this project is only possible due to the immens
 - [Mottzilla](https://github.com/MottZilla), for their _StartAnywhere_ and _TileMapFind_ scripts, which dramatically improved turnaround time during playtesting
 - [meunierd](https://github.com/meunierd), for the PPF file format
 - [Fatalis](https://github.com/fatalis), for their Drop Calculator
-- Contributors and maintainers of the [SOTN-Decomp](https://github.com/Xeeynamo/sotn-decomp) project, including:
+- Contributors and maintainers of the [SOTN-Decomp](https://github.com/Xeeynamo/sotn-decomp) project, including, but not limited to:
   - [Xeeynamo](https://github.com/Xeeynamo)
   - [Bismurphy](https://github.com/bismurphy)
   - [Sozud](https://github.com/sozud)
   - [Sonic Dreamcaster](https://github.com/sonicdcer)
-- Contributors and maintainers of the [SOTN-Randomizer](https://github.com/3snowp7im/SotN-Randomizer) project, including:
+- Contributors and maintainers of the [SOTN-Randomizer](https://github.com/3snowp7im/SotN-Randomizer) project, including, but not limited to:
   - [3snowp7im](https://github.com/3snowp7im) (Wild Mouse)
-  - [Mottzilla](https://github.com/MottZilla)
   - [eldri7ch](https://github.com/eldri7ch2)
+  - [Crazy4Blades](https://github.com/crazy4blades)
   - [LuciaRolon](https://github.com/LuciaRolon)
+  - [Mottzilla](https://github.com/MottZilla)
   - [DotChris](https://github.com/DotChris)
-- ToiletPain, Dark Falz Joker, 一隻綿羊, Jasper, and everyone else in the Long Library Discord for their extensive help during beta testing
-- Dr4gonBlitz, for being a huge inspiration for SOTN speedrunning, and for their continued help and patience during the alpha testing phase of this project
+- Dr4gonBlitz, ToiletPain, Dark Falz Joker, 一隻綿羊, Jasper, GamshyDrusky, and everyone else in the Long Library Discord for their extensive help during beta testing
 - The entire SOTN community, for their generosity and kindness

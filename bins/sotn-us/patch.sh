@@ -1,5 +1,5 @@
 
-node bin alter -s "build/sotn-us/extraction-masked-aliased.json" -t "build/sotn-us/current-patch.json"
+node bin alter -s "build/sotn-us/extraction.json" -t "build/sotn-us/current-patch.json" --mask "data"
 
 node bin patch -p "build/sotn-us/current-patch.json" -c "bins/sotn-us/patches/assign-power-of-wolf-relic-a-unique-id.json"
 node bin patch -p "build/sotn-us/current-patch.json" -c "bins/sotn-us/patches/clock-hands-display-minutes-and-seconds.json"
