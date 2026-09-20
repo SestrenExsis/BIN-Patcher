@@ -1,5 +1,8 @@
 
-import { Address, GameData, getSizeOfType, toHex, toVal } from './common.js'
+import {
+    getSizeOfType,
+    toVal,
+} from './common.js'
 
 function extractData(bin, elementInfo, offset) {
     switch (elementInfo.structure ?? 'none') {

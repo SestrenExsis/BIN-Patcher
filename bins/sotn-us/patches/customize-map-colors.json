@@ -1,0 +1,52 @@
+{
+    "authors": [
+        "Sestren",
+        "Wecoc"
+    ],
+    "description": [
+        "Use custom colors on the map"
+    ],
+    "changes": [
+        {
+            "changeType": "merge",
+            "merge": {
+                "castleMapColorPalettes.dra.data=": [
+                    "#0000007F",
+                    "#0808B0FF",
+                    "#002858FF",
+                    "#101810FF",
+                    "#A80808FF",
+                    "#B04D08FF",
+                    "#A88020FF",
+                    "#B04058FF",
+                    "#880888FF",
+                    "#286878FF",
+                    "#8038B0FF",
+                    "#088008FF",
+                    "#585858FF",
+                    "#084828FF",
+                    "#C0C0C0FF",
+                    "#0C70B0FF"
+                ],
+                "castleMapColorPalettes.ric.data=": [
+                    "#0000007F",
+                    "#0808B0FF",
+                    "#002858FF",
+                    "#101810FF",
+                    "#A80808FF",
+                    "#B04D08FF",
+                    "#A88020FF",
+                    "#B04058FF",
+                    "#880888FF",
+                    "#286878FF",
+                    "#8038B0FF",
+                    "#088008FF",
+                    "#585858FF",
+                    "#084828FF",
+                    "#C0C0C0FF",
+                    "#0C70B0FF"
+                ]
+            }
+        }
+    ]
+}

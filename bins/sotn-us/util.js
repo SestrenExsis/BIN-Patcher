@@ -1,7 +1,19 @@
 import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
-import { Address, GameData, toHex, toVal } from './src/common.js'
+
+import {
+    ALIASED_TYPES,
+    Address,
+    GameData,
+    toHex,
+    toVal,
+} from '../../src/common.js'
+
+import {
+    getChangeDependencies,
+    processBinary,
+} from './sotn-us.js'
 
 export class CutsceneInstruction {
     constructor(bin) {
@@ -167,6 +179,66 @@ export class CutsceneInstruction {
 }
 
 const argv = yargs(process.argv.slice(2))
+    .command({ // extract
+        command: 'extract',
+        describe: 'Process a SOTN BIN and generate an extraction file',
+        builder: (yargs) => {
+            return yargs
+            .option('bin', {
+                alias: 'b',
+                describe: 'Binary file to extract data from',
+                type: 'string',
+                normalize: true,
+            })
+            .option('out', {
+                alias: 'o',
+                describe: 'Path to the output extraction file to create',
+                type: 'string',
+                normalize: true,
+                default: './build/sotn-us/extraction.json',
+            })
+            .demandOption(['bin', 'out'])
+        },
+        handler: (argv) => {
+            const binFile = fs.openSync(argv.bin, 'r')
+            const binFileSize = fs.fstatSync(binFile).size
+            const buffer = Buffer.alloc(binFileSize)
+            fs.readSync(binFile, buffer, 0, binFileSize)
+            fs.closeSync(binFile)
+            const digest = crypto.createHash('sha256').update(buffer).digest()
+            console.log('Digest of disc image', digest.toString('hex'))
+            const bin = new GameData(buffer)
+            const target = processBinary(bin)
+            fs.writeFileSync(argv.out, JSON.stringify(target.extraction, null, 4))
+        }
+    })
+    .command({ // dependencies
+        command: 'dependencies',
+        describe: 'Generate a change dependencies file for SOTN',
+        builder: (yargs) => {
+            return yargs
+            .option('template', {
+                alias: 't',
+                describe: 'JSON file describing the initial layout of the change dependencies template',
+                type: 'string',
+                normalize: true,
+                default: './bins/sotn-us/data/change-dependencies-template.json',
+            })
+            .option('out', {
+                alias: 'o',
+                describe: 'Path to the output file to create',
+                type: 'string',
+                normalize: true,
+                default: './build/sotn-us/change-dependencies.json',
+            })
+            .demandOption(['template', 'out'])
+        },
+        handler: (argv) => {
+            const source = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
+            const target = getChangeDependencies(source)
+            fs.writeFileSync(argv.out, JSON.stringify(target, null, 4))
+        }
+    })
     .command({ // alias
         command: 'alias',
         describe: 'Reformat room names for stage in alias file',
@@ -204,9 +276,9 @@ const argv = yargs(process.argv.slice(2))
             })
         }
     })
-    .command({ // dependencies
-        command: 'dependencies',
-        describe: 'Construct change dependencies for template',
+    .command({ // stage
+        command: 'stage',
+        describe: 'Construct rooms data for a given stage for the change dependencies template',
         builder: (yargs) => {
             return yargs
             .option('property', {
@@ -217,7 +289,7 @@ const argv = yargs(process.argv.slice(2))
             .demandOption(['property'])
         },
         handler: (argv) => {
-            let extractionData = JSON.parse(fs.readFileSync('./build/extraction-aliased.json', 'utf8'))
+            let extractionData = JSON.parse(fs.readFileSync('./build/sotn-us/extraction-aliased.json', 'utf8'))
             console.log('    rooms:')
             Object.entries(extractionData.stages)
             .forEach(([stageName, stageInfo]) => {
@@ -225,10 +297,12 @@ const argv = yargs(process.argv.slice(2))
                     return;
                 }
                 console.log(`        '${stageName}': {`)
-                Object.entries(stageInfo.rooms.aliases).forEach(([roomName, roomIndex]) => {
+                Object.entries(stageInfo.rooms.aliases)
+                .forEach(([roomName, roomIndex]) => {
                     console.log(`            '${roomName}': [`)
                     const roomInfo = stageInfo.rooms.data[roomIndex]
-                    Object.entries(stageInfo.layers.layerDefinitions.aliases).forEach(([layerName, layerIndex]) => {
+                    Object.entries(stageInfo.layers.layerDefinitions.aliases)
+                    .forEach(([layerName, layerIndex]) => {
                         const layerInfo = stageInfo.layers.layerDefinitions.data[layerIndex]
                         if (
                             (layerInfo.layoutRect.left === roomInfo.left) &&

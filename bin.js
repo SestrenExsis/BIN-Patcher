@@ -1,7 +1,12 @@
 import yargs from 'yargs'
 import fs from 'fs'
 import crypto from 'crypto'
-import { Address, GameData, toHex, toVal } from './src/common.js'
+import {
+    Address,
+    GameData,
+    toHex,
+    toVal,
+} from './src/common.js'
 import {
     aliasIndexedNodes,
     aliasNodeKeys,
@@ -10,8 +15,12 @@ import {
     parseExtractionNode,
     promoteNodes,
 } from './src/extract.js'
-import { applyChange } from './src/change.js'
-import { toPPF } from './src/ppf.js'
+import {
+    applyChange,
+} from './src/change.js'
+import {
+    toPPF,
+} from './src/ppf.js'
 
 // An EXTRACTION file describes a structured template of modifiable or readable elements in the BINARY
 // An EXTRACTION file can be used to produce an unmodified (i.e., vanilla) PATCH file as a template for further modifications
@@ -199,7 +208,7 @@ const argv = yargs(process.argv.slice(2))
     })
     .command({ // ppf
         command: 'ppf',
-        describe: 'Generate a PPF file, given an extraction file and a patch file',
+        describe: 'Generate a PPF file from a patch file',
         builder: (yargs) => {
             return yargs
             .option('patch', {
@@ -214,11 +223,17 @@ const argv = yargs(process.argv.slice(2))
                 type: 'string',
                 normalize: true,
             })
+            .option('description', {
+                alias: 'd',
+                describe: 'Description to place in the header of the PPF file (only the first 50 characters will be written)',
+                type: 'string',
+                default: 'BIN-Patcher',
+            })
             .demandOption(['patch', 'target'])
         },
         handler: (argv) => {
             let patchData = JSON.parse(fs.readFileSync(argv.patch, 'utf8'))
-            const ppfData = toPPF(patchData)
+            const ppfData = toPPF(patchData, argv.description)
             fs.writeFileSync(argv.target, ppfData);
         }
     })
