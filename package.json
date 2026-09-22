@@ -2,7 +2,7 @@
   "name": "bin-patcher",
   "version": "1.0.0",
   "description": "A tool for generating PPF files for modifying Castlevania: Symphony of the Night (SOTN)",
-  "main": "bin.js",
+  "main": "index.js",
   "scripts": {
     "test": "test",
     "sotn:build": "bins/sotn-us/build.sh",

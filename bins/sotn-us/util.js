@@ -12,6 +12,7 @@ import {
 
 import {
     getChangeDependencies,
+    getDefaultChangeDependencies,
     processBinary,
 } from './sotn-us.js'
 
@@ -217,13 +218,6 @@ const argv = yargs(process.argv.slice(2))
         describe: 'Generate a change dependencies file for SOTN',
         builder: (yargs) => {
             return yargs
-            .option('template', {
-                alias: 't',
-                describe: 'JSON file describing the initial layout of the change dependencies template',
-                type: 'string',
-                normalize: true,
-                default: './bins/sotn-us/data/change-dependencies-template.json',
-            })
             .option('out', {
                 alias: 'o',
                 describe: 'Path to the output file to create',
@@ -231,11 +225,10 @@ const argv = yargs(process.argv.slice(2))
                 normalize: true,
                 default: './build/sotn-us/change-dependencies.json',
             })
-            .demandOption(['template', 'out'])
+            .demandOption(['out'])
         },
         handler: (argv) => {
-            const source = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
-            const target = getChangeDependencies(source)
+            const target = getDefaultChangeDependencies()
             fs.writeFileSync(argv.out, JSON.stringify(target, null, 4))
         }
     })
