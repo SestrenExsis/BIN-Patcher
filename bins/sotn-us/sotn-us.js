@@ -1,6 +1,4 @@
 
-import fs from 'fs'
-
 import {
     ALIASED_TYPES,
 } from '../../src/common.js'
