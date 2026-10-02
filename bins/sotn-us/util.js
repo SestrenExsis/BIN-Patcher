@@ -15,6 +15,10 @@ import {
     processBinary,
 } from './sotn-us.js'
 
+import {
+    CHANGE_DEPENDENCIES_TEMPLATE,
+} from './constants.js'
+
 export class CutsceneInstruction {
     constructor(bin) {
         this.startAddress = new Address('GAMEDATA', bin.cursor.gameDataAddress)
@@ -217,13 +221,6 @@ const argv = yargs(process.argv.slice(2))
         describe: 'Generate a change dependencies file for SOTN',
         builder: (yargs) => {
             return yargs
-            .option('template', {
-                alias: 't',
-                describe: 'JSON file describing the initial layout of the change dependencies template',
-                type: 'string',
-                normalize: true,
-                default: './bins/sotn-us/data/change-dependencies-template.json',
-            })
             .option('out', {
                 alias: 'o',
                 describe: 'Path to the output file to create',
@@ -231,11 +228,10 @@ const argv = yargs(process.argv.slice(2))
                 normalize: true,
                 default: './build/sotn-us/change-dependencies.json',
             })
-            .demandOption(['template', 'out'])
+            .demandOption(['out'])
         },
         handler: (argv) => {
-            const source = JSON.parse(fs.readFileSync(argv.template, 'utf8'))
-            const target = getChangeDependencies(source)
+            const target = getChangeDependencies(CHANGE_DEPENDENCIES_TEMPLATE)
             fs.writeFileSync(argv.out, JSON.stringify(target, null, 4))
         }
     })
