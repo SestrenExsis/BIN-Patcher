@@ -12,13 +12,50 @@ To generate the necessary build files, run the following command, supplying the 
 npm run sotn:build <PATH TO YOUR BIN FILE>
 ```
 
-Then, to generate an example PPF, run the following command. The PPF will be found at `build/sotn-us/current-patch.ppf`.
+Then, to generate an example PPF, run the following command.
 
 ```
 npm run sotn:example
 ```
 
-The PPF file generated is designed to be used in conjunction with a PPF patching tool like the one available at [ppf.sotn.io](https://ppf.sotn.io/).
+The PPF will be found at `build/sotn-us/current-patch.ppf`. The PPF file generated is designed to be used in conjunction with a PPF patching tool like the one available at [ppf.sotn.io](https://ppf.sotn.io/).
+
+## Example Usage Code
+
+The following shows the steps to generate a PPF that will, in this case, alter the gears in Clock Tower to be unlocked with one strike each. The `buffer` variable is assumed to be a Uint8Array that has already been initialized with the bytes of the source BIN file.
+
+```js
+const bin = new BinPatcher.GameData(buffer)
+const extractionData = BinPatcher.processBinary(bin).extraction
+const changeData = {
+    changes: [
+        {
+            changeType: 'merge',
+            merge: {
+                'stages.clockTower.constants.gearPuzzle.rotationDuration.data=': 64,
+                'stages.clockTower.constants.gearPuzzle.rotationSpeed.data=': 64,
+                'stages.clockTower.constants.gearPuzzle.targetRotations.data=': [
+                    1024,
+                    1024,
+                    1024,
+                    1024,
+                ],
+                'stages.reverseClockTower.constants.gearPuzzle.rotationDuration.data=': 64,
+                'stages.reverseClockTower.constants.gearPuzzle.rotationSpeed.data=': 64,
+                'stages.reverseClockTower.constants.gearPuzzle.targetRotations.data=': [
+                    1024,
+                    1024,
+                    1024,
+                    1024,
+                ],
+            },
+        },
+    ],
+}
+let patchData = BinPatcher.maskNodes(extractionData, 'data')
+BinPatcher.applyChange(patchData, changeData)
+const ppfData = BinPatcher.toPPF(patchData, 'Reduce strikes needed to solve the gear puzzle)
+```
 
 ## Acknowledgements
 

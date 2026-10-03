@@ -1286,7 +1286,7 @@ export class Address {
 export class GameData {
     constructor(buffer, cursorOffset=0) {
         // TODO(sestren): Consider removing sector headers and error correction and storing gamedata only
-        this.buffer = buffer
+        this.buffer = Buffer.alloc(buffer.length, buffer)
         this.cursor = new Address('GAMEDATA', toVal(cursorOffset))
         this.prevRead = []
     }

@@ -82,7 +82,7 @@ const argv = yargs(process.argv.slice(2))
         handler: (argv) => {
             const binFile = fs.openSync(argv.bin, 'r')
             const binFileSize = fs.fstatSync(binFile).size
-            const buffer = Buffer.alloc(binFileSize)
+            const buffer = new Uint8Array(binFileSize)
             fs.readSync(binFile, buffer, 0, binFileSize)
             fs.closeSync(binFile)
             const digest = crypto.createHash('sha256').update(buffer).digest()
