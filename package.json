@@ -1,5 +1,5 @@
 {
-  "name": "bin-patcher",
+  "name": "@sestren/bin-patcher",
   "version": "1.0.0",
   "description": "A tool for generating PPF files for modifying Castlevania: Symphony of the Night (SOTN)",
   "browser": "dist/bin-patcher.js",
@@ -19,5 +19,13 @@
   "devDependencies": {
     "buffer": "6.0.3",
     "esbuild": "0.28.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SestrenExsis/BIN-Patcher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SestrenExsis/BIN-Patcher/issues"
+  },
+  "homepage": "https://github.com/SestrenExsis/BIN-Patcher#readme"
 }
