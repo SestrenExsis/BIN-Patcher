@@ -6,7 +6,7 @@
   "main": "index.js",
   "bin": "bin.js",
   "scripts": {
-    "test": "test",
+    "test": "node --test tests/*.test.js",
     "build": "node bundle.js",
     "sotn:build": "bins/sotn-us/build.sh",
     "sotn:example": "bins/sotn-us/patch.sh"
