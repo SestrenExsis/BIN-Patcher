@@ -156,6 +156,10 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                     canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
                     propertyName = canonicalPath.pop()
                     patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    if (patchNode === null || patchNode[propertyName] === null) {
+                        validInd = false
+                        continue
+                    }
                     currentValue += patchNode[propertyName]
                 }
                 else {
@@ -167,6 +171,10 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                     canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
                     propertyName = canonicalPath.pop()
                     patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    if (patchNode === null || patchNode[propertyName] === null) {
+                        validInd = false
+                        continue
+                    }
                     currentValue -= patchNode[propertyName]
                 }
                 else {
@@ -178,6 +186,10 @@ export function applyEvaluate(patchInfo, evaluateInfo) {
                     canonicalPath = getCanonicalPath(actionInfo.property, patchInfo)
                     propertyName = canonicalPath.pop()
                     patchNode = traverseCanonicalPath(canonicalPath, patchInfo)
+                    if (patchNode === null || patchNode[propertyName] === null) {
+                        validInd = false
+                        continue
+                    }
                     currentValue *= patchNode[propertyName]
                 }
                 else {
