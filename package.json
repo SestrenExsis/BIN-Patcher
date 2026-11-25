@@ -1,7 +1,7 @@
 {
   "name": "@sestren/bin-patcher",
   "description": "A tool for generating PPF files for modifying Castlevania: Symphony of the Night (SOTN)",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "type": "module",
   "author": "Sestren",
@@ -15,7 +15,7 @@
     "sotn:example": "bins/sotn-us/patch.sh"
   },
   "dependencies": {
-    "yargs": "18.0.0"
+    "yargs": "18.2.0"
   },
   "devDependencies": {
     "buffer": "6.0.3",
