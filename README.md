@@ -4,7 +4,7 @@ A tool for generating PPF files for modifying SOTN, given specially-formatted JS
 
 ## Installation
 
-This repository requires `Node`, and `npm`.
+This repository requires `Node` and `npm`.
 
 To generate the necessary build files, run the following command, supplying the path to your local BIN file as the argument.
 
@@ -32,16 +32,16 @@ const changeData = {
         {
             changeType: 'merge',
             merge: {
-                'stages.clockTower.constants.gearPuzzle.rotationDuration.data=': 64,
-                'stages.clockTower.constants.gearPuzzle.rotationSpeed.data=': 64,
+                'stages.clockTower.constants.gearPuzzle.rotationDuration.data=': 32,
+                'stages.clockTower.constants.gearPuzzle.rotationSpeed.data=': 32,
                 'stages.clockTower.constants.gearPuzzle.targetRotations.data=': [
                     1024,
                     1024,
                     1024,
                     1024,
                 ],
-                'stages.reverseClockTower.constants.gearPuzzle.rotationDuration.data=': 64,
-                'stages.reverseClockTower.constants.gearPuzzle.rotationSpeed.data=': 64,
+                'stages.reverseClockTower.constants.gearPuzzle.rotationDuration.data=': 32,
+                'stages.reverseClockTower.constants.gearPuzzle.rotationSpeed.data=': 32,
                 'stages.reverseClockTower.constants.gearPuzzle.targetRotations.data=': [
                     1024,
                     1024,
